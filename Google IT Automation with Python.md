@@ -1,0 +1,3504 @@
+# Google IT Automation with Python Professional Certificate
+
+## 1. Crash Course on Python
+
+### Python Resources
+
+#### More About Python
+
+##### Using Python on your own
+
+The best way to learn any programming language is to practice it on your own as much as you can. If you have Python installed on your computer, you can execute the interpreter by running the python3 command (or just python on Windows), and you can close it by typing exit() or Ctrl-D.
+
+If you don't already have Python installed on your machine, that's alright. We'll explain how to install it in an upcoming course.
+
+##### Python practice resources
+
+In the meantime, you can still practice by using one of the many online Python interpreters or codepads available online. There's not much difference between an interpreter and a codepad. An interpreter is more interactive than a codepad, but they both let you execute code and see the results.
+
+Below, you'll find links to some of the most popular online interpreters and codepads. Give them a go to find your favorite.
+
+[](https://www.python.org/shell/)
+
+[](https://www.onlinegdb.com/online_python_interpreter)
+
+[](https://repl.it/languages/python3)
+
+[](https://www.tutorialspoint.com/execute_python3_online.php)
+
+[](https://rextester.com/l/python3_online_compiler)
+
+[](https://trinket.io/python3)
+
+##### Additional Python resources
+
+While this course will give you information about how Python works and how to write scripts in Python, you'll likely want to find out more about specific parts of the language. Here are some great ways to help you find additional info:
+
+Read the [official Python documentation](https://docs.python.org/3/).
+
+Search for answers or ask a question on [Stack Overflow](https://stackoverflow.com/).
+
+Subscribe to the Python [tutor](https://mail.python.org/mailman/listinfo/tutor) mailing list, where you can ask questions and collaborate with other Python learners.
+
+Subscribe to the [Python-announce](https://mail.python.org/mailman/listinfo/python-announce-list) mailing list to read about the latest updates in the language.
+
+##### Python history and current status
+
+Python was released almost 30 years ago and has a rich history. You can read more about it on the [History of Python](https://en.wikipedia.org/wiki/History_of_Python) Wikipedia page or in the section on the [history of the software](https://docs.python.org/3.0/license.html) from the official Python documentation.
+
+Python has recently been called the fastest growing programming language. If you're interested in why this is and how it's measured, you can find out more in these articles:
+
+[The Incredible Growth of Python](https://stackoverflow.blog/2017/09/06/incredible-growth-python/) (Stack Overflow)
+
+[Why is Python Growing So Quickly - Future Trends](https://www.netguru.com/blog/why-python-is-growing-so-quickly-future-trends) (Netguru)
+
+[By the numbers: Python community trends in 2017/2018](https://opensource.com/article/18/5/numbers-python-community-trends) (Opensource.com)
+
+[Developer Survey Results 2018](https://insights.stackoverflow.com/survey/2018#technology) (Stack Overflow)
+
+### First Programming Concepts Cheat Sheet
+
+First Programming Concepts Cheat Sheet Functions and Keywords
+
+Functions and keywords are the building blocks of a language's syntax.
+
+Functions are pieces of code that perform a unit of work. In the examples we've seen so far, we've only encountered the print() function, which prints a message to the screen. We'll learn about a lot of other functions in later lessons but, if you're too curious to wait until then, you can discover all the functions available [here](https://docs.python.org/3/library/functions.html).
+
+Keywords are reserved words that are used to construct instructions. We briefly encountered for and in in our first Python example, and we'll use a bunch of other keywords as we go through the course. For reference, these are all the reserved keywords:
+
+|      |          |         |          |        |
+------ | -------- | ------- | -------- | ------ |
+False  | class    | finally | is       | return |
+None   | continue | for     | lambda   | try    |
+True   | def      | from    | nonlocal | while  |
+and    | del      | global  | not      | with   |
+as     | elif     | if      | or       | yield  |
+assert | else     | import  | pass     | break  |
+except | in       | raise   |          |        |
+
+You don't need to learn this list; we'll dive into each keyword as we encounter them. In the meantime, you can see examples of keyword usage [here](https://www.programiz.com/python-programming/keyword-list).
+
+#### Arithmetic operators
+
+Python can operate with numbers using the usual mathematical operators, and some special operators, too. These are all of them (we'll explore the last two in later videos).
+
+```python
+a + b = Adds a and b
+
+a - b = Subtracts b from a
+
+a * b = Multiplies a and b
+
+a / b = Divides a by b
+
+a ** b = Elevates a to the power of b. For non integer values of b,\
+   this becomes a root (i.e. a ** (1/2) is the square root of a)
+
+a // b = The integer part of the integer division of a by b
+
+a % b = The remainder part of the integer division of a by b
+```
+
+### Expressions & Variables
+
+#### Data Types Recap
+
+In Python, text in between quotes -- either single or double quotes -- is a string data type. An integer is a whole number, without a fraction, while a float is a real number that can contain a fractional part. For example, 1, 7, 342 are all integers, while 5.3, 3.14159 and 6.0 are all floats. When attempting to mix incompatible data types, you may encounter a **TypeError**. You can always check the data type of something using the **_type()_** function.
+
+#### Implicit vs Explicit Conversion
+
+Some data types can be mixed and matched due to implicit conversion. Implicit conversion is where the interpreter helps us out and automatically converts one data type into another, without having to explicitly tell it to do so.
+
+By contrast, explicit conversion is where we manually convert from one data type to another by calling the relevant function for the data type we want to convert to. We used this in our video example when we wanted to print a number alongside some text. Before we could do that, we needed to call the _str()_ function to convert the number into a string. Once the number was explicitly converted to a string, we could join it with the rest of our textual string and print the result.
+
+### Functions
+
+#### Defining Functions Recap
+
+We looked at a few examples of built-in functions in Python, but being able to define your own functions is incredibly powerful. We start a function definition with the def keyword, followed by the name we want to give our function. After the name, we have the parameters, also called arguments, for the function enclosed in parentheses. A function can have no parameters, or it can have multiple parameters. Parameters allow us to call a function and pass it data, with the data being available inside the function as variables with the same name as the parameters. Lastly, we put a colon at the end of the line.
+
+After the colon, the function body starts. It's important to note that in Python the function body is delimited by indentation. This means that all code indented to the right following a function definition is part of the function body. The first line that's no longer indented is the boundary of the function body. It's up to you how many spaces you use when indenting -- just make sure to be consistent. So if you choose to indent with four spaces, you need to use four spaces everywhere in your code.
+
+#### Returning Values Using Functions
+
+Sometimes we don't want a function to simply run and finish. We may want a function to manipulate data we passed it and then return the result to us. This is where the concept of return values comes in handy. We use the return keyword in a function, which tells the function to pass data back. When we call the function, we can store the returned value in a variable. Return values allow our functions to be more flexible and powerful, so they can be reused and called multiple times.
+
+Functions can even return multiple values. Just don't forget to store all returned values in variables! You could also have a function return nothing, in which case the function simply exits
+
+### Conditionals
+
+#### Comparison Operators
+
+In Python, we can use comparison operators to compare values. When a comparison is made, Python returns a boolean result, or simply a True or False.
+
+To check if two values are the same, we can use the equality operator: **==**
+
+To check if two values are not the same, we can use the not equals operator: **!=**
+
+We can also check if values are greater than or lesser than each other using > and <. If you try to compare data types that aren't compatible, like checking if a string is greater than an integer, Python will throw a **TypeError**.
+
+We can make very complex comparisons by joining statements together using logical operators with our comparison operators. These logical operators are **and**, **or**, and **not**.
+
+- When using the **and** operator, _both sides of the statement being evaluated must be true for the whole statement to be true_.
+
+- When using the **or** operator, _if either side of the comparison is true, then the whole statement is true_.
+
+Lastly, the **not** operator simply inverts the value of the statement immediately following it. So _if a statement evaluates to True, and we put the not operator in front of it, it would become False_.
+
+#### Branching with if Statements Recap
+
+We can use the concept of **branching** to have our code alter its execution sequence depending on the values of variables. We can use an if statement to evaluate a comparison. We start with the if keyword, followed by our comparison. We end the line with a colon. The body of the if statement is then indented to the right. If the comparison is **_True_**, the code inside the if body is executed. If the comparison evaluates to **_False_**, then the code block is skipped and will not be run.
+
+_The body of the if block will only execute when the condition evaluates to true; otherwise, it skipped._
+
+#### else Statements and the Modulo Operator
+
+We just covered the if statement, which executes code if an evaluation is true and skips the code if it's false. But what if we wanted the code to do something different if the evaluation is false? We can do this using the else statement. The else statement follows an if block, and is composed of the keyword else followed by a colon. The body of the else statement is indented to the right, and will be executed if the above if statement doesn't execute.
+
+We also touched on the modulo operator, which is represented by the percent sign: %. This operator performs integer division, but only returns the remainder of this division operation. If we're dividing 5 by 2, the quotient is 2, and the remainder is 1\. Two 2s can go into 5, leaving 1 left over. So 5%2 would return 1\. Dividing 10 by 5 would give us a quotient of 2 with no remainder, since 5 can go into 10 twice with nothing left over. In this case, 10%2 would return 0, as there is no remainder.
+
+#### More Complex Branching with elif Statements
+
+Building off of the _if_ and _else_ blocks, which allow us to branch our code depending on the evaluation of one statement, the _elif_ statement allows us even more comparisons to perform more complex branching. Very similar to the if statements, an _elif_ statement starts with the _elif_ keyword, followed by a comparison to be evaluated. This is followed by a colon, and then the code block on the next line, indented to the right. An _elif_ statement **must follow** an _if_ statement, and will only be evaluated if the _if_ statement was evaluated as false. You can include multiple _elif_ statements to build complex branching in your code to do all kinds of powerful things!
+
+#### Conditionals Cheat Sheet
+
+In earlier videos, we took a look at some of the built-in Python operators that allow us to compare values, and some logical operators we can use to combine values. We also learned how to use operators in if-else-elif blocks.
+
+It's a lot to learn but, with practice, it gets easier to remember it all. In the meantime, this handy cheat sheet gives you all the information you need at a glance.
+
+##### Comparison operators
+
+```python
+a == b: a is equal to b
+a != b: a is different than b
+a < b: a is smaller than b
+a <= b: a is smaller or equal to b
+a > b: a is bigger than b
+a >= b: a is bigger or equal to b
+```
+
+##### Logical operators
+
+```python
+a and b: True if both a and b are True. False otherwise.
+a or b: True if either a or b or both are True.\
+ False if both are False.
+not a: True if a is False, False if a is True.
+```
+
+##### Branching blocks
+
+In Python, we branch our code using if, else and elif. This is the branching syntax:
+
+```python
+if condition1:
+  if-block
+elif condition2:
+  elif-block
+else:
+  else-block
+```
+
+### Introduction to loops
+
+#### Anatomy of a While Loop
+
+A _while loop will continuously execute code depending on the value of a condition_. It begins with the keyword while, followed by a comparison to be evaluated, then a colon. On the next line is the code block to be executed, indented to the right. Similar to an if statement, the code in the body will only be executed if the comparison is evaluated to be true. What sets a while loop apart, however, is that this code block will keep executing as long as the evaluation statement is true. Once the statement is no longer true, the loop exits and the next line of code will be executed.
+
+#### Why Initializing Variables Matters
+
+When we forget to initialize the variable two different things can happen. The first possible outcome and the easiest to catch is that Python might raise an error telling us that we're using a variable we haven't defined.
+
+Now, there's a second issue we might face if we forget to initialize variables with the right value. We might have already used the variable in our program. In this case, if we reuse the variable without setting the correct value from the start, it will still have the value from before. This can lead to some pretty unexpected behavior.
+
+**Whenever you're writing a loop check that you're initializing all the variables you want to use before you use them.**
+
+##### Common Pitfalls With Variable Initialization
+
+You'll want to watch out for a common mistake: forgetting to initialize variables. If you try to use a variable without first initializing it, you'll run into a **NameError**. This is the Python interpreter catching the mistake and telling you that you're using an undefined variable. The fix is pretty simple: initialize the variable by assigning the variable a value before you use it.
+
+Another common mistake to watch out for that can be a little trickier to spot is forgetting to initialize variables with the correct value. If you use a variable earlier in your code and then reuse it later in a loop without first setting the value to something you want, your code may wind up doing something you didn't expect. Don't forget to initialize your variables before using them!
+
+#### Infinite Loops and How to Break Them
+
+Example of an infinite loop:
+
+```python
+while x % 2 == 0:
+  x = x / 2
+```
+
+Fix:
+
+```python
+  while x != 0 and x % 2 == 0:
+    x = x / 2
+```
+
+Another example:
+
+```python
+def print_range(start, end):
+"""Loop through the numbers from start to end"""
+n = start
+while n <= end:
+  print(n)
+```
+
+Fix:
+
+```python
+def print_range(start, end):
+n = start
+while n <= end:
+  print(n)
+  n += 1
+```
+
+##### Infinite loops and Code Blocks
+
+Another easy mistake that can happen when using loops is introducing an infinite loop. An infinite loop means the code block in the loop will continue to execute and never stop. This can happen when the condition being evaluated in a while loop doesn't change. Pay close attention to your variables and what possible values they can take. Think about unexpected values, like zero.
+
+### What is a for loop?
+
+A loop iterates over a sequence of values.
+
+- Use for loops when there's a sequence of elements that you want to iterate.
+
+- Use while loops when you want to repeat an action until a condition changes.
+
+And if whatever you're trying to do can be done with either for or while loops, just use whichever one's your favorite.
+
+#### For Loops Recap
+
+_For_ loops allow you to iterate over a sequence of values. Let's take the example from the beginning of the video:
+
+```python
+for x in range(5):
+  print(x)
+```
+
+Similar to _if_ statements and _while_ loops, _for_ loops begin with the keyword **_for_** with a colon at the end of the line. Just like in function definitions, _while_ loops and _if_ statements, the body of the _for_ loop begins on the next line and is indented to the right. But what about the stuff in between the for keyword and the colon? In our example, we're using the _range()_ function to create a sequence of numbers that our _for_ loop can iterate over. In this case, our variable **x** points to the current element in the sequence as the _for_ loop iterates over the sequence of numbers. Keep in mind that in Python and many programming languages, a range of numbers will start at 0, and the list of numbers generated will be one less than the provided value. So _range(5)_ will generate a sequence of numbers from 0 to 4, for a total of 5 numbers.
+
+Bringing this all together, the range(5) function will create a sequence of numbers from 0 to 4\. Our _for_ loop will iterate over this sequence of numbers, one at a time, making the numbers accessible via the variable **x** and the code within our loop body will execute for each iteration through the sequence. So for the first loop, **x** will contain 0, the next loop, 1, and so on until it reaches 4\. Once the end of the sequence comes up, the loop will exit and the code will continue.
+
+The power of _for_ loops comes from the fact that it can iterate over a sequence of any kind of data, not just a range of numbers. You can use _for_ loops to iterate over a list of strings, such as usernames or lines in a file.
+
+Not sure whether to use a for loop or a _while_ loop? Remember that a _while_ loop is great for performing an action over and over until a condition has changed. A _for_ loop works well when you want to iterate over a sequence of elements.
+
+#### More for loops examples
+
+```python
+def factorial(n):
+  result = 1
+  for i in ___:
+      __
+  return result
+
+print(factorial(4)) # should return 24
+print(factorial(5)) # should return 120
+```
+
+The **_range_** function can receive one, two or three parameters.
+
+- If it receives one parameter, it will create a sequence one by one from zero until one less than the parameter received.
+
+- If it receives two parameters, it will create a sequence one by one from the first parameter until one less than the second parameter.
+
+- Finally, if it receives three parameters, it will create a sequence starting from the first number and moving towards the second number. But this time, the jumps between the numbers will be the size of the third number, and again, it will stop before the second number.
+
+#### Nested for Loops
+
+```python
+"""Domino tiles examples"""
+for left in range(0, 7):
+  for right in range(left,7):
+    print("[" + str(left) + "|" + str(right) + "]", end=" ")
+  print() #note the identation difference with the previous line ;-)
+
+"""Output:
+[0|0] [0|1] [0|2] [0|3] [0|4] [0|5] [0|6]
+[1|1] [1|2] [1|3] [1|4] [1|5] [1|6]
+[2|2] [2|3] [2|4] [2|5] [2|6]
+[3|3] [3|4] [3|5] [3|6]
+[4|4] [4|5] [4|6]
+[5|5] [5|6]
+[6|6]
+"""
+```
+
+Another example:
+
+```python
+"""Local girl's basketball league"""
+teams = [ 'Dragons', 'Wolves', 'Pandas', 'Unicorns']
+for home_team in teams:
+  for away_team in teams:
+    if home_team != away_team
+      print(home_team + " vs " + away_team)
+
+"""Output:
+Dragons vs Wolves
+Dragons vs Pandas
+Dragons vs Unicorns
+Wolves vs Dragons
+Wolves vs Pandas
+Wolves vs Unicorns
+Pandas vs Dragons
+Pandas vs Wolves
+Pandas vs Unicorns
+Unicorns vs Dragons
+Unicorns vs Wolves
+Unicorns vs Pandas
+"""
+```
+
+#### Common Errors in for Loops
+
+- Forgetting that the upper limit of a range() isn't included.
+
+- Iterating over non-sequences. Integer numbers aren't iterable. Strings are iterable letter by letter, but that might not be what you want.
+
+[Python wiki page on for loops](https://wiki.python.org/moin/ForLoop)
+
+### Recursion (optional)
+
+#### What is recursion?
+
+**Recursion** is the repeated application of the same procedure to a smaller problem. Recursion lets us tackle complex problems by reducing the problem to a simpler one.
+
+In programming, recursion is a way of doing a repetitve task by having function call itself. Notions of base case and recursive case.
+
+Example: Recursive factorial function
+
+```python
+def factorial (n):
+  if n < 2:
+    return 1
+  else:
+    return n * factorial (n - 1)
+```
+
+Other example:
+
+```python
+"""The function sum_positive_numbers should return the sum of all\
+ positive numbers between the number n received and 1.\
+For example, when n is 3 it should return 1+2+3=6, and when\
+ n is 5 it should return 1+2+3+4+5=15.\
+Fill in the gaps to make this work:
+"""
+
+def sum_positive_numbers(n):
+    # The base case is n being smaller than 1
+    if n < 1:
+      return ___
+
+    # The recursive case is adding this number to
+    # the sum of the numbers smaller than this one.
+    return ___ + sum_positive_numbers(___)
+
+print(sum_positive_numbers(3)) # Should be 6
+print(sum_positive_numbers(5)) # Should be 15
+```
+
+And another:
+
+```python
+def is_power_of(number, base):
+  # Base case: when number is smaller than base.
+  if number < base:
+    # If number is equal to 1, it's a power (base**0).
+    return __
+
+  # Recursive case: keep dividing number by base.
+  return is_power_of(__, ___)
+
+print(is_power_of(8,2)) # Should be True
+print(is_power_of(64,4)) # Should be True
+print(is_power_of(70,10)) # Should be False
+```
+
+#### Recursion in Action in the IT Context
+
+Think automations tasks around files and directories, groups (Active Directory/LDAP)...
+
+#### Additional Recursion Sources
+
+In the past videos, we visited the basic concepts of recursive functions.
+
+A recursive function must include a recursive case and base case. The recursive case calls the function again, with a different value. The base case returns a value without calling the same function.
+
+A recursive function will usually have this structure:
+
+```python
+def recursive_function(parameters):
+    if base_case_condition(parameters):
+        return base_case_value
+    recursive_function(modified_parameters)
+```
+
+For more information on recursion, check out these resources:
+
+- [Wikipedia Recursion page](https://en.wikipedia.org/wiki/Recursion)
+
+- See what happens when you [Search Google for Recursion](https://www.google.com/search?q=recursion)
+
+### Strings, Lists and Dictionaries
+
+**Strings in Python are immutable.**
+
+#### Parts of a String: Indexing and Slicing
+
+String indexing allows you to access individual characters in a string. You can do this by using square brackets and the location, or index, of the character you want to access. It's important to **remember that Python starts indexes at 0**. So to access the first character in a string, you would use the index[0]. If you try to access an index that's larger than the length of your string, you'll get an **IndexError**. This is because you're trying to access something that doesn't exist! You can also access indexes from the end of the string going towards the start of the string by using negative values. The index[-1] would access the last character of the string, and the index[-2] would access the second-to-last character.
+
+You can also access a portion of a string, called a slice or a substring. This allows you to access multiple characters of a string. You can do this by creating a range, using a colon as a separator between the start and end of the range, like [2:5].
+
+This range is similar to the range() function we saw previously. It includes the first number, but goes to one less than the last number. For example:
+
+```python
+fruit = "Mangosteen"
+fruit[1:4]
+'ang'
+```
+
+The slice _includes_ the character at index 1, and _excludes_ the character at index 4\. You can also easily reference a substring at the start or end of the string by only specifying one end of the range. For example, only giving the end of the range:
+
+```python
+fruit[:5]
+'Mango'
+```
+
+This gave us the characters from the start of the string through index 4, excluding index 5\. On the other hand this example gives is the characters including index 5, through the end of the string:
+
+```python
+fruit[5:]
+'steen'
+```
+
+You might have noticed that if you put both of those results together, you get the original string back!
+
+```python
+fruit[:5] + fruit[5:]
+'Mangosteen'
+```
+
+#### Creating new strings
+
+```python
+message = "A kong string with a silly typo"
+message[2] = "l"
+TypeError: 'str' object does not support item assignment
+```
+
+```python
+new_message = message[:2] + "l" + message[3:]
+```
+
+```python
+message = "This is a new message"
+```
+
+**Remember: Strings in Python are immutable**.
+
+Notion of **method**: a _method_ is a function associated with a specific class.
+
+```python
+pets = "Cat & Dogs"
+pets.index(&)
+5
+```
+
+"Real world" application:
+
+```python
+def replace_domain(email, old_domain, new_domain):
+  if "@" + old_domain in email:
+    index = email.index("@") + old_domain
+    new_email = email[:index] + "@" + new_domain
+    return new_email
+  return email
+```
+
+#### Basic String Methods
+
+In Python, strings are immutable. This means that they can't be modified. So if we wanted to fix a typo in a string, we can't simply modify the wrong character. We would have to create a new string with the typo corrected. We can also assign a new value to the variable holding our string.
+
+If we aren't sure what the index of our typo is, we can use the string method index to locate it and return the index. Let's imagine we have the string **"lions tigers and bears"** in the variable **animals**. We can locate the index that contains the letter g using _animals.index("**g**")_, which will return the index; in this case 8. We can also use substrings to locate the index where the substring begins. animals.index("bears") would return 17, since that's the start of the substring. If there's more than one match for a substring, the index method will return the first match. If we try to locate a substring that doesn't exist in the string, we'll receive a **ValueError** explaining that the substring was not found.
+
+We can avoid a ValueError by first checking if the substring exists in the string. This can be done using the **_in_** keyword. We saw this keyword earlier when we covered _for_ loops. In this case, it's a conditional that will be either True or False. If the substring is found in the string, it will be True. If the substring is not found in the string, it will be False. Using our previous variable **animals**, we can do **"horses" in animals** to check if the substring "horses" is found in our variable. In this case, it would evaluate to False, since horses aren't included in our example string. If we did **"tigers" in animals**, we'd get True, since this substring is contained in our string.
+
+#### Some More Strings Methods
+
+|          |             |              |           |           |
+|----------|-------------|--------------|-----------|-----------|
+| .upper() | .lower()    | .strip()     | .lstrip() | .rstrip() |
+| .count() | .endswith() | .isnumeric() | .join()   | .split()  |
+
+#### Advanced String Methods
+
+We've covered a bunch of String class methods already, so let's keep building on those and run down some more advanced methods.
+
+The string method **lower** will return the string with all characters changed to lowercase. The inverse of this is the _**upper** method_, which will return the string all in uppercase. Just like with previous methods, we call these on a string using dot notation, like **"this is a string".upper()**. This would return the string **"THIS IS A STRING"**. This can be super handy when checking user input, since someone might type in all lowercase, all uppercase, or even a mixture of cases.
+
+You can use the _**strip** method_ to remove surrounding whitespace from a string. Whitespace includes spaces, tabs, and newline characters. You can also use the methods lstrip and rstrip to remove whitespace only from the left or the right side of the string, respectively.
+
+The _method **count**_ can be used to return the number of times a substring appears in a string. This can be handy for finding out how many characters appear in a string, or counting the number of times a certain word appears in a sentence or paragraph.
+
+If you wanted to check if a string ends with a given substring, you can use the method endswith. This will return True if the substring is found at the end of the string, and False if not.
+
+The **isnumeric** method can check if a string is composed of only numbers. If the string contains only numbers, this method will return True. We can use this to check if a string contains numbers before passing the string to the int() function to convert it to an integer, avoiding an error. Useful! Try:
+
+```python
+int("12345") + int("54321")
+```
+
+We took a look at string concatenation using the plus sign, earlier. We can also use the _**join** method_ to concatenate strings. This method is called on a string that will be used to join a list of strings. The method takes a list of strings to be joined as a parameter, and returns a new string composed of each of the strings from our list joined using the initial string. For example,
+
+```python
+" ".join(["This","is","a","sentence"])
+```
+
+would return the string "This is a sentence".
+
+The inverse of the join method is the _**split** method_. This allows us to split a string into a list of strings. By default, it splits by any whitespace characters. You can also split by any other characters by passing a parameter.
+
+#### Formating Strings: the .format() method
+
+Concatenation with _+_ and explicit conversion with _str()_ are helpful, but not always ideal.
+
+##### String Formatting
+
+You can use the _**format** method_ on strings to concatenate and format strings in all kinds of powerful ways. To do this, create a string containing curly brackets, **{}**, as a placeholder, to be replaced. Then call the format method on the string using _.format()_ and pass variables as parameters. The variables passed to the method will then be used to replace the curly bracket placeholders. This method automatically handles any conversion between data types for us.
+
+If the curly brackets are empty, they'll be populated with the variables passed in the order in which they're passed. However, you can put certain expressions inside the curly brackets to do even more powerful string formatting operations. You can put the name of a variable into the curly brackets, then use the names in the parameters. This allows for more easily readable code, and for more flexibility with the order of variables.
+
+You can also put a formatting expression inside the curly brackets, which lets you alter the way the string is formatted. For example, the formatting expression **{:.2f}** means that you'd format this as a float number, with two digits after the decimal dot. The colon acts as a separator from the field name, if you had specified one. You can also specify text alignment using the greater than operator: >. For example, the expression **{:>3.2f}** would align the text three spaces to the right, as well as specify a float number with two decimal places. String formatting can be very handy for outputting easy-to-read textual output.
+
+An example:
+
+```python
+name = "Benjo"
+number = len(name) * 3
+print("Hello {}! Your lucky number is {}".format(name, number))
+print("Your lucky number is {number}, {name}".format(name=name,\
+ number=number))
+```
+
+Another example, with a _formating expression_:
+
+```python
+price = 7.5
+with_tax = price * 1.21
+print("Base price: {:.2f} €. With VAT: {:.2f} €".format(price,\
+ with_tax))
+```
+
+Yet another example:
+
+```python
+def to_celsius(t):
+  return (t - 31)*5/9
+
+for x in range(0, 101, 10):
+  print("{:>3} F | {:>6.2f} C".format(x, to_celsius(x)))
+```
+
+#### String Formatting Recap
+
+You can use the format method on strings to concatenate and format strings in all kinds of powerful ways. To do this, create a string containing curly brackets, {}, as a placeholder, to be replaced. Then call the format method on the string using .format() and pass variables as parameters. The variables passed to the method will then be used to replace the curly bracket placeholders. This method automatically handles any conversion between data types for us.
+
+If the curly brackets are empty, they'll be populated with the variables passed in the order in which they're passed. However, you can put certain expressions inside the curly brackets to do even more powerful string formatting operations. You can put the name of a variable into the curly brackets, then use the names in the parameters. This allows for more easily readable code, and for more flexibility with the order of variables.
+
+You can also put a formatting expression inside the curly brackets, which lets you alter the way the string is formatted. For example, the formatting expression {:.2f} means that you'd format this as a float number, with two digits after the decimal dot. The colon acts as a separator from the field name, if you had specified one. You can also specify text alignment using the greater than operator: >. For example, the expression {:>3.2f} would align the text three spaces to the right, as well as specify a float number with two decimal places. String formatting can be very handy for outputting easy-to-read textual output.
+
+Check out the official documentation for [all available String methods](https://docs.python.org/3/library/stdtypes.html#string-methods).
+
+### Lists
+
+#### Lists Defined
+
+Lists in Python are defined using square brackets, with the elements stored in the list separated by commas: **list = ["This", "is", "a", "list"]**. You can use the **len()** function to return the number of elements in a list: **len(list)** would return . You can also use the in keyword to check if a list contains a certain element. If the element is present, it will return a True boolean. If the element is not found in the list, it will return False. For example, **"This" in list** would return True in our example. Similar to strings, lists can also use indexing to access specific elements in a list based on their position. You can access the first element in a list by doing **list[0]**, which would allow you to access the string **"This"**.
+
+```python
+def get_word(sentence, n):
+    # Only proceed if n is positive
+    if n > 0:
+        words = ___
+        # Only proceed if n is not more than the number of words
+        if n <= len(words):
+            return(___)
+    return("")
+
+print(get_word("This is a lesson about lists", 4)) # Should print:\
+ lesson
+print(get_word("This is a lesson about lists", -4)) # Nothing
+print(get_word("Now we are cooking!", 1)) # Should print: Now
+print(get_word("Now we are cooking!", 5)) # Nothing
+```
+
+In Python, lists and strings are quite similar. They're both examples of sequences of data. Sequences have similar properties, like (1) being able to iterate over them using **for loops**; (2) support indexing; (3) using the **len** function to find the length of the sequence; (4) using the plus operator + in order to concatenate; and (5) using the **in** keyword to check if the sequence contains a value. Understanding these concepts allows you to apply them to other sequence types as well.
+
+#### Modifying the Contents of a List
+
+Lists are sequences of elements of any type are mutable.
+
+While lists and strings are both sequences, a big difference between them is that lists are mutable. This means that the contents of the list can be changed, unlike strings, which are immutable. You can add, remove, or modify elements in a list.
+
+You can add elements to the end of a list using the _**append** method_. You call this method on a list using dot notation, and pass in the element to be added as a parameter. For example, _**list.append("New data")**_ would add the string "New data" to the end of the list called list.
+
+If you want to add an element to a list in a specific position, you can use the _method **insert**_. The method takes two parameters: the first specifies the index in the list, and the second is the element to be added to the list. So _**list.insert(0, "New data")**_ would add the string "New data" to the front of the list. This wouldn't overwrite the existing element at the start of the list. It would just shift all the other elements by one. If you specify an index that's larger than the length of the list, the element will simply be added to the end of the list.
+
+You can remove elements from the list using the _**remove** method_. This method takes an element as a parameter, and removes the first occurrence of the element. If the element isn't found in the list, you'll get a **ValueError** error explaining that the element was not found in the list.
+
+You can also remove elements from a list using the **pop** method. This method differs from the remove method in that it takes an index as a parameter, and returns the element that was removed. This can be useful if you don't know what the value is, but you know where it's located. This can also be useful when you need to access the data and also want to remove it from the list.
+
+Finally, you can change an element in a list by using indexing to overwrite the value stored at the specified index. For example, you can enter **list[0] = "Old data"** to overwrite the first element in a list with the new string "Old data".
+
+#### Lists and Tuples
+
+Tuples are sequences of elements of any type that are **immutable**.
+
+```python
+fullname = ("Grace", "M", "Hopper")
+```
+
+The position of the elements inside the tuple have meaning.
+
+Tuples are used for lots of different things in Python. One common example is the return value of functions. When a function returns more than one value, it's actually returning a tuple.
+
+This means that we can turn a tuple of three elements into three separate variables.
+
+```python
+def file_size(file_info):
+    name, type, size = file_info
+    return("{:.2f}".format(size / 1024))
+
+print(file_size(('Class Assignment', 'docx', 17875))) # Should print\
+ 17.46
+print(file_size(('Notes', 'txt', 496))) # Should print 0.48
+print(file_size(('Program', 'py', 1239))) # Should print 1.21
+```
+
+#### Tuples
+
+As we mentioned earlier, strings and lists are both examples of sequences. Strings are sequences of characters, and are immutable. Lists are sequences of elements of any data type, and are mutable. The third sequence type is the tuple. Tuples are like lists, since they can contain elements of any data type. But unlike lists, tuples are immutable. They're specified using parentheses instead of square brackets.
+
+You might be wondering why tuples are a thing, given how similar they are to lists. Tuples can be useful when we need to ensure that an element is in a certain position and will not change. Since lists are mutable, the order of the elements can be changed on us. Since the order of the elements in a tuple can't be changed, the position of the element in a tuple can have meaning. A good example of this is when a function returns multiple values. In this case, what gets returned is a tuple, with the return values as elements in the tuple. The order of the returned values is important, and a tuple ensures that the order isn't going to change. Storing the elements of a tuple in separate variables is called unpacking. This allows you to take multiple returned values from a function and store each value in its own variable.
+
+#### Iterating Over Lists Using Enumerate
+
+When we covered for loops, we showed the example of iterating over a list. This lets you iterate over each element in the list, exposing the element to the for loop as a variable. But what if you want to access the elements in a list, along with the index of the element in question? You can do this using the _**enumerate()** function_. The enumerate() function takes a list as a parameter and returns a tuple for each element in the list. The first value of the tuple is the index and the second value is the element itself.
+
+#### List Comprehensions
+
+List comprehension let us create new lists bases on sequences or ranges.
+
+You can create lists from sequences using a for loop, but there's a more streamlined way to do this: **list comprehension**. List comprehensions allow you to create a new list from a sequence or a range in a single line.
+
+For example, **[ x*2 for x in range(1,11) ]** is a simple list comprehension. This would iterate over the range 1 to 10, and multiply each element in the range by 2. This would result in a list of the multiples of 2, from 2 to 20.
+
+Compare:
+
+```python
+multiples = []
+for x in range(1, 11):
+  multiples.append(x * 7)
+
+print(multiples)
+```
+
+with:
+
+```python
+multiples = [i*7 for i in range(1,11)]
+
+print(multiples)
+```
+
+Another example, with a list:
+
+```python
+languages = ["Python", "Perl", "Ruby", "Go", "Java", "C"]
+lenghts = [len(language) for language in languages]
+print(lenghts)
+```
+
+You can also use conditionals with list comprehensions to build even more complex and powerful statements. You can do this by appending an if statement to the end of the comprehension. For example, **[ x for x in range(1,101) if x % 10 == 0 ]** would generate a list containing all the integers divisible by 10 from 1 to 100\. The if statement we added here evaluates each value in the range from 1 to 100 to check if it's evenly divisible by 10\. If it is, it gets added to the list.
+
+Exercise:
+
+```python
+def odd_numbers(n):
+    return [x for x in ___ if ___]
+
+print(odd_numbers(5))  # Should print [1, 3, 5]
+print(odd_numbers(10)) # Should print [1, 3, 5, 7, 9]
+print(odd_numbers(11)) # Should print [1, 3, 5, 7, 9, 11]
+print(odd_numbers(1))  # Should print [1]
+print(odd_numbers(-1)) # Should print []
+```
+
+List comprehensions can be really powerful, but they can also be super complex, resulting in code that's hard to read. Be careful when using them, since it might make it more difficult for someone else looking at your code to easily understand what the code is doing.
+
+### Dictionaries
+
+#### Dictionaries Defined
+
+Dictionaries are another data structure in Python. They're similar to a list in that they can be used to organize data into collections. However, data in a dictionary isn't accessed based on its position. Data in a dictionary is organized into pairs of keys and values. You use the key to access the corresponding value. Where a list index is always a number, a dictionary key can be a different data type, like a string, integer, float, or even tuples.
+
+When creating a dictionary, you use curly brackets: {}. When storing values in a dictionary, the key is specified first, followed by the corresponding value, separated by a colon. For example, **animals = { "bears":10, "lions":1, "tigers":2 }** creates a dictionary with three key value pairs, stored in the variable animals. The key "bears" points to the integer value 10, while the key "lions" points to the integer value 1, and "tigers" points to the integer 2\. You can access the values by referencing the key, like this: **animals["bears"]**. This would return the integer 10, since that's the corresponding value for this key.
+
+You can also check if a key is contained **in** a dictionary using the in keyword. Just like other uses of this keyword, it will return True if the key is found in the dictionary; otherwise it will return False.
+
+Dictionaries are mutable, meaning they can be modified by adding, removing, and replacing elements in a dictionary, similar to lists. You can add a new key value pair to a dictionary by assigning a value to the key, like this: **animals["zebras"] = 2**. This creates the new key in the animal dictionary called zebras, and stores the value 2\. You can modify the value of an existing key by doing the same thing. So **animals["bears"]\ = 11** would change the value stored in the bears key from 10 to 11\. Lastly, you can remove elements from a dictionary by using the del keyword. By doing **del animals["lions"]** you would remove the key value pair from the animals dictionary.
+
+#### Iterating over the Contents of a Dictionary
+
+You can iterate over dictionaries using a for loop, just like with strings, lists, and tuples. This will iterate over the sequence of keys in the dictionary. If you want to access the corresponding values associated with the keys, you could use the keys as indexes. Or you can use the _**items** method_ on the dictionary, like _**dictionary.items()**_. This method returns a tuple for each element in the dictionary, where the first element in the tuple is the key and the second is the value.
+
+If you only wanted to access the keys in a dictionary, you could use the _**keys()** method_ on the dictionary: _**dictionary.keys()**_. If you only wanted the values, you could use the _**values()** method_: _**dictionary.values()**_.
+
+#### Dictionaries vs. Lists
+
+You want to use dictionaries when you plan on searching for a specific element (faster than iteratiing over a list until said element is found, or not).
+
+Another interesting difference is the types of values that we can store in lists and dictionaries. In lists, you can store any data type.
+
+In dictionaries, we can store any data type for the values but the keys are restricted to specific types.
+
+The reasoning behind which types are allowed can get complex. So as a rule of thumb, you can use any immutable data type; numbers, booleans, strings and tuples as dictionary keys. But you can't use lists or dictionaries for that.
+
+On the flip side, like we said, the values associated with keys can be any type, including lists or even other dictionaries.
+
+You can use them to represent more complex data structures like directory trees in the file system. There's a ton of different key value pairs that we need to work with in system administration.
+
+### Object-Oriented Programming (optional)
+
+A flexible, powerful paradigm where classes represent and define concepts, while objects are instances of classes.
+
+#### Object-Oriented Programming Defined
+
+In object-oriented programming, concepts are modeled as classes and objects. An idea is defined using a class, and an instance of this class is called an object. Almost everything in Python is an object, including strings, lists, dictionaries, and numbers. When we create a list in Python, we're creating an object which is an instance of the list class, which represents the concept of a list.
+
+Classes also have attributes and methods associated with them. **Attributes** are the characteristics of the class, while **methods** are functions that are part of the class.
+
+#### Classes and Objects in Detail
+
+We can use the **type()** function to figure out what class a variable or value belongs to. For example, **type(" ")** tells us that this is a string class. The only attribute in this case is the string value, but there are a bunch of methods associated with the class. We've seen the **upper()** method, which returns the string in all uppercase, as well as **isnumeric()** which returns a boolean telling us whether or not the string is a number. You can use the **dir()** function to print all the attributes and methods of an object. Each string is an instance of the string class, having the same methods of the parent class. Since the content of the string is different, the methods will return different values. You can also use the **help()** function on an object, which will return the documentation for the corresponding class. This will show all the methods for the class, along with parameters the methods receive, types of return values, and a description of the methods.
+
+#### Defining New Classes
+
+Defining Classes (Optional)
+
+We can create and define our classes in Python similar to how we define functions. We start with the **class** keyword, followed by the name of our class and a colon. Python style guidelines recommend class names to start with a capital letter. After the class definition line is the class body, indented to the right. Inside the class body, we can define attributes for the class.
+
+Let's take our Apple class example:
+
+```python
+class Apple:
+  color = ""
+  flavor = ""
+```
+
+We can create a new instance of our new class by assigning it to a variable. This is done by calling the class name as if it were a function. We can set the attributes of our class instance by accessing them using dot notation. Dot notation can be used to set or retrieve object attributes, as well as call methods associated with the class.
+
+We created an Apple instance called jonagold, and set the color and flavor attributes for this Apple object. We can create another instance of an Apple and set different attributes to differentiate between two different varieties of apples.
+
+```python
+jonagold = Apple()
+jonagold.color = "red"
+jonagold.flavor = "sweet"
+```
+
+We now have another Apple object called golden that also has color and flavor attributes. But these attributes have different values.
+
+#### Instances Methods
+
+##### What Is a Method?
+
+Calling methods on objects executes functions that operate on attributes of a specific instance of the class. This means that calling a method on a list, for example, only modifies that instance of a list, and not all lists globally. We can define methods within a class by creating functions inside the class definition. These instance methods can take a parameter called **self** which represents the instance the method is being executed on. This will allow you to access attributes of the instance using dot notation, like **self.name**, which will access the name attribute of that specific instance of the class object. When you have variables that contain different values for different instances, these are called instance variables.
+
+Methods are functions that operate on the attributes of a specific instance of a class.
+
+Variables that have different values for different instances of the same class are called **instance variables**.
+
+```python
+class Dog:
+  years = 0
+  def dog_years(self):
+    years = self.years * 7
+    return str(years)
+
+fido=Dog()
+fido.years=3
+print(fido.dog_years())
+```
+
+#### Special Methods
+
+Instead of creating classes with empty or default values, we can set these values when we create the instance. This ensures that we don't miss an important value and avoids a lot of unnecessary lines of code. To do this, we use a special method called a **constructor**. Below is an example of an Apple class with a constructor method defined.
+
+```python
+class Apple:
+  def __init__(self, color, flavor):
+    self.color = color
+    self.flavor = flavor
+```
+
+When you call the name of a class, the constructor of that class is called. This constructor method is always named **\__init__**. You might remember that special methods start and end with two underscore characters. In our example above, the constructor method takes the self variable, which represents the instance, as well as color and flavor parameters. These parameters are then used by the constructor method to set the values for the current instance. So we can now create a new instance of the Apple class and set the color and flavor values all in go:
+
+```python
+jonagold = Apple("red", "sweet")
+
+print(jonagold.color)
+"""Outputs:
+Red
+"""
+```
+
+In addition to the **\__init__** constructor special method, there is also the **\__str__** special method. This method allows us to define how an instance of an object will be printed when it’s passed to the print() function. If an object doesn’t have this special method defined, it will wind up using the default representation, which will print the position of the object in memory. Not super useful. Here is our Apple class, with the **\__str__** method added:
+
+```python
+class Apple:
+  def __init__(self, color, flavor):
+    self.color = color
+    self.flavor = flavor
+  def __str__(self):
+    return "This apple is {} and its flavor is {}".format\
+    (self.color, self.flavor)
+```
+
+Now, when we pass an Apple object to the print function, we get a nice formatted string:
+
+```python
+jonagold = Apple("red", "sweet")
+
+print(jonagold)
+"""Outputs:
+This apple is red and its flavor is sweet
+"""
+```
+
+It's good practice to think about how your class might be used and to define a **\__str__** method when creating objects that you may want to print later.
+
+#### Documenting with Docstrings
+
+The Python **help** function can be super helpful for easily pulling up documentation for classes and methods. We can call the **help** function on one of our classes, which will return some basic info about the methods defined in our class:
+
+```python
+class Apple:
+     def __init__(self, color, flavor):
+         self.color = color
+         self.flavor = flavor
+     def __str__(self):
+         return "This apple is {} and its flavor is\
+          {}".format(self.color, self.flavor)
+
+ help(Apple)
+Help on class Apple in module __main__:
+[...]
+```
+
+We can add documentation to our own classes, methods, and functions using **docstrings**. A docstring is a short text explanation of what something does. You can add a docstring to a method, function, or class by first defining it, then adding a description inside triple quotes. Let's take the example of this function:
+
+```python
+def to_seconds(hours, minutes, seconds):
+    """Returns the amount of seconds in the given hours, minutes\
+     and seconds."""
+    return hours*3600+minutes*60+seconds
+```
+
+We have our function called _to_seconds_ on the first line, followed by the docstring which is indented to the right and wrapped in triple quotes. Last up is the function body. Now, when we call the help function on our _to_seconds_ function, we get a handy description of what the function does:
+
+```python
+help(to_seconds)
+Help on function to_seconds in module __main__:
+
+to_seconds(hours, minutes, seconds)
+    Returns the amount of seconds in the given hours, minutes\
+     and seconds.
+```
+
+**Docstrings** are super useful for documenting our custom classes, methods, and functions, but also when working with new libraries or functions. You'll be extremely grateful for docstrings when you have to work with code that someone else wrote!
+
+```python
+class Person:
+  def __init__(self, name):
+    self.name = name
+  def greeting(self):
+    """Outputs a message with the name of the person"""
+    print("Hello! My name is {name}.".format(name=self.name))
+
+help(Person.greeting)
+```
+
+### Code Reuse
+
+#### Object Inheritance
+
+Object Inheritance
+
+In object-oriented programming, the concept of inheritance allows you to build relationships between objects, grouping together similar concepts and reducing code duplication. Let's create a custom Fruit class with color and flavor attributes:
+
+```python
+class Fruit:
+  def __init__(self, color, flavor):
+    self.color = color
+    self.flavor = flavor
+
+```
+
+We defined a Fruit class with a constructor for color and flavor attributes. Next, we'll define an Apple class along with a new Grape class, both of which we want to inherit properties and behaviors from the Fruit class:
+
+```python
+class Apple(Fruit):
+  pass
+
+class Grape(Fruit):
+  pass
+
+In Python, we use parentheses in the class declaration to have the\
+ class inherit from the Fruit class. So in this example, we’re\
+  instructing our computer that both the Apple class and Grape class\
+   inherit from the Fruit class. This means that they both have the\
+    same constructor method which sets the color and flavor\
+     attributes. We can now create instances of our Apple and Grape\
+      classes:
+
+```python
+granny_smith = Apple("green", "tart")
+carnelian = Grape("purple", "sweet")
+print(granny_smith.flavor)
+tart
+print(carnelian.color)
+purple
+```
+
+Inheritance allows us to define attributes or methods that are shared by all types of fruit without having to define them in each fruit class individually. We can then also define specific attributes or methods that are only relevant for a specific type of fruit. Let's look at another example, this time with animals:
+
+```python
+class Animal:
+  sound = ""
+  def __init__(self, name):
+    self.name = name
+  def speak(self):
+    print("{sound} I'm {name}! {sound}".format(name=self.name,\
+     sound=self.sound))
+
+class Piglet(Animal):
+  sound = "Oink!"
+
+class Cow(Animal):
+  sound = "Moooo"
+```
+
+We defined a parent class, Animal, with two animal types inheriting from that class: Piglet and Cow. The parent Animal class has an attribute to store the sound the animal makes, and the constructor class takes the name that will be assigned to the instance when it's created. There is also the speak method, which will print the name of the animal along with the sound it makes. We defined the Piglet and Cow classes, which inherit from the Animal class, and we set the sound attributes for each animal type. Now, we can create instances of our Piglet and Cow classes and have them speak:
+
+```python
+hamlet = Piglet("Hamlet")
+ hamlet.speak()
+Oink! I'm Hamlet! Oink!
+
+ class Cow(Animal):
+     sound = "Moooo"
+
+ milky = Cow("Milky White")
+ milky.speak()
+Moooo I'm Milky White! Moooo
+```
+
+We create instances of both the Piglet and Cow class, and set the names for our instances. Then we call the speak method of each instance, which results in the formatted string being printed; it includes the sound the animal type makes, along with the instance name we assigned.
+
+```python
+class Clothing:
+  material = ""
+  def __init__(self,name):
+    self.name = name
+  def checkmaterial(self):
+    print("This {} is made of {}".format(self.___,self.___))
+
+class Shirt():
+  material="Cotton"
+
+polo = Shirt("Polo")
+polo.checkmaterial()
+```
+
+#### Object Composition (to review :wink:)
+
+We talked about how inheritance creates an ancestry for our objects. To check for this ancestry, we can use the is a rule: _**isinstance()**_ and _**issubclass()**_
+
+You can have a situation where two different classes are related, but there is no inheritance going on. This is referred to as **composition** -- where one class makes use of code contained in another class. For example, imagine we have a **Package** class which represents a software package. It contains attributes about the software package, like name, version, and size. We also have a **Repository** class which represents all the packages available for installation. While there’s no inheritance relationship between the two classes, they are related. The Repository class will contain a dictionary or list of Packages that are contained in the repository. Let's take a look at an example Repository class definition:
+
+```python
+class Repository:
+      def __init__(self):
+          self.packages = {}
+      def add_package(self, package):
+          self.packages[package.name] = package
+      def total_size(self):
+          result = 0
+          for package in self.packages.values():
+              result += package.size
+          return result
+```
+
+In the constructor method, we initialize the packages dictionary, which will contain the package objects available in this repository instance. We initialize the dictionary in the constructor to ensure that every instance of the Repository class has its own dictionary.
+
+We then define the add_package method, which takes a Package object as a parameter, and then adds it to our dictionary, using the package name attribute as the key.
+
+Finally, we define a total_size method which computes the total size of all packages contained in our repository. This method iterates through the values in our repository dictionary and adds together the size attributes from each package object contained in the dictionary, returning the total at the end. In this example, we’re making use of Package attributes within our Repository class. We’re also calling the values() method on our packages dictionary instance. Composition allows us to use objects as attributes, as well as access all their attributes and methods.
+
+Exercise: Finish the "Stock_by_Material" method and iterate over the amount of each item of a given material that is in stock. When you’re finished, the script should add up to 10 cotton Polo shirts.
+
+```python
+class Clothing:
+  stock={ 'name': [],'material' :[], 'amount':[]}
+  def __init__(self,name):
+    material = ""
+    self.name = name
+  def add_item(self, name, material, amount):
+    Clothing.stock['name'].append(self.name)
+    Clothing.stock['material'].append(self.material)
+    Clothing.stock['amount'].append(amount)
+  def Stock_by_Material(self, material):
+    count=0
+    n=0
+    for item in Clothing.stock['___']:
+      if item == material:
+        count += Clothing.___['amount'][n]
+        n+=1
+    return count
+
+class shirt(Clothing):
+  material="Cotton"
+class pants(Clothing):
+  material="Cotton"
+
+polo = shirt("Polo")
+sweatpants = pants("Sweatpants")
+polo.add_item(polo.name, polo.material, 4)
+sweatpants.add_item(sweatpants.name, sweatpants.material, 6)
+current_stock = polo.Stock_by_Material("Cotton")
+print(current_stock) #Should print 10
+```
+
+**Remember** this rule of thumb: **always initialize mutable attributes in the constructor**.
+
+#### Augmenting Python with Modules
+
+Python modules are separate files that contain classes, functions, and other data that allow us to import and make use of these methods and classes in our own code. Python comes with a lot of modules out of the box. These modules are referred to as the Python Standard Library. You can make use of these modules by using the import keyword, followed by the module name. For example, we'll **import** the **random module**, and then call the **randint** function within this module:
+
+```python
+import random
+random.randint(1,10)
+8
+random.randint(1,10)
+7
+random.randint(1,10)
+1
+```
+
+This function takes two integer parameters and returns a random integer between the values we pass it; in this case, 1 and 10. You might notice that calling functions in a module is very similar to calling methods in a class. We use dot notation here too, with a period between the module and function names.
+
+Let's take a look at another module: datetime. This module is super helpful when working with dates and times.
+
+```python
+import datetime
+now = datetime.datetime.now()
+type(now)
+<class 'datetime.datetime'>
+print(now)
+2019-04-24 16:54:55.155199
+```
+
+First, we import the module. Next, we call the **now()** method which belongs to the **datetime** class contained within the **datetime** module. This method generates an instance of the datetime class for the current date and time. This instance has some methods which we can call:
+
+```python
+print(now)
+2019-04-24 16:54:55.155199
+ now.year
+2019
+print(now + datetime.timedelta(days=28))
+2019-05-22 16:54:55.155199
+```
+
+When we call the print function with an instance of the datetime class, we get the date and time printed in a specific format. This is because the datetime class has a **\__str__** method defined which generates the formatted string we see here. We can also directly call attributes and methods of the class, as with **now.year** which returns the year attribute of the instance.
+
+Lastly, we can access other classes contained in the datetime module, like the **timedelta** class. In this example, we’re creating an instance of the timedelta class with the parameter of 28 days. We’re then adding this object to our instance of the datetime class from earlier and printing the result. This has the effect of adding 28 days to our original datetime object.
+
+#### Supplemental Reading for Code Reuse
+
+The official Python documentation lists all the modules included in the standard library. It even has a turtle in it...
+
+[Pypi](https://pypi.org/) is the Python repository and index of an impressive number of modules developed by Python programmers around the world.
+
+### Problem-solving Framework
+
+When we take the structured approach to tackling problems there really isn't a challenge too complex to solve
+
+#### Problem Statement #1
+
+Before we jump into solving that problem, we need to know what information we'll use as input and what information we'll have as output. We can work this out by looking at the rest of the system where our script will live. Wwe need to know exact names of the attributes, otherwise, we won't be able to access them.
+
+When working on a problem in general, and it's solution, it's easy to get caught up in the "making it look good" part. It's better to first focus on making the program work. You can always spend time making the report look nice later.
+
+#### Research
+
+#### Planning
+
+#### Writing of the Script
+
+## 2. Using Python to Interact with the Operating System
+
+### Course Introduction
+
+#### Finding out more information
+
+Throughout this course, we teach you how to do a range of things with Python, Bash, and other tools. While we’ll provide a lot of information through videos and supplemental readings, sometimes, you may need to look things up on your own, now and throughout your career. Things change fast in IT, so it’s critical to do your own research to stay up-to-date on what’s new. We recommend you use your favorite search engine to find more information about concepts we cover in this course — it’s great practice for the real world!
+
+On top of search results, here are some good programming resources available online:
+
+- [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/): This book (available online and in print) includes a lot of practical programming exercises for beginners. You can refer to this content to read more about some of the things that we'll be discussing, and get inspired with more ideas of things that can be automated.
+
+- [Hitchhiker’s Guide to Python](https://docs.python-guide.org/): This site (available online and in print) also covers a lot of what we can do with Python. Again, you can use this resource to learn more about the subjects we cover (and the ones we had to omit for time constraints).
+
+- The [official language reference](https://docs.python.org/3/reference/index.html): Once you know what Python tool you'll be using to do a certain task, this technical reference of all Python language components can be a great [missing from website]
+
+#### Getting Familiar with the Operating System
+
+The operating system is a software that manages everything that goes on in the computer.
+
+It reads, writes, and deletes files from the hard drive. It handles how the processes start, how they interact with each other, and how they eventually finish.
+It manages how memory gets allocated different processes, how network packets are sent and received, and how each programming can access the different hardware components.
+
+Since it's cross-platform, we can use the same Python code to get to our goal on any operating system, whether the goal is opening files, processing text, or managing running processes. This makes Python a great tool for IT specialists who needs to interact with different operating systems. You can apply the skills that you learned from one platform to all the others. So how cool is that?
+
+#### Getting Your Computer Ready for Python
+
+Some modules of interest from the Python Standard Library, to import in our scripts with the **import** keyword:
+
+- requests and request.get() to work with web pages
+- arrow and arrow.get() to work with dates
+- the Image submodule from the Python Image Library: image.open(), image.size() and image.format()
+- pandas for data science: pandas.DataFrame({...})
+
+#### Pointers for Getting Your Environment Setup
+
+##### Learning more about operating systems
+
+We’ve talked briefly about what an operating system is and what we'll need to know about operating systems for this course. If you want to learn some additional operating system concepts, check out the videos on this subject in the [Technical Support Fundamentals course](https://www.coursera.org/lecture/technical-support-fundamentals/module-introduction-I3n9l). If you want to dive deeper onto how to manage Windows and Linux, check out the [Operating Systems and You: Becoming a Power User course](https://www.coursera.org/learn/os-power-user).
+
+If you want to discover more about the history of Unix, you can read all the details on the [Unix Wikipedia page](https://en.wikipedia.org/wiki/History_of_Unix).
+
+##### Installing Python and additional modules
+
+If you don't have Python installed yet, we recommend that you visit the [official Python website](http://www.python.org/) and download the installer that corresponds to your operating system.
+
+There’s a bunch of guides out there for installing Python and they all follow a similar process to the one we described in the videos. This [guide from Real Python](https://realpython.com/installing-python/) includes instructions on how to install python on a range of different operating systems and distributions.
+
+Once you have Python installed on your operating system, it's a good idea to familiarize yourself with **pip and the associated tools**. You can find more info about these [here](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/).
+
+##### Using package management systems
+
+Package management systems help you better manage the software installed on your machine. These management systems vary a lot from operating system to operating system. So, you need to pick the one that works for the OS you’re using. Check out these guides for help with this:
+
+- [Installing Python 3 on Windows 10 with Chocolatey](https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-windows-10)
+
+- [Installing Python 3 on MacOS with Homebrew](http://www.pyladies.com/blog/Get-Your-Mac-Ready-for-Python-Programming/)
+
+- [Package management basics on Linux](https://www.digitalocean.com/community/tutorials/package-management-basics-apt-yum-dnf-pkg)
+
+##### Other information
+
+- [Python in the Microsoft Store for Windows 10](https://devblogs.microsoft.com/python/python-in-the-windows-10-may-2019-update/)
+
+#### Running Python Locally
+
+##### Interpreted vs. Compiled Languages
+
+##### How to Run a Python Script
+
+Notion of "shebang": for Python scripts file, include #!/bin/env python3 in the first line and then make the file executable by using the command chmod +x
+Finally, remember to prefix the file name with ./, to let the command line interpreter know that it should find the script in the current directory.
+
+##### Setting up Your Environment
+
+After you’ve installed Python and checked that it works, the next step to set up your developer environment is to choose your main code editor.
+
+These are some of the common editors for Python, available for all platforms:
+
+- [Eclipse](http://www.eclipse.org/)
+
+- [PyCharm](https://www.jetbrains.com/pycharm/)
+
+- [Sublime Text](http://www.sublimetext.com/)
+
+- [VSCodium](https://vscodium.com/)
+
+You can read more about these editors, and others, in these overview comparatives:
+
+- [Python IDEs and Code Editors (Guide)](https://realpython.com/python-ides-code-editors-guide/#pycharm)
+
+- [Best Python IDEs and Code Editors](https://www.softwaretestinghelp.com/python-ide-code-editors/)
+
+- [Top 5 Python IDEs for Data Science](https://www.datacamp.com/community/tutorials/data-science-python-ide)
+
+We encourage you to try out these editors and pick your favorite. Then, install it on your computer and experiment with writing and executing Python scripts locally.
+
+### Automating Tasks Through Programming
+
+#### Benefits of Automation
+
+Scability: when more work is added to a system, the system can do whatever it needs to complete the work.
+
+#### Pitfalls of Automation
+
+##### Is it worth the time?
+
+Is the time and effort it'll take to write the script worth the potential automation benefits?
+
+A simple heuristic that can help us decide is to estimate how long it takes us to do a certain task. And then multiply that by how many times we perform that task in a given time window. If we estimate that it would take less time to automate the tasks than it would to do it manually, chances are, it's a good candidate for automation. So, the time to write the automation is less than time to perform the task multiply by the amount of times you do it, then automate the task.
+
+```[time_to_automate < (time_to_perform * amount_of_times_done)```
+
+![Is it worth the time?](Images/is_it_worth_the_time.png)
+Source: [xkcd](https://xkcd.com/1205)
+
+Usually, the decision of whether to automate or not isn't so straightforward. If a task is complex and performed in frequently, it may seem like automating is more trouble than it's worth.
+
+But keep in mind that once a task is wrapped in automation, anyone can do it. It can be very useful to automate a complex error prone task. If it's critical that the tasks be done correctly, even if it's not executed that often.
+
+There are no hard and fast rules on when to automate, but the cost time tradeoff can help guide your decisions.
+
+A concept called the Pareto Principle can also be a useful guideline to help you decide which tasks to automate. When applied to automation in IT, the Pareto Principle states that 20% of the system administration tasks that you perform are responsible for 80% of your work. If you can identify and automate those 20% of your tasks, you could save yourself a whole lot of time.
+
+#### Practical Automation Example
+
+Computer "health": a few modules can help designing a script to check the "health" of a computer system (disk usage, cpu load, etc.): the _**shutil**_ and _**psutil**_ ones.
+
+```python
+import shutil
+du = shutil.disk_usage("/") #directory to check
+print(du)
+du.free/du.total*100
+```
+
+```python
+import psutil
+psutil.cpu_percent(0.1) # interval of time to check the cpu load in\
+ seconds, returns the average usage over said period
+```
+
+Now that we've done some research, let's write a first basic health checking script:
+
+```python
+#!/usr/bin/env python3
+import shutil
+import psutil
+
+def check_disk_usage(disk):
+  du = shutil.disk_usage(disk)
+  free = du.free / du.total * 100
+  return free > 20
+
+def check_cpu_usage():
+  usage = psutil.cpu_percent(1)
+  return  usage < 70
+
+"""Main body of script that checks if the 2 conditions described in\
+ the 2 functions are false
+"""
+if not check_disk_usage("/") or not check_cpu_usage():
+  print("Error!")
+else:
+  print("Everything is OK!")
+```
+
+Remember to mark the script as executable and to test it. We'll improve on it later.
+
+### Reading and Writing Files
+
+#### Programming with Files
+
+Notions of directory/folder and file, filesystem hierarchy/tree. Notions of absolute vs relative PATH.
+
+#### Reading Files
+
+```python
+file = open("spider.txt")
+```
+
+When we open a file, like we're doing in this example, the operating system checks
+that we have permissions to access that file and then gives our code a **File descriptor**: this is a token generated by the OS that allows programs to do more operations with the file.
+
+In Python, this file descriptor is stored as an attribute of the files object.
+The file object gives us a bunch of methods that we can use to operate with the file.
+
+Now, with this file object, we can read the contents of the file and print them to the screen.
+
+##### The "Open-Use-Close" Approach
+
+```python
+>>>file = open("spider.txt")
+>>>file.readline()
+The itsy bitsy spider climbed up the waterspout.
+>>>file.readline()
+Down came the rain
+>>>file.read()
+and washed the spider out.
+Out came the sun
+and dried up all the rain
+and the itty bitsy spider climbed up the spout again.
+>>>file.close()
+```
+
+Handy if we intend to work with the file several times in our code. Remember to close the file! It's best pratice to:
+
+- Allow other programs to work with the file otherwise locked
+- Prevent the OS from running out of file descriptors (even if that number is generally high)
+- Prevent race conditions. "Everybody looses in a race condition."
+
+##### The "With" Approach
+
+```python
+with open("spider.txt") as file:
+  file.readline()
+```
+
+Using this approach, Python automatically closes the opened file(s). Handy if we intend to work with the file only once in our code.
+
+#### Iterating through Files
+
+```python
+with open("spider.txt") as file:
+        for line in file:
+            print(line.upper())
+
+THE ITSY BITSY SPIDER CLIMBED UP THE WATERSPOUT.
+
+DOWN CAME THE RAIN
+
+AND WASHED THE SPIDER OUT.
+
+OUT CAME THE SUN
+
+AND DRIED UP ALL THE RAIN
+
+AND THE ITTY BITSY SPIDER CLIMBED UP THE SPOUT AGAIN.
+```
+
+The text contains the new line invisible character \n. Notion of **escaping sequences**: \t for tabs.
+
+To remove the new line the print() command actually outputs for each line:
+
+```python
+with open("spider.txt") as file:
+        for line in file:
+            print(line.strip().upper())
+THE ITSY BITSY SPIDER CLIMBED UP THE WATERSPOUT.
+DOWN CAME THE RAIN
+AND WASHED THE SPIDER OUT.
+OUT CAME THE SUN
+AND DRIED UP ALL THE RAIN
+AND THE ITTY BITSY SPIDER CLIMBED UP THE SPOUT AGAIN.
+```
+
+The _**readlines()**_ method (≠ .readline())
+
+```python
+file = open("spider.txt")
+lines = file.readlines()
+file.close() # Even though the file object is now closed, the lines\
+ variable has the list of lines in the file, so we can operate on it.
+```
+
+A quick word of **caution**, methods like _**read**_ or _**readlines**_ that read the whole file at once are useful, but we should be careful when reading the entire contents of a file into a variable of our programs.
+
+If the file is super large, it can take a lot of our computer's memory to hold it,
+which can lead to poor performance.
+
+If a file is just a few kilobytes like in our example here, it's fine to read it and process it completely in memory.
+
+But for large files, like the big log file of hundreds and hundreds of megabytes of data, it's more efficient to process it line by line.
+
+#### Writing Files
+
+```python
+with open("novel.txt", "w") as file:
+  file.write("It was a dark and stormy night")
+
+30
+```
+
+##### Notion of file modes (see Cheat-Sheet below)
+
+| Mode | Description                                                                     |
+|------|---------------------------------------------------------------------------------|
+| r    | read-only (default, not mandatory)                                              |
+| w    | write-only (overwrites existing content, creates the file if it doesn't exists) |
+| a    | Append at the end of the file                                                   |
+| r+   | Read-Write                                                                      |
+
+Another word of **caution**: If you open a file for **writing and the file already exists, the old contents will be deleted as soon as the file is opened**.
+
+Remember to double check that you're opening the right file using the right mode.
+
+#### Reading and Writing Files Cheat-Sheet
+
+Check out the following link for more information:
+
+[https://docs.python.org/3/library/functions.html#open](https://docs.python.org/3/library/functions.html#open)
+
+### Managing Files and Directories
+
+#### Working with Files
+
+Let's explore some of the many things that we can do with files in Python with the _**os**_ module.
+
+**Caution**: Paths can be different across different operating systems. So whenever we're using an absolute path in our code, we need to make sure we can provide alternatives for the platforms we want to support.
+
+The OS module lets us do pretty much all the same tasks that we can normally
+do when working with files from the command line. We can change the file permissions and delete or rename files through our code. This means you can write scripts to do these operations for you automatically.
+
+```python
+import os
+os.remove("novel.txt") # To delete a file
+
+os.rename("old_file_name", "new_file_name") # To rename a file
+
+os.path.exists("some_file_name") # Returns either True or False,\
+ depending on the presence of the file
+```
+
+#### More File Information
+
+```python
+os.path.getsize("spider.txt") # Returns the file size in bytes
+
+os.path.getmtime("spider.txt") # Returns the last modification time\
+ and date of the file
+```
+
+Notion of **Timestamp**: a Unix timestamp for example represents the number of seconds since January 1st, 1970.
+
+```python
+import datetime
+timestamp = os.path.getmtime("spider.txt")
+datetime.datetime.fromtimestamp(timestamp)
+```
+
+```python
+os.path.abspath("spider.txt")
+`/Volumes/GoogleDrive/Mon Drive/Documents/Cours/Google IT Automation\
+ with Python Professional Certificate/spider.txt'
+```
+
+#### Directories
+
+```python
+print(os.getcwd()) # Prints the current working directory
+
+os.mkdir("New folder") # To create a new folder, aptly named\
+ New folder
+os.chdir("New folder") # To enter this newly created folder
+print(os.getcwd()) # Outputs [...]/New folder
+
+os.mkdir("Newer folder")
+os.rmdir("Newer folder") # Will only delete the folder if it's empty
+```
+
+The **rmdir** function will only work if the directory is empty. If we try to remove a directory that has files in it, we get an error. We need to first delete all the files and sub-directories in that directory before we can actually remove it but how can we find out what contents are in that directory?
+
+There are a few techniques that we can use to do this. The **os.listdir** function returns a list of all the files and sub-directories in a given directory.
+Let's see how this looks for our website directory.
+
+```python
+import os
+os.listdir("website")
+['images', 'index.html', 'favicon.ico']
+```
+
+So we've got a list of strings. Since they're just strings, we don't know if they're directories or files. To find out what they are, we can use functions like
+**os.path.isdir** but before we look at how that works. See how the list contains just file names. If we want to know whether one of these files is a directory, we need to use **os.path.join** to create the full path. Let's see all of this in action now.
+
+```python
+dir = "website"
+
+for name in os.listdir(dir):
+     fullname = os.path.join(dir, name)
+     if os.path.isdir(fullname):
+         print("{} is a directory".format(fullname))
+     else:
+         print("{} is a file".format(fullname))
+
+website/images is a directory
+website/index.html is a file
+website/favicon.ico is a file
+```
+
+What's up with that join function? It seems to just add a slash between two strings. Well, the join function let's us be independent from the operating system again.
+
+- In **Linux and MacOS**, the portions of a file are split using a **forward slash**.
+
+- On **Windows**, they're split using a **backslash**.
+
+By using the os.path.join function instead of explicitly adding a slash, we can make sure that our scripts -
+work with all operating systems.
+
+#### Files and Directories Cheat-Sheet
+
+Check out the following links for more information:
+
+- [os — Miscellaneous operating system interfaces](https://docs.python.org/3/library/os.html)
+
+- [os.path — Common pathname manipulations](https://docs.python.org/3/library/os.path.html)
+
+- [Unix time Wikipedia page](https://en.wikipedia.org/wiki/Unix_time)
+
+### Reading and Writing CSV Files
+
+#### What is a CSV file?
+
+Notion of parsing a file: Analyzing a file's content to correctly structure the data.
+
+CSV stands for Comma Separated Values. It's one of the many file formats used to structure data, like HTML or JSON.
+
+A lot of programs are capable of exporting data as CSV files, such as spreadsheet applications like Microsoft Excel or Google Sheets. It can actually be helpful to think of a CSV file like it's a spreadsheet, where each line corresponds to a row and each comma separated field corresponds to a column.
+
+#### Reading CSV Files
+
+Python standard library includes a module which lets us read, create and manipulate CSV files: the **csv** module.
+
+Before we can parse a CSV file, we need to open the file the same way as before. We can then parse this file using the CSV module.
+
+```python
+import csv
+f = open("csv_file.csv")
+csv_f = csv.reader(f) # We now have an instance of the CSV reader\
+ class
+for row in csv_f:
+  name, twitter_handle, nickname = row # See notion of unpacking
+  print("Name: {}, Twitter handle: {}, Nickname: {}.".format(name,\
+   twitter_handle, nickname))
+f.close() # Remember to close the file when using the "Open-Use-\
+Approach"
+```
+
+**Notion of unpacking**: the row variable hold each row in the CSV file.
+This variable is a list with each field in the CSV corresponding to one
+element in the list. We know from the before that the first field is a name, the second one, the Twitter handle, and the third, the nickname. So we can **unpack** the values so that we can use variables to refer to them. **Remember** that for this to work we need to have the exact same amount of variables on the left side of the equal sign as the length of the sequence on the right side.
+
+We could have used row[0] to access the name of the employee. This is valid but it can be hard to follow when reading a lot of code. Unpacking the list into name variables makes the code easier to understand later on.
+
+#### Generating CSV
+
+we can use the writer function to generate contents to a file. This can be really helpful if you process some data in your script and you must store it in a file.
+Maybe you want to import it into a spreadsheet or use it later on in your script.
+We'll start by storing the data that we want to write into a list.
+
+There are two functions that we can use: _**writerow**_, which we'll write one row at a time; and _**writerows**_, which we'll write all of them together. In this case, we already have all the data that we want to write. So we'll call writerows.
+
+```python
+import csv
+hosts = [["MacBook-Air.local", "192.168.1.43"], ["fedora.local",\
+ "192.168.1.73"], ["fedorapi.local", "192.168.1.80"]]
+with open("hosts.csv", "w") as hosts_csv:
+  writer = csv.writer(hosts_csv) # the writer variable is now an\
+   instance of the csv writer class
+  writer.writerows(hosts)
+```
+
+#### Reading and Writing CSV Files with Dictionaries
+
+We saw how we can read and write CSV files, and we use list as datatype on the Python side. This works when we know what the fields are going to be, but it can be pretty cumbersome when we have a lot of columns, and we need to remember which is which. Imagine if your lists of employees not only had name, phone number and role but also start date, username, office location, department, preferred pronouns and so on. It would soon get hard to keep track of which column corresponds to which position in the row. For cases like this, it's common for CSVs to include the names of the columns as a first line in the file.
+
+```python
+import csv
+with open("software.csv") as software:
+  reader = csv.DictReader(software)
+  for row in reader:
+    print(("{} has {} users.").format(row["name", row["users"]]))
+```
+
+```python
+users = [{"name": "Sol Mansi", "username": "solm", "department":\
+ "IT\  Infrastructure"}, {"name": "Lio Nelson", "username": "lion",\
+ "department": "User Experience Research"}, {"name": "Charlie Grey",\
+   "username": "greyc", "department": "Development"}]
+keys = ["name", "username", "departement"]
+with open('by_department.csv', 'w') as by_department:
+  writer = csv.DictWriter(by_department, fieldnames=keys)
+  writer.writeheader()
+  writer.writerows(users)
+```
+
+_**DictReader()**_ allows us to convert the data in a CSV file into a standard dictionary. _**DictWriter()**_ allows us to write data from a dictionary into a CSV file. The fieldnames parameter of DictWriter() requires a list of keys.
+
+#### CSV Files Cheat Sheet
+
+Check out the following links for more information:
+
+- [csv — CSV File Reading and Writing](https://docs.python.org/3/library/csv.html)
+
+- [Reading and Writing CSV Files in Python](https://realpython.com/python-csv/)
+
+## Regular Expressions
+
+### Introduction to Regular Expressions
+
+#### What are regular expressions?
+
+Regular expressions let you answer the questions like "what are all the four-letter words in a file?", or "how many different error types are there in this error log?".
+
+**Regular expressions** allow us to search a text for strings matching a specific pattern.
+
+#### Why use regular expressions?
+
+At this point, you might be wondering why do I need more processing power than just looking for strings in a text which I already know how to do in Python? The answer lies in the power and flexibility of regular expressions.
+
+```python
+import re
+log = "July 31 07:51:48 mycomputer bad_process [54321]:\
+ ERROR Performing package upgrade"
+regex = r"\[(\d+)\]"
+result = re.search(regex, log)
+print(result[1])
+```
+
+#### Basic Matching with grep
+
+In our last example, we used a pretty complex regular expression from a Python program to look for a process ID. This is just one example of something we might want to do when processing texts from our Python scripts. We can also use regular expressions with a bunch of command line tools. **Grep** is an especially easy to use yet extremely powerful tool for applying regexes. It's a great way to easily try out some expressions and get familiar with them. So let's look at some basic matching we can do with grep.
+
+```bash
+grep thon /usr/share/dict/words
+```
+
+When we call grep with thon as a pattern to match on and we pass our list of words as a file, we see that it matches with a bunch of different words.
+
+It's worth calling out that the string we're passing in grep is case sensitive. So it needs to be matched exactly. If we use uppercase letters, they'll only be matched by uppercase letters. If we wanted to match a string regardless of case, we will have to pass the -i parameter to the grep command, like this:
+
+```bash
+grep -i python /usr/share/dict/words
+```
+
+We now know that any basic string is already a regular expression which will match a line that contains that string. To get the most out of regular expressions, we need to learn more of their syntax, which can be as complicated as it is powerful. In particular, we have to know the **reserved characters** that give extra meaning to the patterns that we create. It's these characters that allow us to do more advanced matching than just checking for a literal string. For example, a dot matches any character. This means that if we include a dot in our expression, that dot is a wildcard that can be replaced by any other character in the results:
+
+```bash
+grep l.rts /usr/share/dict/words
+```
+
+##### Some RegEx Reserved Characters
+
+| Reserved Character   | Meaning                                       |
+|----------------------|-----------------------------------------------|
+| .                    | "wildcard", replaces any character            |
+| ^ "anchor character" | Search for specified pattern at the beginning |
+| $ "anchor character" | Search for specified pattern at the end       |
+
+```bash
+grep ^fruit /usr/share/dict/words
+
+grep cat$ /usr/share/dict/words
+```
+
+### Basic Regular Expressions
+
+#### Simple Matching in Python
+
+As we called it out before, we use the **re** module to apply regular expressions in Python. This module includes a bunch of different functions that can help manipulate strings. Let's see how we can use this module for some basic matching.
+
+It's a good idea/practive to always use **rawstrings** for regular expressions in Python.
+
+```python
+import re
+result = re.search(r"aza", "plaza")
+print(result)
+"""Outputs: <re.Match object; span=(2, 5), match='aza'>"""
+result = re.search(r"aza", "bazaar")
+print(result)
+"""Outputs: <re.Match object; span=(1, 4), match='aza'>"""
+result = re.search(r"aza", "maze")
+print(result)
+"""Outputs: None"""
+```
+
+When we're applying regular expressions, we now know that if the search function returns None, it means it didn't find a match. Let's practice the special characters that we've seen up until now with a few examples.
+
+```python
+result = re.search(r"^x", "xenon")
+print(result)
+"""Outputs: <re.Match object; span=(0, 1), match='x'>"""
+```
+
+What happens when we use a dot?
+
+```python
+print(re.search(r"p.ng", "penguin"))
+<re.Match object; span=(0, 4), match='peng'>
+
+print(re.search(r"p.ng", "clapping"))
+<re.Match object; span=(4, 8), match='ping'>
+
+print(re.search(r"p.ng", "sponge"))
+<re.Match object; span=(1, 5), match='pong'>
+```
+
+#### Wildcards and Character Classes
+
+. is the ultimate wildcard character, as it can replace any charater. What if we need to be stricter? Enter character classes.
+Character classes are encapsulated between square brackets.
+
+```python
+import re
+print(re.search(r"[Pp]ython", "Python"))
+<re.Match object; span=(0, 6), match='Python'>
+```
+
+Notion of (regex) range: [a-z], [A-Z], [0-9]...
+
+```python
+print(re.search(r"[a-z]way", "The end of the highway"))
+<re.Match object; span=(18, 22), match='hway'>
+print(re.search(r"[a-z]way", "What a way to go!"))
+None
+```
+
+We can combine as many ranges and symbols as we want, like this:
+
+```python
+print(re.search(r"cloud[a-zA-Z0-9]", "cloudy"))
+<re.Match object; span=(0, 6), match='cloudy'>
+print(re.search(r"cloud[a-zA-Z0-9]", "cloud9"))
+<re.Match object; span=(0, 6), match='cloud9'>
+```
+
+We can match anything that's defined between the square brackets, which is useful. Sometimes we may want to match any characters that aren't in a group.
+To do that, we use a circumflex inside the square brackets. For example, let's create a search pattern that looks for any characters that's not a letter:
+
+```python
+print(re.search(r"[^a-zA-Z]", "This is a sentence with spaces."))\
+
+<re.Match object; span=(4, 5), match=' '> # the span attribute \
+returns the position of the first space encountered
+print(re.search(r"[^a-zA-Z ]", "This is a sentence with spaces."))
+<re.Match object; span=(30, 31), match='.'>
+```
+
+If we want to match either one expression or another, we can use the pipe symbol to do that. This lets us list alternative options that can get matched. For example, we could have an expression that matches either the word cat or the word dog, like this:
+
+```python
+print(re.search(r"cat|dog", "I like cats."))
+<re.Match object; span=(7, 10), match='cat'>
+print(re.search(r"cat|dog", "I like dogs."))
+<re.Match object; span=(7, 10), match='dogs'>
+print(re.search(r"cat|dog", "I like dogs and cats."))
+<re.Match object; span=(7, 10), match='dogs'>\
+ # search only returns the first occurence
+```
+
+If we want to get all possible matches, we can do that using the **findall** function, which is also provided by the **re** module, like this:
+
+```python
+print(re.findall(r"cat|dog", "I like dogs and cats."))
+['dog', 'cat']
+```
+
+#### Repetition Qualifiers
+
+It's quite common to see expressions that include a dot followed by a star.
+This means that it matches any character repeated as many times as possible including zero.
+
+Notion of **repeated matches**: .* and ?
+
+```python
+print(re.search(r"Py.*n", "Pygmalion"))
+<re.Match object; span=(0, 9), match='Pygmalion'>
+print(re.search(r"Py.*n", "Python programming"))
+<re.Match object; span=(0, 17), match='Python programmin'> # See note below
+print(re.search(r"Py[a-z]*n", "Python programming"))
+<re.Match object; span=(0, 6), match='Python'>
+```
+
+Remember, the Star takes as many characters as possible. In programming terms, we
+say that this behavior is _**greedy**_. It's possible to modify the repetition qualifiers to make them less greedy.
+
+```python
+import re
+def repeating_letter_a(text):
+  """The repeating_letter_a function checks if the text passed\
+   includes the letter "a" (lowercase or uppercase) at least twice"""
+  result = re.search(r"___", text)
+  return result != None
+
+print(repeating_letter_a("banana")) # True
+print(repeating_letter_a("pineapple")) # False
+print(repeating_letter_a("Animal Kingdom")) # True
+print(repeating_letter_a("A is for apple")) # True
+```
+
+As we called out earlier, implementations of regular expressions aren't always the same. Repetition qualifiers are one way they differ. Some implementations like the one used by grep only include the store qualifier that we just discussed. You can do a lot with just a star qualifier. So that's usually good enough. Other implementations like the one used by Python or by the Egrep command include two additional repetition qualifiers plus and question mark, that can help us construct more complex expressions.
+
+The + character matches one or more occurrences of the character that comes before it.
+
+```python
+print(re.search(r"o+l+", "goldfish"))
+<re.Match object; span=(1, 3), match='ol'>
+print(re.search(r"o+l+", "woolly"))
+<re.Match object; span=(1, 5), match='ooll'>
+print(re.search(r"o+l+", "boil"))
+None # While there are both an o and a l, they're separated by a character.
+```
+
+In this case, there was one occurrence of each. In the match pattern shows us the shortest possible matching string.
+
+The question mark symbol is yet another multiplier. It means either zero or one occurrence of the character before it. Let's see how this works:
+
+```python
+print(re.search(r"p?each", "To each to their own")) # the ? renders the p optional
+<re.Match object; span=(3, 7), match='each'>
+print(re.search(r"p?each", "I like peaches!"))
+<re.Match object; span=(7, 12), match='peach'>
+```
+
+#### Escaping Characters
+
+We can use a **backslash** in this way to escape any special characters, including the ones that we haven't even talked about yet.
+
+Something to watch out for: it can get really confusing with backslashes since they're also used to define some special string characters.
+
+```python
+print(re.search(r".com", "Welcome!"))
+<re.Match object; span=(2, 6), match='lcom'>
+print(re.search(r"\.com", "Welcome!"))
+None
+print(re.search(r".com", "mydomain.com"))
+<re.Match object; span=(8, 12), match='.com'>
+```
+
+We've called out, for example, that **\n** is a sequence using Python to indicate a new line, and **\t** does the same for tabs. **When we see a pattern that includes a backslash, it could be escaping a special regex character or a special string character**.
+
+Using raw strings, like we've been doing, helps avoid some of these possible confusion because the special characters won't be interpreted when generating the string. They will only be interpreted when parsing the regular expression.
+
+On top of this, Python also uses the backslash for a few special sequences that we can use to represent predefined sets of characters. For example, **\w** matches any alphanumeric character including letters, numbers, and underscores.
+
+```python
+print(re.search(r"\w*", "This is an example."))
+<re.Match object; span=(0, 4), match='This'>
+print(re.search(r"\w*", "And_this_is_another!"))
+<re.Match object; span=(0, 19), match='And_this_is_another'>
+```
+
+There's also **\d** for matching digits, **\s** for matching whitespace characters like space, tab or new line, **\b** for word boundaries and a few others.
+
+```python
+import re
+def check_character_groups(text):
+  """Fill in the code to check if the text passed has at least 2 groups of alphanumeric characters (including letters, numbers, and underscores) separated by one or more whitespace characters."""
+  result = re.search(r"____", text)
+  return result != None
+
+print(check_character_groups("One")) # False
+print(check_character_groups("123  Ready Set GO")) # True
+print(check_character_groups("username user_01")) # True
+print(check_character_groups("shopping_list: milk, bread, eggs."))
+```
+
+#### Regular Expressions in Action
+
+We've now looked into a bunch of syntax for using regular expressions in Python. Armed with all this knowledge, we can start combining these special characters to create patterns to match the text that we want. For example, say you had a list of all the countries in the world and you want to check which of those names start and end in a. What will the pattern look like? Maybe something like this, A.*a. Let's try that one out:
+
+```python
+print(re.search(r"A.*a", "Argentina"))
+<re.Match object; span=(0, 9), match='Argentina'>
+print(re.search(r"A.*a", "Azerbaijan"))
+<re.Match object; span=(0, 9), match='Azerbaija'> # Not quite
+print(re.search(r"^A.*a$", "Azerbaijan"))
+None
+print(re.search(r"^A.*a$", "Australia"))
+<re.Match object; span=(0, 9), match='Australia'>
+```
+
+Using regular expressions, we can also construct a pattern that would validate if the string is a valid variable name in Python. Do you remember what the rules were? It can contain any number of letters numbers or underscores, but it can't start with a number.
+
+```python
+pattern = r"^[a-zA-Z_][a-zA-Z0-9_]*$"
+print(re.search(pattern, "this_is_a_valid_variable_name"))
+<re.Match object; span=(0, 29), match='this_is_a_valid_variable_name'>
+print(re.search(pattern, "this isn't a valid variable name"))
+None
+print(re.search(pattern, "my_variable1"))
+<re.Match object; span=(0, 12), match='my_variable1'>
+print(re.search(pattern, "2my_variable_name"))
+None
+```
+
+Exercise:
+
+```python
+import re
+def check_sentence(text):
+  """Check if the text passed looks like a standard\
+   sentence, meaning that it starts with an uppercase\
+    letter, followed by at least some lowercase\
+     letters or a space, and ends with a period,\
+      question mark, or exclamation point
+  """
+  result = re.search(r"^[A-Z]+[a-z0-9]+[.?!$]", text)
+  return result != None
+
+print(check_sentence("Is this is a sentence?")) # True
+print(check_sentence("is this is a sentence?")) # False
+print(check_sentence("Hello")) # False
+print(check_sentence("1-2-3-GO!")) # False
+print(check_sentence("A star is born.")) # True
+```
+
+#### Regular Expressions Cheat-Sheet
+
+List of special characters/metacharacters:
+
+```python
+. ^ $ * + ? { } [ ] \ | ( )
+```
+
+Check out the following links for more information:
+
+- [Regular Expression HOWTO](https://docs.python.org/3/howto/regex.html)
+
+- [re — Regular expression operations](https://docs.python.org/3/library/re.html)
+
+- [Greedy versus Non-Greedy](https://docs.python.org/3/howto/regex.html#greedy-versus-non-greedy)
+
+Shout out to [regex101.com](http://regex101.com/), which will explain each stage of a regex.
+
+### Advanced Regular Expressions
+
+#### Capturing Groups
+
+Up to now, we've used the search function to check if a string matched a certain pattern. But the only thing we've done with the result is print. Printing is useful when we want to see if a string matches a certain pattern.
+
+But most of the time, we want to take the information that we matched and use it for something else. For example, we may want to extract the hostname or a process ID from a log line and use that value for another operation. For that we need to use a concept of regular expressions called **capturing groups**.
+
+**Capturing groups are portions of the pattern that are enclosed in parentheses**.
+
+Example:
+
+```python
+import re
+result = re.search(r"^(\w*), (\w*)$", "Lovelace, Ada")
+print(result)
+```
+
+The match object has more attributes and methods than the ones shown by print, so we are going to start using them now. Let's look at the output of the groups method:
+
+```python
+print(results.groups())$
+('Lovelace', 'Ada')
+```
+
+Because we defined two separate groups, the group method returns a tuple of two elements. We can also use indexing to access these groups. The first element contains the text matched by the entire regular expression. Each successive element contains the data that was matched by every subsequent match group. So let's look at the element at index 0.
+
+```python
+print(result[0])
+'Lovelace, Ada'
+print(result[1])
+'Lovelace'
+print(result[2])
+'Ada'
+print("{} {}".format(result[2], result[1]))
+```
+
+Nice!
+
+```python
+import re
+def rearrange_name(name):
+  result = re.search(r"^(\w*), (\w*)$", name)
+  if result == None:
+    return name
+  return "{} {}".format(result[2], result[1])
+
+name = rearrange_name("Ritchie, Dennis")
+print(name)
+name = rearrange_name("Thompson, Ken")
+print(name)
+```
+
+**Exercise**: Fix the regular expression used in the rearrange_name function so that it can match middle names, middle initials, as well as double surnames (Tip: keep 2 capturing groups,   allow for the second to optionally contain a space, then a group of characters):
+
+```python
+import re
+def rearrange_name(name):
+  result = re.search(r"^(\w*), (\w*)$", name) # "^(\w*), (\w*\ ?\w*.?)$" worked
+  if result == None:
+    return name
+  return "{} {}".format(result[2], result[1])
+
+name=rearrange_name("Kennedy, John F.")
+print(name)
+name=rearrange_name("Hopper, Grace M.")
+print(name)
+```
+
+Note from the course: _Oops!  We made a small error.  Un-escaped, the dot in this expression will match any character. In this case it makes the code work, but it is incorrect! Since we wanted to match the dot character specifically, we should have escaped the dot in the regular expression. The correct regular expression should be: r"^([\w \.-]*), ([\w \.-]\*)$"_
+
+#### More on Repetition Qualifiers
+
+Up to now, we've used the Star, Plus and question mark repetition qualifiers. What if we wanted a pattern that repeats a specific number of times? This could happen if we're processing a line that we know has some specific data in a column, or we know that we want a string of a specific length. In cases like those, we would manually write the same pattern as many times as we need it. But it would be hard to read and hard to maintain. And that's why Python also offers numeric repetition qualifiers. These are written between curly brackets and can be one or two numbers specifying a range.
+
+For example, to match any string of **exactly** five letters, we can use an expression like this one:
+
+```python
+import re
+print(re.search(r"[a-zA-Z]{5}", "a ghost"))
+<re.Match object; span=(2, 7), match='ghost'>
+print(re.search(r"[a-zA-Z]{5}", "a scary ghost appeared"))
+<re.Match object; span=(2, 7), match='scary'> # only the first\
+ occurence is returned
+print(re.findall(r"[a-zA-Z]{5}", "a scary ghost appeared"))
+['scary', 'ghost', 'appea']
+```
+
+Now we have an extra match for the word that's actually longer. What if we wanted to match all the words that are exactly five letters long? We can do that using **\b**, which matches word limits at the beginning and end of the pattern, to indicate that we want full words, like this:
+
+```python
+print(re.findall(r"\b[a-zA-Z]{5}\b", "A scary ghost appeared"))
+['scary', 'ghost']
+```
+
+We said that we can also have two numbers in the range. For example, if we wanted to match a range of five to ten letters or numbers, we could use an expression like this one.
+
+```python
+print(re.findall(r"\w{5,10}", "I really like strawberries"))
+['really', 'strawberri']
+```
+
+These ranges can also be open ended. A number followed by a comma means at least that many repetitions with no upper boundary limited only by the maximum repetitions in the source text.
+
+```python
+print(re.findall(r"\w{5,}", "I really like strawberries"))
+['really', 'strawberries']
+```
+
+Now, for our final example, a comma followed by a number means from zero up to that amount of repetitions. Let's check that one out:
+
+```python
+print(re.search(r"s\w{,20}", "I really like strawberries"))
+<re.Match object; span=(14, 26), match='strawberries'>
+```
+
+Exercise:
+
+```python
+import re
+def long_words(text):
+  pattern = ___
+  result = re.findall(pattern, text)
+  return result
+
+print(long_words("I like to drink coffee in the morning."))\
+ # ['morning']
+print(long_words("I also have a taste for hot chocolate in the\
+ afternoon.")) # ['chocolate', 'afternoon']
+print(long_words("I never drink tea late at night.")) # []
+```
+
+#### Extracting a PID Using regexes in Python
+
+Remember the example from the beginning of our discussion of regular expressions? It was way back in the first video of this module when we were looking at the log lines and extracting process IDs. Well, we now have enough info to fully understand it. Let's walk through it step-by-step:
+
+```python
+import re
+log = "July 31 07:51:48 mycomputer bad_process [54321]:\
+ ERROR Performing package upgrade"
+regex = r"\[(\d+)\]"
+result = re.search(regex, log)
+print(result[1])
+```
+
+Let's try our expression on a different string and check that it really works,
+no matter what the rest of the text is:
+
+```python
+result = re.search(regex, "A completely different string that also\
+ has numbers [271274]")
+print(result[1])
+271274
+```
+
+But what if our string didn't actually have a block of numbers between the square brackets?
+
+```python
+result = re.search(regex, "99 elephants in a [cage]")
+print(result[1])
+TypeError: 'NoneType' object is not subscriptable
+```
+
+We tried to access the index 1 of a variable that was none. As Python tells us, this isn't something that we can do. So what should we do instead? We should have a function that extracts the process ID or PID when possible, and does something else if not. It's something like this:
+
+```python
+def extract_pid(log_line):
+  regex = r"\[(\d+)\]"
+  result = re.search(regex, log_line)
+  if result is None: # See note
+    return ""
+  return result[1]
+
+print(extract_pid("July 31 07:51:48 mycomputer bad_process [54321]\
+  : ERROR Performing package upgrade"))
+54321
+print(extract_pid("99 elephants in a [cage]"))
+
+```
+
+**Note**: What we choose to do depends on what we want the rest of the code to do.
+
+**Exercise**: Add to the regular expression used in the extract_pid function, to return the uppercase message in parenthesis, after the process id.
+
+```python
+import re
+def extract_pid(log_line):
+    regex = r"\[(\d+)\]: (\b[A-Z]*\b)"
+    result = re.search(regex, log_line)
+    if result is None:
+        return None
+    return "{} ({})".format(result[1], result[2])
+
+print(extract_pid("July 31 07:51:48 mycomputer bad_process[12345]:\
+ ERROR Performing package upgrade")) # 12345 (ERROR)
+print(extract_pid("99 elephants in a [cage]")) # None
+print(extract_pid("A string that also has numbers [34567] but no/
+uppercase message")) # None
+print(extract_pid("July 31 08:08:08 mycomputer new_process[67890]:\
+ RUNNING Performing backup")) # 67890 (RUNNING)
+```
+
+#### Splitting and Replacing
+
+Up to now we've been using two functions from the **re** module: **search()** and **findall()**. There are actually a few more functions that can be really handy depending on what we're trying to do.
+
+One of these functions is called split. It works similarly to the split function that we used before with strings. But instead of taking a string as a separator, you can take any regular expression as a separator. For example we may want to split a piece of text into separate sentences. To do that we need to check not only for the dots but also for question marks or exclamation marks since they're also valid sentence endings. It's something like this:
+
+```python
+re.split(r"[.!?]", "A sentence. Another one? And the last one!")
+['A sentence', ' Another one', ' And the last one', '']
+```
+
+Check out how we are not escaping the characters that we wrote inside the square brackets. That's because anything that's inside the square brackets is taking for the literal character and not for its special meaning. Also see how the notation marks aren't present in the resulting list.
+
+If we want our split list to include the elements that we're using to split the values we can use capturing parentheses like this:
+
+```python
+re.split(r"([.!?])", "A sentence. Another one? And the last one!")
+['A sentence', '.', ' Another one', '?', ' And the last one', '!', '']
+```
+
+Another interesting function provided by the RE module is called sub. It's used for creating new strings by substituting all or part of them for a different string, similar to the replace string method but using regular expressions for both the matching and the replacing. Let's see this in an example.
+
+```python
+re.sub(r"[\w.%+-]+@[\w.-]+", "[REDACTED]", "Got an email for\
+ user@host.name")
+'Got an email for [REDACTED]'
+```
+
+The expression that we're using for identifying email addresses has two parts: the part before that at sign and the part after it. Check out the part that comes before the at sign. We include the alphanumeric characters represented by backslash w which includes letters, numbers, and the underscore sign as well as a dot, percentage sign, plus, and dash. After the at sign, we only allow the alphanumeric characters dot and dash. This will match all email addresses as well as some strings that aren't really valid email addresses like an address with two dots. In this scenario we want to be better safe than sorry. So we're going to redact anything that looks like an address. If we wanted to validate that the address is an actual email we would need to be a lot stricter.
+
+Let's now look at an example using sub where we use regular expressions for the replacing. For that, we'll go back to our code that switched the order of names of people and use sub to create the new string.
+
+```python
+re.sub(r"^([\w .-]*), ([\w .-]*)$", r"\2 \1", "Lovelace, Ada")
+'Ada Lovelace'
+```
+
+When referring to captured groups, a backslash followed by a number indicates the corresponding captured group. This is a general notation for regular expressions, and it's used by many tools that support regexes, not just Python.
+
+We can also use them to match patterns that repeat themselves which use capturing groups as back references. We won't look into them here, but if you want to learn more, you'll find a bunch more info about them online.
+
+#### Advanced Regular Expressions Cheat-Sheet
+
+Check out the following link for more information:
+
+- [Regex Cross­word](https://regexcrossword.com/)
+
+## Managing Data and Processes
+
+### Data Streams
+
+#### Reading Data interactively
+
+We've talked before about reading and writing files. Using files to store information and then processing that data over a script is a great way to build automation. But sometimes we need to interact with the user and ask them for certain pieces of information that just can't be stored in a file. To do this Python provides a function called **input**. This function allows us to prompt the user for a certain value that we can then use for our scripts. Let's see what that looks like.
+
+```python
+#!/usr/bin/env/ python3
+
+name = input("Please enter your name: ")
+print("Hello, " + name)
+```
+
+Also see to_seconds.py
+
+#### Standard Streams
+
+We've now seen a couple ways of getting information into and out of our scripts. We know how to read and write to files and accept input from the keyword and print it to the screen, too. But what exactly is going on behind the scenes when we do this? How does a Python program connect to both the screen and the keyboard? Well, it uses I/O streams. **I/O streams** are the basic mechanism for performing input and output operations in your programs.
+
+We call these streams because the data keeps flowing. A program can read input and
+generate output as long as it needs to achieve its goal. Okay, what do these streams mean in practice?
+
+Most operating systems supply three different I/O streams by default each with
+a different purpose
+
+| Standard Stream                    | Description                                                                                                                      |
+|------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| Standard Input stream or "STDIN"   | Usually in the form of text data from the keyboard                                                                               |
+| Standard Output stream or "STDOUT" | Generally takes the form of text displayed in a terminal                                                                         |
+| Standard Error or "STDERR"         | Displays output like standard out, but is used specifically as a channel to show error messages and diagnostics from the program |
+
+#### Environment Variables
+
+When we open a terminal application on a Linux computer, whether it's local or a remote machine, the application that reads and executes all commands is called a **shell**. A shell is a command line interface used to interact with your operating system.
+
+Python programs get executed inside a shell command-line environment. The variables set in that environment which are called **environment variables** and are another source of information that we can use in our scripts.
+
+We can read the contents of these variables from Python. Let's use a Python script to check that out:
+
+```python
+#!/usr/bin/env python3
+# script name: variables.py
+import os
+
+print("HOME: " +) os.environ.get("HOME",""))
+print("SHELL: " +) os.environ.get("SHELL",""))
+print("FRUIT: " + os.environ.get("FRUIT", ""))
+```
+
+To access environment variables, we use the environ dictionary provided by the OS module. In this case, we're using a dictionary method that we haven't used before.
+
+The getMethod is a bit similar to how we've been accessing dictionary values up until now. The difference is what happens when the value isn't present. When we retrieve a value from a dictionary using the key as in OS.environ\[fruit] and the key isn't present, we get an error.
+
+If we use a getMethod instead, we can specify what value should be returned if the key isn't present. In other words, the getMethod allows us to specify a default value when the key that we're looking for isn't in the dictionary. So what we're asking Python to do is try to retrieve the value associated with the key, but if the key's not defined return an empty string instead. We're doing this for three different variables; home, shell, and fruit. Let's run the script and see what happens.
+
+We define the variable by just setting a value using the equal sign and leaving no spaces in between. Along with this, the export keyword tells a shell that we want the value we set to be seen by any commands that we call.
+
+```bash
+export FRUIT=Pineapple
+```
+
+We can now rerun our variables.py script to check the value of the FRUIT environment variable.
+
+#### Command-Line Arguments and Exit Status
+
+Up to now, we've seen how different programs can read from and write to standard IO streams and how the show environment can influence execution of a program. Yet another common way of providing information to our programs is through command line arguments.
+
+Command-line arguments are parameters that are passed to a program when it started. It's a super common practice to make our scripts receive certain values by command line arguments. It allows a code of the script to be generic while also letting us run it automatically without requiring any interactive user input. This means that these arguments are really useful for system administration tasks. That's because we can specify the information that we want our program to use before it even starts.
+
+```python
+#!/usr/bin/env python3
+# Script name: parameters.py
+
+import sys
+
+print(sys.argv)
+```
+
+Our script just imports the sys module and prints the sys.argv list. Now, let's see what happens when we call the program.
+
+```bash
+./parameters.py
+['./parameters.py']
+```
+
+In this case, we called the script without any parameters. The list contains one single element. The name of the program that we just executed. Let's try passing a few parameters.
+
+```bash
+./parameters.py one two three
+['./parameters.py', 'one', 'two', 'three']
+```
+
+Last up we have the concept of **exit status** or **return code**, which provides another source of information between the shell and the programs that get executed inside of it.
+
+The exit status is a value returned by a program to the shell. In all Unix-like operating systems, the exit status of the process is zero when the process succeeds and different than zero if it fails.
+
+The actual number returned gives additional info on what kind of error the program encountered. Knowing if a command finished successfully or not is helpful information which can be used by a program that's calling a command.
+
+For example, it can use the information to retry the command. If it failed. To check the exit status of a program, we can use a special variable that lets us see what the exit status of the last executed command was.
+
+The variable is the **question mark variable**. So to see the contents we use dollar sign question mark. Let's try this out using the WC command, which counts the number of lines words and characters in a file. First, we'll pass it our variables.py Script and check the exit value.
+
+```bash
+wc variables.py
+       7      21     200 variables.py
+echo $?
+0
+wc notpresent.file
+wc: notpresent.file: open: No such file or directory
+echo $?
+1
+```
+
+Here, **wc** couldn't run for the file that we pass because it doesn't exist. The command printed an error and when printing the contents of the dollar sign question mark variable, we see that it finished with an exit value of one.
+
+So that's with system commands, but what about Python scripts? When a Python script finishes successfully, it exits with an exit value of zero. When it finishes with an error like type error or value error, it exits with a different value than zero. We can make it exit with whatever value is relevant.
+
+```python
+#!/usr/bin/env python3
+# Script name: create_file.py
+import os
+import sys
+
+fielname = sys.argv[1]
+
+if not os.path.exists(filename):
+  with open(filename, w) as f:
+    f.write("New file created\n")
+else:
+  print("Error: the file {} already exists!".format(filename))
+  sys.exit(1)
+```
+
+To try this out let's first execute the script and pass a file that doesn't exist:
+
+```bash
+./create_file.py example
+echo $?
+0
+cat example
+New file created
+./create_file example
+Error: the file example already exists!
+echo $?
+1
+```
+
+See the "More About Input Functions" addendum file.
+
+### Python Subprocesses
+
+#### Running System Commands in Python
+
+Up to now, we've been using Python to interact with the operating system through baked in functionality. For example, we've used file objects to read the contents of files, used the **shutil** module to check if the disk is full. And use a **sys** module to process standard input, get parameters, or generate an exit code.
+
+But what if we needed to run a system program from a Python script?
+
+Say, for example, that as part of a Python script, we needed to send ICMP packets to a host to check if it's responding. We could try to look for an external module that provides this functionality. Or we can just run the **ping** command, which will send packets for us. Sometimes it's easier or faster to use a system command as part of our Python script to accomplish a task, or use some functionality that doesn't exist in the Python modules, neither built-in or external.
+
+For these cases, Python provides a way to execute system commands in our scripts, using functions provided by the subprocess module. Let's check out an example:
+
+```python
+import subprocesses
+
+print(subprocess.run(["date"]))
+Mar 27 déc 2022 17:31:10 CET
+CompletedProcess(args=['date'], returncode=0)
+
+subprocess.run(["sleep", "3"])
+CompletedProcess(args=['sleep', '3'], returncode=0)
+
+result = subprocess.run(["ls", "this_file_does_not_exist"])
+ls: this_file_does_not_exist: No such file or directory
+print(result.returncode)
+```
+
+#### Obtaining the Output of a System Command
+
+If we want our Python scripts to manipulate the output of system command that we're executing, we need to tell the run function to capture it for us. This might be helpful when we need to extract information from a command and then use it for something else in our script.
+
+For example, say you want to create some stats on which users are logging into a server throughout the day. You could do this with a script that calls the **who** command, which prints the users currently logged into a computer. The script could parse the output of the command, storing the list of logged-in users once per hour and at the end of the date to generate a daily report.
+
+To be able to process the output of commands, we'll set a parameter called capture_output to true when calling the run function (requires Python 3.7 or later). For our next example, we'll call the **host** command, which can convert a host name to an IP address and vice versa. When calling it, we'll pass the capture output equals true parameter and store the result in a variable so that we can access it. Let's give it a try:
+
+```python
+import subprocess
+
+result = subprocess.run(["host", "8.8.8.8"], capture_output=True)
+print(result.returncode) # we can check the return code attribute like before
+0
+print(result.stdout)
+b'8.8.8.8.in-addr.arpa domain name pointer dns.google.\n'
+```
+
+What's that "b" at the beginning of the string? Well, that B tells us that this string is not a proper string for Python. It's actually an array of bytes, and this is a complex subject.
+
+- _Data in computers is stored and transmitted in bytes and each can represent up to 256 characters. But there are thousands of possible characters out there used to write in various languages. Chinese, for example, requires over 10,000 different characters. To be able to write in those languages, several specifications called encodings have been created over time to indicate which sequences of bytes represent which characters. Nowadays, most people use **UTF-8** encoding, which is part of the Unicode standard that lists all the possible characters that can be represented._
+
+So going back to our example when we execute the command using run, Python doesn't know which encoding to use to process the output of the command. So it simply represents it as a series of bytes. If we want this to become a proper string, we can call the **decode** method. This method applies an encoding to transform the bytes into a string. By default, it uses a UTF-8 encoding which is what we want. So with all that said, let's transform our array of bytes into a string and then split it into several pieces:
+
+```python
+print(result.stdout.decode().split())
+['8.8.8.8.in-addr.arpa', 'domain', 'name', 'pointer', 'dns.google.']
+```
+
+We just looked at the captured standard output. But what about standard error? If we use the capture_output parameter and the command writes any output to standard error, it will be stored in the **stderr** attribute of the completed process instance. Let's look at an example of this. We'll try executing the rm command, which we use for removing files passing a filename that doesn't exist:
+
+```python
+result = subprocess.run(["rm", "file_that_does_not_exist"], capture_output=True)
+print(result.returncode)
+1
+print(result.stdout)
+b''
+print(result.stderr)
+b'rm: file_that_does_not_exist: No such file or directory\n'
+```
+
+We've now seen that we can execute system commands from Python and check whether they succeeded or failed. We've also seen how to capture the standard output and standard error streams so we can use their content in our scripts. These skills can be super useful when writing scripts that your system commands for some involved task and letting our Python scripts cover a broader range of tasks.
+
+#### Advanced Subprocess Management
+
+We've seen how to run system commands from Python, how to check the exit value, and how to manipulate the normal output and error output of the command. The sub process module offers a lot of extra options that we can use in our scripts.
+
+For example, we called out in an earlier video that one way of providing information to our processes is to modify the environment variables. Using this mechanism, we can change where the process looks for executable files, which commands it uses interact with some parts of the system, the kind of output it'll generate and a bunch more things.
+
+The usual strategy for modifying the environment of a child process is to first copy the environment seen by our process, do any necessary changes, and then pass that as the environment that the child process will see. Let's take a look at this:
+
+```python
+import os
+import subprocess
+
+my_env = os.environ.copy()
+my_env["PATH"] = os.pathsep.join(["/opt/myapp", my_env["PATH"]])
+
+result = subprocess.run(["my_app"], env = my_env)
+```
+
+To recap, this script is modifying the contents of the path environment variable by adding a directory to it. We then call the myapp command with that modified variable. Doing it this way, the command will run in the modified environment with the updated value of path.
+
+There are a bunch more options that we can use with the run function. For example, we can use the **cwd** parameter to change the current working directory where the command will be executed. This can be really helpful when working with a set of directories where you need to run a command on each of them.
+
+We could also set the **timeout** parameter. This will cause the run function to kill the process if it takes longer than a given number of seconds to finish. This might be useful if you're running a command that you know might get stuck. For example, if it's trying to connect to a network and your computer is offline.
+
+Or we can also set the **shell** parameter. If we set this to true, Python will first execute an instance of the default system shell and then run the given command inside of it. This means our command line could include variable expansions and other shell operations. Without the shell parameter, this would not be possible.
+
+We'll learn more about the things that we can do with the shell later in this course. For now, just keep in mind that if you need to expand variables or globs, you'll need to set this parameter.
+
+But using this can be a security risk. So make sure you actually need it and be careful when using it if you do. Before we finish our discussion of the subprocess module, a word of caution.
+
+Interfacing the underlying system directly in your Python scripts via subprocesses and system commands can be useful especially if you need to do a specific task quickly. But it comes with some drawbacks. Using these system-level commands built assumptions into our scripts about the infrastructure, our automation will run on. If those assumptions change, it can lead to unexpected effects or failures. These kinds of assumptions can change in multiple ways.
+
+What would happen to our automation is the flags where terminal command change and our script continues to use the old flags? What happens if we switch operating systems from Linux to Windows? Will our scripts fail outright or will they succeed in unintended and possibly harmful ways?
+
+Any change to the system or external commands our scripts use increases the chances of something breaking. Sometimes that break might be obvious and other times it might be difficult to detect.
+
+- If we're automating a one-off, well-defined task, we're developing a solution quickly is the biggest requirement, then using system commands and subprocesses can help a lot.
+
+- But if we're doing something more complex or long-running, it's usually a good idea to use the baked-in or external modules that Python provides. So before deciding to use a sub processes, it's a good idea to check the standard library or pypi repository to see if we can do the task with native Python and to check if someone has already created the automation that we wanted to write.
+
+Remember that we never want to reinvent the wheel.
+
+#### Python Subprocesses Cheat Sheet
+
+Check out the following link for more information:
+
+- [https://docs.python.org/3/library/subprocess.html](https://docs.python.org/3/library/subprocess.html)
+
+### Processing Log Files
+
+#### What are log files?
+
+Now we're going to take a look at how we can use these tools to help us with our day-to-day work. In the next few videos, we'll dive into a concrete examples centered around processing chunks of data. The kind of data that you might find in a Syslog file or a web request log. The different events that happen in programs that are running in a system and aren't connected to terminal are usually rendered to log files. Log files contain a lot of useful information, particularly when you're trying to debug a tricky problem that's happening on a computer.
+
+On the flip side, sometimes it can be overwhelming to try to find something inside of a log file that contains a whole lot of lines with a whole lot of things in them.
+
+So it's a good idea to learn how we can process these files and get our tools to extract information that we want out of them. To do this we'll go back to our knowledge of regular expressions. Using regex's in our scripts gives us a great deal of flexibility when processing log files and other texts data sources too. In a script, we can program any kind of behavior we want, so we can manipulate and process text data and get results we need.
+
+#### Filtering Log Files with Regular Expressions
+
+When working with log files and scripts, our first step is usually to open them so our code can access their contents. We've discussed various methods of operating on files. The usual technique is to call the open function which returns a file object and then iterate through each of its lines using a for-loop.
+
+Remember that for performance reasons, when files are large, it's generally a good practice to read them line by line instead of loading the entire contents into memory.
+
+```python
+#!/usr/bin/env python3
+import re
+import sys
+
+logfile = sys.argv[1]
+with open(logfile) as f:
+  for line in f:
+    if "CRON" not in line:
+      continue
+    pattern = r"USER \((\w+)\)$"
+    result = re.search(pattern, line)
+    print(result[1])
+```
+
+#### Making Sense out of the Data
+
+We just wrote a script that processed a log file and extracted the names of each user who had started a cron job in the machine that we were investigating. This can be really helpful but there's more information that we might need.
+
+To improve our output, it would be a good idea to have a count of how many times each username appears in our log. As we've seen in earlier examples, dictionaries are great structure to use when we want to count appearances of strings.
+
+We'll store the user name as a keys of a dictionary and we'll use the value to count the number of times that each user name appears in the file. To do this in fewer lines, we'll use the get method that we saw earlier.
+
+```python
+#!/usr/bin/env python3
+import re
+import sys
+
+logfile = sys.argv[1]
+usernames = {}
+
+with open(logfile) as f:
+  for line in f:
+    if "CRON" not in line:
+      continue
+    pattern = r"USER \((\w+)\)$"
+    result = re.search(pattern, line)
+    if result is None: # Checks if the rexgex found a match in the current line
+      continue # and continues on to the next one if not
+    name = result[1]
+    usernames[name] = usernames.get(name, 0) + 1
+print(usernames)
+```
+
+## Testing in Python
+
+### Simple Tests
+
+#### What is testing?
+
+When you're writing a very simple piece of code, say for example, that you're adding two variables, it's pretty straightforward to know what the code does, and be sure they'd does it correctly. As operations become more complex using loops, conditionals, calling more and more functions, it's harder to really be confident that the code will do what it's supposed to. This is where software testing comes into play.
+
+**Software testing** is the process of evaluating computer code to determine whether or not it does what you expect it to do.
+
+When you test a piece of software, you want to find the errors and defects and see where things go wrong. Software testing is similar in lots of ways to the tests performed in the manufacturing process of a new piece of machinery.
+
+Scripts and programs can fail in all sorts of strange ways, especially as it become more complicated. In all but those simple programs, it's next to impossible to test for everything that could go wrong. Even though this means that a certain number of bugs might exist in your scripts without you realizing it, don't worry.
+
+Writing tests can help you eliminate a whole bunch of bugs, helping to improve the reliability and the quality of automation. **Tests can help make good code great**. The field of software testing is pretty broad. In the next few sections we'll explore some fundamental concepts involved like **automated testing**, **unit test**, **integration test**, and **test-driven development**.
+
+As of lots of topics covered in this course, we'll do a quick rundown of the many concepts around testing. It won't be enough instructions for you to become a testing expert, but it should help you with automatically testing your scripts.
+
+#### Manual Testing and Automated Testing
+
+One of the tasks that programmers had to do when writing code is test it to make sure that it behaves the way that they expected to. Having good tests for our software can help us catch mistakes, errors, and bugs before we deploy our scripts to perform real-world automation tasks.
+
+- The most basic way of testing a script is to run it with different parameters and see if it returns the expected values. We've done this manual testing for some of the code that we've written this course already. Executing a script with different command-line arguments to see how its behavior changed is an example of manual testing.
+
+- Using the interpreter to try our code before putting it in a script is another form of manual testing.
+
+Formal software testing takes us process a step further, codifying tests into its own software and code that can be run to verify that our programs do what we expect them to do. This is called **automatic testing**. The goal of automatic testing is to automate the process of checking if the returned value matches the expectations.
+
+_Why would you write more code to test code you have?_
+
+Because when you're testing your code, you want to check if it does what it's supposed to do for a lot of different values. You ought to verify that it behaves the way you expect it to have as many possible values known as **test cases**.
+
+### Unit Tests
+
+As we mentioned, there are lots of different types of test that we can write to perform automatic testing. The most common type is a unit test. Unit tests are used to verify that small isolated parts of a program are correct.
+
+As we mentioned, there are lots of different types of test that we can write to perform automatic testing. The most common type is a **unit test**.
+
+**Unit tests** are used to verify that small isolated parts of a program are correct.
+
+Unit tests are generally written alongside the code to test the behavior of individual pieces or units like functions or methods. Unit tests help assure the developer that each piece of code does what it's meant to do.
+
+An important characteristic of a unit test is **isolation**. Unit test should only test the unit of code they target, the function or method that's being tested. This ensures that any success or failure of the test is caused by the behavior of the unit in question and doesn't result from some external factor like the network being down or a database server being unresponsive.
+
+In other words, when testing a function or method, we want to make sure that we're focusing on checking that the code in that function or method behaves correctly. We don't want our test to fail for external reasons.
+
+Unrelated note, our **tests should never modify the production environment**. This is a live environment that runs a software that users interact with. When developing test, if for any reason we do need to interact with some other software, we'll normally do that in a **test environment**, where we'll have control over how it behaves. **It's our house, our rules**.
+
+So the goal of the unit test is to verify that small, isolated parts of a program are correct. How do we do that? It generally boils down to a simple pattern. Given a known input, does the output of our code match our expectations?
+
+Let's take a piece of code similar to what we wrote awhile back to rearrange a name in the format last name comma first name and think about how we test it. How do you think we can test that it works the way you'd expect it to? Let's start by manually validating that for a given input, it produces expected result. We'll check this by importing the function in an interpreter. To do that, we'll use a keyword that we haven't seen before, **from**:
+
+```python
+#In a Python interpreter:
+>>>from rearrange import rearrange_name
+>>>rearrange_name("Lovelace, Ada")
+>>>'Ada Lovelace'
+```
+
+#### Writing Unit Tests in Python
+
+We've now looked at the principles behind automatic testing. We know that by having automatic tests, we can run them as many times as necessary to make sure that our code does what we want it to do.
+
+So how we do this in Python? We need to write some code that runs a test and verifies the output. This way, we can get our computer to do the work for us. To demonstrate the testing workflow, we'll create unit tests for the rearrange_name function from the previous section.
+
+As we touched on earlier, automatic tests are usually written alongside the code that we want to test. What this means in practice is creating a separate Python file with the test. **The convention is to call the script with the same name of the module that it's testing and appending the suffix _test**. So for our rearrange module, we'll create the rearrange_test.py file.
+
+To help us with the actual writing of the test, Python provides a module called unittest. Thanks Python! This module includes a number of classes and methods that let us easily create unit tests for our code.
+
+```python
+#!/usr/bin/env python3
+# Script name: rearrange_test.py
+from rearrange import rearrange_name
+import unittest
+
+class TestRearrange(unittest.TestCase):
+  def test_basic(self):
+    testcase = "Lovelace, Ada"
+    expected = "Ada Lovelace"
+    self.assertEqual(rearrange_name(testcase), expected)
+
+unittest.main()
+```
+
+All right, we're ready to run the test. We'll do that by executing the file that we just created. Let's make our script executable (with chmod +x) and then run it:
+
+```bash
+./rearrange_test.py
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+```
+
+Looks good! The output is pretty descriptive, printing out some information
+about how long a group of tests or _**test suite**_ took to run, as well as the number of tests, and whether or not, they passed.
+
+#### Edge Cases
+
+By now we know how to write automatic tests in Python. Our test suite includes only one test case though. We need to make it grow. Choosing test cases can be an exercise in creativity. Coming up with different ways a piece of code might break can actually be super fun.
+
+We'll usually test that our code works in general case. But we should also see what happens when we give it some input that we may not expect it to run into under normal operations. For example, what would happen in our function if we gave it an empty string? Let's add a test for that and see:
+
+```python
+#!/usr/bin/env python3
+# Script name: rearrange_test.py
+from rearrange import rearrange_name
+import unittest
+
+class TestRearrange(unittest.TestCase):
+  def test_basic(self):
+    testcase = "Lovelace, Ada"
+    expected = "Ada Lovelace"
+    self.assertEqual(rearrange_name(testcase), expected)
+
+  def test_empty(self):
+    testcase = ""
+    expected = ""
+
+unittest.main()
+```
+
+**Edge cases** are inputs to our code that produce unexpected results, and are found at the extreme ends of the ranges of input we imagine our programs will typically work with.
+
+Edge cases usually need special handling in scripts in order for the code to continue to behave correctly.
+
+Whether or not we handle this kind of error depends on how we want the scripts to behave. In our specific case, returning the original value makes sense when we can't rearrange it.
+
+But sometimes you might actually want your program to crash with an error rather than to go on as if nothing happened.
+
+**Remember that it's bad for automation to fail silently**.
+
+Other kinds of edge cases usually include things like passing zero to a function that expects a number, or negative numbers, or extremely large numbers. These types of conditions are good to consider when writing your test, since they can cause your code to crash or behave in unexpected ways. Sometimes it pays to be a pessimist. You can see how it might require some creativity to come up with these examples. The upside is that when writing automatic tests, once you've come up with example, it's there to stay.
+
+#### Additional Test Cases
+
+```python
+#!/usr/bin/env python3
+# Script name: rearrange_test.py
+from rearrange import rearrange_name
+import unittest
+
+class TestRearrange(unittest.TestCase):
+  def test_basic(self):
+    testcase = "Lovelace, Ada"
+    expected = "Ada Lovelace"
+    self.assertEqual(rearrange_name(testcase), expected)
+
+  def test_empty(self):
+    testcase = ""
+    expected = ""
+    self.assertEqual(rearrange_name(testcase), expected)
+
+  def test_double_name(self):
+    testcase = "Hopper, Grace M."
+    expected = "Grace M. Hopper"
+    self.assertEqual(rearrange_name(testcase), expected)
+
+  def test_one_name(self):
+    testcase = "Voltaire"
+    expected = "Voltaire"
+    self.assertEqual(rearrange_name(testcase), expected)
+
+unittest.main()
+```
+
+One of the great things about running tests in a suite like this, is that we now know that all the test cases we wrote were handled correctly. Our code works for basic names, empty strings, double names, and single names. If we found another case that made our tests break, we could add it to the suite, fix the bug, and then run the whole suite again, being assured that all the other cases are still working.
+
+### Other Tests Concepts
+
+#### Black Box vs. White Box
+
+There are lots of different tests that we can use to make sure our software is behaving how we expect it to. We've explored unit test in detail which are both simple to write and are very powerful way to catch bugs. But there's a lot more to software testing. One interesting concept is whether our test is a **white-box test or a black-box test**.
+
+- **White-box testing** also sometimes called **clear-box** or **transparent testing** relies on the test creators knowledge of the software being tested to construct the test cases.
+
+- **Black-box tests** are written with an awareness of what the program is supposed to do, its requirements or specifications, but not how it does it.
+
+Both white-box and black-box tests have their own advantages.
+
+White-box tests are helpful because a test writer can use their knowledge of the source code to create tests that cover most of the ways that the program behaves. Black-box tests are useful because they don't rely on the knowledge of how the system works. This means their test cases are less likely to be biased by the code. They usually cover situations not anticipated by the programmer who originally wrote the script.
+
+Not all tests that we write needs to fall to one category or the other. We can write unit tests that are either white or black-box, depending on which testing methodology is chosen.
+
+- If the unit tests are created before any code is written based on specifications of what the code is supposed to do, they can be considered black-box unit test.
+
+- If unit tests are run alongside or after the code has been developed, the test cases are made with a knowledge of how software works. They are white-box tests. One way isn't strictly better than the other since each gives you a different path to make your code more reliable.
+
+Not everything is so black and white or as we'd say in the coding world, binary. As an IT specialist, you may need to test that software written by others behaves the way you expect it to. To do this, you can use the combination of black-box and white-box test.
+
+#### Other Test Types
+
+When we looked at unit tests, we call out they should focus on one specific unit, a functional method that being tested. This allows the test to verify the unit provides expected functionality regardless of the rest of the environment. On the other hand, integration tests verify that the interactions between the different pieces of code in integrated environments are working the way we expect them to. While unit tests shouldn't cross boundaries to do things like make a network request or integrate with an API or database, the goal of an integration test is to verify these kinds of interactions and make sure the whole system works how you expect it to.
+
+- **Integration tests**, usually take the individual modules of code that unit test verify then combine them into a group to test. Depending on what our program does, and how it interacts with the rest of the systems involved, we might need to create a separate test environment for our test. Which runs a test version of our software that we're trying to verify. We might be able to run our test against the actual version of our system that's running, but that's only if our code doesn't make any changes to the production environment. Whenever your company is deploying a system that's somewhat complex, having integration tests will help make sure that all the pieces come together the way you expect them to. These tests usually take a bit more work to set up because you'll need to make sure that you have the test versions of all relevant systems. But they might help catch issues that unit tests won't text, so the extra effort is definitely worth it. For example, if the service you're trying to test interacts with a database, you want to set up a separate test database with a test user and a test tables. This lets you run all tests you need in an environment that you can control without risking modifying the production database.
+
+- A variant of unit tests are **regression tests**. They're usually written as part of a debugging and troubleshooting process to verify that an issue or error has been fixed once it's been identified. Say our script has a bug and we're trying to fix it. A good approach to doing this would be the first right to test fails by triggering the buggy behavior, then fix the bug so that a test passes. Regression tests are useful part of a test suite because they ensure that the same mistake doesn't happen twice. The same bug can't be reintroduced into the code because introducing it will cause the regression test to fail.
+
+- **Smoke tests** sometimes called **build verification test**, get their name from a concept that comes from testing hardware equipment. Plug in the given piece of hardware and see if smoke starts coming out of it. When writing software smoke test serve as a kind of sanity check to find major bugs in a program. Smoke test answer basic questions like, does the program run? These tests are usually run before more refined testing takes place. Since if the software fails the smoke test you can be pretty sure none of the other tests will pass either. As they say where there's smoke there's fire. For a web service the smoke test would be to check if there's a service running on the corresponding port. For an automation script, the smoke test would be to run it manually with some basic input and check that the script finishes successfully.
+
+- Other types of tests are **load tests**. These tests verify that the system behaves well when it's under significant load. To actually perform these tests will need to generate traffic to our application simulating typical usage of the service. These tests can be super-helpful when deploying new versions of our applications to verify that performance does not degrade. For example, we might want to measure the response time of our website while there are 100 requests per second on our pages, or a 1000, or 10,000. The actual numbers will depend on the expectations of how much traffic our website will receive.
+
+Taking together a group of tests of one or many kinds is commonly referred to as a **test suite**. A good diversity of test types can create a more robust test suite that helps ensure your scripts and automation, do what you tell them to. There are many more kinds of tests out there, we've only touched on a few of the most common types. If you're interested in learning more about the way software can break and how to test for that, all kinds of books and articles have been written on the subject.
+
+#### Test-Driven Development
+
+You might expect that most testing happens after the code has been written. This seems like a natural progression. First you write your script then you write tests that verify that the script does what you want it to do. But this isn't always the best approach.
+
+A process called **test-driven** or **TDD** calls for creating the test before writing the code. This might seem a bit counter-intuitive, but it can make for more thoughtful well-written programs. When presented with a new problem that can be solved by automation, your gut instinct might be to fire up your code editor and start writing.
+
+But creating some tests first make sure that you've thought about the problem that you're trying to solve and some different approaches that you might use to accomplish it. Writing a test first also helps you think about the ways your program could fail and break which can lead to some valuable insights and even change the approach you take for the better.
+
+The test-driven development cycle typically involves first writing a test then running it to make sure it fails. After all, you haven't written the code to make it passed yet. Once you've verified it fails, you write the code that will satisfy the test then run the tests again. If it passes you can continue on to the next part of your program. If it fails you Debug and run the test again. The cycle is repeated for each new feature of your script until it's up and running. So before you write your next Python program, you might want to think about the tests you can create to make sure it's working as you expect.
+
+There are all resources out there if you'd like to learn more about how you can create code using the test-driven development approach. Lots of them are Python-centric, but the principles can be applied to any language you need to create in.
+
+Hopefully you can see the benefits of writing tests to validate the code rate. You gain some understanding about a different testing techniques available. Remember that good tests help make any automation and script you write more robust, resilient, and less buggy. Having reliable automation makes life better for everyone.
+
+Many companies take testing a step further and combine it with our version control systems and development processes. When engineers submit their code, it's integrated into the main repository and tests are automatically run against it to spot bugs and errors in a process called **Continuous Integration**. Although useful, setting up a continuous integration process can be a big undertaking. Wew ill talk more about it later. In the meantime, if you use unit tests to validate the code you write, you're already on your way to a more reliable and robust automation.
+
+#### More About Tests
+
+Check out the following links for more information:
+
+- [https://landing.google.com/sre/sre-book/chapters/monitoring-distributed-systems/](https://landing.google.com/sre/sre-book/chapters/monitoring-distributed-systems/)
+
+- [https://landing.google.com/sre/sre-book/chapters/testing-reliability/](https://landing.google.com/sre/sre-book/chapters/testing-reliability/)
+
+- [https://testing.googleblog.com/2007/10/performance-testing.html](https://testing.googleblog.com/2007/10/performance-testing.html)
+
+- [https://www.guru99.com/smoke-testing.html](https://www.guru99.com/smoke-testing.html)
+
+- [https://www.guru99.com/exploratory-testing.html](https://www.guru99.com/exploratory-testing.html)
+
+- [https://testing.googleblog.com/2008/09/test-first-is-fun_08.html](https://testing.googleblog.com/2008/09/test-first-is-fun_08.html)
+
+### Errors and Exceptions
+
+#### The Try-Except Construct
+
+Along our journey learning Python, we've encountered errors generated by the interpreter a bunch of times. We've seen examples of TypeError, IndexError, ValueError, and others. Up to now whenever the interpreter threw one of these errors we changed our code to avoid the error. That's a common approach since whenever the interpreter raises one of these errors the program stops, and we don't want our scripts to come to an end before they're done doing their work.
+
+Sometimes it's easier to make a verification with the conditional to avoid the error. Other times there are so many things that could go wrong that checking for all of them becomes challenging.
+
+Say you had a function that opened a file and did some processing on it. What if the file doesn't exist? What if the user doesn't have permissions to read the file? Or what if the file is locked by different process and can't be opened right now? We could check all of these conditions but what if there's yet another thing that could cause the open function to raise an error. In a case like this, a better approach is to use the try-except construct.
+
+Let's look at how it works in an example:
+
+```python
+#!/usr/bin/env python3
+
+def character_frequency(filename):
+  """Counts the frequency of each character in a given file"""
+  # First try to open the file
+  try:
+    f = open(filename)
+  except OSError:
+    return None
+
+  # Now process the file
+  characters = {}
+  for char in line:
+    characters[char] = characters.get(char, 0) + 1
+
+f.close()
+return characters
+
+```
+
+Our character_frequency function here reads the contents of a file to count the frequency of each character in them. To do that, the first step is to open the file. In this example, we've put the call to the open function inside a try-except block. What this does is first try to do the operation that we want which in this case is to open the file. If there's an error, it then goes into the accept part of the block that matches the error and does whatever cleanup is necessary. Here we have only one except block, for the OSError error type, but there could be more blocks if the functions called could raise other types of errors.
+
+So when writing a try-except block, the important thing to remember is that **the code in the except block is only executed if one of the instructions in the try block raise an error of the matching type**.
+
+In this case, in the except-block, we're returning none to indicate to the calling code that the function wasn't able to do what was requested of it. Returning none when something fails is a common pattern but not the only one. We could also decide to set a variable to some base value like zero for numbers, empty string for strings, empty list for list, and so on. It all depends on what our function does and what we need to get that work done.
+
+The important point is that when we have an operation that might raise an error we want handle that failure gracefully by using the try-except block. The operation could be opening a file, converting a value to a different format, executing a system command, sending data over the network or any other action that might fail and isn't trivial to check with a conditional.
+
+To use a try-except block, we need to be aware of the errors that functions that we're calling might raise. This information is usually part of the documentation of the functions. Once we know this we can put the operations that might raise errors as part of the try block, and the actions to take when errors are raised as part of a corresponding except block.
+
+#### Raising Errors
+
+We looked into how to handle errors when they're raised by the functions that we call. In some cases, we might want to raise an error ourselves. This usually happens when some of the conditions necessary for a function to do its job properly aren't met and returning none or some other base value isn't good enough.
+
+Let's look at this through an example. Say we had a function that verifies whether a chosen username is valid. One of the checks this function does is verify that the provided name is at least a certain amount of characters with the minimum value received by a parameter.
+
+```python
+#!/usr/bin/env python3
+
+def validate_user(username, minlen):
+  if len(username) > min len:
+    return False
+  if not username.isalnum():
+    return False
+  return True
+```
+
+This code works as long as the provided values are sensible. What would happen if the minlen variable is zero or negative number? Our function will allow an empty username as valid which doesn't make much sense.
+
+To prevent this from happening, we can add an extra check to our function which will verify the receipt parameters are sane. In this case, returning false would be misleading because it's not necessarily that the username is invalid but the provided minlen value doesn't make sense. So let's add a check to verify that minlen is at least one and raise an error if that's not the case.
+
+```python
+#!/usr/bin/env python3
+
+def validate_user(username, minlen):
+  if minlen < 1:
+    raise ValueError("minlen should be at least 1")
+  if len(username) > min len:
+    return False
+  if not username.isalnum():
+    return False
+  return True
+```
+
+As you can see, the keyword to generate an error in Python is **raise**. We can raise a bunch of different errors that come already pre-built with Python or we can create our own, if the standard ones aren't good enough. In this case, we're raising a **value error**, a type of error that we've come across before to indicate that there was a problem with one of the values of the parameters.
+
+What if instead of passing the string we pass something different as a username to validate?
+
+**It's usually the responsibility of whoever is calling a function to call it the right parameters**. But in some cases, we might want to do this explicitly by checking that we're receiving a value that makes sense to that function.
+
+So let's look at an alternative to the raise keyword that we can use for situations where we want to check that our code behaves the way it should particularly when we want to avoid situations that should never happen. This is the **assert** keyword. This keyword tries to verify that a conditional expression is true, and if it's false it raises an **assertion error** with the indicated message. Let's add an assertion to our function.
+
+```python
+#!/usr/bin/env python3
+
+def validate_user(username, minlen):
+  assert type(username) == str, "username must be a string"
+  if minlen < 1:
+    raise ValueError("minlen should be at least 1")
+  if len(username) > minlen:
+    return False
+  if not username.isalnum():
+    return False
+  return True
+```
+
+We've added an assertion that verifies that the type of the username variable is STR which we know is a name that the interpreter uses for strings. If the function is called with a username parameter that's not a string, an error will be raised with the message we provided.
+
+As we've called out, we usually don't need to check the types of our parameters. Depending on what our function does, it might be perfectly okay for it to allow scripts to call it with parameters of different types. Assertions can be super helpful for debugging some code that's not behaving the way we expect it to. We can add them at any point where we want to ensure that the variables contain the values and types that they should or when we think that's something that shouldn't happen is happening.
+
+**Heads up though**: _Assertions will get **removed** from our code if we ask the interpreter to optimize it to run faster_.
+
+So as a rule, we should use **raise** to check for conditions that we expect to happen during normal execution of our code and **assert** to verify situations that aren't expected but that might cause our code to misbehave.
+
+#### Testing for Expected Errors
+
+we looked into how we can create unit tests for our functions, for both the basic cases and the edge cases. We called out that we should try to cover lots of different possible cases. To make sure that our function behaves correctly in all of them. With some edge cases, like negative value of minlen in our earlier example, the expectation is that the function will raise an error and we want to be able to test that too. So, how do we do that? Well, we use the _**assertRaises** method_ provided by the unit test module. Let's check this out by adding a couple of test cases to the test suite for our validate user function:
+
+```python
+#!/usr/bin/env python3
+
+import unittest
+
+from validate_user import validate_user
+
+class TestValidateUser(unittest.TestCase):
+  def test_valid(self):
+    self.assertEqual(validate_user("validuser", 3), True)
+
+  def test_too_short(self):
+    self.assertEqual(validate_user("inv", 5), False)
+
+  def test_invalid_characters(self):
+    self.assertEqual(validate_user("invalid_user", 1), False)
+
+# Run the tests
+unittest.main()
+```
+
+See [Handling ErrorsCheat-Sheet](Handling Errors Cheat-Sheet.html)
+
+## Bash Scripting
+
+### Basic Linux Commands
+
+We've already used a bunch of Linux commands by now. So hopefully these commands aren't too foreign. You may remember that **echo** is a command used to print messages to the screen, **cat** is command for showing contents of files, **ls** is the command to list contents of a directory, **chmod** is a command to change permissions of a file, and so on. As we call that before, a lot of these commands come from Unix. Back in the 70s, when designing how these programs should behave, the philosophy was **that they should do one thing and do it very well**. Which means we have a lot of commands, each for doing specific thing.
+
+- To create a new directory, we use the **mkdir** command. To change into that directory, we use the **cd** command. As you might notice, these commands don't print anything to the screen. This is normal and to be expected. A lot of the commands that we'd use don't print anything when they succeed. They only print something if they fail. To check that the **cd** command succeeded, we can use a command like **pwd** to print the current working directory. Okay. We have a directory which is empty. We can copy files using the **cp** command.
+
+- Lets' call the command **ls** with the **-la arguments**. Remember, command-line arguments let us change the behavior of commands making them do what we want.
+
+What are all those dots? These are shortcuts that we can use to refer to some special directories. But dot-dot shortcut reverses a parent directory, the previous directory and the absolute path while the dot shortcut reverses the current directory. The dot shortcut, for the current directory, and a dot dot shortcut for the parent directory.
+
+What are these columns? The first column indicates the permissions of the file. The second column is the number of i nodes that point to the file. The third and fourth columns indicate the owner and the group to which the file belongs. Then comes the size of the file that they've less modification and finally, the name.
+
+- To rename or move a file, we use the mv command.
+
+- To delete these files, we can use a rm command. We can either go one-by-one or we delete them all together using the star. The star is a placeholder that gets swapped
+out by the names of all the files in our directory. We can delete a directory using **rmdir**. This command only works on empty directories so I wouldn't work if we had left any files in it.
+
+That was a quick overview of some of the commands we have in Linux to operate with files and directories. There are tons of other commands to talk about. Make sure to investigate and practice using all on your own. Remember that reading the documentation, for any given system command, can help you learn more about what it does. On Unix-based systems, this documentation can usually be found in manual or man pages using the **man** command.
+
+### Redirecting Streams
+
+So now that we've covered a few basic Linux commands, let's talk more about what we can do with I/O streams and Bash. We talked earlier about the standard I/O streams. By default, the input is provided by the keyboard at the text terminal and the output and error are shown on the screen. This is the case not only for our Python scripts, but for all system commands.
+
+We can change this default using the process called redirection. Redirection is a process of sending a stream to a different destination. This process is provided to us by the operating system and can be really useful when you want to store the output of a command in a file, instead of just looking at it on a screen. To redirect the standard output of a program to a file we use the greater than  **>** symbol.
+
+```python
+#!/usr/bin/env python 3
+# Script name: stdout_example.py
+print("Don't mind me, just a bit of text here...")
+```
+
+If we run this program without redirection the text will be sent to the display using the **STDOUT** normally. But now if we use a greater than character to redirect the output instead something else happens entirely.
+
+```bash
+$ ./stdout_example.py > newfile.txt
+$
+```
+
+When you run it this way the STD out from stdout_example.py script is redirected to a file called new_file.txt. If that file doesn't exist, it's created. Let's look at the contents new_file.txt using the cat command:
+
+```bash
+$ cat newfile.txt
+Don't mind me, just a bit of text here...
+```
+
+Beware, just like we saw earlier with the w file mode used by the open function each time we perform of redirection of STD out, the destination is overwritten.
+
+So we need to be super careful when using this redirection that we're not overwriting a file with valuable contents.
+
+If we want to **append** the redirected standard out to a file we can use the double greater than sign >> instead of single greater than.
+
+In a similar way we can also redirect standard input. Instead of using the keyboard to send data into a program, we can use the less than symbol to read the contents of a file. Let's try this out with a new version of the streams.py file that we saw in earlier and redirect the contents of our new file to this script:
+
+```python
+#!/usr/bin/env python 3
+
+data = input("This will come from STDIN: ")
+print("Now we write it to STDOUT: " + data)
+raise ValueError("Now we generate an error to STDERR")
+```
+
+```bash
+$ ./streams_err.py < newfile.txt
+This will come from STDIN: Now we write it to STDOUT: Don't mind me, just a bit of text here...
+Traceback (most recent call last):
+  File "./streams_err.py", line 5, in <module>
+    raise ValueError("Now we generate an error to STDERR")
+ValueError: Now we generate an error to STDERR
+```
+
+In this case, we don't see the input on the screen in the STDIN portion. This is expected because the input was read from a file. So it only appears in the STDOUT portion where we see that it read one of the two lines. This is also expected because the input function only reads until it encounters a new line character.
+
+It can also be useful to redirect STD_err or to capture errors and diagnostic messages from a program. This can be done by using the character combination **2>** than similar to how we redirected STD out before. Let's execute our stream example again, this time redirecting the err output to a separate file.
+
+```bash
+$ ./streams_err.py < newfile.txt 2> errorfile.txt
+This will come from STDIN: Now we write it to STDOUT: Don't mind me, just a bit of text here...
+$ cat errorfile.txt
+Traceback (most recent call last):
+  File "./streams_err.py", line 5, in <module>
+    raise ValueError("Now we generate an error to STDERR")
+ValueError: Now we generate an error to STDERR
+```
+
+So this time we don't see the error message on the screen. That's because we redirected it to the error file.
+
+If you're wondering about the number 2, it represents the file descriptor of the STDErr stream. In this context you can think of a file descriptor as a kind of variable pointing to an IO resource. In this case the STDErr stream. 0 and 1 are the file descriptors for STDIN and STDOUT.
+
+Like we call it out already. None of this is exclusive the python we can operate in the same way with all other commands. For example We can create a file using the **echo** command and redirecting its output to the file that we want to create.
+
+#### Pipes and Pipelines
+
+On top of the redirection to and from files that we saw earlier, there's another powerful way to perform IO stream redirection called **Piping**. Using **pipes**, you can connect multiple scripts, commands, or other programs together into a data processing pipeline.
+
+Pipes connect the output of one program to the input of another in order to pass data between them. This means we can pass data between programs, taking the output of one and making it the input of the next. Pipes are represented by the pipe character **|**. Using pipes is an extremely useful tool. It allows us to create new commands by combining the functionality of one command, with the functionality of another without having to store the contents in an intermediate file. So let's work on our plumbing, shall we?
+
+```bash
+$ ls -l | less
+...
+```
+
+The list of files generated by ls is piped to less, which displays them one page at a time. We can scroll up or down using the page up, page down, or arrow keys. Once we're done looking at the files, we can quit with Q.
+
+But it doesn't have to stop there. It's possible to connect a lot more than just two programs using pipes. We'll check this out using a more elaborate example:
+
+```bash
+$ cat spider.txt | tr ' ' '\n' | sort | uniq -c | sort -nr | head
+   7 the
+   3 up
+   3 spider
+   3 and
+   2 rain
+   2 climbed
+   2 came
+   2 bitsy
+   1 waterspout.
+   1 washed
+```
+
+That's a complex command line. Let's go through it step by step. We're first using **cat** to get the contents of our spider.txt file. Those contents are then sent to a command called **tr**, which gets its name from the word translate. It takes the characters in the first parameter, in this case, it's a space and then transform them into a character in the second parameter. In this case, it's a newline character. So basically, what we're doing is putting each word in its own separate line. Hurrah for organization. Next, we pass results to the **sort** command through a pipe. This command sorts results alphabetically. The sorted results are then passed to the **uniq** command, which displays each match once, and by using a -c flag, it prefixes each unique line with a number of times it occurred. This output is passed via pipe to the **sort** command once more, this time, with the -nr flag, which sorts results numerically and in reverse order, from most to least hits. The output is finally passed to the **head** command, which prints the first 10 lines to STDOUT.
+
+That's a lot of process, but when you break it down, it makes lot of sense, right? The point isn't to memorize all these commands, but to know that we can pipe as many commands as we need to do exactly what we want.
+
+You can use your Python scripts and pipelines too. Python can read from standard input using the **stdin** file object provided by the **sys** module. This is a file object like the one we obtained using the open function, and like your local library, this file object is already open for reading. Let's say we want to write a script that reads each line of the input and then prints a line with the first character in uppercase. To do this, we'll take advantage of the capitalize string method:
+
+```python
+#!/usr/bin/env python3
+# Script name: capitalize.py
+
+import sys
+
+for line in sys.stdin:
+  print(line.strip().upper())
+```
+
+```bash
+$ cat haiku.txt | ./capitalize.py
+Advance your career,
+Automating with python,
+It's so fun to learn.
+```
+
+We don't need to use a pipe t  get the contents of the Haiku.txt file into standard input of our script. Instead  we use the redirection operator we saw earlier:
+
+```bash
+$ ./capitalize.py < haiku.txt
+Advance your career,
+Automating with python,
+It's so fun to learn.
+```
+
+As a rule, if you just need to get something from standard input into your script, using a redirection is enough. But if you want this to be part of a bigger pipeline of commands, you'll need to combine them with pipes.
+
+For example, if we only want to capitalize the lines that match a certain pattern, we could first call **grep** and then connect it with the pipe to our scripts.
+
+With a little practice, creating pipelines is a fast and powerful way to perform lots of system administration tasks. When a system command doesn't exist with the functionality that you need, you can write a Python script to fill in the gap and include it in your pipeline. Understanding how to redirect IO streams can come in handy in many situations and when writing code too.
+
+#### Signalling Processes
+
+When dealing with the operating system, we usually have a bunch of different processes that we use to accomplish what we want. And like any well oiled machine, we generally need these processes to communicate with each other. For example, we might have a program that starts a background process and wants it to terminate after a timeout. One way of communicating this is through the pipelines we learned about in the last video. Another way of communicating is through the use of signals.
+
+**Signals** are tokens delivered to running processes to indicate a desired action. Using signals, we can tell a program that we want it to pause or terminate. We can also cause it to reload its configuration, or to close all open files.
+
+Knowing how to send these signals lets us interact with processes and have more control over how they behave. There are a bunch of different ways that we can send these signals. For example, let's execute the **ping** command in our terminal.
+
+```bash
+$ ping www.example.com
+PING www.example.com (93.184.216.34): 56 data bytes
+...
+```
+
+The ping command is now running, sending ICMP packets to machine over the network once per second. And it will keep running forever unless we interrupt it. To do that, we can use the Ctrl-C combination. hen we interrupt it, the program doesn't just end abruptly. First it prints a summary of what it did and what the results were. It's very polite under these circumstances. What's happening behind the scenes is the process received a signal indicating that we wanted it to stop. When that signal's received, the process does whatever it needs to finish cleanly. The signal that control see sense is called **SIGINT**. It's just one of many signals that we can send.
+
+Another keyboard combination that we can use to send a signal is _Ctrl-Z_. Let's try this one out:
+
+```bash
+$ ping www.example.com
+PING www.example.com (93.184.216.34): 56 data bytes
+[...]
+zsh: suspended  ping www.example.com
+```
+
+This time the process didn't finish properly. We get a message saying that it's stopped. What's going on? The signal that we sent is called **SIGSTOP**. This signal causes the program to stop running without actually terminating. But don't worry, we can make it run again by executing **fg**.
+
+The fg command makes our program run once more and will keep going until we interrupt it either with Ctrl-C, Ctrl-Z, or some other signal. Let's stop it now with Ctrl-C. By pressing Ctrl-C this time, we've made the program finish cleanly.
+
+To send other signals, we can use the command called **kill**. By default, Kill will send a signal called **SIGTERM** that tells the program to terminate. Since Kill is a separate program, we need to run it on a separate terminal. And we also need to know the **process identifier or PID** of the process that we want to send the signal to. To find out the PID that we want to send the signal to, we'll use the **ps** command which list the currently running processes. Depending on what options that we pass, it'll show different subsets of processes with different amounts of detail. For this example, we'll call ps ax, which lists all the running processes in the current computer. And then we'll use the grep command to only keep lines that contain the name of the process that we're looking for:
+
+```bash
+$ ping www.example.com
+PING www.example.com (93.184.216.34): 56 data bytes
+...
+```
+
+From another terminal:
+
+```bash
+$ ps ax | grep ping
+46024 s000  R      0:00.00 grep ping
+46011 s001  S+     0:00.01 ping www.example.com
+$ kill 46011
+```
+
+We've now sent the **SIGTERM** signal and the process was terminated. Hasta la vista process. Notice how in this case, we didn't get the nice summary at the end, the program just finished.
+
+As you might expect, there is more signals that we can send and they might cause programs to react differently. Many long running programs, for example, will reload their configuration from disk if we send them a signal. This way we can let the program know that there's an important change in the configuration and it can get applied without the program having to stop to reread it. Programs that provide web services may also receive a signal to tell them that they should finish dealing with any currently open connections and then terminate cleanly once it's done. Understanding what these signals are and how to send them will let you interact with the processes on your system that you're in charge of and make them behave as you want.
+
+See [Basic Linux Commands Cheat-Sheet](Basic_Linux_Commands_Cheat-Sheet.html) & [Redirections, Pipes and Signals](Redirections_Pipes_and_Signals.html)
+
+### Scripting with Bash
+
+#### Creating Bash Scripts
+
+We mentioned in earlier videos that bash is the most commonly used shell on Linux. **Bash** is not only the interpreter that runs our commands, it's also a _scripting language_. We can use Bash to write simple scripts when we need to use a lot of commands.
+
+Let's start with an example of why you would even want to do this. In your job as an IT specialist, you sometimes need to debug a computer that's not behaving correctly. There are lots of commands that can tell you what's going on in there to help you with your debugging. For example, the **ps** command can list all the current running processes. The **free** command can show you the amount of free memory. The **uptime** command can tell you how long the computer has been on and so on. Anytime you need to debug a computer, you can manually run these commands one by one, followed by as many commands as you can think of that might be helpful. But that already sounds tedious just describing it.
+
+What if instead, you can run a single command that can gather all these information in just one shot? Well, I have some good news for you. We can do this by creating a Bash script that contains all of the commands that we want to call, one after the other:
+
+```bash
+#!/bin/bash
+# Script name: gather_information.sh
+echo "Starting at: $(date)"
+echo
+
+echo "UPTIME"
+uptime
+echo
+
+echo "FREE"
+free
+echo
+
+echo "WHO"
+who
+echo
+
+echo "Finishing at: $(date)"
+```
+
+The script we're seeing here is calling three main **commands**, **uptime**, **free**, and who, which lists users currently logged into the computer. It uses the **echo** command to print some other information and to make the output a bit more readable by leaving empty lines between the commands. We're also calling the **date** command to print the current date. To call this command, we're using a _special notation_ by putting the command inside dollar sign parentheses. This indicates that the output of the command should be passed to the echo command and be printed to the screen.
+
+As the script is written right now, there's one command per line. That's a common practice, but it's not the only way. We could also write the commands on the same line using semicolons **;** to separate them.
+
+#### Using Variables and Globs
+
+Like we said earlier, bash is a fully powered scripting language, not just a way of executing commands one after the other. We can assign variables, conditional operations, execute loops, defined functions, and so much more. So much that will only get to cover the very basics in these next few videos. Let's start with variables. Much like Python, bash lets us use variables to store and retrieve values.
+
+Heads up: there can be **no spaces between the name of the variable and the equal sign**, or between the equal sign and the value. If we try to define a variable and leave a space at one side or the other, the show will complain that it can't find the command with the name that we're assigning.
+
+```bash
+$ example=hello
+$ echo $example
+hello
+```
+
+Also remember that any variable that you define in your script or in the command line is local to the environment where you define it. If you want commands from that environment to also see the variable you need to export them using the **export** keyword. Now, let's modify our script to gather info and add a variable to it. We'll use it to make our script look nicer by adding lines in between each of the commands. To do this, we'll define a variable called line, and we'll put a bunch of dashes in it.
+
+```bash
+#!/bin/bash
+# Script name: gather_information.sh
+line="------------------------------"
+echo "Starting at: $(date)"; echo $line
+
+echo "UPTIME"; uptime; echo $line
+
+echo "FREE"; free; echo $line
+
+echo "WHO"; who; echo $line
+
+echo "Finishing at: $(date)"
+```
+
+Let's move on to another interesting feature available in bash called **globs**. Globs are characters that allow us to create list of files. The star **\*** and question mark **?** are the most common globs. Besides being extremely fun to say globs, using these globs lets us create _sequences of filenames that we can use as parameters to the commands we call an our scripts_. You've probably come across them before, but let's do a quick recap of how we can use them.
+
+- In bash, using a star in the command line we'll match all filenames that follow the format that we specify. A star with no prefix or suffix would match all the files in the current directory.
+
+- Alternatively, the question mark symbol can be used to match exactly one character instead of any amount of characters, and we can repeat it as many times as we need. For example, we can get the Python files with five characters in their name by using the five question marks together.
+
+Using globs like this lets us create list of files that we might operate on, like calling other commands in passing this list. If you want to use this functionality in Python, it's available through the glob module.
+
+#### Conditional Execution in Bash
+
+One of the main concepts of programming is being able to branch the execution according to a condition. In other words, making our program behave in different ways depending on one or more values.
+
+In Python, we use the if block and the condition is an expression that has to evaluate to true or false.
+
+In Bash scripting, the condition used is based on the exit status of commands. Reminder: we can check the exit status for command using the dollar sign question mark **$?**. And in Bash scripting an exit value of zero means success. This logic is used by the if operator in bash.
+
+To create a conditional expression, we're going to call a command and if the exit status of that command is zero, then the condition will be considered true. Say we wanted to verify that the /etc/hosts file contains an entry for 127.0.0.1, which it should. Knowing that grep will return it exit status of zero when it finds at least one match and different than zero if it doesn't find a match, we can use it to do this verification.
+
+```bash
+#!/bin/bash
+# Script name: check_localhost.sh
+
+if grep "127.0.0.1" /etc/hosts; then
+  echo "Everything ok"
+else
+  echo "ERROR! 127.0.0.1 is not in /etc/hosts"
+fi
+```
+
+Let's test it:
+
+```bash
+$ ./check_localhost.sh
+127.0.0.1       localhost
+Everything ok
+```
+
+So our script said that everything was okay. If **grep** hadn't found that line, it would have exited with a value different than zero and we would've received a different message. There is plenty of other conditions that we might want to check in our scripts, if the file exists, if two strings are equal, if a number is less than another number, and so on. To help us with evaluating these conditions, there is a command called **test**.
+
+Test is a command that evaluates the conditions received and exits with zero when they are true and with one when they're false.
+
+```bash
+$ if test -n "$PATH"; then echo "Your PATH is not empty"; fi
+Your PATH is not empty
+```
+
+We're using the -n option for the test command, which checks if a string variable is empty or not. In this case, path is an empty, so we get the message. Using the test command like this is so common, there's another way of writing it, which looks more like other programming languages. It's something like this:
+
+```bash
+$ if [ -n "$PATH" ]; then echo "Your PATH is not empty"; fi
+Your PATH is not empty
+```
+
+In this case, the command we're calling is the opening square bracket. This is an _alias_ to the **test** command, but to call it successfully, we also need to include a closing square bracket. **When using this syntax, remember that there needs to be a space before the closing bracket**.
+
+There's plenty of other things that we can check with test, but we won't cover them here. We'll include some of them in the upcoming cheat sheet and
+you can also see all of them by looking at the manual page for test.
+
+#### Bash Scripting Resources
+
+Check out the following links for more information:
+
+- [https://ryanstutorials.net/bash-scripting-tutorial/](https://ryanstutorials.net/bash-scripting-tutorial/)
+
+- [https://linuxconfig.org/bash-scripting-tutorial-for-beginners](https://linuxconfig.org/bash-scripting-tutorial-for-beginners)
+
+- [https://www.shellscript.sh](https://www.shellscript.sh)
+
+### Advanced Bash Concepts
+
+Bash provides similar looping structures to Python. We can iterate while a condition is true using a _while loop_ and iterate over a list of elements using a _for loop_. Although of course, the syntax for these loops is slightly different.
+
+#### While Loops in Bash Scripts
+
+Let's check out a simple while loop in Bash. The condition for the while loop usesthe same format as a condition for an if block. The loop itself starts with the do keyword and finishes with a done keyword. To increment the value of the variable n, we're using a bash construct of double parentheses that lets us do arithmetic operations with our variables:
+
+```bash
+#!/bin/bash
+
+n=1
+while [ $n -le 5]; do
+    echo "Iteration number $n"
+    ((n+=1))
+done
+```
+
+So that works but what about making our loop a bit more interesting. When using while loops and bash scripts, it's common to have a loop that retries a command a number of times until it succeeds. This is really useful with commands that use network connections or that access resources that might be locked. These commands can fail for external reasons and they're likely to succeed after a retry or two.
+
+To simulate a command that sometimes succeeds or sometimes fails, we have a small Python script that will return an exit value picked at random by a range that we give it:
+
+```python
+#!/usr/bin/env python3
+# Script name:random-exit.py
+
+import sys
+import random
+
+value = random.randint(0, 3)
+print("Returning: " +str(value))
+sys.exit(value)
+```
+
+Let's trun the simulation:
+
+```bash
+$ ./retry.sh ./random-exit.py
+Returning: 1
+Retry #1
+Returning: 2
+Retry #2
+Returning: 0
+```
+
+#### For Loops in Bash Scripts
+
+Both in Python and Bash, _for loops_ are used to iterate over a sequence of elements. You might remember that the key to for loops is that they let us perform an operation on each of the elements in a sequence.
+
+- In Python, the sequences are data structures like a list or a tuple or a string.
+
+- In Bash, we construct these sequences just by listing the elements with spaces in between. Let's check this out using a very simple example:
+
+```bash
+#!/bin/bash
+# Script name: fruits.sh
+for fruit in peach orange apple; do
+    echo "I like $fruit!"
+done
+```
+
+Let's use a practical example to see this in action. Imagine that you're migrating your company's website from one web server software to another. Your web content is stored in a bunch of files that all end in uppercase HTM, and the new software requires that they all end in lowercase html, disaster!
+
+You can manually rename them one by one using the MV command, but that could get really old really fast. You'd likely end up making mistakes after the first few commands. Instead, you could do the same thing with short Bash script.
+
+First, let's check out our files.
+
+```bash
+$ cd old_website
+$ ls -l
+-rwx------@ 1 benjo  staff  0 Jan  9 12:26 about.HTM
+-rwx------@ 1 benjo  staff  0 Jan  9 12:26 contact.HTM
+-rwx------@ 1 benjo  staff  0 Jan  9 12:26 footer.HTM
+-rwx------@ 1 benjo  staff  0 Jan  9 12:26 header.HTM
+-rwx------@ 1 benjo  staff  0 Jan  9 12:26 index.HTM
+```
+
+Looks like we have five files that we need to rename. So how can we extract the part before the extension? There's a command called **basename** that can help us with that. This command takes a filename and an extension and then returns the name without the extension. Just like that, we're ready to write our script and rename the files.
+
+```bash
+#!/bin/bash
+
+for file in *.HTM; do
+    name=$(basename "$file" .HTM)
+    echo mv "$file" "$name.html" #prefixing mv with echo for testing purposes
+done
+```
+
+We're surrounding our file variable with double-quotes to allow the command to work even if the file has spaces in its name. This is a good practice in Bash scripts when dealing with file names or any variables that could include spaces
+
+We'll then call the **mv** command with the old and new names. In this case, we use double quotes for both parameters. Again, we want to make sure that it works correctly for file names with spaces, and that's all that our loop needs to do. We'll finish our loop of the done keyword, and we're done, almost.
+
+We still need to run our script to see if it does what it should. Now, let me share a trick with you that might save you a few headaches. **Whenever you're going to run a script like this that modifies the files in your file system, it's a really good idea to first run it without actually modifying the file system**. This will catch any possible bugs that the script might have.
+
+So instead of just running it as it is right now, we'll add an echo in front of the MV command. This means that instead of actually renaming, our script we'll print the renaming that it plans to do.
+
+Hopefully by now, you're starting to see how you can benefit from using Bash scripts when dealing with files and system commands, especially to compliment your Python scripts.
+
+#### Advanced Command Interaction
+
+We've learned a lot about how to do things in the Linux command line and in Bash scripts. We will now look at a couple of interesting applications for all these Bash scripting powers that we just learned to put all this new knowledge into action. Let's go back to our old friend, the system log file located in var/log/syslog. The system log file contains a trove of information about what's going on in the system. So it's really important to learn how to get information out of it.
+
+Let's use the tail command to look at the last 10 lines from the file right now.
+
+```bash
+$ tail /var/log/syslog
+[...]
+```
+
+The load lines we see follow a similar pattern. First, they include the date and time of when the entry was added to the file, then the name of the computer, then the name and PID of the process that trigger the event and finally, the actual event that's being logged. Take a second and look at those lines. Say that we had a computer that was under significant load but we didn't know why, and to find out we wanted to check what events are being logged the most to our Syslog. To do that we need to extract the part of the line that has the actual event without the date and time. We can use a command called **cut** to help us with that. This command, let's us take only bits of each line using a field delimiter. In this example, we can split the line using spaces. That would look something like this.
+
+```bash
+$ tail /var/log/syslog | cut -d' ' -f5-
+[...]
+```
+
+In our example, we're passing -d' ' to **cut** to tell it that we want to use a space as a delimiter, and -f5- that tell it that we want to print the field number 5 and everything that comes after it. With that, we remove the date and the name of the computer keeping only the process and the event message. Now that we have the information that we care about, we can pipe this to the same pipeline of commands that we saw earlier  to find out the lines that are repeated the most, like this:
+
+```bash
+$ cut -d' ' -f5- /var/log/syslog | sort | uniq -c | sort -nr | head
+[...]
+```
+
+There are more files in var/log that we might be interested in. So we can use a _for loop_ to iterate over each of the log files in var/log and get the most repeated lines in each of them.
+
+```bash
+#!/bin/bash
+# Script name: toploglines.sh
+
+for logfile in /var/log/*log; do
+    cut -d' ' -f5- $logfile | sort | uniq -c | sort -nr | head -5
+done
+```
+
+#### Choosing Between Bash and Python
+
+As you can probably tell by now, there's a lot of interesting things that we can do with the system commands. We've come across a bunch of different commands that can help us operate with files and processes, and get more information about the computer, process the contents of files, and all sorts of other things. By using bash scripts, we can very quickly turn a command that operates on just one file into an automated script that handles 1,000 files. Pretty powerful, right? As we saw with our log file examples, there's a bunch of terminal commands that provide text processing functionality.
+
+Plenty of them also support regular expressions, allowing us to do some very advanced processing of the data in our files. When these commands are linked together in a data processing pipeline, they can become a powerful tool for processing text data. They can give us information we're looking for quickly about the need to write a full script.
+
+But you know what they say about great power? We need to be careful not to abuse this because it can quickly become unreadable.
+
+Compare:
+
+```bash
+$ for i in $(cat story.txt); do B='echo -n "${i:0:1}" | tr "[:lower:]" "[:upper:]"'; echo -n "${B}${i:1} ": done; echo -e "\n"
+Once Upon A Time There Was An Egg Of A Programming Language Called Python
+```
+
+with:
+
+```python
+#!/usr/bin/env python3
+# Script name: capitalyze_words.py
+import sys
+
+for line in sys.stdin:
+  words = line.strip().split()
+  print(" ".join([word.capitalize() for word in words]))
+```
+
+Once we have the script, we can execute it as part of a pipeline like this:
+
+```bash
+$ cat story.txt | ./capitalize_words.py
+Once Upon A Time There Was An Egg Of A Programming Language Called Python
+```
+
+So it's a good idea to choose bash when we're operating with files and system commands, as long as what we're doing is simple enough that the script is self-explanatory.
+
+As soon as it becomes hard to understand what the script is doing, it's better to write it in a more general scripting language like Python. Bash scripts aren't as flexible or robust as having entire Python language available, with its many functions to operate on strings, lists, and dictionaries.
+
+There's another gotcha when it comes to bash and Linux commands, and it's something that we've said before. Their availability depends on the platform that we're using. Some commands might not be present on certain operating systems. Running a bash script can get the job done very quickly on a Linux machine, but it won't work on a Windows machine. There, we need to write the same script in PowerShell. So if the tasks that you're trying to accomplish is limited to the current server or a fleet of servers, all running the same operating system, a simple bash script can get the job done. But if your code is complex or it needs to work across platforms, you might be better off using the Python standard library or other external modules that provide the same functionality.
+
+Last thing, there are lots of situations where either a bash script or a Python script might solve the problem just fine. In those cases, you can choose whichever one you feel more comfortable with.
+
+### Final Project
+
+Well, here we are. We're finally at the last module of the course. Congratulations on making it all the way here. It's been a long and challenging road and hopefully you're now feeling confident about automating system task through Python. Great work. Along our journey, we've become much more familiar with lots of tools that Python has to offer.
+
+We've learned about managing files and directories, reading and writing both text files and CSV files using regular expressions, understanding how the system interacts to our programs, executing system commands, and writing automated test to name a few. We've even learned a bit about different scripting language called Bash.
+
+#### Writing a Script from the Ground Up
+
+Whenever you're tackling a project that requires coding like writing a small script to automate a single task or writing a large programming project that handles a lot of information, there's a process that we recommend that you follow. We looked at this already in the first course of the program, but let's go over it once again to have it fresh in our minds. Things run much smoother when you remember to check all the boxes.
+
+1. The first step to handle any coding project is to fully understand the **problem statement**. This includes: spelling out what needs to be done and identifying what the given inputs and desired outputs are for that program that we need to write.
+
+2. After that, we recommend doing some **research**. This means figuring out how we can tackle the problem by the tools provided by the Python standard library or by external modules. Remember, we want to avoid reinventing the wheel. No matter how tricky and intricate the challenge appears, chances are that others have solved something similar before. Coding is a bit like Hollywood. There are not that many new ideas, mostly re-imaginings. So it's valuable that we spent some time looking into what resources exist to help us solve our problem. This research phase also includes looking at the documentation of the modules, classes, and functions that we'll need to use, and understanding how they should be applied. A lot of the documentation also includes examples. So it's helpful to absorb those and see how they relate to the code that we need to write.
+
+3. Once we know what we need to write and what tools we can use to make it work, we should do some **planning**. This means thinking about what data types are useful for our solution, the order of operations that we need to perform, and how all the pieces have come together to form our solution. Synergy. If the problem is complex, it might help to write down the plan for quick reference, either on a piece of paper or in a digital document. Writing down the plan helps us focus on how we're going to do things and identify any problems our plan might have. At many companies, it's a common practice to write a design document at this stage, detailing the problem statement, the tools that will be used to solve it, and the plan of attack towards a solution. Having others comment on your design helps make sure that all the twists have been untangled.
+
+4. Finally, once we have a clear plan, we do the actual **writing** of the script. This step includes not only writing the code, but also checking that the code does what it's supposed to do. We do that by both manually testing the code and adding some automatic test. Sometimes, it's tempting to just jump right into the coding stage, about spending any necessary time to fully understand the problem, research tools, or plan the solution. But our experience shows us spending a while getting familiar with what we're trying to do and what tools we have available to do it can make a big difference. Both in how long it takes to do the actual implementation and ultimately how well our solution behaves.
+
+So practice following this process as you dig into the final course project, and then try to apply this to any coding projects that you might tackle in the future.
+
+#### Problem Statement #2
+
+Imagine a scenario, one of the servers used by your company runs a service called Ticky. This service is an internal ticketing system used by a lot of different teams in the company to manage their work. The service logs a bunch of events to syslog, both when it runs successfully and when it encounters errors. Developers of the service are asking for your help with getting some information out of those logs, to better understand how the software is being used and how to improve it.
+
+No sweat. As an up and coming IT Professional, you enthusiastically accept this mission. So for your final project in this course, you'll write some automation scripts that will process the system log and generate a bunch of reports based on the information extracted from log files. The log lines follow a pattern similar to the ones we've seen before. Something like this:
+
+```text
+May 27 11:45:40 ubuntu.local ticky: INFO: Created ticket [#1234] (username)
+Jun 1 11:06:48 ubuntu.local ticky: ERROR: Connection to DB failed (username)
+```
+
+When the service runs correctly, it logs an info message to syslog, stating what it's done, the username, and the ticket number related to the event. If the service encounters a problem, it logs in error message to the syslog, indicating what was wrong and the username that triggered the action that caused the problem.
+
+The developers of the service want two different reports out of this data.
+
+1. The first one is a ranking of errors generated by the system. This means a list of all error messages logged, and how many times each of them was found, not taking into account the users involved. They should be sorted by the most common error to the least common error.
+
+2. The second one is a usage statistics for the service. This means, a list of all users that have used the system including how many info messages and how many error messages they've generated. This report should be sorted by username.
+
+- To visualize the data in these reports, you want to generate a couple of webpages that'll be served by a web server running on the machine. To do this, you can make use of a script that's already in the system called csv_ to_html.py. This script converts the data in a CSV file into an HTML file containing a table with the data.
+
+- Then, put the files in the directory that's used by the webserver to display the webpages. The goal is to have one script that can get all the necessary work done automatically, every day without any user interaction. This script doesn't need to do all the work itself. It can call on other scripts to do individual task and then put the results together. In fact, we recommend splitting the task so that each piece can be written and tested separately.
+
+I imagine that your mind is racing, your pulse might have spread up a little bit, and your palms are sweating all over the keyboard. Don't worry. This might sound like a lot of work. But once you've understood the problem and done some research and planning, everything will start to fall into place. In our next video, we'll give you some tips on how to start breaking this task down. Here we go.
+
+#### Help with Research and Planning
+
+We've now gone over the problems statement of our final project. At first sight, it might sound pretty complex. But let's break it down into smaller more digestible pieces and discuss how we can move into the next steps to do the necessary research and planning.
+
+We've said that we want to find some specific log lines in the syslog file. We strongly recommend that you use regular expressions to find them. It'll be easier to extract information you want that way. To figure out the right regular expression, you can use a website like [regex101.com](https://regex101.com) which can help you test your expression and understand what's going on with it. Once you have a pattern that you think and work, try it out in a Python interpreter to verify that it matches the right lines and captures the right information.
+
+After extracting the information, you'll need to count how many errors are of the same type, and how many info and error messages there are for a given user. Can you think of what data structure might help you with that? If you're thinking dictionaries, then you're on the right track. You'll want to use a couple of different dictionaries. One to account error messages and another to count per user usage. You'll then need to sort the data in a dictionary's by different criteria. We looked at sorting in the Introduction to Python course. Feel free to re-watch that video and reread the Python documentation on sorting.
+
+The output of your Python script should be a couple of CSV files. Each of them containing the names of the columns and the data in the order that it needs to be presented. Once those files are generated, you'll need to call the csv_to_html.py script to create HTML files based on CSV data. You'll have access to look at how the script works but the key is to pass two parameters to it. The name of the CSV file to read and the name of the HTML file generate. You could do this last step from either a Python script or a bash script. Since the script will be only calling commands and moving files, we recommend doing a bash. Keep it short and sweet.
+
+We recommend that you research, plan and even write the pieces of code all before starting the actual lab. Good luck. You've got it!
+
+## Introduction to Git and GitHub
+
+### Before Version Control

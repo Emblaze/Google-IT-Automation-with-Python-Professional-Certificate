@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Linux Commands Cheat-Sheet</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#basic-linux-commands-cheat-sheet">Basic Linux Commands Cheat-Sheet</a>
+<ul>
+<li><a href="#managing-files-and-directories">Managing files and directories</a></li>
+<li><a href="#operating-with-the-content-of-files">Operating with the content of files</a></li>
+<li><a href="#additional-commands">Additional commands</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="basic-linux-commands-cheat-sheet">Basic Linux Commands Cheat-Sheet</h1>
+<p>This list includes a bunch of different commands that are useful to know when working with Linux. Not all of these commands are covered in the videos, so feel free to investigate them on your own.</p>
+<h2 id="managing-files-and-directories">Managing files and directories</h2>
+<ul>
+<li>
+<p><strong>cd</strong> directory: changes the current working directory to the specified one</p>
+</li>
+<li>
+<p><strong>pwd</strong>: prints the current working directory</p>
+</li>
+<li>
+<p><strong>ls</strong>: lists the contents of the current directory</p>
+</li>
+<li>
+<p><strong>ls</strong> directory: lists the contents of the received directory</p>
+</li>
+<li>
+<p><strong>ls -l</strong>: lists the additional information for the contents of the directory</p>
+</li>
+<li>
+<p><strong>ls -a</strong>: lists all files, including those hidden</p>
+</li>
+<li>
+<p><strong>ls -la</strong>: applies both the -l and the -a flags</p>
+</li>
+<li>
+<p><strong>mkdir</strong> directory: creates the directory with the received name</p>
+</li>
+<li>
+<p><strong>rmdir</strong> directory: deletes the directory with the received name (if empty)</p>
+</li>
+<li>
+<p><strong>cp</strong> old_name new_name: copies old_name into new_name</p>
+</li>
+<li>
+<p><strong>mv</strong> old_name new_name: moves old_name into new_name</p>
+</li>
+<li>
+<p><strong>touch</strong> file_name: creates an empty file or updates the modified time if it exists</p>
+</li>
+<li>
+<p><strong>chmod</strong> modifiers files: changes the permissions for the files according to the provided modifiers; we’ve seen +x to make the file executable</p>
+</li>
+<li>
+<p><strong>chown</strong> user files: changes the owner of the files to the given user</p>
+</li>
+<li>
+<p><strong>chgrp</strong> group files: changes the group of the files to the given group</p>
+</li>
+</ul>
+<h2 id="operating-with-the-content-of-files">Operating with the content of files</h2>
+<ul>
+<li>
+<p><strong>cat</strong> file: shows the content of the file through standard output</p>
+</li>
+<li>
+<p><strong>wc</strong> file: counts the amount of characters, words, and lines in the given file; can also count the same values of whatever it receives via stdin</p>
+</li>
+<li>
+<p><strong>file</strong> file: prints the type of the given file, as recognized by the operating system</p>
+</li>
+<li>
+<p><strong>head</strong> file: shows the first 10 lines of the given file</p>
+</li>
+<li>
+<p><strong>tail</strong> file: shows the last 10 lines of the given file</p>
+</li>
+<li>
+<p><strong>less</strong> file: scrolls through the contents of the given file (press “q” to quit)</p>
+</li>
+<li>
+<p><strong>sort</strong> file: sorts the lines of the file alphabetically</p>
+</li>
+<li>
+<p><strong>cut</strong> -dseparator -ffields file: for each line in the given file, splits the line according to the given separator and prints the given fields (starting from 1)</p>
+</li>
+</ul>
+<h2 id="additional-commands">Additional commands</h2>
+<ul>
+<li>
+<p><strong>echo</strong> “message”: prints the message to standard output</p>
+</li>
+<li>
+<p><strong>date</strong>: prints the current date</p>
+</li>
+<li>
+<p><strong>who</strong>: prints the list of users currently logged into the computer</p>
+</li>
+<li>
+<p><strong>man</strong> command: shows the manual page of the given command; manual pages contain a lot of information explaining how to use each command (press “q” to quit)</p>
+</li>
+<li>
+<p><strong>uptime</strong>: shows how long the computer has been running</p>
+</li>
+<li>
+<p><strong>free</strong>: shows the amount of unused memory on the current system</p>
+</li>
+</ul>
+
+    </div>
+  </div>
+</body>
+
+</html>

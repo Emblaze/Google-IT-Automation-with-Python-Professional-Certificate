@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirections, Pipes and Signals.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#redirections-pipes-and-signals">Redirections, Pipes and Signals</a>
+<ul>
+<li><a href="#managing-streams">Managing streams</a></li>
+<li><a href="#operating-with-processes">Operating with processes</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="redirections-pipes-and-signals">Redirections, Pipes and Signals</h1>
+<h2 id="managing-streams">Managing streams</h2>
+<p>These are the redirectors that we can use to take control of the streams of our programs</p>
+<ul>
+<li>
+<p>command <strong>&gt;</strong> file: redirects standard output, overwrites file</p>
+</li>
+<li>
+<p>command <strong>&gt;&gt;</strong> file: redirects standard output, appends to file</p>
+</li>
+<li>
+<p>command <strong>&lt;</strong> file: redirects standard input from file</p>
+</li>
+<li>
+<p>command <strong>2&gt;</strong> file: redirects standard error to file</p>
+</li>
+<li>
+<p>command1 <strong>|</strong> command2: connects the output of command1 to the input of command2</p>
+</li>
+</ul>
+<h2 id="operating-with-processes">Operating with processes</h2>
+<p>These are some commands that are useful to know in Linux when interacting with processes. Not all of them are explained in videos, so feel free to investigate them on your own.</p>
+<ul>
+<li>
+<p><strong>ps</strong>: lists the processes executing in the current terminal for the current user</p>
+</li>
+<li>
+<p><strong>ps</strong> ax: lists all processes currently executing for all users</p>
+</li>
+<li>
+<p><strong>ps</strong> e: shows the environment for the processes listed</p>
+</li>
+<li>
+<p><strong>kill</strong> PID: sends the SIGTERM signal to the process identified by PID</p>
+</li>
+<li>
+<p><strong>fg</strong>: causes a job that was stopped or in the background to return to the foreground</p>
+</li>
+<li>
+<p><strong>bg</strong>: causes a job that was stopped to go to the background</p>
+</li>
+<li>
+<p><strong>jobs</strong>: lists the jobs currently running or stopped</p>
+</li>
+<li>
+<p><strong>top</strong>: shows the processes currently using the most CPU time (press “q” to quit)</p>
+</li>
+</ul>
+
+    </div>
+  </div>
+</body>
+
+</html>

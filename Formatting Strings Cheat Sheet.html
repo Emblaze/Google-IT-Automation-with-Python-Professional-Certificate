@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formatting Strings Cheat Sheet</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#formatting-strings-cheat-sheet">Formatting Strings Cheat Sheet</a>
+<ul>
+<li><a href="#formatting-strings-cheat-sheet-1">Formatting Strings Cheat Sheet</a>
+<ul>
+<li><a href="#using-the-format-method">Using the format() method</a></li>
+<li><a href="#formatting-expressions">Formatting expressions</a></li>
+<li><a href="#old-string-formatting-optional">Old string formatting (Optional)</a></li>
+<li><a href="#formatted-string-literals-optional">Formatted string literals (Optional)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="formatting-strings-cheat-sheet">Formatting Strings Cheat Sheet</h1>
+<h2 id="formatting-strings-cheat-sheet-1">Formatting Strings Cheat Sheet</h2>
+<p>Python offers different ways to format strings. In the video, we explained the format() method. In this reading, we’ll highlight three different ways of formatting strings. For this course you only need to know the format() method. But on the internet, you might find any of the three, so it’s a good idea to know that the others exist.</p>
+<h3 id="using-the-format-method">Using the format() method</h3>
+<p>The format method returns a copy of the string where the {} placeholders have been replaced with the values of the variables. These variables are converted to strings if they weren’t strings already. Empty placeholders are replaced by the variables passed to format in the same order.</p>
+<p>If the placeholders indicate a number, they’re replaced by the variable corresponding to that order (starting at zero).</p>
+<pre class=" language-python"><code class="prism  language-python">
+<span class="token comment"># "base string with {} placeholders".format(variables)</span>
+
+  
+
+example <span class="token operator">=</span> <span class="token string">"format() method"</span>
+
+  
+
+formatted_string <span class="token operator">=</span> <span class="token string">"this is an example of using the {} on a string"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>example<span class="token punctuation">)</span>
+
+  
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>formatted_string<span class="token punctuation">)</span>
+
+  
+
+<span class="token triple-quoted-string string">"""Outputs:
+
+this is an example of using the format() method on a string
+
+"""</span>
+
+  
+
+</code></pre>
+<pre class=" language-python"><code class="prism  language-python">
+<span class="token comment"># "{0} {1}".format(first, second)</span>
+
+  
+
+first <span class="token operator">=</span> <span class="token string">"apple"</span>
+
+second <span class="token operator">=</span> <span class="token string">"banana"</span>
+
+third <span class="token operator">=</span> <span class="token string">"carrot"</span>
+
+  
+
+formatted_string <span class="token operator">=</span> <span class="token string">"{0} {2} {1}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>first<span class="token punctuation">,</span> second<span class="token punctuation">,</span> third<span class="token punctuation">)</span>
+
+  
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>formatted_string<span class="token punctuation">)</span>
+
+  
+
+<span class="token triple-quoted-string string">"""Outputs:
+
+apple carrot banana
+
+"""</span>
+
+</code></pre>
+<p>If the placeholders indicate a field name, they’re replaced by the variable corresponding to that field name. This means that parameters to format need to be passed indicating the field name.</p>
+<pre class=" language-python"><code class="prism  language-python">
+<span class="token comment"># "{var1} {var2}".format(var1=value1, var2=value2)</span>
+
+</code></pre>
+<p>If the placeholders include a colon, what comes after the colon is a formatting expression. See below for the expression reference.</p>
+<pre class=" language-python"><code class="prism  language-python">
+<span class="token string">"{:exp1} {:exp2}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>value1<span class="token punctuation">,</span> value2<span class="token punctuation">)</span>
+
+</code></pre>
+<p>Official documentation for <a href="https://docs.python.org/3/library/string.html#formatstrings">the format string syntax</a></p>
+<pre class=" language-python"><code class="prism  language-python">
+<span class="token comment"># {:d} integer value</span>
+
+<span class="token string">'{:d}'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token number">10.5</span><span class="token punctuation">)</span> → <span class="token string">'10'</span>
+
+</code></pre>
+<h3 id="formatting-expressions">Formatting expressions</h3>
+<p>| Expr | Meaning | Example |</p>
+<p>| ------ | -------------------------------------------- | -------------------------------- |</p>
+<p>| {:d} | integer value | ‘{:d}’.format(10.5) → ‘10’ |</p>
+<p>| {:.2f} | floating point with that many decimals | ‘{:.2f}’.format(0.5) → ‘0.50’ |</p>
+<p>| {:.2s} | string with that many characters | ‘{:.2s}’.format(‘Python’) → ‘Py’ |</p>
+<p>| {:&lt;6s} | string aligned to the left that many spaces | ‘{:&lt;6s}’.format(‘Py’) → 'Py ’ |</p>
+<p>| {:&gt;6s} | string aligned to the right that many spaces | ‘{:&gt;6s}’.format(‘Py’) → ’ Py’ |</p>
+<p>| {:^6s} | string centered in that many spaces | ‘{:^6s}’.format(‘Py’) → ’ Py ’ |</p>
+<p>Check out the official documentation for <a href="https://docs.python.org/3/library/string.html#format-specification-mini-language">all available expressions</a>.</p>
+<h3 id="old-string-formatting-optional">Old string formatting (Optional)</h3>
+<p>The format() method was introduced in Python 2.6. Before that, the % (modulo) operator could be used to get a similar result. While this method is <strong>no longer recommended</strong> for new code, you might come across it in someone else’s code. This is what it looks like:</p>
+<pre class=" language-python"><code class="prism  language-python">
+<span class="token string">"base string with %s placeholder"</span> <span class="token operator">%</span> variable
+
+</code></pre>
+<p>The % (modulo) operator returns a copy of the string where the placeholders indicated by % followed by a formatting expression are replaced by the variables after the operator.</p>
+<pre class=" language-python"><code class="prism  language-python">
+<span class="token string">"base string with %d and %d placeholders"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>value1<span class="token punctuation">,</span> value2<span class="token punctuation">)</span>
+
+</code></pre>
+<p>To replace more than one value, the values need to be written between parentheses. The formatting expression needs to match the value type.</p>
+<pre class=" language-python"><code class="prism  language-python">
+<span class="token string">"%(var1) %(var2)"</span> <span class="token operator">%</span> <span class="token punctuation">{</span>var1<span class="token punctuation">:</span>value1<span class="token punctuation">,</span> var2<span class="token punctuation">:</span>value2<span class="token punctuation">}</span>
+
+</code></pre>
+<p>Variables can be replaced by name using a dictionary syntax (we’ll learn about dictionaries in an upcoming video).</p>
+<pre class=" language-python"><code class="prism  language-python">
+<span class="token string">"Item: %s - Amount: %d - Price: %.2f"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>item<span class="token punctuation">,</span> amount<span class="token punctuation">,</span> price<span class="token punctuation">)</span>
+
+</code></pre>
+<p>The formatting expressions are mostly the same as those of the format() method.</p>
+<p>Check out the official documentation for <a href="https://docs.python.org/3/library/stdtypes.html#old-string-formatting">old string formatting</a>.</p>
+<h3 id="formatted-string-literals-optional">Formatted string literals (Optional)</h3>
+<p>This feature was added in Python 3.6 and isn’t used a lot yet. Again, it’s included here in case you run into it in the future, but it’s not needed for this or any upcoming courses.</p>
+<p>A formatted string literal or f-string is a string that starts with ‘f’ or ‘F’ before the quotes. These strings might contain {} placeholders using expressions like the ones used for format method strings.</p>
+<p>The important difference with the format method is that it takes the value of the variables from the current context, instead of taking the values from parameters.</p>
+<p>Examples:</p>
+<pre class=" language-python"><code class="prism  language-python">
+name <span class="token operator">=</span> <span class="token string">"Micah"</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token string">'Hello {name}'</span><span class="token punctuation">)</span>
+
+  
+
+<span class="token triple-quoted-string string">"""Outputs:
+
+Hello Micah
+
+"""</span>
+
+</code></pre>
+<pre class=" language-python"><code class="prism  language-python">
+item <span class="token operator">=</span> <span class="token string">"Purple Cup"</span>
+
+amount <span class="token operator">=</span> <span class="token number">5</span>
+
+price <span class="token operator">=</span> amount <span class="token operator">*</span> <span class="token number">3.25</span>
+
+  
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token string">'Item: {item} - Amount: {amount} - Price: {price:.2f}'</span><span class="token punctuation">)</span>
+
+  
+
+<span class="token triple-quoted-string string">"""Outputs:
+
+Item: Purple Cup - Amount: 5 - Price: 16.25
+
+"""</span>
+
+</code></pre>
+<p>Check out the official documentation for <a href="https://docs.python.org/3/reference/lexical_analysis.html#f-strings">f-strings</a>.</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+
+    </div>
+  </div>
+</body>
+
+</html>

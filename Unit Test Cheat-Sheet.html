@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Test Cheat-Sheet.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#unit-test-cheat-sheet">Unit Test Cheat-Sheet</a>
+<ul>
+<li><a href="#best-of-unit-testing-standard-library-module">Best of Unit Testing Standard Library Module</a>
+<ul>
+<li><a href="#understand-a-basic-example">Understand a Basic Example</a></li>
+<li><a href="#understand-how-to-run-the-tests-using-the-command-line">Understand how to run the tests using the Command Line</a></li>
+<li><a href="#understand-various-unit-test-design-patterns">Understand various Unit Test Design Patterns</a></li>
+<li><a href="#understand-basic-assertions">Understand basic assertions</a></li>
+<li><a href="#understand-more-specific-assertions-such-as-assertraises">Understand more specific assertions such as assertRaises</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="unit-test-cheat-sheet">Unit Test Cheat-Sheet</h1>
+<p>Frankly, the unit testing library for Python is fairly well documented, but it can be a bit of a dry read. Instead, we suggest covering the core module concepts, and then reading in more detail later.</p>
+<h2 id="best-of-unit-testing-standard-library-module">Best of Unit Testing Standard Library Module</h2>
+<h3 id="understand-a-basic-example">Understand a Basic Example</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/unittest.html#basic-example">https://docs.python.org/3/library/unittest.html#basic-example</a></li>
+</ul>
+<h3 id="understand-how-to-run-the-tests-using-the-command-line">Understand how to run the tests using the Command Line</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/unittest.html#command-line-interface">https://docs.python.org/3/library/unittest.html#command-line-interface</a></li>
+</ul>
+<h3 id="understand-various-unit-test-design-patterns">Understand various Unit Test Design Patterns</h3>
+<ul>
+<li>
+<p><a href="https://docs.python.org/3/library/unittest.html#organizing-test-code">https://docs.python.org/3/library/unittest.html#organizing-test-code</a></p>
+</li>
+<li>
+<p>Understand the uses of setUp, tearDown; setUpModule and tearDownModule</p>
+</li>
+</ul>
+<h3 id="understand-basic-assertions">Understand basic assertions</h3>
+
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Checks that</th>
+<th>New in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>assertEqual(a, b)</td>
+<td>a == b</td>
+<td></td>
+</tr>
+<tr>
+<td>assertNotEqual(a, b)</td>
+<td>a != b</td>
+<td></td>
+</tr>
+<tr>
+<td>assertTrue(x)</td>
+<td>bool(x) is True</td>
+<td></td>
+</tr>
+<tr>
+<td>assertFalse(x)</td>
+<td>bool(x) is False</td>
+<td></td>
+</tr>
+<tr>
+<td>assertIs(a, b)</td>
+<td>a is b</td>
+<td>3.1</td>
+</tr>
+<tr>
+<td>assertIsNot(a, b)</td>
+<td>a is not b</td>
+<td>3.1</td>
+</tr>
+<tr>
+<td>assertIsNone(x)</td>
+<td>x is None</td>
+<td>3.1</td>
+</tr>
+<tr>
+<td>assertIsNotNone(x)</td>
+<td>x is not None</td>
+<td>3.1</td>
+</tr>
+<tr>
+<td>assertIn(a, b)</td>
+<td>a in b</td>
+<td>3.1</td>
+</tr>
+<tr>
+<td>assertNotIn(a, b)</td>
+<td>a not in b</td>
+<td>3.1</td>
+</tr>
+<tr>
+<td>assertIsInstance(a, b)</td>
+<td>isinstance(a, b)</td>
+<td>3.2</td>
+</tr>
+<tr>
+<td>assertNotIsInstance(a, b)</td>
+<td>not isinstance(a, b)</td>
+<td>3.2</td>
+</tr>
+</tbody>
+</table><h3 id="understand-more-specific-assertions-such-as-assertraises">Understand more specific assertions such as assertRaises</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertRaises">https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertRaises</a></li>
+</ul>
+
+    </div>
+  </div>
+</body>
+
+</html>
