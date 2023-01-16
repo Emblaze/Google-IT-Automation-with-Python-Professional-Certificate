@@ -3502,3 +3502,44 @@ We recommend that you research, plan and even write the pieces of code all befor
 ## Introduction to Git and GitHub
 
 ### Before Version Control
+
+#### Module Introduction
+
+When you work in IT, you manage information across a lot of different files:
+
+- You write automation scripts that might evolve over time. For example, you might add new features to your script or take into account additional conditions or modify the scope of systems where the script will be executed.
+
+- You also manage configuration related to your infrastructure like the default settings on an application or the IP addresses assigned to the computers in your fleet, etc.
+
+This information changes over time as the security requirements increase. The fleet grows or new versions of software gets deployed.
+
+When trying to manage change in IT, it's super important to have detailed historical information for your organization's configuration files and automation code. This let's the administrators see what was modified and when, which can be critical to troubleshooting. It also provides a documentation trail that will let future IT specialists know why the infrastructure is the way it is, and it provides a mechanism for undoing a change completely. This way, we don't have to undo changes from memory and there's less chance of human error. We'll see this in action when we talk about rollbacks.
+
+Imagine this, your team has added a new feature to a script that checks the health of all the computers that you're responsible for. The new check verifies that the firmware of the computer, also known as the UEFI, is updated to the latest version. When you roll this out, you suddenly realize that half the computers now say they're broken. After some investigation, you discover that the check needs to take into account different computer models.
+
+You might be tempted to do a quick code fix, push it to the affected machines right away especially if it seems like an easy fix. But more often than not, quick fixes include their own bugs because we don't take the time to test a new code properly. So after the first fix, you might end up doing a second or even third emergency push until things are really working correctly. To avoid these headaches, you can use a version control system to easily roll back your code to the previous version. Since you know that this version was working correctly before the change was made, it would be safe to go back to that one until you had time to fix the code, run some tests, and make sure everything works correctly for all machine models.
+
+By releasing code only after properly testing, you avoid having to push quick-fix after quick-fix. Version control systems let us do this and much more. They are crucial to maintaining a healthy codebase for all kinds of IT resources, and for letting multiple people collaborate on the same coding projects together.
+
+We're now going to take our first steps to learning this new tool, which will let us keep track of the changes that we make to our scripts, our configuration files, and any other kind of documents that need to be tracked.
+
+We'll start by looking at what people tend to do when they don't know about version control and then check out some related tools, like **diff** and **patch**.
+
+Once we have a clear idea of why we need proper version control, we'll jump into our first **Git** experience. We'll talk about what **Git** is and how it does what it does.
+
+To follow along, you'll need to install Git locally on your machine and learn how to use it from the command line. If this sounds a bit scary, don't panic. We'll guide you along the way and you'll be using it in no time. Once you have Git installed in your computer, we'll do an overview of the basic Git workflow which will let you start keeping track of your scripts.
+
+#### Keeping Historical Copies
+
+The principle behind version control is the following one: it lets us keep track of the changes in our files. These files can be _code_, _images_, _configuration_, or even a _video editing project_, _whatever_ it is you're working with. Throughout this course, we'll see the many ways that **Git** helps us keep track of our changes, and also how we can use it to collaborate with others or avert changes. We'll use a bunch of terms that have special meanings in the world of version control, but don't let those intimidate you. In the end, all we're doing is having better control over our historical copies. So, say you have two copies of the same code made at different points in time. How can you compare them?
+
+#### Diffing Files
+
+Imagine you had two copies of some code, and you wanted to see what the difference was between them. How would you do it? You could open both files in the editor side by side, look at one then look at the other to spot the differences, but that's super error-prone. We're human and by comparing with our eyes we are bound to miss some differences. Fortunately, there's a better way. You can use some nifty tools that will do this automatically. We can use the diff command line tool to take two files or even to directories, and show the differences between them in a few formats.
+
+Let's say we have two files rearrange 1.py and rearrange 2.py which contain two different versions of the same function. We could take a look at them using **cat**. Could you spot the difference? Maybe you can but it's not super obvious. Let's use the **diff** command so that we don't have to
+strain our eyes trying to spot it.
+
+When we call the diff command, we get only the lines that are different between two files. It's much easier to find the difference when we just have two lines.
+
+When differences or changes are less so obvious or common, we can use the **diff -u** flag to tell diff to show the differences in another format. This _unified format_ is pretty different from the one that we saw before. It shows the change lines together with some context, using the minus sign to mark lines that were removed, and the plus sign to mark lines that were added. The extra context let's us better know what's going on with the change that we're diffing.
