@@ -1,0 +1,19 @@
+--- disk_usage_original.py	2023-01-18 12:08:03.000000000 +0100
++++ disk_usage_fixed.py	2023-01-18 15:06:46.000000000 +0100
+@@ -15,8 +15,11 @@
+     
+     
+ # Check for at least 2 GB and 10% free space
+-if not check_disk_usage("/", 2*2**30, 10):
++if not check_disk_usage("/", 2, 10):
+     print("ERROR: Not enough disk space")
+-    return 1
++    sys.exit(1)
+ print("Everything ok")
+-return 0
+\ No newline at end of file
++sys.exit(0)
++# Alternate solution: restablish returns and call the function from the main one
++# if __name__ == __main__:
++#  check_disk_usage()
+\ No newline at end of file
