@@ -579,7 +579,7 @@ You can also put a formatting expression inside the curly brackets, which lets y
 An example:
 
 ```python
-name = "Benjo"
+name = "user"
 number = len(name) * 3
 print("Hello {}! Your lucky number is {}".format(name, number))
 print("Your lucky number is {number}, {name}".format(name=name,\
@@ -3336,11 +3336,11 @@ First, let's check out our files.
 ```bash
 $ cd old_website
 $ ls -l
--rwx------@ 1 benjo  staff  0 Jan  9 12:26 about.HTM
--rwx------@ 1 benjo  staff  0 Jan  9 12:26 contact.HTM
--rwx------@ 1 benjo  staff  0 Jan  9 12:26 footer.HTM
--rwx------@ 1 benjo  staff  0 Jan  9 12:26 header.HTM
--rwx------@ 1 benjo  staff  0 Jan  9 12:26 index.HTM
+-rwx------@ 1 user  staff  0 Jan  9 12:26 about.HTM
+-rwx------@ 1 user  staff  0 Jan  9 12:26 contact.HTM
+-rwx------@ 1 user  staff  0 Jan  9 12:26 footer.HTM
+-rwx------@ 1 user  staff  0 Jan  9 12:26 header.HTM
+-rwx------@ 1 user  staff  0 Jan  9 12:26 index.HTM
 ```
 
 Looks like we have five files that we need to rename. So how can we extract the part before the extension? There's a command called **basename** that can help us with that. This command takes a filename and an extension and then returns the name without the extension. Just like that, we're ready to write our script and rename the files.
@@ -3630,8 +3630,8 @@ def check_disk_usage(disk, min_absolute, min_percent):
     if gigabytes_free < min_percent or gigabytes_free < min_absolute:
         return False
     return True
-    
-    
+
+
 # Check for at least 2 GB and 10% free space
 if not check_disk_usage("/", 2*2**30, 10):
     print("ERROR: Not enough disk space")
@@ -3689,8 +3689,8 @@ $ cat check_usage.diff # just to check
 --- disk_usage_original.py      2023-01-18 12:08:03.000000000 +0100
 +++ disk_usage_fixed.py 2023-01-18 15:06:46.000000000 +0100
 @@ -15,8 +15,11 @@
-     
-     
+
+
  # Check for at least 2 GB and 10% free space
 -if not check_disk_usage("/", 2*2**30, 10):
 +if not check_disk_usage("/", 2, 10):
@@ -3712,3 +3712,142 @@ patching file disk_usage.py
 By calling patch with the diff file, we've applied the changes that were necessary to fix the bugs.
 
 So we've now seen how we can look at differences between files, generate diff files together to gather our changes, and then apply those changes using patch. But this is still a very manual process, where version control systems can really help.
+
+### Version Control Systems
+
+#### What is version control?
+
+We've seen up till now, how we can use existing tools to extract differences between versions of files and apply those changes back to the original files. Those tools are really useful. But most of the time, we won't be using them directly. Instead, we'll use them through a Version Control System, or VCS.
+
+_A Version Control System keeps track of the changes that we make to our files_. By using a VCS, we can know when the changes were made and who made them. It also lets us easily revert a change if it turned out not to be a good idea. It makes collaboration easier by allowing us to merge changes from lots of different sources.
+
+At first-look, a Version Control System can seem like a complicated, possibly intimidating tool. But if you look closer, you'll see that it's really just a system that stores files. However, unlike a regular file server which only saves the most recent version of a file, a VCS keeps track of all the different versions that we create as we save our changes. There are many different version control systems, each with their own implementation and with their own advantages and disadvantages. But, no matter how the VCS is implemented internally, they always access the history of our files. Let us retrieve past versions of the file or directory and see who changed which files, how each file was changed and when the file was changed. On top of this, we can make edits to multiple files and treat that collection of edits as a single change which is commonly known as a, **commit**.
+
+A VCS even provides a mechanism to allow the author of a commit to record why the change was made, including what bugs, tickets or issues were fixed by the change. _This information can be a lifesaver when trying to understand a complex series of changes, or to debug some obscure issue. So, be sure to record this extra info in your commits to be truly committed to better code._
+
+In any organization that produces software, a VCS is a key part of managing the code. Files are usually organized in **repositories** which contains separate software projects or just group all related code. If there's a lot of people involved in developing software, some developers may have access to only some of the repositories. A single **repository** can have as little as one person using it. And it can go up to thousands of contributors.
+
+And, as we called that earlier, a Version Control System can be used to store much more than just code. We can use it to store configuration files, documentation, data files, or any other content that we may need to track. Because of the way tools like diff and patch work, a VCS is especially useful when tracking text files, which can be compared with diff and modified with patch. We can also store images, videos or any other complex file formats in a VCS, but, it won't be easy to check the differences between versions when comparing these file formats.
+
+#### Version Control and Automation
+
+At first glance, using a VCS might seem like a lot of work for an IT specialist to set up and learn. It might especially seem like overkill, if you're the only member of your IT team that writes code or maybe even the only member period. So can a VCS help, even if you don't need to share your scripts or collaborate on them with others?
+
+The short answer is yes. A VCS can be invaluable, even in a one-person IT department. A VCS stores your code and configuration. It also stores the history of that code and configuration. A version control system can function a lot like a time machine, giving you insights into the decisions of the past. Whenever you write a commit message, after making a change, it's as if the current version of yourself is explaining your decisions to a future you or others who might work on the same scripts and configurations in the future. This can help you avoid finding yourself staring at a piece of code that you or someone else wrote three months ago and puzzling over how it works or even why it exists. With a VCS, you can view, track and select snapshots from the history of your project. So nothing you do is lost, and since we can use a VCS to store both code and configuration files, we can make the overall IT systems more scalable and reliable.
+
+This functionality enhances the reliability of systems you operate. Because of the audit trail provided by the VCS, you know exactly what version of the zone file to rollback to, which reduces the time it takes to fix the problem. It's generally better to quickly roll back first and stop errors before spending time figuring out what went wrong. You can curb the fix after the bleeding has stopped. Figuring out the bug might take up valuable time or worse, your first attempt at a solution can have its own bugs.
+
+#### What is Git?
+
+Git is a VCS created in 2005 by Linus Torvalds. The developer who started the Linux kernel.
+
+Git is a free open source system available for installation on Unix based platforms, Windows and macOS. Linus originally created get to help manage the task of developing the Linux kernel. This was difficult because a lot of geographically distributed programmers were collaborating to write a whole bunch of code. Linus had some requirements for the way that the system worked, and its performance that weren't being met by the VCS tools at a time. So he decided to write his own. Git is now one of the most popular version control systems out there and is used in millions of projects. Unlike some version control systems that are centralized around a single server, Git has a distributed architecture. This means that every person contributing to a repository has full copy of the repository on their own development machines.
+
+Collaborators can share and pull in changes that others have made as they need. And because the repositories are all local to the computer being used to create the files, most operations can be done really fast. If you want to collaborate with others, it usually makes sense to set up a repository on a server to act as a kind of hub for everyone to interact with. But Git doesn't rely on any kind of centralized server to provide control organizations to its workflow. Git can work as a standalone program as a server and as a client. This means that you can use Git on a single machine without even having a network connection. Or you can use it as a server on a machine where you want to host your repository. And then you can use Git as a client to access the repository from another machine or even the same one. Git clients can communicate with Git servers over the network using HTTP, SSH or Git's own special protocol.
+
+So you can use Git with or without a network connection. You can use it for small projects with like one developer or huge projects with thousands of contributors. You can use it to track private work that you can keep to yourself or you can share your work with others by hosting a code on public servers like Github, Gitlab or others.
+
+As with most things in the IT world, though, there are plenty of other tools that can be used to accomplish the same task. There are other VCS programs like Subversion or Mercurial. Feel free to experiment with alternatives if you think another VCS might better serve your needs.
+
+#### More Information About Git
+
+Check out the following links for more information:
+
+- [https://git-scm.com/doc](https://git-scm.com/doc)
+
+- [https://www.mercurial-scm.org/](https://www.mercurial-scm.org/)
+
+- [https://subversion.apache.org/](https://subversion.apache.org/)
+
+- [https://en.wikipedia.org/wiki/Version_control](https://en.wikipedia.org/wiki/Version_control)
+
+#### Installing Git
+
+The first step on the way to using Git is to install it! The directions found in the Git documentation below are pretty thorough and helpful, check them out for the best method of getting Git onto your platform of choice.
+
+- [Git download page](https://git-scm.com/downloads)
+
+- [Git installation instructions for each platform](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+### Using Git
+
+#### First Steps with Git
+
+When starting with Git, there are a bunch of concepts that we need to learn to understand how things are organized and how our files are tracked.
+
+Let's start by setting some basic configuration. Remember when we said that a VCS tracks who made which changes, for this to work, we need to tell Git who we are. We can do this by using the **git config** command and then setting the values of user.email and user.name to our email and our name like this:
+
+```bash
+git config --global user.email "me@example.com"
+git config --global user.name "My Name"
+```
+
+With that done, there are two ways to start working with a git repository. We can create one from scratch using the **git ini**t command or we can use the **git clone** command to make a copy of a repository that already exists somewhere else. We'll talk about remote repositories later in the course. For now, let's start by creating a new directory and then a git repository inside that directory.
+
+```bash
+mkdir checks
+cd checks
+git init
+Initialized empty Git repository in ~/checks/.git/
+```
+
+So when we run git init we initialize an empty git repository in the current directory. The message that we get mentions a directory called. git. We can check that this directory exist using the **ls -la** command which lists files that start with a dot. We can also use the **ls -l .git** command to look inside of it and see the many different things it contains. This is called a _Git directory_.
+
+```bash
+ls -l .git
+Total 24
+-rw-r--r--   1 user  staff   23 20 jan 17:16 HEAD
+-rw-r--r--   1 user  staff  137 20 jan 17:16 config
+-rw-r--r--   1 user  staff   73 20 jan 17:16 description
+drwxr-xr-x  15 user  staff  480 20 jan 17:16 hooks
+drwxr-xr-x   3 user  staff   96 20 jan 17:16 info
+drwxr-xr-x   4 user  staff  128 20 jan 17:16 objects
+drwxr-xr-x   4 user  staff  128 20 jan 17:16 refs
+```
+
+You can think of it as a database for your Git project that stores the changes and the change history. We can see it contains a bunch of different files and directories. We won't touch any of these files directly, we'll always interact with them through Git commands. So whenever you clone a repository, this git directory is copied to your computer. Whenever you run git init to create a new repository like we just did, a new git directory is initialized.
+
+The area outside the git directory is the _**working tree**_. The _**working tree**_ is the current version of your project. You can think of it like a workbench or a sandbox where you perform all the modification you want to your file. This working tree will contain all the files that are currently tracked by Git and any new files that we haven't yet added to the list of track files.
+
+Right now our working tree is empty. Let's change that by copying the disk usage that pyfile that we created earlier into our current directory.
+
+```bash
+cp ../disk_usage.py .
+```
+
+We now have file and a working tree but it's currently untracked by Git. To make Git track our file, we'll add it to the project using the **git add** command passing the file that we want as a parameter. With that, we've added our file to the _**staging area**_.
+
+The staging area which is also known as the _**index**_ is a file maintained by Git that contains all of the information about what files and changes are going to go into your next command.
+
+We can use the **git status** command to get some information about the current working tree and pending changes.
+
+To get our file committed into the.git directory, we run the **git commit** command.
+
+When we run this command, we tell Git that we want to save our changes. It opens a text editor where we can enter a commit message. The texts that we get tells us that we need to write a commit message and that the change to be committed is the new file that we've added. For now, let's enter a simple description of what we did which was to add this one file and then exit the editor saving our commit message and with that we've created our first git commit.
+
+#### Tracking Files
+
+In the previous section, we mentioned that any Git project will consist of three sections: the Git directory, the working tree and the staging area.
+
+- The _**Git directory**_ contains the history of all the files and changes.
+
+- The _**working tree**_ contains the current state of the project, including any changes that we've made.
+
+- And _**the staging area**_ contains the changes that have been marked to be included in the next commit.
+
+This can still be confusing. So it might be helpful to think about Git as representing your project. Which is the code and associated files and a series of snapshots.
+
+Each time you make a commit, Git records a new snapshot of the state of your project at that moment. It's a picture of exactly how all these files looked at a certain moment in time. Combined, these snapshots make up the history of your project, and it's information that gets stored in the Git directory. Now, let's dive into the details of how we track changes to our files.
+
+When we operate with Git, our files can be either _**tracked**_ or _**untracked**_. Tracked files are part of the snapshots, while untracked files aren't a part of snapshots yet. This is the usual case for new files.
+
+Each tracked  file can be in one of three main states: _**modified**_, _**staged**_ or _**committed**_. Let's look at what each of these mean.
+
+- If a file is in the modified state, it means that we've made changes to it that we haven't committed yet. The changes could be adding, modifying or deleting the contents of the file. Git notices anytime we modify our files. But won't store any changes until we add them to the staging area.
+
+- So, the next step is to stage those changes. When we do this, our modified files become staged files. In other words, the changes to those files are ready to be committed to the project. All files that are staged will be part of the next snapshot we take.
+
+- And finally, when a file gets committed, the changes made to it are safely stored in a snapshot in the Git directory.
+This means that typically a file tracked by Git, will first be modified when we change it in any way. Then it becomes staged when we mark those changes for tracking. And finally it will get committed when we store those changes in the VCS.
+
+So to sum up, we work on modified files in our working tree. When they're ready, we staged these files by adding them to the staging area. Finally, we commit the changes sitting in our staging area, which takes a snapshot of those files and stores them in the database that lives in the Git directory. If the way Git works is not totally clear yet, don't worry. It will all sink in with a bit more practice.
