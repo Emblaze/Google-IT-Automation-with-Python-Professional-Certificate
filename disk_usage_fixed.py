@@ -2,6 +2,8 @@
 
 import shutil
 
+import sys
+
 def check_disk_usage(disk, min_absolute, min_percent):
     "Returns True if there is enough free disk space, False otherwise"
     du = shutil.disk_usage(disk)
@@ -12,8 +14,8 @@ def check_disk_usage(disk, min_absolute, min_percent):
     if gigabytes_free < min_percent or gigabytes_free < min_absolute:
         return False
     return True
-    
-    
+
+
 # Check for at least 2 GB and 10% free space
 if not check_disk_usage("/", 2, 10):
     print("ERROR: Not enough disk space")
