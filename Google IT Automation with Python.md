@@ -3851,3 +3851,64 @@ Each tracked  file can be in one of three main states: _**modified**_, _**staged
 This means that typically a file tracked by Git, will first be modified when we change it in any way. Then it becomes staged when we mark those changes for tracking. And finally it will get committed when we store those changes in the VCS.
 
 So to sum up, we work on modified files in our working tree. When they're ready, we staged these files by adding them to the staging area. Finally, we commit the changes sitting in our staging area, which takes a snapshot of those files and stores them in the database that lives in the Git directory. If the way Git works is not totally clear yet, don't worry. It will all sink in with a bit more practice.
+
+#### The Basic Git Workflow
+
+We discussed earlier some of the basic concepts involved in working with **Git**. We saw that each repository will have a _**Git directory**_, a_** working tree**_, and a _**staging area**_. And we called out that files can be in three different states, modified, staged, and committed. Let's review these concepts one more time by looking at the normal workflow when operating with Git on a day to day basis.
+
+1. First, all the files we want to manage with Git must be a part of a Git repository. We initialize a new repository by running the git init command in any file system directory. For example, let's use the mkdir command to create a directory called scripts, and then change into it and initialize an empty Git repository init.
+
+```bash
+mkdir scripts
+cd scripts
+git init
+```
+
+Our shiny new Git repository can now be used to track changes to files inside of it. But before jumping into that, let's check out our current configuration by using the **git config -l** command. There's a bunch of info in there, and we won't cover all of it. For now, pay special attention to the _user.email_ and the _user.name_ lines, which we touched on briefly in an earlier video. This information will appear in public commit logs if you use a shared repository. For privacy reasons, you might want to use different identities when dealing with your private work and when submitting code to public repositories. We'll include more details about changing this information in our next reading.
+
+Okay, our repo is ready to work, but it's currently empty. Let's create a file in it, we'll start with a basic skeleton for a Python script, which will help us demonstrate the Git workflow. As with any Python script, we'll start with the shebang line. For now, we'll add an empty main function, which we'll fill in later. And at the end, we'll just call this main function.
+
+```python
+#!/usr/bin/env python3
+def main():
+  pass
+
+main()
+```
+
+All right, we've created our file. This is a script that we'll want to execute, so let's make it executable. And then let's check the status of our repo using **git status** command.
+
+  ```bash
+  git status
+  ```
+
+2. As we called out before, when we create a new file in a repository, it starts off as untracked. We can make all kinds of changes to the file, but until we tell Git to track it, Git won't do anything with an untracked file. We need to call the **git add** command. This command will immediately move a new file from untracked to stage status. And as we'll see later, it will also change a file in the modified state to staged state. Remember that when a file is staged, it means it's been added to the staging area and it's ready to be committed to the Git repository.
+
+3. To initiate a commit of staged files, we issue the **git commit** command. When we do this, Git will only commit the changes that have been added to the staging area, untracked files or modified files that weren't staged will be ignored. Calling git commit with no parameters will launch a text editor, this will open whatever has been set as your default editor. If the default editor is not the one you'd like to use, there are a bunch of ways to change it. For now, let's edit our message with Nano, which is the current default for this computer. We'll say that our change is creating an empty all_checks.py file, then save and exit.
+
+Voila! We've just recorded a snapshot of the code in our project, which is stored in the Git directory. Remember that every time we commit changes, we take another snapshot, which is annotated with a commit message that we can review later.
+
+4. Okay, that's how we add new files, but usually we'll modify existing ones. So let's add a bit more content to our script to see that in action. We'll add a function called check_reboot, that will check if the computer is pending a reboot. To do that, we'll check if the run/reboot-required file exists. This is a file that's created on our computer when some software requires a reboot. And of course, since we're using os.path.exists, we need to add import os to our script.
+
+```python
+#!/usr/bin/env python3
+import os
+
+def check_reboot():
+  "Returns True if the computer has a pendign reboot"
+  return os.path.exists("/run/reboot-required")
+
+def main():
+  pass
+
+main()
+```
+
+5. All right, we've added a function to our file. Let's check the current status using **git status** again. Our file's _modified_, but not _staged_. To stage our changes, we need to call **git add** once again.
+
+6. Okay, our changes our now staged. We have to call **git commit** to store those changes to the Git directory. This time, we'll use the other way of setting the commit message. We'll call **git commit -m**, and then pass the commit message that we want to use. So in this case, we'll say that we've added the check_reboot function.
+
+With that, we've demonstrated the basic Git workflow. We make changes to our files, stage them with git add, and commit them with git commit. If there's anything that's not totally clear yet, remember, that the only way to get familiar with these concepts is practice.
+
+#### Anatomy of a Commit Message
+
