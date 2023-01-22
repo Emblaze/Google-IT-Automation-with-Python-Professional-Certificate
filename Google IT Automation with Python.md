@@ -3912,3 +3912,36 @@ With that, we've demonstrated the basic Git workflow. We make changes to our fil
 
 #### Anatomy of a Commit Message
 
+Earlier, we saw how we can commit snapshots of changes to the Git repository. Let's now talk a little bit more about what makes a good commit message.
+
+Writing a clear informative commit message is important when you use a VCS, future you or other developers or IT specialists who might read the commit message later on will really appreciate the contextual information as they try and figure out some of the parts of the code or configuration.
+
+So what makes a good commit message? It can be helpful to keep your audience in mind when you write commit messages. What would someone reading a message weeks or months from now want to know about the changes you've made?
+
+- What might be especially important or tricky to understand about them?
+
+- Is there extra information that might help the reader out, like links to design documents or tickets in your ticketing system?
+
+Similarly to how style guides exist for writing code, your company might have specific rules for you to follow when you write commit messages. Even if they don't, it's good to use a few general guidelines to make sure your commit messages are as clear and useful as possible.
+
+A commit message is generally broken up into a few sections.
+
+- The first line is a short summary of the commit followed by a blank line.
+
+- This is followed by a full description of the changes which details why they're necessary and anything that might be especially interesting about them or difficult to understand. When you run the git commit command, Git will open up a text editor of your choice so you can write your commit message. A good commit message might look something like this.
+
+So the first line is usually kept to about 50 characters or less. The line contains a short description of what the commit changes are about. After the first line, comes an empty line, and the rest of the text is usually kept under 72 characters. This text is intended to provide a detailed explanation of what's going on with the change. It can reference bugs or issues that will be fixed with the change. It can also include links to more information when relevant. The line limits can be annoying but they help in making the commit message be more digestible for the reader.
+
+There's a git command used to display these commit messages called **git log**. This command will do any line wrapping for us. Which means that if we don't stick to the recommended line wrapping, long commit messages will run off the edge of the screen and be difficult to read.
+
+Sometimes it can be tempting to just write something short like update, change or fix as the description of our commit messages. Don't do it. It's super frustrating to go back to repositories history and discover that there's not enough context to understand what was changed and why. It takes only a few more seconds to write a better description. This can be invaluable down the line.
+
+Following these guidelines can help make your commit message really useful, and the investment of work now will really pay off later. If you're interested in learning more about git commit style, there are plenty of resources out there to read including the Linux kernel documentation itself along with impassioned opinions from other developers.
+
+#### Initial Git Cheat Sheet
+
+Check out the following links for more information:
+
+The [Linux kernel documentation](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?id=HEAD) itself, as well as [impassioned](http://stopwritingramblingcommitmessages.com/) opinions from [other developers](https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message). 
+
+You can check out [Setting your email in Git](https://help.github.com/articles/setting-your-email-in-git/) and [Keeping your email address private](https://help.github.com/articles/keeping-your-email-address-private/) on the GitHub help site for how to do this.

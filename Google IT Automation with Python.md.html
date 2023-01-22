@@ -9,86 +9,7 @@
 </head>
 
 <body class="stackedit">
-  <div class="stackedit__left">
-    <div class="stackedit__toc">
-      
-<ul>
-<li><a href="#google-it-automation-with-python-professional-certificate">Google IT Automation with Python Professional Certificate</a>
-<ul>
-<li><a href="#crash-course-on-python">1. Crash Course on Python</a>
-<ul>
-<li><a href="#python-resources">Python Resources</a></li>
-<li><a href="#first-programming-concepts-cheat-sheet">First Programming Concepts Cheat Sheet</a></li>
-<li><a href="#expressions--variables">Expressions & Variables</a></li>
-<li><a href="#functions">Functions</a></li>
-<li><a href="#conditionals">Conditionals</a></li>
-<li><a href="#introduction-to-loops">Introduction to loops</a></li>
-<li><a href="#what-is-a-for-loop">What is a for loop?</a></li>
-<li><a href="#recursion-optional">Recursion (optional)</a></li>
-<li><a href="#strings-lists-and-dictionaries">Strings, Lists and Dictionaries</a></li>
-<li><a href="#lists">Lists</a></li>
-<li><a href="#dictionaries">Dictionaries</a></li>
-<li><a href="#object-oriented-programming-optional">Object-Oriented Programming (optional)</a></li>
-<li><a href="#code-reuse">Code Reuse</a></li>
-<li><a href="#problem-solving-framework">Problem-solving Framework</a></li>
-</ul>
-</li>
-<li><a href="#using-python-to-interact-with-the-operating-system">2. Using Python to Interact with the Operating System</a>
-<ul>
-<li><a href="#course-introduction">Course Introduction</a></li>
-<li><a href="#automating-tasks-through-programming">Automating Tasks Through Programming</a></li>
-<li><a href="#reading-and-writing-files">Reading and Writing Files</a></li>
-<li><a href="#managing-files-and-directories">Managing Files and Directories</a></li>
-<li><a href="#reading-and-writing-csv-files">Reading and Writing CSV Files</a></li>
-</ul>
-</li>
-<li><a href="#regular-expressions">Regular Expressions</a>
-<ul>
-<li><a href="#introduction-to-regular-expressions">Introduction to Regular Expressions</a></li>
-<li><a href="#basic-regular-expressions">Basic Regular Expressions</a></li>
-<li><a href="#advanced-regular-expressions">Advanced Regular Expressions</a></li>
-</ul>
-</li>
-<li><a href="#managing-data-and-processes">Managing Data and Processes</a>
-<ul>
-<li><a href="#data-streams">Data Streams</a></li>
-<li><a href="#python-subprocesses">Python Subprocesses</a></li>
-<li><a href="#processing-log-files">Processing Log Files</a></li>
-</ul>
-</li>
-<li><a href="#testing-in-python">Testing in Python</a>
-<ul>
-<li><a href="#simple-tests">Simple Tests</a></li>
-<li><a href="#unit-tests">Unit Tests</a></li>
-<li><a href="#other-tests-concepts">Other Tests Concepts</a></li>
-<li><a href="#errors-and-exceptions">Errors and Exceptions</a></li>
-</ul>
-</li>
-<li><a href="#bash-scripting">Bash Scripting</a>
-<ul>
-<li><a href="#basic-linux-commands">Basic Linux Commands</a></li>
-<li><a href="#redirecting-streams">Redirecting Streams</a></li>
-<li><a href="#scripting-with-bash">Scripting with Bash</a></li>
-<li><a href="#advanced-bash-concepts">Advanced Bash Concepts</a></li>
-<li><a href="#final-project">Final Project</a></li>
-</ul>
-</li>
-<li><a href="#introduction-to-git-and-github">Introduction to Git and GitHub</a>
-<ul>
-<li><a href="#before-version-control">Before Version Control</a></li>
-<li><a href="#version-control-systems">Version Control Systems</a></li>
-<li><a href="#using-git">Using Git</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-    </div>
-  </div>
-  <div class="stackedit__right">
-    <div class="stackedit__html">
-      <h1 id="google-it-automation-with-python-professional-certificate">Google IT Automation with Python Professional Certificate</h1>
+  <div class="stackedit__html"><h1 id="google-it-automation-with-python-professional-certificate">Google IT Automation with Python Professional Certificate</h1>
 <h2 id="crash-course-on-python">1. Crash Course on Python</h2>
 <h3 id="python-resources">Python Resources</h3>
 <h4 id="more-about-python">More About Python</h4>
@@ -2981,9 +2902,90 @@ This means that typically a file tracked by Git, will first be modified when we 
 </li>
 </ul>
 <p>So to sum up, we work on modified files in our working tree. When they’re ready, we staged these files by adding them to the staging area. Finally, we commit the changes sitting in our staging area, which takes a snapshot of those files and stores them in the database that lives in the Git directory. If the way Git works is not totally clear yet, don’t worry. It will all sink in with a bit more practice.</p>
+<h4 id="the-basic-git-workflow">The Basic Git Workflow</h4>
+<p>We discussed earlier some of the basic concepts involved in working with <strong>Git</strong>. We saw that each repository will have a <em><strong>Git directory</strong></em>, a_** working tree**_, and a <em><strong>staging area</strong></em>. And we called out that files can be in three different states, modified, staged, and committed. Let’s review these concepts one more time by looking at the normal workflow when operating with Git on a day to day basis.</p>
+<ol>
+<li>First, all the files we want to manage with Git must be a part of a Git repository. We initialize a new repository by running the git init command in any file system directory. For example, let’s use the mkdir command to create a directory called scripts, and then change into it and initialize an empty Git repository init.</li>
+</ol>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">mkdir</span> scripts
+<span class="token function">cd</span> scripts
+<span class="token function">git</span> init
+</code></pre>
+<p>Our shiny new Git repository can now be used to track changes to files inside of it. But before jumping into that, let’s check out our current configuration by using the <strong>git config -l</strong> command. There’s a bunch of info in there, and we won’t cover all of it. For now, pay special attention to the <em>user.email</em> and the <em><a href="http://user.name">user.name</a></em> lines, which we touched on briefly in an earlier video. This information will appear in public commit logs if you use a shared repository. For privacy reasons, you might want to use different identities when dealing with your private work and when submitting code to public repositories. We’ll include more details about changing this information in our next reading.</p>
+<p>Okay, our repo is ready to work, but it’s currently empty. Let’s create a file in it, we’ll start with a basic skeleton for a Python script, which will help us demonstrate the Git workflow. As with any Python script, we’ll start with the shebang line. For now, we’ll add an empty main function, which we’ll fill in later. And at the end, we’ll just call this main function.</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token comment">#!/usr/bin/env python3</span>
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">pass</span>
 
-    </div>
-  </div>
+main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>All right, we’ve created our file. This is a script that we’ll want to execute, so let’s make it executable. And then let’s check the status of our repo using <strong>git status</strong> command.</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> status
+</code></pre>
+<ol start="2">
+<li>
+<p>As we called out before, when we create a new file in a repository, it starts off as untracked. We can make all kinds of changes to the file, but until we tell Git to track it, Git won’t do anything with an untracked file. We need to call the <strong>git add</strong> command. This command will immediately move a new file from untracked to stage status. And as we’ll see later, it will also change a file in the modified state to staged state. Remember that when a file is staged, it means it’s been added to the staging area and it’s ready to be committed to the Git repository.</p>
+</li>
+<li>
+<p>To initiate a commit of staged files, we issue the <strong>git commit</strong> command. When we do this, Git will only commit the changes that have been added to the staging area, untracked files or modified files that weren’t staged will be ignored. Calling git commit with no parameters will launch a text editor, this will open whatever has been set as your default editor. If the default editor is not the one you’d like to use, there are a bunch of ways to change it. For now, let’s edit our message with Nano, which is the current default for this computer. We’ll say that our change is creating an empty all_checks.py file, then save and exit.</p>
+</li>
+</ol>
+<p>Voila! We’ve just recorded a snapshot of the code in our project, which is stored in the Git directory. Remember that every time we commit changes, we take another snapshot, which is annotated with a commit message that we can review later.</p>
+<ol start="4">
+<li>Okay, that’s how we add new files, but usually we’ll modify existing ones. So let’s add a bit more content to our script to see that in action. We’ll add a function called check_reboot, that will check if the computer is pending a reboot. To do that, we’ll check if the run/reboot-required file exists. This is a file that’s created on our computer when some software requires a reboot. And of course, since we’re using os.path.exists, we need to add import os to our script.</li>
+</ol>
+<pre class=" language-python"><code class="prism  language-python"><span class="token comment">#!/usr/bin/env python3</span>
+<span class="token keyword">import</span> os
+
+<span class="token keyword">def</span> <span class="token function">check_reboot</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token string">"Returns True if the computer has a pendign reboot"</span>
+  <span class="token keyword">return</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token string">"/run/reboot-required"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">pass</span>
+
+main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<ol start="5">
+<li>
+<p>All right, we’ve added a function to our file. Let’s check the current status using <strong>git status</strong> again. Our file’s <em>modified</em>, but not <em>staged</em>. To stage our changes, we need to call <strong>git add</strong> once again.</p>
+</li>
+<li>
+<p>Okay, our changes our now staged. We have to call <strong>git commit</strong> to store those changes to the Git directory. This time, we’ll use the other way of setting the commit message. We’ll call <strong>git commit -m</strong>, and then pass the commit message that we want to use. So in this case, we’ll say that we’ve added the check_reboot function.</p>
+</li>
+</ol>
+<p>With that, we’ve demonstrated the basic Git workflow. We make changes to our files, stage them with git add, and commit them with git commit. If there’s anything that’s not totally clear yet, remember, that the only way to get familiar with these concepts is practice.</p>
+<h4 id="anatomy-of-a-commit-message">Anatomy of a Commit Message</h4>
+<p>Earlier, we saw how we can commit snapshots of changes to the Git repository. Let’s now talk a little bit more about what makes a good commit message.</p>
+<p>Writing a clear informative commit message is important when you use a VCS, future you or other developers or IT specialists who might read the commit message later on will really appreciate the contextual information as they try and figure out some of the parts of the code or configuration.</p>
+<p>So what makes a good commit message? It can be helpful to keep your audience in mind when you write commit messages. What would someone reading a message weeks or months from now want to know about the changes you’ve made?</p>
+<ul>
+<li>
+<p>What might be especially important or tricky to understand about them?</p>
+</li>
+<li>
+<p>Is there extra information that might help the reader out, like links to design documents or tickets in your ticketing system?</p>
+</li>
+</ul>
+<p>Similarly to how style guides exist for writing code, your company might have specific rules for you to follow when you write commit messages. Even if they don’t, it’s good to use a few general guidelines to make sure your commit messages are as clear and useful as possible.</p>
+<p>A commit message is generally broken up into a few sections.</p>
+<ul>
+<li>
+<p>The first line is a short summary of the commit followed by a blank line.</p>
+</li>
+<li>
+<p>This is followed by a full description of the changes which details why they’re necessary and anything that might be especially interesting about them or difficult to understand. When you run the git commit command, Git will open up a text editor of your choice so you can write your commit message. A good commit message might look something like this.</p>
+</li>
+</ul>
+<p>So the first line is usually kept to about 50 characters or less. The line contains a short description of what the commit changes are about. After the first line, comes an empty line, and the rest of the text is usually kept under 72 characters. This text is intended to provide a detailed explanation of what’s going on with the change. It can reference bugs or issues that will be fixed with the change. It can also include links to more information when relevant. The line limits can be annoying but they help in making the commit message be more digestible for the reader.</p>
+<p>There’s a git command used to display these commit messages called <strong>git log</strong>. This command will do any line wrapping for us. Which means that if we don’t stick to the recommended line wrapping, long commit messages will run off the edge of the screen and be difficult to read.</p>
+<p>Sometimes it can be tempting to just write something short like update, change or fix as the description of our commit messages. Don’t do it. It’s super frustrating to go back to repositories history and discover that there’s not enough context to understand what was changed and why. It takes only a few more seconds to write a better description. This can be invaluable down the line.</p>
+<p>Following these guidelines can help make your commit message really useful, and the investment of work now will really pay off later. If you’re interested in learning more about git commit style, there are plenty of resources out there to read including the Linux kernel documentation itself along with impassioned opinions from other developers.</p>
+<h4 id="initial-git-cheat-sheet">Initial Git Cheat Sheet</h4>
+<p>Check out the following links for more information:</p>
+<p>The <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?id=HEAD">Linux kernel documentation</a> itself, as well as <a href="http://stopwritingramblingcommitmessages.com/">impassioned</a> opinions from <a href="https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message">other developers</a>.</p>
+<p>You can check out [S</p>
+</div>
 </body>
 
 </html>
