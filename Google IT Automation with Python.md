@@ -3791,7 +3791,7 @@ git init
 Initialized empty Git repository in ~/checks/.git/
 ```
 
-So when we run git init we initialize an empty git repository in the current directory. The message that we get mentions a directory called. git. We can check that this directory exist using the **ls -la** command which lists files that start with a dot. We can also use the **ls -l .git** command to look inside of it and see the many different things it contains. This is called a _Git directory_.
+So when we run **git init** we initialize an empty git repository in the current directory. The message that we get mentions a directory called. git. We can check that this directory exist using the **ls -la** command which lists files that start with a dot. We can also use the **ls -l .git** command to look inside of it and see the many different things it contains. This is called a _Git directory_.
 
 ```bash
 ls -l .git
@@ -3804,6 +3804,8 @@ drwxr-xr-x   3 user  staff   96 20 jan 17:16 info
 drwxr-xr-x   4 user  staff  128 20 jan 17:16 objects
 drwxr-xr-x   4 user  staff  128 20 jan 17:16 refs
 ```
+
+> _If you've already run git init on a project directory containing a .git subdirectory, you can safely run git init again on the same project directory. The operation is what we call **idempotent**; running it again doesn't override an existing .git configuration._
 
 You can think of it as a database for your Git project that stores the changes and the change history. We can see it contains a bunch of different files and directories. We won't touch any of these files directly, we'll always interact with them through Git commands. So whenever you clone a repository, this git directory is copied to your computer. Whenever you run git init to create a new repository like we just did, a new git directory is initialized.
 
@@ -3856,7 +3858,7 @@ So to sum up, we work on modified files in our working tree. When they're ready,
 
 We discussed earlier some of the basic concepts involved in working with **Git**. We saw that each repository will have a _**Git directory**_, a_** working tree**_, and a _**staging area**_. And we called out that files can be in three different states, modified, staged, and committed. Let's review these concepts one more time by looking at the normal workflow when operating with Git on a day to day basis.
 
-1. First, all the files we want to manage with Git must be a part of a Git repository. We initialize a new repository by running the git init command in any file system directory. For example, let's use the mkdir command to create a directory called scripts, and then change into it and initialize an empty Git repository init.
+- First, all the files we want to manage with Git must be a part of a Git repository. We initialize a new repository by running the git init command in any file system directory. For example, let's use the mkdir command to create a directory called scripts, and then change into it and initialize an empty Git repository init.
 
 ```bash
 mkdir scripts
@@ -3882,13 +3884,13 @@ All right, we've created our file. This is a script that we'll want to execute, 
   git status
   ```
 
-2. As we called out before, when we create a new file in a repository, it starts off as untracked. We can make all kinds of changes to the file, but until we tell Git to track it, Git won't do anything with an untracked file. We need to call the **git add** command. This command will immediately move a new file from untracked to stage status. And as we'll see later, it will also change a file in the modified state to staged state. Remember that when a file is staged, it means it's been added to the staging area and it's ready to be committed to the Git repository.
+- As we called out before, when we create a new file in a repository, it starts off as untracked. We can make all kinds of changes to the file, but until we tell Git to track it, Git won't do anything with an untracked file. We need to call the **git add** command. This command will immediately move a new file from untracked to stage status. And as we'll see later, it will also change a file in the modified state to staged state. Remember that when a file is staged, it means it's been added to the staging area and it's ready to be committed to the Git repository.
 
-3. To initiate a commit of staged files, we issue the **git commit** command. When we do this, Git will only commit the changes that have been added to the staging area, untracked files or modified files that weren't staged will be ignored. Calling git commit with no parameters will launch a text editor, this will open whatever has been set as your default editor. If the default editor is not the one you'd like to use, there are a bunch of ways to change it. For now, let's edit our message with Nano, which is the current default for this computer. We'll say that our change is creating an empty all_checks.py file, then save and exit.
+- To initiate a commit of staged files, we issue the **git commit** command. When we do this, Git will only commit the changes that have been added to the staging area, untracked files or modified files that weren't staged will be ignored. Calling git commit with no parameters will launch a text editor, this will open whatever has been set as your default editor. If the default editor is not the one you'd like to use, there are a bunch of ways to change it. For now, let's edit our message with Nano, which is the current default for this computer. We'll say that our change is creating an empty all_checks.py file, then save and exit.
 
 Voila! We've just recorded a snapshot of the code in our project, which is stored in the Git directory. Remember that every time we commit changes, we take another snapshot, which is annotated with a commit message that we can review later.
 
-4. Okay, that's how we add new files, but usually we'll modify existing ones. So let's add a bit more content to our script to see that in action. We'll add a function called check_reboot, that will check if the computer is pending a reboot. To do that, we'll check if the run/reboot-required file exists. This is a file that's created on our computer when some software requires a reboot. And of course, since we're using os.path.exists, we need to add import os to our script.
+- Okay, that's how we add new files, but usually we'll modify existing ones. So let's add a bit more content to our script to see that in action. We'll add a function called check_reboot, that will check if the computer is pending a reboot. To do that, we'll check if the run/reboot-required file exists. This is a file that's created on our computer when some software requires a reboot. And of course, since we're using os.path.exists, we need to add import os to our script.
 
 ```python
 #!/usr/bin/env python3
@@ -3904,9 +3906,9 @@ def main():
 main()
 ```
 
-5. All right, we've added a function to our file. Let's check the current status using **git status** again. Our file's _modified_, but not _staged_. To stage our changes, we need to call **git add** once again.
+- All right, we've added a function to our file. Let's check the current status using **git status** again. Our file's _modified_, but not _staged_. To stage our changes, we need to call **git add** once again.
 
-6. Okay, our changes our now staged. We have to call **git commit** to store those changes to the Git directory. This time, we'll use the other way of setting the commit message. We'll call **git commit -m**, and then pass the commit message that we want to use. So in this case, we'll say that we've added the check_reboot function.
+- Okay, our changes our now staged. We have to call **git commit** to store those changes to the Git directory. This time, we'll use the other way of setting the commit message. We'll call **git commit -m**, and then pass the commit message that we want to use. So in this case, we'll say that we've added the check_reboot function.
 
 With that, we've demonstrated the basic Git workflow. We make changes to our files, stage them with git add, and commit them with git commit. If there's anything that's not totally clear yet, remember, that the only way to get familiar with these concepts is practice.
 
@@ -3942,6 +3944,6 @@ Following these guidelines can help make your commit message really useful, and 
 
 Check out the following links for more information:
 
-The [Linux kernel documentation](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?id=HEAD) itself, as well as [impassioned](http://stopwritingramblingcommitmessages.com/) opinions from [other developers](https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message). 
+The [Linux kernel documentation](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?id=HEAD) itself, as well as [impassioned](http://stopwritingramblingcommitmessages.com/) opinions from [other developers](https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message).
 
 You can check out [Setting your email in Git](https://help.github.com/articles/setting-your-email-in-git/) and [Keeping your email address private](https://help.github.com/articles/keeping-your-email-address-private/) on the GitHub help site for how to do this.
