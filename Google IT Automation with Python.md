@@ -3947,3 +3947,33 @@ Check out the following links for more information:
 The [Linux kernel documentation](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?id=HEAD) itself, as well as [impassioned](http://stopwritingramblingcommitmessages.com/) opinions from [other developers](https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message).
 
 You can check out [Setting your email in Git](https://help.github.com/articles/setting-your-email-in-git/) and [Keeping your email address private](https://help.github.com/articles/keeping-your-email-address-private/) on the GitHub help site for how to do this.
+
+### Using Git Locally
+
+Up till now, we've talked about what version control is, why it's necessary, and how we might benefit from it in diverse context. We also started learning some basic Git commands, and procedures, nice job!
+
+Over the course of the next sections, we'll go into much more detail about what we can do with Git. These are Git's greatest hits:
+
+- We'll start by learning some handy shortcuts and looking into how we can get more info out of our version control system.
+
+- Then we'll experience the true power of Git by seeing how we can undo some of our changes. The ability to revert previous changes is one of the most useful aspects of version control systems. Depending on what needs to be undone, there's a bunch of different techniques that we can use in Git. We can discard the changes made to a file, fix a commit that was incorrect and even roll back our project to an older snapshot. We'll look into all these techniques and dive into when to use each of them.
+
+- Finally, we'll check out yet another important concept, Branches. We can use branches to work on an experimental feature without affecting the main code of our project. Support separate versions of a program that can't be merged together and much more. We'll dive into what branches are, when and how to use them and how to deal with merge conflicts.
+
+#### Advanced Git Operations
+
+When we covered the basic Git workflow, we called out that the process is usually to make changes, stage them, and then commit them. The separate step between staging and committing allows us to stage several changes in one commit.
+
+But if we already know that the current changes are the ones that we want to commit, we can skip the staging step and go directly to the commit. No dress rehearsals. We do this by using the **-a flag** to the **git commit** command. This flag automatically stages every file that's tracked and modified before doing the commit letting it skip the git add step.
+
+At first, you might think that git commit dash a is just a shortcut for git add followed by git commit but that's not exactly true. Git commit -a doesn't work on new files because those are untracked. Instead, git commit -a is a shortcut to stage any changes to tracked files and commit them in one step. If the modified file has never been committed to the repo, we'll still need to use git add to track it first.
+
+So let's make a change to our example script from an earlier video and try out this new flag. We'll now modify our main function and make it call the check reboot function that we wrote before. If a reboot is pending, we'll print a message and then exit our program with an exit status of one. Since we're using the sys module, we'll need to import it. All right. Now that we've made the change, we're ready to try out the new -a flag. We'll also use the -m flag to add the commit message directly. This time, we'll say that we're calling check underscore reboot and exiting with one on the error condition.
+
+These shortcuts are useful when making small changes that we know we'll want to commit directly without keeping them in the staging area and having to write long and complex descriptions. Keep in mind that when you use the -m shortcut, you can only write short messages and can't use the best practices regarding commit descriptions that we talked about earlier. So it's best reserved for truly small changes that don't require extra context or explanation, short and sweet.
+
+Heads up, when you use the -a shortcut, you skip the staging area, meaning, you can't add any other changes before creating the commit. So you need to be sure that you've already included everything you want to include in that commit.
+
+In the end, using a shortcut like -a is just like using the regular commit workflow. The commit will show up in the log along with the message just as usual. Let's check that out. See how our latest commit was added to the top of the list of commits and notice how the head indicator has now moved to the latest commit.
+
+You might be wondering, what is this _**HEAD**_ and where is it heading? We'll keep coming across it. So let's clarify. Git uses the head alias to represent the currently checked out snapshot of your project. This lets you know what the contents of your working directory should be. In this case, the current snapshot is the latest commit in the project. We'll soon learn about branches. In that case, head can be a commit in a different branch of the project. We can even use git to go back in time and have head representing old commit from before the latest changes were applied. _**In all cases, HEAD is used to indicate what the currently checked out snapshot is**_. This is how git marks your place in the project. Think about it as a bookmark that you can use to keep track of where you are. Even if you have multiple books to read, the bookmark allows you to pick up right where you left off. When you run git commands like diff, branch, or status, git will use the head bookmark as a basis for whatever operation it's performing. We'll see Head used when we learn how to undo things and perform rollbacks. As a shortcut, it's generally easy to think of head as a pointer to the current branch, although it can be more powerful than that.
