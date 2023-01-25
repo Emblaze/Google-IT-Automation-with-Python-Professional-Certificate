@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Revert Cheat Sheet.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="git-revert-cheat-sheet">Git Revert Cheat Sheet</h1>
+<p><a href="https://git-scm.com/docs/git-checkout">git checkout</a> is effectively used to switch branches.</p>
+<p><a href="https://git-scm.com/docs/git-reset#_examples">git reset</a> basically resets the repo, throwing away some changes. It’s somewhat difficult to understand, so reading the examples in the documentation may be a bit more useful.</p>
+<p>There are some other useful articles online, which discuss more aggressive approaches to <a href="https://jwiegley.github.io/git-from-the-bottom-up/3-Reset/4-doing-a-hard-reset.html">resetting the repo</a>.</p>
+<p><a href="https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---amend">git commit --amend</a> is used to make changes to commits after-the-fact, which can be useful for making notes about a given commit.</p>
+<p><a href="https://git-scm.com/docs/git-revert">git revert</a> makes a new commit which effectively rolls back a previous commit. It’s a bit like an undo command.</p>
+<p>There are a <a href="https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things">few ways</a> you can rollback commits in Git.</p>
+<p>There are some interesting considerations about how git object data is stored, such as the usage of sha-1.</p>
+<p>Feel free to read more here:</p>
+<ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/SHA-1">https://en.wikipedia.org/wiki/SHA-1</a></p>
+</li>
+<li>
+<p><a href="https://github.blog/2017-03-20-sha-1-collision-detection-on-github-com/">https://github.blog/2017-03-20-sha-1-collision-detection-on-github-com/</a></p>
+</li>
+</ul>
+</div>
+</body>
+
+</html>
