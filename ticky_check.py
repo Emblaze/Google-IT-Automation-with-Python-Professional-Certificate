@@ -25,24 +25,24 @@ with open("syslog.log") as logfile:
         result = re.search(regex, line)
         # Shortnaming result named capture groups for reuse/readability
         logtype, logmessage, username = result.group('logtype'), result.group('logmessage'), result.group('username')
-        # Deliberatly assuming results exists, otherwise uncomment and indent an if results: block accordingly
         # Initializing an empty dict for a yet non-present user in the per_user dict
-        if username not in per_user.keys():
-          per_user[username] = {}
-          per_user[username]['INFO'] = 0
-          per_user[username]['ERROR'] = 0
-        # Incrementing INFO value in the user dict
-        if logtype == 'INFO':
-          per_user[username]['INFO'] += 1
-        # Incrementing ERROR value in the user dict
-        if logtype == 'ERROR':
-          per_user[username]['ERROR'] += 1
-          # Initializing the key-value pair for a yet absent error in the errors dict
-          if logmessage not in errors.keys():
-            errors[logmessage] = 1
-          # Incrementing error counter otherwise  
-          else:
-            errors[logmessage] += 1
+        if result:
+          if username not in per_user.keys():
+            per_user[username] = {}
+            per_user[username]['INFO'] = 0
+            per_user[username]['ERROR'] = 0
+          # Incrementing INFO value in the user dict
+          if logtype == 'INFO':
+            per_user[username]['INFO'] += 1
+          # Incrementing ERROR value in the user dict
+          if logtype == 'ERROR':
+            per_user[username]['ERROR'] += 1
+            # Initializing the key-value pair for a yet absent error in the errors dict
+            if logmessage not in errors.keys():
+              errors[logmessage] = 1
+            # Incrementing error counter otherwise  
+            else:
+              errors[logmessage] += 1
 
 
 # print(per_user) # for debugging purposes
@@ -53,7 +53,7 @@ errors_list = sorted(errors.items(), key=operator.itemgetter(1), reverse=True)
 # errors_list = {k : v for k, v in sorted(errors.items(), key = lambda t : t[1], reverse = True)}
 # Sorting by USERNAME. Deviating from suggested use of a list and using a dict,
 #  as it's easier for me to process the 3x2 dict into a csv file with my current Python skills and experience
-per_user_list = dict(sorted(per_user.items(), key=operator.itemgetter(0)))
+per_user_list = sorted(per_user.items(), key=operator.itemgetter(0))
 
 # print(per_user_list) # for debugging purposes
 # print(errors_list) # for debugging purposes
@@ -65,7 +65,7 @@ with open('user_statistics.csv', 'w', newline='') as user_statistics:
   # per_user_list.insert(0, ('Username', 'INFO', 'ERROR'))
   rows_to_write = [['Username', 'INFO', 'ERROR']]
   writer = csv.writer(user_statistics)
-  for element in per_user_list.items():
+  for element in per_user_list:
     username, data = element[0], element[1]
     row = []
     #print(username)
@@ -76,7 +76,7 @@ with open('user_statistics.csv', 'w', newline='') as user_statistics:
   # print(rows_to_write)
   writer.writerows(rows_to_write)
 
-with open('error_messages.csv', 'w', newline='') as error_messages:
+with open('error_message.csv', 'w', newline='') as error_messages:
   # Inserting headers
   errors_list.insert(0, ('Error', 'Count'))
   writer = csv.writer(error_messages)
