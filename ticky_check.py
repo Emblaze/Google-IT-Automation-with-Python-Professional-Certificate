@@ -10,15 +10,6 @@ errors = {}
 regex = r"(?P<logtype>INFO|ERROR) (?P<logmessage>[\w].*) \((?P<username>[\w.].*)\)$"
 
 with open("syslog.log") as logfile:
-
-# For dev/test purposes
-# logfile = ['May 27 11:45:40 ubuntu.local ticky: INFO Created ticket [#1234] (someuser)',
-#  'Jun 1 11:06:48 ubuntu.local ticky: ERROR Connection to DB failed (anotheruser)',
-#  'Jan 31 01:29:16 ubuntu.local ticky: INFO Commented on ticket [#6518] (rr.robinson)',
-#  'Jan 31 00:21:30 ubuntu.local ticky: ERROR The ticket was modified while updating (breee)',
-#  'Jan 31 00:21:30 ubuntu.local ticky: ERROR The ticket was modified while updating (sam)',
-#  'Jan 31 00:21:30 ubuntu.local ticky: INFO The ticket was successful (breee)']
-
   # Reading logfile line by line for processing
   for line in logfile:
         # Creating a regex result match object instance 
@@ -45,18 +36,10 @@ with open("syslog.log") as logfile:
               errors[logmessage] += 1
 
 
-# print(per_user) # for debugging purposes
-# print(errors) # for debugging purposes
-
 # Sorting by VALUE (Most common to least common)
 errors_list = sorted(errors.items(), key=operator.itemgetter(1), reverse=True)
 # errors_list = {k : v for k, v in sorted(errors.items(), key = lambda t : t[1], reverse = True)}
-# Sorting by USERNAME. Deviating from suggested use of a list and using a dict,
-#  as it's easier for me to process the 3x2 dict into a csv file with my current Python skills and experience
 per_user_list = sorted(per_user.items(), key=operator.itemgetter(0))
-
-# print(per_user_list) # for debugging purposes
-# print(errors_list) # for debugging purposes
 
 # Writing csv files
 

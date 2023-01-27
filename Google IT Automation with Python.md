@@ -4296,3 +4296,57 @@ In this last example, we got the contents of the experimental bunch together wit
 We've now seen a bunch of different ways that we can use to interact with remote repositories. We've seen how to check their status, how to push and pull changes into repositories, and even how to get new branches out of them.
 
 (You can also see more in the video [Cryptography in Action](https://www.coursera.org/learn/it-security/item/P1I8z) from the course [IT Security: Defense against the digital dark arts](https://www.coursera.org/learn/it-security/home/welcome).)
+
+### Solving Conflicts
+
+#### The Pull-Merge-Push Workflow
+
+We've now looked at the details of fetching and pulling data from a remote repositories without any local changes. We saw earlier how we can use the git push command to send our changes to the remote repo. But what if when we go to push our changes, there are new changes to the remote repo?
+
+To find out, let's start by making a change to our all_checks.py script. Remember way back to the beginning of the course, when we fixed the bug in the function that checks the disk space? The one that was doing gigabyte conversion twice? Part of the reason why our code was so buggy, was that we were passing numbers around without saying what those numbers were for. We could have made our code clearer by renaming our min_absolute parameter to min_gb. So that it's obvious that the function expects gigabytes. With that, we've clarified the code of the function. Another way we can make the code invocation clearer, we can use the name of the parameters in the call to the function. By using the names of the parameters, our invocation is clear, and we can even alter the order of the values and our code would still work.
+
+All right, we've made the change. Let's stage it and commit it as usual. We'll first use **git add -p** to look at the changes we made and accept them. Then we'll create a commit message to show that we've renamed min absolute to min_ gb, and that we're using parameter names for the invocation. We've made our change, staged it, and committed it.We should be ready to push into the remote repo, except now we have a collaborator also making changes. Let's see what happens when we try running git push.
+
+And it failed. Can you work out what went wrong here? There are a few hints. When we tried to push, Git rejected our change, that's because the remote repository contains changes that we don't have in our local branch that Git can't fast-forward. As usual, Git gives us some helpful information along with the error message, especially the part about integrating remote changes with **git pull**. This means we need to sync our local remote branch with the remote repository before we can push. We learned earlier that we can do this with **git pull**. Let's do this now. Git tried to automatically merge the local and remote changes to all_checks.py, but found a conflict.
+
+Let's first look at the tree of commits on all branches as represented by **git log --graph --oneline --all**. This graph shows us the different commits and positions in the tree. We can see the master branch, the origin/master branch, and the experimental branch. The graph indicates that our current commit and the commit in the origin/master branch share a common ancestor, but they don't follow one another. This means that we'll need to do a _three-way merge_.
+
+To do this, let's look at the actual changes in that commit by running **git log -p origin/master**. So our colleague decide to reorder the conditional clauses in the function to match the order that the parameters are passed to the function. They happen to change in the same line that we changed when we renamed the min_gb variable, which caused the conflict that Git couldn't resolve.
+
+Let's fix it by editing the file to remove the conflict. We see that the problem occurred in the conditional. On the first line, we see our change, where min_absolute was renamed to min_gb. In the second line, we see the old variable names, with the checks done in a different order. We need to decide what to do to this. For example, we can keep the new order, but use min_gb. One thing to notice is that _Git will try to do all possible automatic merges_ and only leave manual conflicts for us to resolve when the automatic merge fails.
+
+In this case, we can see that the other changes we made were merged successfully without intervention. Only the change that happened in the same line of the file needed our input. We fixed the conflict here, and the file is short enough that we can very quickly check that there are no other conflicts. For larger files, it might make sense to search for the _conflict markers_, \>\>\>, in the whole file. This lets us check that there are no unresolved conflicts left.
+
+Nice, now that we fixed the conflict, you can finish the merge. We need to **add** the all_checks.py file, and then call **git commit** to finish the merge. But first, we're going to save and close. The editor message shows that it's performing a merge of the remote branch with the local branch. We can add extra information to this message. For example, we can say that we fixed the conditional in the check_disk_usage function to use the new variable name and the new order.
+
+Our merge is finally ready, we can try pushing to the remote again. Yes, after fixing the conflict, we were able to push our work to the remote repo. Let's look at the commit history of the master branch now, by calling **git log --graph --oneline**. We see that the latest commit is the merge, followed by the two commits that caused the merge conflict, which are on split paths in our graph. As we called out before, when Git needs to do a three-way merge, we end up with a separate commit for merging the branches back into the main tree.
+
+Now we know how to successfully complete a _pull_, _merge_, and _push_ _cycle_, even when it means doing some manual merges.
+
+This was a complex exercise, and it's okay if some things still seem a bit scary. We all felt panic the first time we encountered a merge conflict. But don't worry, it gets easier with practice. To practice dealing with merge conflicts, you want to have two copies of your repository in separate directories, then try editing the same lines of the same files. You can follow along with the examples shown here, or come up with your own. Up next, we'll talk about using branches with a remote repositories.
+
+#### Pushing Remote Branches
+
+As we called up before, when using Git to work on a _new feature_ or a _big refactor_ of some kind, it's recommended best practice to create separate branches. There are many advantages to doing this.
+
+- For example, it might take you a while to finish a new feature and in the meantime, there could be a critical bug that needs fixing in the main branch of the code. By having separate branches, you can fix the bug in the main branch, release a new version and then go back to working on your feature without having to integrate your code before it's ready.
+
+- Another advantage of working in separate branches is that you could even release two or more versions out of the same tree. One being the stable version and the other being the beta version. That way, any disruptive changes can be tested on a few users or computers before they're fully released.
+
+So let's start a new branch to work on a small refactor of our code. You could create the branch first, and then check it out or we can just create it and check it out with **git checkout-b and the new branch name**. We're ready to start working on our refactor. Let's open up the file, and have a look at it.
+
+We've noticed there's a _pattern of repeating code_ in our all_checks.py script. For each check that we call, we check if it returns true or false. When it returns true, we print an error and exit. If we add a new check, we'll have to repeat this pattern again.
+
+On top of the repeated pattern, if a computer has more than one problem, only the error for the first one will be printed. So let's _refactor_ our code to _avoid the duplication_ and _print all relevant errors_. We'll do it step-by-step making each commit self-contained.
+
+- The first thing we'll do is create a function that checks if the disk is full without any parameters so it matches the pattern. This new wrapper function will pass the right parameters for us. Then we'll change the code to call this function instead. We'll also change the error message to something more accurate. We've changed the function, let's save and test our code. Awesome, it's working. Let's commit the change. We're ready for the next step in our refactor.
+
+- To _avoid code repetition_, we'll create a _list containing the names of the functions that we want to call_, and then message to print if the function succeeds. After that, we'll add a for loop that iterates over the list of checks and messages. Then we'll call check, and if the return value is true, print the message and exit with an error code of one. After doing that we can delete the old code that we've already replaced. With this change made, let's save once again and tests that our script still runs. Yes, it's still working. Let's commit the new change. By now, we've re-factored our code to avoid code duplication. The current code does the same as the old code. Once we're ready to add new checks, we can do that by adding the function name and error message to the list of checks.
+
+- The last change that we want to do is to let our script show more than one message if more than one check is failing. To do that, we add a Boolean variable called "Everything Ok" before the iteration. Changes variable to false if one of the checks finds a problem, and then exit with an error code only after having done all the checks. All right, one last time. Let's save and test to see if this works. Let's now do a file commit for this change.
+
+With that, we have three commits and our refactor branch. Before we merge any of this into the master branch, we want to push this into the remote repo, so that our collaborators can view the code, test it, and let us know if it's ready for merging. The first time we push a branch to a remote repo, we need to add a few more parameters to the **git push** command. We'll need to add the **-u** flag to create the branch upstream, which is another way of referring to remote repositories. We'll also have to say that _we want to push this to the origin repo, and that we're pushing the refactor branch_.
+
+Whoa, that's a lot of information that Git's giving us. It's telling us if we want, we can create a pull request. We'll talk more about pull requests later on. For now, we're happy to see that new refactor branch has been created in the remote repo, which is what we wanted. This was a super complex example that incorporated a lot of concepts that we've learned about in this course, and also carried out some interesting Python concepts.
+
+So now that our branch is pushed to the remote repo, it can be reviewed by our collaborators. Assuming they say it's okay, how should this branch get merged back into the master branch?
