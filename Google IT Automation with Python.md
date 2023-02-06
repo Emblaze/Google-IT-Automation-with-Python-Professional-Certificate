@@ -1645,9 +1645,9 @@ Check out the following links for more information:
 
 - [Reading and Writing CSV Files in Python](https://realpython.com/python-csv/)
 
-## Regular Expressions
+### Regular Expressions
 
-### Introduction to Regular Expressions
+#### Introduction to Regular Expressions
 
 #### What are regular expressions?
 
@@ -2223,9 +2223,9 @@ Check out the following link for more information:
 
 - [Regex Cross­word](https://regexcrossword.com/)
 
-## Managing Data and Processes
+### Managing Data and Processes
 
-### Data Streams
+#### Data Streams
 
 #### Reading Data interactively
 
@@ -2552,9 +2552,9 @@ with open(logfile) as f:
 print(usernames)
 ```
 
-## Testing in Python
+### Testing in Python
 
-### Simple Tests
+#### Simple Tests
 
 #### What is testing?
 
@@ -2923,9 +2923,9 @@ unittest.main()
 
 See [Handling ErrorsCheat-Sheet](Handling Errors Cheat-Sheet.html)
 
-## Bash Scripting
+### Bash Scripting
 
-### Basic Linux Commands
+#### Basic Linux Commands
 
 We've already used a bunch of Linux commands by now. So hopefully these commands aren't too foreign. You may remember that **echo** is a command used to print messages to the screen, **cat** is command for showing contents of files, **ls** is the command to list contents of a directory, **chmod** is a command to change permissions of a file, and so on. As we call that before, a lot of these commands come from Unix. Back in the 70s, when designing how these programs should behave, the philosophy was **that they should do one thing and do it very well**. Which means we have a lot of commands, each for doing specific thing.
 
@@ -2944,7 +2944,7 @@ out by the names of all the files in our directory. We can delete a directory us
 
 That was a quick overview of some of the commands we have in Linux to operate with files and directories. There are tons of other commands to talk about. Make sure to investigate and practice using all on your own. Remember that reading the documentation, for any given system command, can help you learn more about what it does. On Unix-based systems, this documentation can usually be found in manual or man pages using the **man** command.
 
-### Redirecting Streams
+#### Redirecting Streams
 
 So now that we've covered a few basic Linux commands, let's talk more about what we can do with I/O streams and Bash. We talked earlier about the standard I/O streams. By default, the input is provided by the keyboard at the text terminal and the output and error are shown on the screen. This is the case not only for our Python scripts, but for all system commands.
 
@@ -3499,7 +3499,7 @@ The output of your Python script should be a couple of CSV files. Each of them c
 
 We recommend that you research, plan and even write the pieces of code all before starting the actual lab. Good luck. You've got it!
 
-## Introduction to Git and GitHub
+## 3. Introduction to Git and GitHub
 
 ### Before Version Control
 
@@ -4410,3 +4410,93 @@ Over the past few sections, we've looked at a lot of things we can do with Git a
 - Early in our Git journey, we mentioned that **having good commit messages is important**. It's already important when you're working alone since good commit messages help the future you understand what's going on, but it's even more important when you're collaborating with others since it gives your collaborators more context on why you made the change and can help them understand how to solve conflicts when necessary. So commit to being a good collaborator and remember to add those commit messages.
 
 Whenever we collaborate with others, there's bound to be some merge conflicts and they can sure be a pain. I've definitely been frustrated when encountering complex merge conflicts and trying to debug the results. If I'm dealing with this type of merge conflict, my **first step is to work backward and disable everything I've done and then see if the source still works, then I slowly add pieces of code until I hit the problem**. That usually gets me through the tough times and has definitely highlighted some weird occurrences.
+
+#### Module 3 Review
+
+Before we start, congratulations on making it all the way here. We've covered some complex subjects and you're showing a lot of dedication by making it to this point. Let's review what we've learned in the last few sections about working with remote in Git.
+
+1. First, we talked about what GitHub is and what the basic interaction with the service looks like.
+
+2. Then we discussed how remote repositories and the distributed nature of Git lets lots of contributors develop a project independently, and at the same time.
+
+3. We then learned how to pull data down from remote repositories, push our local changes to them, and also resolve conflicts that pop-up when our local and remote branches are out of sync.
+
+4. We wrapped up by looking at a complex example of using a feature branch for a refactor of our code and using rebase to make sure that our history stayed linear. That was a lot of info and you might be feeling a bit overwhelmed. It's okay to feel that way. Learning how to use a VCS like Git can be difficult but the rewards are worth the effort. Remember that version control systems give you access to the history of any scripting project, fostering collaboration, and accountability, and making it possible to do fast rollbacks. Using and understanding of VCS is a valuable and versatile skill for every IT specialist and one that will set you apart from the crowd.
+
+### Collaboration
+
+#### Intro to Collaboration
+
+Over the past modules, we've learned a whole about how to interact with Git. We've covered how to use it both locally and remotely. We've seen how to rollback bad changes, solve conflicts when collaborating with others, and a bunch of other little nifty things.
+
+In this module, we'll keep exploring the collaboration tools available in Git. We'll learn about tools that allow us to send changes to projects that we aren't a member of, help us improve the quality of our code, and let us track our work better. Some of these tools will be specific to GitHub, but most of the Git repository hosting services have similar tools. So the concepts will still apply if you decide to use a different platform.
+
+In recent years, GitHub has become a super popular platform for collaboration across many projects. It's used heavily for open-source projects. These are projects that allow anyone to use, copy, and modify their code. Having the code published online means that anybody in the world can learn from what the project is doing, and even collaborate on fixes and extra features. It also helps us learn from each other, because we can look at how others have solved the problem that we're tackling.
+
+If you're trying to learn a new technology, it's a great idea to practice your skills by contributing to a project that uses that technology. To do that, you'll need to know how to interact with the project. This includes how to send bug fixes, how to make sure that your fixes are applied, and even how to figure out which fixes are needed.
+
+#### A Simple Pull Request on GitHub
+
+As we called out, we can use GitHub to look at other people's code and collaborate with them. Let's see this in action by having to look at one of the projects from our colleague. Our colleague has created the project to include all validation functions. Let's have a look at the validations.py file. We can see the code of a function that validates username. But, if you look closely at the functions documentation, you might notice that there's a typo. We can improve our colleague's code by fixing that typo, Let's do that.
+
+We'll click on the little pencil icon which let's us edit the file directly from the web interface. We're trying to edit a file in a project that we don't have a right access to. GitHub tells us it created a fork of this project for us, which we can commit our changes to. And if we submit changes to this file, it will create a new branch so that we can send a pull request. But what exactly is a fork? **Forking is a way of creating a copy of the given repository so that it belongs to our user**. In other words, our user will be able to push changes to the forked copy, even when we can't push changes to the other repo.
+
+When collaborating on projects hosted on GitHub, the typical workflow is, first, create a fork of the repo, and then work on that local fork. A forked repo is just like a normal repo, except Github knows which repo it forked from. So we can eventually merge our changes back into the main repo by creating a _pull request_. **A pull request is a commit or series of commits that you send to the owner of the repository so that they incorporate it into their tree**.
+
+This is a typical way of working on GitHub, because in most projects, only a few people have commit rights to the repo. But anybody can suggest patches, bug fixes or even new features by sending pull requests that people with commit access can then apply. Typically, the owners of the repo will review the changes before merging them, checking that they match the development guidelines for the project and that the license is valid and so on. Let's fix the typo in the file to see what the pull request looks like.
+
+Once we're done making changes to the file, we can make a change proposal, by scrolling down and filling in the description of the change. In this case, we fix the typo in the function documentation. Clicking on the Proposed file change button, we'll create a commit in our forked repo, so that we can send the change to our colleague. Let's do that now.
+
+We've created a commit on our forked repo. But we haven't yet created the pull request that will send the changes to the owner of the original repo. On this screen, we can see a lot of information about our change. We can see what repositories and branches are involved in the creation of the pull request. We can also see that GitHub automatically created a branch called _patch-1_ for us. And that our change can automatically be merged, yay, no conflicts.
+
+This window also lets us review the change before we create an actual pull request. Once we're ready, we just click the _Create pull request button_. This opens a text box where we can enter comments about our change. In this case, a change is really simple, we just fixed the typo so there's nothing extra to add. If we were suggesting a more complex change, we could use this text box to provide more context. The checkbox at the bottom lets us allow edits from maintainers. This can be useful for example, if by the time a project maintainer gets around the merging or change, there's been more commits and our change needs rebasing. By allowing edits, the maintainer can do it themselves instead of asking us to do it, less work, yes please. Okay, we're ready, let's click Create pull request. Cool, we've created a pull request with our change. Our colleague can now look at it and decide whether they want to merge it to the project or not.
+
+In this section, we checked out the simplest way of making pull requests, which is doing them directly through the GitHub interface. By using this workflow, you can already start contributing to projects on GitHub.
+
+#### The Typical Pull Request Workflow on GitHub
+
+In our last section, we saw how to create pull request directly on GitHub by using the web interface to edit files. This works for simple changes like fixing typos or adding documentation to a function, but it's not so great for making larger changes that we want to preview or test. To do that, we'll normally have a local copy of the repo in our computer and work with the forked repo as a remote. We'd need to use all the Git commands that we've learned up till now to do this. Let's check out this process by creating a fork of another repo.
+
+On top of the validations repo, our colleague has created a rearrange repo, and we want to help them out. We'll go to the rearranged repo and create a fork by pressing the Fork button. It takes a few seconds to create a copy of the repo for our user. The copy will contain the current state of the repo including files and commit history. Once the fork is created, we're shown a page that corresponds to the same repo name, but it's under our user. See how it shows that it's a forked repo by stating the original repo under the name.
+
+All right. We've created a forked version of the repo on GitHub. We can now get a local copy of the repo on our computer by copying the URL and then calling the **git clone** command with it. We now have a new directory called rearrange with the contents of the repo. We can look at the contents by changing into that directory enlisting all files. We can look at the commit history using our old friend **git log**. Now that we have a local copy of the repo, we can make any changes we'd like to it. For example, this project doesn't currently have a README.md file. Let's improve the documentation by creating that.
+
+To do that, we'll create a new branch called Add README. Do you remember how to create new branches? We do it by running **git checkout -b add-readme**. We can now start editing the README.md file. The MD extension indicates that we're using _Markdown_, which is a lightweight markup language. We can use it to write plain text files that are then formatted following some simple rules. In this case, we'll start with a title with the module's name and a brief description that says it's used to rearrange names. Our README file is small, but it'll do for now, let's save it and commit it. Now, to push the change to our forked repo, we need to create the corresponding remote branch. Do you remember the command for that? Yes. It's **git push -u origin add-readme**. So when we push the change to the new branch, we got a message that we can create a pull request if we want to. We'll do that in a minute. First, let's check out how our file looks when rendered. Yes, our README file rendered successfully. We're ready to create a pull request for our change.
+
+To do that, let's look at the top of the Project page. GitHub tells us that our branch is ahead of the original repositories master branch by one commit, which is the commit we just made. We can start our pull requests by clicking on the _Pull Request link_. As we called out, _before creating a pull request, it's always important to check that the code will merge successfully_. GitHub tells us that our change can be automatically merged, which is great news. If this wasn't the case, we'd need to rebase our change against the current branch of the original repo so that it could be merged. The window is showing us the TextBox where we can enter comments about our change. As we mentioned before, we should use this to explain why we're creating this pull request. This lets the person that will approve the change understand why they should merge the change into the main tree. Are we fixing a bug? This is a new feature to let the project support more use cases? How will the project benefit from including our change? Whatever info might be useful to the approver, record it here. We can also use this box to explain how the change was tested. _If the project includes automatic test infrastructure, our pull request should include a tests for our changes and we can state that all test still pass_. But if there's no automatic testing, then we can use this box to explain how we tested the change manually. In this case, we've just added a README file that the project was missing before. So we'll just say we're adding a README file that was missing for the project. _We should also check that the change we're sending looks correct_. It's always a good idea to double-check that we're sending the right change. To do that, let's look at the _diff_ that appears at the bottom of the page. Yes, that's exactly what we want. All right. We're ready. Let's click the _Create Pull Request button_. Awesome. We've created our second pull request. The number next to the name of our pull request is the identifier that's used in GitHub to track issues and pull requests. We can use this identifying number to access this pull request anytime we need it.
+
+_But why would we need to access a pull request after we send it? It's pretty common for project maintainers to come back with questions, comments, or even ask us to fix our pull requests_. Imagine you've just finished preparing a pull request for a great new feature, and you get a comment saying that it's missing some documentation. What would you do?
+
+#### Updating an Existing Pull Request
+
+When we send a pull request, it's pretty common to receive some comments from the project maintainers asking for some improvements.
+
+The improvement could be to add documentation or tests, or maybe we need to make sure that change works for all cases or that it follows the project style guidelines. There's nothing wrong with getting these comments, _it actually shows the project maintainers are interested in our change_. To get our change approved, it's important that you address the comments. So if we're asked to add documentation for example, we go and do it.
+
+So back to our change, looks like we got a comment from one of our colleagues. We got a comment saying that our README was too short and they'd like us to add an example. To address this comment, will add more details to our file. We'll start by explaining that the function rearranges LastName, FirstName into FirstName LastName and then we'll add an example. We'll say that calling rearrange name with Turing, Alan as a parameter, will return _**Alan Turing**_. We fleshed out the README file a bit. Now we can add our changes and commit them to the repo as usual. Let's run **git commit** and pass a commit message saying that we've added more information to the README, and after that, we'll push the change to the repo.
+
+Now that we've pushed our change back to the repo, let's check our pull request in GitHub. In the Commit's tab, we can see our two commits. Our commit now shows up as a part of the same pull request. _It's important to notice here that we just pushed our commit to the same branch as before and GitHub automatically added it to the pull request. If we wanted to create a separate pull request, we would need to create a new branch instead_.
+
+If we go to the Files Change tab, we can see all files affected by the pull request, no matter which commit they were changed in. Whenever we look at the diff generated by a commit or a chain of commits, GitHub will show a color diff for the changes that we've made. It will use green for new lines and red for lines that were deleted. If only a part of the line changed, it will highlight that specific part of the line.
+
+In this case, it's a new file, so all the lines are additions. Check out how we see only one file even when there are two separate commits. What we're seeing is the difference between our repo and the original repo we created the pull request for. You can also click on the preview icon and show the rendered markdown contents. Github renders our file and highlights the changes.
+
+_**Keep in mind that each project in GitHub may work slightly differently**_. Some projects may ask you to have only one commit in your pull requests, other projects may ask you to rebase against the latest master branch when your pull request is ready to be merged back into the main tree. Github allows projects to set their contribution guidelines. You'll find a link to them whenever you create a new pull request or issue in a project. So make sure you've read these guidelines and that your pull requests match them.
+
+In this section, we saw how to update our pull requests by doing new commits in our local Git repository and pushing them to the remote repository. We'd seen before how to use the Git web interface to create new pull requests and we can use this interface to update a pull request. This can be handy when the change that we want to make is small like fixing a typo or adding an extra sentence to the documentation.
+
+#### Squashing Changes
+
+As we've caught up before, you shouldn't rewrite history when the commits have been published. That's because someone else may have already synchronized that repo with those contents. This rule is waived with pull requests, since it's usually only you who have cloned your fork of the repository. So say the project maintainers ask us to create a single commit that includes both changes and a more detailed description than the one we submitted. We can do that by using the interactive version of the rebase command called rebase-i, as the parameter to the command will pass the master branch. So we'll call git rebase-i master. When we call an interactive rebase, a text editor opens with a list of all the selected commits from the oldest to the most recent. By changing the first word of each line, we can select what we want to do with the commits. The default action here is pick which takes the commits and rebases them against the branch we selected. This is what we do with git rebase in an earlier video when we called it without the dash i flag. But now we can change the action to something else. The comments in the file tells all the different commands we can use for our commits. For example, we can reword a commit message keeping the changes as they are but modifying the commit message. We can also edit the commit to add or remove changes from it. We have two options for combining commits, squash and fix up. In both cases, the contents of the selected commit are merged into the previous commit in the list. The difference is what happens with the commit messages. When we choose squash, the commit messages are added together and an editor opens up to let us make any necessary changes. When we choose fix up, the commit message for that commit is discarded. For our example, we want to use squash so that we can combine both commits but also modify the commit description. So let's change the pick command in the second line to squash it into the first one, then we'll save and exit the editor as usual. Once we've told git that we want to squash a commit unto the one before it, we're given another file to edit. In this case, it's the combined commit message. As usual, git shows us some helpful information in the comments including which files are modified and what commits are being combined. We want to improve the description by adding more info about our change. Let's add we're including an example use case. All right. Now that our commit contains the right information, we can save and exit as usual. Yes, our rebase worked. Let's check the output of git show to see the latest commit and the changes in it. Success, we got exactly what we wanted here, our two changes have been combined into one that contains the whole new file and the right commit message. Before we try to push this change to our repo, let's call git status to check the info that git gives us about the current state. Git tells us that our local branch has one commit, which is the rebase we just did. It also tells us that the origin/add-readme branch has two commits. These are the two commits we had already pushed to the repo. Let's look at the graph history of our commits by calling git log --graph --one line --all for all branches, and -4 for just the latest four commits. We can see that the two commits pushed to the origin/add-readme branch show up in a different path than the commit that's currently in our local add-readme branch. This is expected whenever we do a rebase because the old commits are in the remote repo and we have a different commit in our local repo. What do you think will happen when we call git push? Let's try that out. As we expected, git doesn't like us trying to push our change because it can't be fast-forwarded. But in this case, we don't want to create a merge. Instead, we want to replace the old commits with the new one. To do this, we will call git push -f to force git to push the current snapshot into the repo as is. This time, our push completed successfully. Git tells us here that we forced an update. Let's look once again our history graph by running git log -- graph --one line --all -4. This time, it's just one commit on top of master. The divergence is gone. Now let's look at the contents of the pull request. Success. We've managed to combine both are commits into one by using the interactive version of git rebase. Nice job in making it through these first videos. You now know how to create a pull request on GitHub, how to update a pull request, and squash changes. These tools are all super-helpful when using GitHub. Up next, you'll find a reference of the commands we used and links to where you find more information. After that, there's a quick quiz to check that everything is making sense.
+
+#### Git Fork and Pull Request Cheat-Sheet
+
+Check out the following link for more information:
+
+- <https://help.github.com/en/articles/about-pull-request-merges>
+
+### Code Reviews
+
+### Managing Projects
+
+\#ITCert #Python #GrowWithGoogle
