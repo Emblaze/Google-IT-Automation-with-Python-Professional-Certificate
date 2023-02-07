@@ -4487,7 +4487,25 @@ In this section, we saw how to update our pull requests by doing new commits in 
 
 #### Squashing Changes
 
-As we've caught up before, you shouldn't rewrite history when the commits have been published. That's because someone else may have already synchronized that repo with those contents. This rule is waived with pull requests, since it's usually only you who have cloned your fork of the repository. So say the project maintainers ask us to create a single commit that includes both changes and a more detailed description than the one we submitted. We can do that by using the interactive version of the rebase command called rebase-i, as the parameter to the command will pass the master branch. So we'll call git rebase-i master. When we call an interactive rebase, a text editor opens with a list of all the selected commits from the oldest to the most recent. By changing the first word of each line, we can select what we want to do with the commits. The default action here is pick which takes the commits and rebases them against the branch we selected. This is what we do with git rebase in an earlier video when we called it without the dash i flag. But now we can change the action to something else. The comments in the file tells all the different commands we can use for our commits. For example, we can reword a commit message keeping the changes as they are but modifying the commit message. We can also edit the commit to add or remove changes from it. We have two options for combining commits, squash and fix up. In both cases, the contents of the selected commit are merged into the previous commit in the list. The difference is what happens with the commit messages. When we choose squash, the commit messages are added together and an editor opens up to let us make any necessary changes. When we choose fix up, the commit message for that commit is discarded. For our example, we want to use squash so that we can combine both commits but also modify the commit description. So let's change the pick command in the second line to squash it into the first one, then we'll save and exit the editor as usual. Once we've told git that we want to squash a commit unto the one before it, we're given another file to edit. In this case, it's the combined commit message. As usual, git shows us some helpful information in the comments including which files are modified and what commits are being combined. We want to improve the description by adding more info about our change. Let's add we're including an example use case. All right. Now that our commit contains the right information, we can save and exit as usual. Yes, our rebase worked. Let's check the output of git show to see the latest commit and the changes in it. Success, we got exactly what we wanted here, our two changes have been combined into one that contains the whole new file and the right commit message. Before we try to push this change to our repo, let's call git status to check the info that git gives us about the current state. Git tells us that our local branch has one commit, which is the rebase we just did. It also tells us that the origin/add-readme branch has two commits. These are the two commits we had already pushed to the repo. Let's look at the graph history of our commits by calling git log --graph --one line --all for all branches, and -4 for just the latest four commits. We can see that the two commits pushed to the origin/add-readme branch show up in a different path than the commit that's currently in our local add-readme branch. This is expected whenever we do a rebase because the old commits are in the remote repo and we have a different commit in our local repo. What do you think will happen when we call git push? Let's try that out. As we expected, git doesn't like us trying to push our change because it can't be fast-forwarded. But in this case, we don't want to create a merge. Instead, we want to replace the old commits with the new one. To do this, we will call git push -f to force git to push the current snapshot into the repo as is. This time, our push completed successfully. Git tells us here that we forced an update. Let's look once again our history graph by running git log -- graph --one line --all -4. This time, it's just one commit on top of master. The divergence is gone. Now let's look at the contents of the pull request. Success. We've managed to combine both are commits into one by using the interactive version of git rebase. Nice job in making it through these first videos. You now know how to create a pull request on GitHub, how to update a pull request, and squash changes. These tools are all super-helpful when using GitHub. Up next, you'll find a reference of the commands we used and links to where you find more information. After that, there's a quick quiz to check that everything is making sense.
+As we've caught up before, _you shouldn't rewrite history when the commits have been published_. That's because someone else may have already synchronized that repo with those contents. _This rule is waived with pull requests, since it's usually only you who have cloned your fork of the repository_.
+
+So say the project maintainers ask us to create a single commit that includes both changes and a more detailed description than the one we submitted. We can do that by using the interactive version of the rebase command called **git rebase -i**, and as the parameter to the command we will pass the master branch. So we'll call **git rebase-i master**.
+
+When we call an interactive rebase, a text editor opens with a list of all the selected commits from the oldest to the most recent. _By changing the first word of each line, we can select what we want to do with the commits_. The default action here is _**pick**_ which takes the commits and rebases them against the branch we selected. This is what we do with git rebase in an earlier section when we called it without the  -i flag. But now we can change the action to something else.
+
+The comments in the file tells all the different commands we can use for our commits. For example, we can reword a commit message keeping the changes as they are but modifying the commit message. We can also edit the commit to add or remove changes from it. We have two options for combining commits, _**squash**_ and _**fix up**_. In both cases, _the contents of the selected commit are merged into the previous commit in the list_. The difference is what happens with the commit messages.
+
+- When we choose _**squash**_, _the commit messages are added together and an editor opens up to let us make any necessary changes_.
+
+- When we choose _**fix up**_, _the commit message for that commit is discarded_.
+
+For our example, we want to use squash so that we can combine both commits but also modify the commit description. So let's change the _pick_ command in the second line to _squash_ it into the first one, then we'll save and exit the editor as usual. Once we've told git that we want to sq_uash a commit unto the one before it, we're given another file to edit. In this case, it's the _combined commit message_. As usual, git shows us some helpful information in the comments including which files are modified and what commits are being combined. We want to improve the description by adding more info about our change. Let's add we're including an example use case. All right. Now that our commit contains the right information, we can save and exit as usual.
+
+Let's check the output of **git show** to see the latest commit and the changes in it. Success, we got exactly what we wanted here, our two changes have been combined into one that contains the whole new file and the right commit message.
+
+Before we try to _**push**_ this change to our repo, let's call **git status** to check the info that git gives us about the current state. Git tells us that our local branch has one commit, which is the rebase we just did. It also tells us that the _origin/add-readme branch_ has two commits. These are the two commits we had already pushed to the repo. Let's look at the graph history of our commits by calling **git log --graph --one line --all** for all branches, and **-4** for just the latest four commits. We can see that the two commits pushed to the origin/add-readme branch show up in a different path than the commit that's currently in our local add-readme branch. _This is expected whenever we do a rebase because the old commits are in the remote repo and we have a different commit in our local repo_. What do you think will happen when we call git push? Let's try that out.
+
+As we expected, git doesn't like us trying to push our change because it can't be fast-forwarded. But in this case, we don't want to create a merge. Instead, we want to replace the old commits with the new one. To do this, we will call **git push -f** to force git to push the current snapshot into the repo as is. This time, our push completed successfully. Git tells us here that we forced an update.Let's look once again our history graph by running **git log -- graph --one line --all -4**. This time, it's just one commit on top of master. The divergence is gone. Now let's look at the contents of the pull request. Success. We've managed to combine both are commits into one by using the interactive version of git rebase. You now know how to create a pull request on GitHub, how to update a pull request, and squash changes. These tools are all super-helpful when using GitHub.
 
 #### Git Fork and Pull Request Cheat-Sheet
 
@@ -4497,6 +4515,82 @@ Check out the following link for more information:
 
 ### Code Reviews
 
+#### What are code reviews?
+
+GitHub and other repository hosting services offer tools for doing _**code reviews**_ on their platform. And while this is called _code reviews_, we can actually use the same tool and process to do reviews of any text file including **configuration** and **documentation**.
+
+**Doing a code review means going through someone else's code, documentation or configuration and checking that it all makes sense and follows the expected patterns**.
+
+The goal of a _code review_ is to improve the project by making sure that changes are high quality. It also helps us make sure that the contents are easy to understand, that the style is consistent with the overall project, and that we don't forget any important cases.
+
+- Reviews increase the number of eyes that have checked the code. This increases the code quality and reduces the amount of bugs. It doesn't mean that there'll be no bugs, but at least the most obvious bugs will be caught.
+
+- Also, this helps spread knowledge since both the code writers and the code reviewers now know what the code is doing. When we work in the same office as our teammates, we can do reviews in person by looking together at the changes and discussing how the contents fit together. But when the person that we're working with is in a different office or time zone We're better off using a code review tool. Code review tools let us comment on someone else's code. These let us leave feedback on _how they could make their code better_.
+
+- Common code issues are unclear names that makes the code hard to understand,
+
+- Forgetting to add a test, or forgetting to handle a specific condition.
+
+- If we're writing documentation, our reviewer can help us catch typos and things that aren't totally clear.
+
+On platforms like Github, it's common for projects to only requires reviews for people that don't have commit access while the project maintainers can commit directly. But doing code reviews improves the code's overall quality. Today, some open source projects and lots of companies require code reviews for everybody. This isn't because they don't trust them, but because they want the highest quality code. And code reviews are how they get there.
+
+O**ne thing to always remember, code reviews are not about us being good or bad coders, they're about making our code better**. _And not only that specific review, but in general_. By getting feedback, we can keep improving our code techniques. And by reviewing other people's code, we can also learn new and different ways of achieving results.
+
+Like everybody else after toiling for hours on a problem and finally solving it, all I want to do is submit my code and be done with it. But this rarely happens. Code reviews usually send me back to the drawing board with small errors and nitpicks, but that's a good thing. These code reviews point out things that we might have missed along the way and ensure that our code makes sense to others.
+
+#### The Code Review Workflow
+
+In our last section, we explained what code reviews are and how they can make our code better. Now, we'll check out a typical code review using a reviewing tool.
+
+Imagine we've just finished a bunch of code changes, now, we'll ask a reviewer to look at our code. The reviewer might say that everything is okay and our changes approved, but usually they'll find something that needs improving. So they'll add comments to our changes explaining what needs to be fixed and how. When we get the review comments will address them by fixing our typos, adding any missing tests and so on. After addressing a comment, we can mark it as resolved so that we know it's been taken care of. If there's something that we aren't sure how to do or we think a different approach might be better, we can reply to the comment and ask our reviewer for more information without marking the comment as resolved. Once all comments have been resolved and our viewer is satisfied with the results, they'll approve the change and we'll be able to merge it.
+
+You may be wondering, what are all of these comments that I receive? There's a wide range of things your reviewer might have to say about your code.
+
+- Sometimes, you might have forgotten to take into account something important and you'll need to do significant work to fix it.
+
+- Sometimes, your reviewer might point out something small, that's not really critical. And the comment is mostly a suggestion for making the code better. These comments are usually prefixed, saying that it's a _**Nit**_.
+
+Whatever it is, it's important that you take the time to understand what the comment is and what you need to do to address it.
+
+For example, if you've written a piece of code and your reviewer asks you to explain why or how the code is doing something, it might be tempting to just answer their question in the comment and mark it as resolved.
+
+But this isn't a great idea, because only the reviewer gets to see your answer. Instead, it's better to take this as an opportunity to make the code clearer. For example, you could do this by using better variable names or splitting a large piece of code into smaller functions. On top of that, you can add comments to the code and documentation to your functions to make sure that the how and why are clearly explained. It's common for code reviews to include several comments about the style of the code.
+
+To avoid a lot of back and forth, it's a good idea to refer to a style guide that explains the preferred coding style for the project. For example, lots of Python projects, use the _**PEP8**_ style guide. If the project you're contributing to doesn't include a style guide, make sure that you ask for one.
+
+There are a bunch of code reviewing systems out there. And while they all follow the same patterns, they don't all work exactly the same way. In some code reviewing tools, you'll need one of the project maintainers to approve your code before it's submitted. In other tools, you'll just need to get a couple +1s from contributors to the project before you can submit. The goal is to always ensure that your code has been reviewed by people who are familiar with the project, so that it's ready to be submitted. Can you think of a project you've worked on in the past where code reviews could have been helpful? Maybe you worked as a part of a team and had trouble making sure that everyone agreed on how things should be done. Or maybe you were learning how to use a new tool and you would have benefited from a second pair of eyes on your work. No matter how simple or complex a project is, it can always be improved with good code reviews.
+
+#### How to Use Code Reviews in GitHub
+
+Up till now, we've talked about the general process of doing code reviews. This process applies to any platform with code reviewing tools. Now, let's check out how this process looks on GitHub, specifically. Remember, a while back in this module, we created a pull request that added a read me file. Conveniently, our colleague just replied with a few comments. Let's have a look.
+
+The code review has one overall comment, and line by line, comments, highlighting the things that we need to get done. We can view all changes requested for the file we created by clicking on the view changes button. Our reviewer made three comments about our file. The first one is asking us to add a period at the end of the sentence. The second one asks us to add another hashtag which will make the title render and a smaller font. The last one will require a bit more work since it's asking us to include a couple more examples. Let's fix these. We'll add a period at the end of the second sentence, and then add a second hashtag before the example title, and finally, add a few more examples. To do that, we'll use the star character, which is another feature of the Markdown language that lets us easily create bullet points. So we'll add a couple of more lines with the same format, and say that Hopper, Grace M. turns into Grace M. Hopper, and that Voltaire stays as Voltaire. All right. We've addressed all the comments in our code review. Let's save our file and then commit the changes.
+
+Since we want this change to be a part of the previous commit, we'll call **git commit -a** with the **--amend** flag, which will edit the original commit. Once we've done that, let's call **git status** to see what Git has to say about our repo Just like before, we see that our change has diverged from the origin slash master branch. You might remember that **git commit --amend** modifies commits. _So it's not safe to do with commits that have been pushed to the repo_. Using amend is pretty much the same as creating a new commit, and then using an interactive rebase to fix up a change. So, the commit gets replaced by a completely new commit with a completely different commit ID. This means that to push it, we'll need to use the -f flag again. _Remember that forcing pushes is fine for pull request branches because nobody else should have cloned it_. But **this isn't something that we want to do with public repos**.
+
+All right. We've done what our colleague asked. Let's now go back to look at the pull request and resolve the comments. See that comment that says outdated, that's because we've pushed a new version since we've made the change. But, since we've taken care of their request, we can ignore the outdated comment and just resolve the conversation. Cool, we've addressed all the comments. We can leave a message in our conversation to let our reviewer know that we've resolved all the comments and ask them to take another look. Our reviewer can now check out the new changes and approve them if they're satisfied. As with lots of other topics we've covered, making the most out of the code review process will require some practice. It's great to have some tips but in the end we need to learn by experience. So don't be afraid to practice practice practice.
+
+#### More Information on Code Reviews
+
+Check out the following links for more information:
+
+- <http://google.github.io/styleguide/>
+
+- <https://help.github.com/en/articles/about-pull-request-reviews>
+
+- <https://medium.com/osedea/the-perfect-code-review-process-845e6ba5c31>
+
+- <https://smartbear.com/learn/code-review/what-is-code-review/>
+
 ### Managing Projects
+
+#### Managing Collaboration
+
+#### Tracking Issues
+
+#### Continuous Integration
+
+#### Additional Tools
 
 \#ITCert #Python #GrowWithGoogle
