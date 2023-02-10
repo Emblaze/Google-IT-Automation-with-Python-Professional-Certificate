@@ -4587,10 +4587,161 @@ Check out the following links for more information:
 
 #### Managing Collaboration
 
+Over the past few sections, we've looked at how we can collaborate with others using tools provided by platforms like _GitHub_. These tools can be very helpful but some coordination outside of the platform is _**always**_ going to be needed.
+
+For example, the project you're working on might need up medium or large refactor that will affect multiple lines of code across several files. It's important to give your colleagues the heads up that this refactor is coming. _If possible, try to do the refactor while the other developers are working on a different part of the project because this helps avoid large and complicated conflicts_.
+
+We've called on a bunch of times that _**documenting**_ your work is super important. When working together with a large group of people, documenting what you do and why you do it becomes even more important otherwise you'll spend most of your time answering everybody else questions. Also, say there's a problem with your service while you're on vacation or the person who developed the code is on the other side of the world and currently sleeping. In these situations, the documentation needs to be good enough to help someone else fix the problem. The most basic form of this is _writing clear code_ with _good comments and documentation for those functions_ in the code. On top of that, you'll want to create documentation files to let others know how they can interact with your project like the readme.md file that we created an earlier section.
+
+_**If you're a project maintainer, it's important that you are reply promptly to pull requests and don't let them stagnate**_. The more time that passes until a pull request gets reviewed, the more likely it is that there's a new commit that causes a conflict when you try to merge in the change. On top of this, if the person contributing the changes of volunteer that's just trying to help, they may lose their motivation to work on the project if you make them wait too long for feedback.
+
+Another thing to remember when you maintain a project especially if it's an open source project that volunteers are contributing to is that **it's important that you understand any changes you accept**. You never know if the other person is going to stick around to maintain the code after you merge it in so you better make sure you can do that. _You should also be careful with which patches you accept or reject_.
+
+- Accepting everything that gets sent your way might make your project grow too much and become unmanageable or it might take into account too many corner cases and cause complicated code that's hard to maintain.
+
+- On the flip side, if you don't accept any pull requests you'll discourage contributors and miss out on keeping your project active and relevant.
+
+We've talked about _**style guides**_ a few times already. If you're contributing to a project, you want to check out the style guide and make sure you follow it. If you own a project, it makes sense to create a style guide so that others know what you're expecting from them.
+
+_When it comes to coordinating who does what and when, a common strategy for active software projects is to use an **issue tracker**_. This is a super useful tool and we'll find out more about it in the next section.
+
+On top of that, when the project is large enough, _it's important to have another way of communicating and coordinating between contributors_. For many years, most projects used _mailing list and IRC channels_ for communication. Recently, new forms of communicating have gained popularity like Slack channels or Telegram groups. If you're managing your own project, choose whatever communication medium best fits your needs and those of your contributors. If you're collaborating with a project you don't own, you'll want to find out what channels are being used for collaboration and with that you now have a rough idea of how to collaborate with others across the internet.
+
 #### Tracking Issues
+
+Deciding who's going to do what is critical when collaborating with others, with no coordination, two or more people might spend time working on the same part of a project while nobody works on the other critical parts.
+
+Imagine that you and your colleagues decided that you'd work on building automation software, for keeping the computers on your network up to date. But then instead of dividing the task into smaller pieces and assigning them to different people, you just randomly started working on some part of the infrastructure. The result would probably be total chaos, with different pieces of software that won't work well together, and lots of gaps that nobody worked on.
+
+For small teams, it's usually easy enough to discuss in person who's going to be working on what. But as soon as the group starts growing, talking about responsibilities and what to do next becomes more of a hassle. That's when a tool like an _**issue tracker**_ or bug tracker can help us coordinate our work better.
+
+An _**issue tracker**_ tells us the tasks that need to be done, the state they're in and who's working on them. The system also let's us _add comments to the issue_, these comments can be super helpful. They can give us more details about the problem, explain a way to solve it, or detail how to test if it's been solved.
+
+Issue trackers aren't just useful for people actively working on projects. They also let users report bugs when they come across them, even if they don't know how to solve the problem. Sometimes users come across problems that we never even thought possible. And having them report these issues through a bug tracker can help make our projects better. And the tracker can also help volunteers that want to start contributing to the project.
+Having a clear visible list of the pending work, lets new contributors figure out how to help and where to jump in.
+
+There are a bunch of different solutions to track bugs or issues. There's a popular bug tracker called _**Bugzilla**_, which is used by quite a few open source projects. On the flip side, platforms like _**GitHub**_ have an issue tracker baked in. So, if you're hosting your project there, it can be very handy to track work on your project, like the _problems to solve_, the _features to add_ and the _use cases to include_ in it...
+
+There's a bunch more to learn about tracking issues, but this should be enough to get you started. Feel free to experiment on your own and try more ways to interact with the system.
 
 #### Continuous Integration
 
+Throughout this course, we've been making changes to our files, sometimes we ran them manually to test if they still worked after the change, sometimes we just forgot to do that. This is common for any software project no matter how big or small.
+
+As humans, we're not great at remembering to do lots of stuff so we can't rely on people remembering to test their code, not even ourselves. Luckily, we don't need to. We can write automated tests to test the code for us and then use a _**continuous integration or CI system**_ to run those tests automatically.
+
+_**A continuous integration system will build and test our code every time there's a change**_. This means that it will run whenever there's a new commit in the main branch of our code. It will also run for any changes that come in through pull request. In other words, if we have continuous integration configured for our project, we can automatically run our tests using the code in a pull request. This way, we can verify that the test will pass after the new changes get merged back into the tree and that means instead of hoping our collaborators will remember to properly test their code, we can rely on our automated testing system to do it for us.
+
+Once we have our code automatically built and tested, the next automation step is continuous deployment which is sometimes called _**continuous delivery or CD**_.
+
+_**Continuous deployment means the new code is deployed often**_. _The goal is to avoid roll outs with a lot of changes between two versions of a project and instead do incremental updates with only a few changes at a time_. This allows errors to be caught and fixed early. Typical configurations include deploying a new version whenever a commit is merged into the main tree or whenever a branch is tagged for release.
+
+There's a large world of tools and platforms related to CI/CD which is what the whole system is usually called. One popular option is _**Jenkins**_ which can be used to automate lots of different types of projects. Some repository hosting services like _**GitLab**_ provide their own infrastructure for doing continuous integration. GitHub doesn't offer an integrated solution. Instead, the popular alternative is to use _**Travis**_ which communicates with GitHub and can access the information from GitHub projects to know which integrations to run.
+
+No matter which tool you use, there are a bunch of concepts that you'll need to deal with when creating your own CI/CD.
+
+- The first one is a concept of pipelines. _**Pipelines specify the steps that need to run to get the result you want**_. For a simple Python Project, the pipeline could be to just run the automated tests. For a web service written in Go, the pipeline could be compile the program, run the unit tests and integration tests and finally deploy the code to a test instance.
+
+- Another concept that turns up when doing CI/CD is _**artifacts**_. _**This is the name used to describe any files that are generated as part of the pipeline**_. This typically includes the compiled versions of the code but can include other generated files like PDFs for the documentation or _OS specific packages for easy installation_. On top of this, you might want to keep the _logs of the pipelines build and test stages to review if things fail_.
+
+_**- When setting up CICD, we have to be careful about how we manage secrets.**_ If our pipeline includes deploying a new version of the software to a test server, we need to somehow give the software that's running the pipeline access to our test server. There are a bunch of different strategies to do this, like _exchanging SSH keys_ or _using application specific API tokens_. For some pipelines, it might be unavoidable to use one of these methods but be aware that you're giving access to your test servers to the owner of the service that's running the pipeline for you. It's a bit like giving your house keys to the person checking your heating once a year.
+
+So two things to remember:
+
+1. _**Make sure the authorized entities for the test servers are not the same entities authorized to deploy on the production servers**_. That way, if there's any kind of compromise in the pipeline, your production server is not affected.
+
+2. Second, _**always have a plan to recover your access in case your pipeline gets compromised**_. If you want to set up Travis for your GitHub project, you can do that by logging into the [Travis website](https://www.travis-ci.com) using your GitHub account then enable the projects that you want to continuously integrate. After that, you'll need to add a configuration file to your project written in _YAML format_ that states the language your project is in, in which steps to take for the pipeline. This file can be very simple if your project files are typical configuration for the language you're using but can also become very complex if you want to run a complicated pipeline with lots of stages and steps outside the defaults. We won't go into a ton of detail here but there's more info out there. Feel free to investigate on your own if you want to continuously integrate and deliver your project.
+
 #### Additional Tools
+
+Check out the following links for more information:
+
+- <https://arp242.net/diy.html>
+
+- <https://help.github.com/en/articles/closing-issues-using-keywords>
+
+- <https://help.github.com/en/articles/setting-guidelines-for-repository-contributors>
+
+- <https://www.infoworld.com/article/3271126/what-is-cicd-continuous-integration-and-continuous-delivery-explained.html>
+
+- <https://stackify.com/what-is-cicd-whats-important-and-how-to-get-it-right/>
+
+- <https://docs.travis-ci.com/user/tutorial/>
+
+- <https://docs.travis-ci.com/user/build-stages/>
+
+#### Module 4: Collaboration - Wrap Up
+
+Yes, you made it to the end of the last module. No, seriously, congrats on making it all the way here. Wow, we've learned so much over the last few videos:
+
+- We've checked out a lot of tools for better collaboration through GitHub,
+
+- We looked at the typical workflow for pull requests, how to update and squash changes,
+
+- We learned how code reviews make our code better by helping us catch bugs, typos and other problems,
+
+- Finally, we looked into some advanced tools for collaboration, like issue trackers or continuous integration services.
+
+All these builds on the other tools and techniques for version control that we've covered through out the course, like checking the change history, rolling back a bad change, and merging other people's changes. You've learned a lot over this course and you should be really proud of what you've achieved.
+
+## 4. Troubleshooting and Debugging Techniques
+
+### Troubleshooting Concepts
+
+#### Introduction to Debugging
+
+Whether it's an application crashing, a hardware issue, or network outage, as IT specialists, we tend to run into problems that need solving pretty regularly.When facing these issues, we need to make sure that people affected by the problem can get back to doing their jobs as fast as possible. We also have to plan for how to prevent against the same problems from happening again in the future.
+
+In this module, we'll learn some _essential debugging techniques_. We'll start with the basic process that we can use for tackling any technical problem. Then we'll look at different ways that we can approach understanding what's going on and finding the root cause of an issue, including using a process called _**binary search**_ to troubleshoot problems. Along the way, we'll talk about a bunch of examples of real-world problems and how to apply the techniques to solve them.
+
+The techniques we'll look at are reusable and we'll let you solve almost any technical problem that you might face in the future. We'll keep applying them throughout the course as we explore different issues that can affect us or the users we're supporting in different ways. As with any other skills that you've learned throughout this program, the best way to get good at something is practice. So at the end of the module, you'll have the opportunity to apply these techniques and try solving a technical issue yourself on a virtual machine running Linux. Finding the solution to a problem can sometimes take a really long time. While I don't know if anyone loves troubleshooting, I definitely enjoy solving problems. Dealing with software is like trying to solve one giant puzzle. It can sometimes be frustrating when we can't find the right pieces. But it's super exciting when everything finally fits together. If everything worked right away, then it wouldn't be fun anymore.
+
+#### What is debugging?
+
+Throughout this course, we'll be talking about debugging and troubleshooting. So what's the difference between them?
+
+**We say that troubleshooting is the process of identifying, analyzing, and solving problems**. We can use the term troubleshooting to refer to solving any kind of problem. In this course, we'll focus on _troubleshooting IT-related problems_. They could be _problems caused by hardware, the operating system, or applications running on the computer_. They could also be caused by the _environment_ and _configuration_ of the software. The _services_ the application is interacting with, or a wide range of other possible IT causes.
+
+**On the flip side, debugging is the process of identifying, analyzing, and removing bugs in a system**. We sometimes use troubleshooting and debugging interchangeably. But generally, we say _troubleshooting when we're fixing problems in the system running the application_, and _debugging when we're fixing the bugs in the actual code of the application_.
+
+There are lots of tools that we can use to get more information about the system and what the programs in our system are doing. Tools like **tcpdump** and **Wireshark** can show us _ongoing network connections_, and help us analyze the traffic going over our cables. Tools like **ps**, **top**, or **free** can show us the number and types of resources used in the system. We can use a tool like **strace** to look at the system calls made by a program, or **ltrace** to look at the library calls made by the software. Don't worry about memorizing them, we'll talk about each in detail in our real-world examples.
+
+When debugging the code of a program, we can combine these tools with specific debugging tools developed for the programming language used to write the application. **Debuggers let us follow the code line by line, inspect changes in variable assignments, interrupt the program when a specific condition is met, and more**. On top of that, _if we can modify the code, we can change it so that it provides more logging information_. This can help us understand what's going on behind the scenes.
+
+Both troubleshooting and debugging are a bit of an art. In those fortunate cases when you've seen the problem before, you might immediately know what the solution is. But _usually, figuring out the problem and its solution require some creativity_. We need to come up with new ideas of what could be failing, and ways to check for that. And once we know what's failing, we need to imagine how to solve it. To take it a step further, once we've solved a problem, we can start thinking about how to prevent it from happening again. _When troubleshooting or debugging, we come across surprising situations_. Things aren't working as expected, and we need to understand why, and figure out how to solve it. As we called out, in this course, we'll look into a bunch of different techniques to understand and solve technical problems. While we'll sometimes focus on system side and sometimes on the coding side, most of the techniques that we'll cover can help us solve any technical problem.
+
+#### Problem Solving Steps
+
+There's a wide range of different technical problems that you might face as an IT specialist or systems administrator. But fortunately, there's a set of steps that you can usually take to solve almost any technical problem.
+
+1. **The first step is getting information**. This means _gathering_ as much _information_ as we need about the _current state_ of things, what the _issue_ is, _when_ it happens, and what the _consequences_ are, for example. To get this information, we can use any _existing documentation_ that might help. This can be _internal documentation, manual pages, or even questions asked on the Internet_. One super important resource to solve a problem is the _**reproduction case**, which is a clear description of how and when the problem appears_.
+
+2. **The second step is finding the root cause of the problem**. This is _usually the most difficult step_. Throughout this course, we'll discuss a lot of possibilities on how to get there. But the key here is to get to the bottom of what's going on, what triggered the problem, and how we can change that.
+
+3. **The final step is performing the necessary remediation**. Depending on the problem, this might include an _immediate remediation_ to get the system back to health, and then a _medium or long-term remediation_ to avoid the problem in the future.
+
+While these are three basic steps of problem-solving, _they don't always happen sequentially_. It's pretty common that while trying to find the root cause, we discover that we need even more info about the current state. So we gather more information until we find the answer we're looking for, or we could understand the problem just enough to create a _**workaround**_ that lets our users get back to work quickly, but we'd still need more time to get to the _**root cause**_ and prevent the problem from happening again.
+
+Preventing the problem from occurring can sometimes feel like a hassle, but it can actually save us and our users a lot of valuable time. This way we avoid having to solve the same problem over and over again. Throughout the whole process, **it's important that we document what we do**. We should note down the _info that we get, the different things we tested to try, and figure out the root cause, finally, the steps we took to fix the issue_. This documentation might prove invaluable next time a similar issue pops up.
+
+Imagine a user asks you for your help because their computer is unexpectedly shutting down. Computers shouldn't shut down on their own, but the problem could be a hardware issue, a software issue, or even a configuration issue. So the first thing to do is to get more information. You'll want to know things like when it happened, what the user was doing when it happened, and how regularly it's happening. You'll also want to look at the computer logs to check if there are any interesting errors. If any aren't totally clear, you can look them up on the Internet to see what they mean. In our example, safe on a line in the logs that says the temperature threshold was exceeded and so the computer shutdown. That's useful information, you know why the computer shut down but you don't know why it overheated, so you'll need to keep investigating. After not finding anything else interesting in the logs, you decide to check if it's a hardware issue. When you open up the computer, you find that the fan that's supposed to cool down the CPU is full of dirt, and so it isn't spinning properly. That's the root cause of the problem. Now, the short-term remediation is to clean up the fan so that it can spin again and the computer doesn't overheat. But what's the long-term remediation? In this case, it would be deploying monitoring on the computers to make sure you get notified early when they're overheating. Long-term remediation would also include checking if you can reduce the amount of dust in the air so that there's less chance of this happening again.
+
+#### Silently Crashing Application
+
+Say a user contacts us to let us know that a certain application fails to open. As we called out earlier the first thing to do is to get more information about the conditions that caused the failure. What the error is that the user is getting and then check if we experience the same failure. By asking for these details, we discover that a new version of the software was recently released. And when we upgrade to this new version, we can reproduce the problem on our own computer like this.
+
+We see that when we try to run the program it prints no error at all. It just exits immediately. We need to figure out what's going on. Even if there's no error message.
+
+There are a bunch of tools that can help us better understand what's going on with the system and with our applications. With the help of these tools, we can extend our knowledge of a particular problem view the actions of the program from a different point of view and get the info we need. Among these tools **strace** lets us look more deeply at what the program is doing. It will trace a system calls made by the program and tell us what the result of each of these calls was. So to figure out what's up with our program that's failing to open will s trace the failing application.
+
+Whoa, that's a lot of output the A strois command shows us all the system calls are program made. System calls are the calls that the programs running on our computer make to the running kernel. There are loads of different system calls and depending on what we're trying to debug. We might be interested in some more than others. If you want to understand what these system calls are. You can read more about each of them in the corresponding manual pages. But before we jump into that, let's make this output more manageable. We could pipe the output to the less command which we could use to scroll through a lot of texts or we could use the- 0 flag of the **strace** command to store the output into a file and then browse the contents of that file. The- 0 flag, lets us refer back to the file later if we need to so, let's go with that one.
+
+Okay, now we can read the generated file using whichever program we prefer. Let's open it with less will go to the end of the file pressing Shift G then scroll up to see if we find anything suspicious.
+
+All right close to the end of the log we can see that the application tries to open a directory called .config purple box, which doesn't exist. Let's look at this line in a bit more detail. The name of the system call is open at. One of the calls used to open files or directories. The content of the call shows the parameters passed including the path that's being opened and a bunch of flax. In particular the 0 directory flag tells us that the program is trying to open this path as a directory. The number after the equal sign shows us the return code of the sys call. In this case it's negative one. So the program is trying to open this directory and it turns out it doesn't exist.
+
+Since this is happening shortly before the program finishes it's a likely candidate for the root cause of the issue. Let's create the directory and try to start the program again. Purple box, success this time the program works just fine. Let's recap what we did first. We got some information from a user telling us there was a change in the new version which was causing a problem. To investigate this we reproduce the problem on our own computer. Then we got more information on what was going on by using the **strace** tool which lets us see the system calls made by a program. We found a suspicious error. That's that a directory didn't exist. We created the directory to check out what would happen when it did exist and the program work correctly. So we've identified the root cause of the problem which is the missing directory. Now, we can go ahead and remediate the issue. The immediate remediation is to tell the user to create the directory so that they can get back to work quickly. The long-term remediation is to contact the developers of the software to let them know that the program will fail to start if the director is missing. This gives them a heads up about the problem so they can fix it in the next version. And what about the documentation we should note that this version of the software won't start if that directory doesn't exist. That will help others facing the same issue to quickly find out the solution.
+
+In this example, we were able to use **strace** and quickly identify what the problem was but it won't always be this easy. Throughout this course, we'll keep looking at more tools and more ideas to help us work through what's going on when it's not immediately obvious. Coming up we've got the first practice quiz of the course. These quizzes will help make sure that all the concepts that we've covered thus far make sense. Remember you can always review the content if it wasn't clear. I'll meet you in the next video.
 
 \#ITCert #Python #GrowWithGoogle
