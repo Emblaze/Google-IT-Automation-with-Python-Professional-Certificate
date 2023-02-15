@@ -1,4 +1,5 @@
 def find_item(list, item):
+  list = sorted(list)
   #Returns True if the item is in the list, False if not.
   if len(list) == 0:
     return False

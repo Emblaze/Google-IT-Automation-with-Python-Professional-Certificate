@@ -7,7 +7,7 @@ def linear_search(list, key):
         steps += 1
         if item == key:
             break
-    return ___ 
+    return steps 
 
 def binary_search(list, key):
     #Returns the number of steps to determine if key is in the list 
@@ -30,16 +30,16 @@ def binary_search(list, key):
             right = middle - 1
         if list[middle] < key:
             left = middle + 1
-    return ___ 
+    return steps 
 
 def best_search(list, key):
-    steps_linear = ___ 
-    steps_binary = ___ 
+    steps_linear = linear_search(list, key)
+    steps_binary = binary_search(list, key) 
     results = "Linear: " + str(steps_linear) + " steps, "
     results += "Binary: " + str(steps_binary) + " steps. "
-    if (___):
+    if (steps_linear < steps_binary):
         results += "Best Search is Linear."
-    elif (___):
+    elif (steps_linear > steps_binary):
         results += "Best Search is Binary."
     else:
         results += "Result is a Tie."

@@ -12,8 +12,10 @@ def binary_search(list, key):
         if list[middle] == key:
             return middle
         if list[middle] > key:
+            print("Checking the left side")
             right = middle - 1
         if list[middle] < key:
+            print("Checking the right side")
             left = middle + 1
     return -1 
 
