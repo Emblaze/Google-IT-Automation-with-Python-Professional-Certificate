@@ -4744,4 +4744,112 @@ Since this is happening shortly before the program finishes it's a likely candid
 
 In this example, we were able to use **strace** and quickly identify what the problem was but it won't always be this easy. Throughout this course, we'll keep looking at more tools and more ideas to help us work through what's going on when it's not immediately obvious. Coming up we've got the first practice quiz of the course. These quizzes will help make sure that all the concepts that we've covered thus far make sense. Remember you can always review the content if it wasn't clear. I'll meet you in the next video.
 
+### Understanding the Problem
+
+#### "It doesn't work"
+
+As we called out, _the first step to solving a problem is getting enough information so that we can understand the current state of things_. To do this we'll need to know _what the actual issue we're solving is_. This starts when we first come across the issue, which can be through report by a ticketing system or by encountering the problem ourselves. When working with users, it's pretty common to receive reports of failures that just boil down to, _"It doesn't work."_ These reports usually don't include a lot of useful information but _it's still important that the problem gets reported and solved_. Which information is useful or not might depend on the problem. But there are some common questions that we can ask a user that simply report something doesn't work:
+
+- What were you trying to do?
+
+- What steps did you follow?
+
+- What was the expected result?
+
+- What was the actual result?
+
+If the ticketing system your company uses allows this, it's a good idea to include these questions in the form that users have to fill out when reporting an issue. This way we save time and can start asking more specific questions right away. Otherwise, these are almost always going to be the first questions you ask.
+
+Another thing to keep in mind is that _when debugging a problem_, _we want to consider the simplest explanations first_ and _avoid jumping into complex or time-consuming solutions unless we really have to_. That's why when a device doesn't turn on, we first check if it's correctly plugged in and that there's electricity coming from the plug before taking it apart or replacing it with a new device.
+
+Say you got a call from a user that tells you the internal website used by the sales team to track customer interactions doesn't work. The user is super stressed because they need to access the information on the website for a meeting happening in a few minutes. So you tell them that you'll look into the problem right away, but then you need more information. _What were they trying to do?_ The user tells you that they're trying to access the website. What steps did they follow? They tell you that they opened the website URL and entered their credentials. What was the expected result? They expected to see the sales system's landing page. _What did they get instead?_ The web page just keeps loading. It stays blank forever. Okay. So now you've gone from, "it doesn't work," to, "when I tried to log in, the page keeps loading and never shows the landing page." That's great! Now that you have a basic idea of what the problem is, it's time to start figuring out the _root cause_. For that, you'll apply a _process of elimination, starting with the simplest explanations first and testing those until you can isolate the root cause_.
+
+For example, you check if you can reproduce the issue on your own computer. So you navigate to the website, enter your credentials, and sure enough, the page just keeps loading, never showing the landing page. This is enough information that you can tell the user that you'll work on it and investigate on your own. There's no need to keep them on the line. By reproducing the problem on your computer, you've taken a simple and quick action that rules out the user or the user's computer as the cause of the problem. This cuts the troubleshooting process in half since you now know there's a problem with the service and you can focus on solving that. Before jumping into the server that's hosting the application, you run a few quick checks to verify if the problem is isolated to that specific website or not. You check if your Internet access is working successfully by accessing an external website which loads just fine. Then you check if other internal websites, like the inventory website or ticketing system are working okay. Doing this, you discover that while the ticketing system loads with no issues, the inventory website never finishes loading. It turns out both websites are hosted on the same server. Again, it's important to highlight that doing these quick checks to verify that the Internet works correctly and which sites are affected by the problem, helps you isolate the root cause. _By looking at possible simple explanations first, you avoid losing time chasing the wrong problem_. At this point, you know that website's running on a specific server or failing to load while the rest of the systems and the Internet are working correctly.
+
+Next up, you need to check what's going on on that server. The server running the websites is a Linux machine, so you'll connect to it using _SSH_. You run the **top** command which shows the state of the computer and processes using the most CPU and see that the computer is super overloaded. The _load average_ in the first line says 40. _The load average on Linux shows how much time a processor is busy in a given minute, with one meaning it was busy for the whole minute. So normally this number shouldn't be above the amount of processors in the computer. A number higher than the amount of processors means the computer is overloaded._ You know this computer has four cores, so 40 is a really high number. You also see that most of the CPU time is spent in waiting. This means that processes are stuck waiting for the operating system to return from system calls. This usually happens when processes get stuck gathering data from the hard drive or the network. By looking at the list of processes, you realize that the backup system is currently running on the server, and it seems to be using a lot of processing time. Backing up the data on the system is super important. But currently, the whole system is unusable. So you decide to stop the backup system by calling kill-stop. This will suspend the execution of the program until you let it continue or decide to terminate it.
+
+After doing this, you're on top once again and you see that the load is going down, and so processes are no longer stuck waiting for I/O. Then you try logging into the website, and this time the landing page loads. Success! You let the user know that they can use the website once again.
+
+At this point, you've applied the _immediate remediation_. We'll talk about long-term remediation in a later section. Before moving on to the next topic, imagine that the following week another user calls you and tells you the sales website doesn't work. Remembering the previous incident, you tell them you'll fix it right away. You SSH onto the server and try to find the backup process to stop it, but it's not running. Oops! You forgot to ask the user what they meant when they said it didn't work. When you call back to ask them they tell you that they're trying to generate a monthly sales report and they get an error saying the product category column doesn't exist. Totally different problem, totally different actions to take. So _**remember to always have a clear picture of what the problem is before you start solving it**_.
+
+#### Creating a Reproduction Case
+
+When we're dealing with an issue that's tricky to debug, we want to have a _clear reproduction case_ for the problem. **A reproduction case is a way to verify if the problem is present or not**. We want to make _the reproduction case as simple as possible_. That way, we can clearly understand when it happens, and it makes it really easy to check if the problem is fixed or not, when we try to solve it.
+
+Sometimes, the reproduction case is pretty obvious. In our example where the program fail to start because of a missing directory, the reproduction case was to open the program without that directory on the computer. On our overloaded server example, the reproduction case for the failure was to try to login to the website and see the loading page.
+
+But sometimes the reproduction case might be much more complex to discover. Imagine you're trying to help a user with an application that won't start. This time when you run the same version of the application on your computer, the application starts just fine. So you suspect that the problem has to do with something in the _user's environment or configuration_. There could be a bunch of reasons why this could happen. It could be problems with the _network routing_, _old config files interfering_ with a new version of the program, a _permissions problem_ blocking the user from accessing some required resource, or _even some faulty piece of hardware_ acting out. So how can you figure out what's causing the problem?
+
+1. The first step is to read the _**logs**_ available to you. Which logs to read, will depend on the operating system and the application that you're trying to debug.
+
+- On **Linux**, you'd read system logs like \/var/log/syslog and user-specific logs like the .xsession-errors file located in the user's home directory.
+
+- On macOS, on top of the system logs, you'd go through the logs stored in the \/Library\/logs directory.
+
+- On _**Windows**_, you'd use the _Event Viewer_ tool to go through the event logs.
+
+No matter the operating system, remember to look at the logs when something isn't behaving as it should. Lots of times, you'll find an error message that will help you understand what's going on like, unable to reach server, invalid file format, or permission denied.
+
+But what if you're unlucky, and there's no error message, or the error message is super unhelpful like internal system error?
+
+2. The next step is to try to isolate the conditions that trigger the issue. Do other users in the same office also experienced the problem? Does the same thing happen if the same user logs into a different computer? Does the problem happen if the applications config directory is moved away?
+
+Let's say that it's the config directories file. You ask the user to move it away without deleting it, and now the application starts correctly. So you ask the user to send you the contents of that directory. You copy them onto your computer, and the program fails to start. Bingo, you got your reproduction case. It's starting the program with that config in place.
+
+Having a clear reproduction case let us do investigate the issue, and quickly see what changes it.
+
+For example, does the problem go away if you revert the application to the previous version? Are there any differences in the _**strace**_ log, or the _**ltrace**_ logs when running the application with the bug config and without it?
+
+On top of that, having a clear reproduction case, lets you share with others when asking for help. As long as you aren't sharing any confidential information of course, you could use it to report a bug to the applications developers, to ask for help from a colleague, or even to ask for help from an Internet forum about the application if it's publicly available. So when trying to create a reproduction case, we want to find the actions that reproduce the issue, and we want these to be as simple as possible. The smaller the change in the environment and the shorter the list of steps to follow, the better. To get there, we might need to dig deeper into the problem until we have a small enough set of instructions. Once you have a reproduction case, you're ready to move on to the next step, finding the root cause.
+
+#### Finding the Root Cause
+
+When you first come across these concepts, it might seem that once you have a reproduction case, you already know the root cause of the problem. But more often than not, it's not true.
+
+In our overloaded server example, we figured out that the backup system was blocking the websites from working, and so we mitigated that immediate problem to unblock the user. But we didn't really look into the root cause of our server being stuck. This could be because the _network bandwidth is saturated, the disk transfer is too slow, the hard drive is faulty, or a bunch of other reasons_. We also didn't do anything to make sure our backups could run successfully in the future.
+
+**Understanding the root cause is essential for performing the long-term remediation**. So how do we go about finding the actual root cause of the problem?
+
+We generally follow a _cycle_ of _looking at the information we have, coming up with a hypothesis that could explain the problem, and then testing our hypothesis_. If we confirm our theory, we found the root cause. If we don't, then we go back to the beginning and try different possibility. This is where our problem-solving creativity comes into play. We need to come up with an idea of a possible cause, check if it's correct and if not, come up with a different idea until we find one that explains the problem.
+
+Our ideas don't come out of a void. To get inspired, we look at information we currently have and gather more if we need. Searching online for the error messages that we get or looking at the documentation of the applications involved can also help us imagine new possibilities of what might be at fault.
+
+_Whenever possible, we should check our hypothesis in a test environment_, instead of the production environment that our users are working with. That way, we avoid interfering with what our users are doing and we can tinker around without fear of breaking something important.
+
+Depending on what you're trying to fix, this might mean we have to try our code in a newly installed machine, spinning up a test server, using test data, and so on. It can take some time to get the setup, but the extra safety is definitely worth it. Even when it seems that the error might be related to the specific production environment, _it's always a good idea to check if we can reproduce the problem in a test environment before we modify production_.
+
+In our overloaded server example, if the problem is with the hardware, we wouldn't be able to replicate it with a test server. In that case, we would need to either wait until the services aren't being used or bring up a secondary server, migrate the services there, and only then look at what's wrong with the computer. On the flip side, if the problem is related to some configuration of either the web services or the backup service, we'd still see it in the test server.
+
+So we'd always start by setting up a test instance of the service and checking if the problem replicates there before touching the production instance. So say we have a test server running the same websites. When we start the backup, we see that the website stop responding. This is great because we have re-production case, and we can debug it properly.
+
+How do we find the root cause? One possible culprit could be too much disk input and output. To get more info on this, we could use **iotop**, which is a tool similar to **top** that lets us see which processes are using the most input and output. Other related tools are **iostat** and **vmstat**, these tools show statistics on the input/output operations and the virtual memory operations. If the issue is that the process generates too much input or output, we could use a command like **ionice** to make our backup system reduce its priority to access the disk and let the web services use it too.
+
+What if the input and output is not the issue? Another option would be that the service is using too much network because it's transmitting the data to be backed up to a central server and that transmission blocks everything else. We can check this using **iftop**, yet another tool similar to **top** that shows the current traffic on the network interfaces. If the backup is eating all the network bandwidth, we could look at the documentation for the backup software and check if it already includes an option to limit the bandwidth. The **rsync** command, which is often used for backing up data, includes a **-bwlimit**, just for this purpose. If that option isn't available, we can use a program like **Trickle** to limit the bandwidth being used. But what if the network isn't the issue either?
+
+_**Remember, we need to put our debugging creativity to work, and come up with other possible reasons for why it's failing**_.
+
+Another option could be that the compression algorithms selected is too aggressive, and compressing the backups is using all of the server's processing power. We could solve this by reducing the compression level or using the **nice** command to reduce the priority of the process and accessing the CPU. If that's still not the case, we need to keep looking, check the logs to see if we find anything that we missed before. Maybe look online for other people dealing with similar problems related to interactions of the backing up software with the web surfing software, and keep doing this until we come up with something that could be causing our problem. This may sounds like a lot of work, but it's usually not that bad. In general, by using the tools available to us, we can find enough info to land on the right hypothesis after only a few tries and with experience, we'll get better at picking up the most likely hypothesis the first time around.
+
+#### Dealing with Intermittent Issues
+
+Have you ever tried to solve a problem that happened only occasionally? Maybe you've dealt with programs that randomly crash, laptops that sometimes fail to suspend, web services that unexpectedly stop replying, or file contents that get corrupted. But only in some cases, bugs that come and go are hard to reproduce, and are extremely annoying to debug?
+
+If you work in IT, you've probably had your own dose of frustration while dealing with intermittent and issues. So what can you do if you're trying to debug an issue like that?
+
+- The first step is to get more involved in what's going on, so that you understand when the issue happens and when it doesn't. If you're dealing with a bug and a piece of code that you maintain, you can usually modify the program to log more information related to the problem. Since you don't know exactly when the bug will trigger, you need to be thorough with the information that you log. If you can't modify the code of the program to get more information, check if there's a logging configuration that you can change. Many applications and services already include a debugging mode that generates a lot more output then the default mode. By enabling the debug information in advance, you can get a better picture of what's going on the next time the problem happens. If that's not possible, you'll need to resort to **monitoring** the environment when the issue triggers.
+
+Depending on what the problem is, you might want to look at different sources of information, like the _load on the computer, the processes running at the same time, the usage of the network, and so on_. For bugs that occur at random times, we need to prepare our system to give us as much information as possible when the bug happens. This might require several iterations until we get enough information to understand the issue, but don't lose hope. Most of the time, you can finally get to the point where you can actually understand what's going on.
+
+Sometimes, the bug goes away when we add extra logging information, or when we follow the code step by step using a debugger. This is an especially annoying type of intermittent issue, nicknamed _**Heisenbug**_, in honor of _Werner Heisenberg_. He's the scientist that first described the _**observer effect, where just observing a phenomenon alters the phenomenon**_. **Heisenbugs** are extra hard to understand, because when we meddle with them, the bug goes away. _These bugs usually point to bad resource management_.
+
+Maybe the memory was wrongly allocated, the network connections weren't correctly initialized, or the open files weren't properly handled. In these cases, we usually need to just spend time looking at the affected code until we finally figure out what's up.
+
+Yet another type of intermittent issue is the one that goes away when we turn something off and on again. There's plenty of jokes related to how, in IT, a lot of what we do to solve problems, is just turn things off and on again. Okay, it's true that in many cases, power cycling a device or restarting a program gets rid of whichever problem we were trying to fix. But why is that?
+
+_When we reboot a computer or restart a program, a bunch of things change_. Going back to a clean slate means _releasing all allocated memory, deleting temporary files, resetting the running state of programs, re-establishing network connections, closing open files and more_. _**If a problem goes away by turning it off and on again, there's almost certainly a bug in the software, and the bug probably has to do with not managing resources correctly**_. So if an issue goes away after a restart, it's a good idea to try to figure out why that is, and see if it's possible to fix it in a way that doesn't require turning it off and on again. If in the end, we can't find the actual reason, scheduling a restart at a time that's not problematic can also be an option.
+
+So we've looked at a few ways of getting to the root cause of a problem, like isolating causes, understanding error messages, adding logging information, and generating new ideas for possible failures. We've also talked about problems that go away on their own and then pop up again, and looked at how to figure those out.
+
+### Binary Searching a Problem
+
 \#ITCert #Python #GrowWithGoogle
