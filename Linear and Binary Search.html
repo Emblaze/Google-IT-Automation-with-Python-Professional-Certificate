@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear and Binary Search</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="linear-and-binary-search">Linear and Binary Search</h1>
+<p>If you’re curious about how linear and binary search look in code, here are a couple of implementations in Python:</p>
+<h2 id="linear-search-example">Linear search example</h2>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">linear_search</span><span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""If key is in the list returns its position in the list,
+       otherwise returns -1."""</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> item <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> item <span class="token operator">==</span> key<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> i
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
+</code></pre>
+<h2 id="binary-search-example">Binary search example</h2>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">binary_search</span><span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""Returns the position of key in the list if found, -1 otherwise.
+
+    List must be sorted.
+    """</span>
+    left <span class="token operator">=</span> <span class="token number">0</span>
+    right <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+    <span class="token keyword">while</span> left <span class="token operator">&lt;=</span> right<span class="token punctuation">:</span>
+        middle <span class="token operator">=</span> <span class="token punctuation">(</span>left <span class="token operator">+</span> right<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+        
+        <span class="token keyword">if</span> <span class="token builtin">list</span><span class="token punctuation">[</span>middle<span class="token punctuation">]</span> <span class="token operator">==</span> key<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> middle
+        <span class="token keyword">if</span> <span class="token builtin">list</span><span class="token punctuation">[</span>middle<span class="token punctuation">]</span> <span class="token operator">&gt;</span> key<span class="token punctuation">:</span>
+            right <span class="token operator">=</span> middle <span class="token operator">-</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> <span class="token builtin">list</span><span class="token punctuation">[</span>middle<span class="token punctuation">]</span> <span class="token operator">&lt;</span> key<span class="token punctuation">:</span>
+            left <span class="token operator">=</span> middle <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
+</code></pre>
+<p><em><strong>Nota bene</strong></em>: Understanding this code isn’t required for understanding how to use binary search in troubleshooting.</p>
+</div>
+</body>
+
+</html>
