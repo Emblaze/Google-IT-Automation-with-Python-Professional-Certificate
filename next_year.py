@@ -7,7 +7,7 @@ def add_year(date_obj):
   except ValueError as e:
     # This gets executed when the above method fails, 
     # which means that we're making a Leap Year calculation
-    print("Error: {}".format(e))
+    # print("Error: {}".format(e))
     new_date_obj = date_obj.replace(year = date_obj.year + 4)
   return new_date_obj
 
@@ -18,7 +18,7 @@ def next_date(date_string):
 
   # Convert the datetime object to string, 
   # in the format of "yyyy-mm-dd"
-  next_date_string = next_date_obj.strftime("yyyy-mm-dd")
+  next_date_string = next_date_obj.strftime("%Y-%m-%d") # Incorrect strftime parameters that invariably returned "YYYY-mm-dd" 
   return next_date_string
 
 today = date.today()  # Get today's date
