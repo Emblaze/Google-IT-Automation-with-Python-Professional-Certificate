@@ -4780,7 +4780,7 @@ Sometimes, the reproduction case is pretty obvious. In our example where the pro
 
 But sometimes the reproduction case might be much more complex to discover. Imagine you're trying to help a user with an application that won't start. This time when you run the same version of the application on your computer, the application starts just fine. So you suspect that the problem has to do with something in the _user's environment or configuration_. There could be a bunch of reasons why this could happen. It could be problems with the _network routing_, _old config files interfering_ with a new version of the program, a _permissions problem_ blocking the user from accessing some required resource, or _even some faulty piece of hardware_ acting out. So how can you figure out what's causing the problem?
 
-1. The first step is to read the _**logs**_ available to you. Which logs to read, will depend on the operating system and the application that you're trying to debug.
+- The first step is to read the _**logs**_ available to you. Which logs to read, will depend on the operating system and the application that you're trying to debug.
 
 - On **Linux**, you'd read system logs like \/var/log/syslog and user-specific logs like the .xsession-errors file located in the user's home directory.
 
@@ -4792,7 +4792,7 @@ No matter the operating system, remember to look at the logs when something isn'
 
 But what if you're unlucky, and there's no error message, or the error message is super unhelpful like internal system error?
 
-2. The next step is to try to isolate the conditions that trigger the issue. Do other users in the same office also experienced the problem? Does the same thing happen if the same user logs into a different computer? Does the problem happen if the applications config directory is moved away?
+- The next step is to try to isolate the conditions that trigger the issue. Do other users in the same office also experienced the problem? Does the same thing happen if the same user logs into a different computer? Does the problem happen if the applications config directory is moved away?
 
 Let's say that it's the config directories file. You ask the user to move it away without deleting it, and now the application starts correctly. So you ask the user to send you the contents of that directory. You copy them onto your computer, and the program fails to start. Bingo, you got your reproduction case. It's starting the program with that config in place.
 
@@ -4897,5 +4897,19 @@ The first half failed, let's split it again. To do that, we'll use another pipe 
 This is a comma separated file. This means that each comma is used as a separator between the fields in the file. If a field includes commas, it should be written between quotes. But in the case of the third line we're looking at here, we can see that there's a comma instead of a period after the middle initial, and this is not written between quotes. The importing script is then confused because there are too many fields in this line. Let's edit the file and fix it.
 
 And now let's run our importer again with the fixed file. Yay, we fixed the problem in the file. Using the _**bisect method**_, we very quickly found which line out of 100 lines contained the corrupt data. And then we could fix it and successfully import it. _The short-term remediation_ here is to tell our user about what we found and how to fix it, so that they can import the data into the production database. _The long-term remediation_ is to figure out why the file was generated with the invalid field in the first place, and make sure that it doesn't happen again.
+
+#### Module 1 Review
+
+Congrats on making it to the end of the module. You're sure learning a lot that'll open up a lot of doors in your IT career.
+
+- Over the past videos, we learned the general principles of debugging and troubleshooting. We looked into the basic process of solving a technical problem like getting information, finding the root cause, and implementing the remediation.
+
+- We learned about a bunch of different tools and techniques that we can use to better understand what's going on with our systems and our programs, including how to create a reproduction case, how to find the root cause for problem, and how to deal with issues that only appear occasionally.
+
+- Finally, we learned about the binary search algorithm, and how we can use it to bisect a problem and quickly find the root cause of a technical problem. All along, we've checked out a bunch of real-world examples, and seen how we can apply this to lots of different types of problems, like a bug in our code, a bug in someone else's code, a configuration issue, or even a hardware problem. It's been great sharing all these interesting stories and examples with you.
+
+I hope you're starting to have fun learning more about how to understand problems and find solutions. Next time you need to solve a technical problem, try to use some of these steps we outlined and the ideas we talked about. **Remember** that logs are your best friend, and use all the resources available to you, including looking things up on the Internet, and asking colleagues or friends for help.
+
+Throughout the rest of this course, we'll keep exploring scenarios that deal with specific problems, like our computer being slow or crushing unexpectedly. We'll keep applying the techniques we've explained in this module to solve those issues. So you can expect a lot more practice.
 
 \#ITCert #Python #GrowWithGoogle
