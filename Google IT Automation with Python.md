@@ -2245,7 +2245,7 @@ Also see to_seconds.py
 We've now seen a couple ways of getting information into and out of our scripts. We know how to read and write to files and accept input from the keyword and print it to the screen, too. But what exactly is going on behind the scenes when we do this? How does a Python program connect to both the screen and the keyboard? Well, it uses I/O streams. **I/O streams** are the basic mechanism for performing input and output operations in your programs.
 
 We call these streams because the data keeps flowing. A program can read input and
-generate output as long as it needs to achieve its goal. Okay, what do these streams mean in practice?
+generate output as long as it needs to achieve its goal. What do these streams mean in practice?
 
 Most operating systems supply three different I/O streams by default each with
 a different purpose
@@ -2929,7 +2929,7 @@ See [Handling ErrorsCheat-Sheet](Handling Errors Cheat-Sheet.html)
 
 We've already used a bunch of Linux commands by now. So hopefully these commands aren't too foreign. You may remember that **echo** is a command used to print messages to the screen, **cat** is command for showing contents of files, **ls** is the command to list contents of a directory, **chmod** is a command to change permissions of a file, and so on. As we call that before, a lot of these commands come from Unix. Back in the 70s, when designing how these programs should behave, the philosophy was **that they should do one thing and do it very well**. Which means we have a lot of commands, each for doing specific thing.
 
-- To create a new directory, we use the **mkdir** command. To change into that directory, we use the **cd** command. As you might notice, these commands don't print anything to the screen. This is normal and to be expected. A lot of the commands that we'd use don't print anything when they succeed. They only print something if they fail. To check that the **cd** command succeeded, we can use a command like **pwd** to print the current working directory. Okay. We have a directory which is empty. We can copy files using the **cp** command.
+- To create a new directory, we use the **mkdir** command. To change into that directory, we use the **cd** command. As you might notice, these commands don't print anything to the screen. This is normal and to be expected. A lot of the commands that we'd use don't print anything when they succeed. They only print something if they fail. To check that the **cd** command succeeded, we can use a command like **pwd** to print the current working directory. We have a directory which is empty. We can copy files using the **cp** command.
 
 - Lets' call the command **ls** with the **-la arguments**. Remember, command-line arguments let us change the behavior of commands making them do what we want.
 
@@ -3609,7 +3609,7 @@ You might be wondering, why go through all this trouble diffing, and patching, a
 
 - The main reason is that the original code could have changed. In our example, it's possible that the code our colleague was using to prepare the fix wasn't the latest version. By using a diff instead of the whole file, we can clearly see what they changed, no matter which version they were using. The **patch** command can detect that there were changes made to the file and will do its best to apply the diff anyways. It won't always succeed but in many cases it will.
 
-- Another reason is structure. In this case we're patching a single small file. But sometimes, you might be modifying a bunch of large files inside of a huge project. Say you are changing four files in a project tree that contain 100 different files, arranged in different directories according to what they do. If you were to send the whole files, you'd need to specify where those files were supposed to be placed. As we called out,_** we can diff whole directory structures and in that case the diff file can specify where each change file should be without us having to do any manual juggling**_. Cool right? Okay, great work. We've now seen how to generate diff files and how to apply their contents with the patch command.
+- Another reason is structure. In this case we're patching a single small file. But sometimes, you might be modifying a bunch of large files inside of a huge project. Say you are changing four files in a project tree that contain 100 different files, arranged in different directories according to what they do. If you were to send the whole files, you'd need to specify where those files were supposed to be placed. As we called out,_** we can diff whole directory structures and in that case the diff file can specify where each change file should be without us having to do any manual juggling**_. Cool right? Great work. We've now seen how to generate diff files and how to apply their contents with the patch command.
 
 #### Practical Application of diff and patch
 
@@ -3648,7 +3648,7 @@ $ cp disk_usage.py disk_usage_orginal.py
 $ cp disk_usage.py disk_usage_fixed.py
 ```
 
-Okay, now that we have our copies, we'll edit the _fixed version and actually fix it. This file has a bunch of code. Before we try to understand what it does and what's wrong with it, let's execute it and see what we get.
+Now that we have our copies, we'll edit the _fixed version and actually fix it. This file has a bunch of code. Before we try to understand what it does and what's wrong with it, let's execute it and see what we get.
 
 ```bash
 $ ./disk_usage.py
@@ -3662,7 +3662,7 @@ The Python interpreter isn't too happy. It's complaining that there's a return o
 
 You might remember that in Python, we can only use return statements inside functions. So how do we fix this? There's a couple options. We could turn the current code into a function and then call that function from the main part of our script. Or we could use sys.exit to make the return number of the exit code of our script, which is the code that causes a program to exit with the corresponding exit value. For now, let's go with the second option.
 
-Okay, we've made the change. Let's execute this new version of our script.
+We've made the change. Let's execute this new version of our script.
 
 ```bash
 $ ./disk_usage.py
@@ -3673,7 +3673,7 @@ Darn, we fixed the syntax error, but now the script is telling us we don't have 
 
 If you look closely at the code, you might notice that the script is converting to gigabytes twice. The function call to check_disk_usage is passing 2 times 2 double star 30. You might remember that the double star operator is used to calculate powers. In this case, 2 to the power of 30, which is how many bytes are in a gigabyte. So, this would be 2 gigabytes, but that be if the check_disk_usage function was expecting a value in bytes. If we look at the code of the function, we can see that it's already dividing the amount of free bytes by 2 to the power of 30. So in other words, we're doing the gigabyte conversion twice. Once when calling the function and once inside the function. We need to get rid of one of them. Let's change how we call the function.
 
-Okay, let's try it out again.
+Let's try it out again.
 
 ```bash
 $ ./disk_usage.py
@@ -3868,7 +3868,7 @@ git init
 
 Our shiny new Git repository can now be used to track changes to files inside of it. But before jumping into that, let's check out our current configuration by using the **git config -l** command. There's a bunch of info in there, and we won't cover all of it. For now, pay special attention to the _user.email_ and the _user.name_ lines, which we touched on briefly in an earlier video. This information will appear in public commit logs if you use a shared repository. For privacy reasons, you might want to use different identities when dealing with your private work and when submitting code to public repositories. We'll include more details about changing this information in our next reading.
 
-Okay, our repo is ready to work, but it's currently empty. Let's create a file in it, we'll start with a basic skeleton for a Python script, which will help us demonstrate the Git workflow. As with any Python script, we'll start with the shebang line. For now, we'll add an empty main function, which we'll fill in later. And at the end, we'll just call this main function.
+Our repo is ready to work, but it's currently empty. Let's create a file in it, we'll start with a basic skeleton for a Python script, which will help us demonstrate the Git workflow. As with any Python script, we'll start with the shebang line. For now, we'll add an empty main function, which we'll fill in later. And at the end, we'll just call this main function.
 
 ```python
 #!/usr/bin/env python3
@@ -3994,7 +3994,7 @@ Sometimes it can take a while until we're ready to commit. We call these commitm
 
 Let's make a new change to our all_checkcs.py script and then try this command out. We'll add another message to the user to say that everything is okay when the check is successful and then exit with 0 instead of 1.
 
-Okay, we've made the change. Let's now save it and check out what git diff shows us. Again, this format is equivalent to the **diff -u** output that we saw earlier. In this case, we see that the only change is the extra lines that we've added. If our change was bigger and included several files, we could pass a file by parameter to see the differences relevant to that specific file instead of all the files at the same time.
+We've made the change. Let's now save it and check out what git diff shows us. Again, this format is equivalent to the **diff -u** output that we saw earlier. In this case, we see that the only change is the extra lines that we've added. If our change was bigger and included several files, we could pass a file by parameter to see the differences relevant to that specific file instead of all the files at the same time.
 
 Something else we can do to review changes before adding them is to use the **-p flag** with the **git add** command. When we use this flag, git will show us the change being added and ask us if we want to stage it or not. This way we can detect if there's any changes that we don't want to commit.
 
@@ -4066,7 +4066,7 @@ Oh oh, you could look at the code you updated to see if you can spot the bug. Bu
 
 There are a few ways to rollback commits in Git. For now, we'll focus on using the **git revert** command. Git revert doesn't just mean undo. Instead, it creates a commit that contains the inverse of all the changes made in the bad commit in order to cancel them out. For example, if a particular line was added in the bad commit, then in the reverted commit, the same line will be deleted. This way you get the effect of having undone the changes, but the history of the commits in the project remains consistent leaving a record of exactly what happened. So **git revert** will create _a new commit_, that is the opposite of everything in the given commit. We can revert the latest commit by using the _HEAD alias_ that we mentioned before. Since we can think of HEAD as a pointer to the snapshot of your current commit, when we pass HEAD to the **revert** command we tell Git to rewind that current commit.
 
-To check this out, we'll first add a faulty commit to our example repo. We've added some code to our script. Let's save and commit this. So now, our code is committed. We didn't even test it which is a bad idea if you're doing this for real. You might have already spotted the problem with our code. This is where users start filing tickets and saying that things are broken, and so we run our script to see what happens. Oops, we use the function that we forgot to define. Okay. It's rollback time.
+To check this out, we'll first add a faulty commit to our example repo. We've added some code to our script. Let's save and commit this. So now, our code is committed. We didn't even test it which is a bad idea if you're doing this for real. You might have already spotted the problem with our code. This is where users start filing tickets and saying that things are broken, and so we run our script to see what happens. Oops, we use the function that we forgot to define. It's rollback time.
 
 Let's get rid of this faulty code by typing **git revert head**. So once we issue that git revert command, we're presented with the text editor commit interface that we've all seen before. In this case, we can see that git has automatically added some text to the command indicating it's a rollback. The first-line mentions that it's reverting the commit we just did called Add call to disk full function. The extra description even includes the identifier of the commit that got reverted.
 
@@ -4994,7 +4994,7 @@ Okay. We see that the page loads. It seems to be a little slow but it's hard to 
 
 All right. The tool has finished running the 500 requests. We see that the mean time per requests was a 155 milliseconds. While this is not a super huge number, it's definitely more than what we'd expect for such a simple website. It seems that something is going on with the web server and we need to investigate further. Let's connect to the web server and check out what's going on. We'll start by looking at the output of **top** and see if there's anything suspicious there. We see that there's a bunch of ffmpeg processes running, which are basically using all the available CPU. See those load numbers? Thirty is definitely not normal. _**Remember that the load average on Linux shows how much time the processor is busy at a given minute with one meaning it was busy for the whole minute**_. This computer has two processors. So any number above two means that it's overloaded. During each minute, there were more processes waiting for processor time than the processor had to give.
 
-This ffmpeg program is used for video transcoding which means converting files from one video format to another. This is a CPU intensive process and seems like the likely culprit for our server being overloaded. So what can we do? One thing we can try is to change the processes priorities so that the web server takes precedence. The process priorities in Linux are so that the lower the number, the higher the priority. Typical numbers go from 0 to 19. By default, processes start with a priority of zero. But we can change that using the **nice** and **renice** commands. _We use **nice** for starting a process with a different priority and **renice** for changing the priority of a process that's already running_.
+This ffmpeg program is used for video transcoding which means converting files from one video format to another. This is a CPU intensive process and seems like the likely culprit for our server being overloaded. So what can we do? One thing we can try is to change the processes priorities so that the web server takes precedence. _**The process priorities in Linux are so that the lower the number, the higher the priority. Typical numbers go from 0 to 19**_. _By default, processes start with a priority of zero_. But we can change that using the **nice** and **renice** commands. _We use **nice** for starting a process with a different priority and **renice** for changing the priority of a process that's already running_.
 
 Okay. Let's exit **top** with queue and change the priorities. We want to run **renice** for all the ffmpeg processes that are running right now. We could do this one by one. But it would be manual, error-prone, and super boring. Instead, we can use a quick line of shell script to do this for us.
 
@@ -5020,11 +5020,15 @@ So we see that there's a couple of mentions in the _deployed.sh file_. Let's tak
 
 We see that this script is starting the ffmpeg processes in parallel using a tool called Daemonize that runs each program separately as if it were a daemon. This might be okay if we only need to convert a couple of videos but launching one separate process for each of the videos in the static directory is overloading our server. So we want to change this to run only one video conversion process at a time. We'll do that by simply deleting the daemonized part and keeping the part that calls ffmpeg, then save and exit.
 
-All right. We've modified the file. But this won't change the processes that are already running. We want to stop these processes but not cancel them completely, as doing so would mean that the videos being converted right now will be incomplete. So we'll use the **killall** command with the **-stop** flag which sends a stop signal but doesn't kill the processes completely. We now want to run these processes one at a time. How can we do that?
+All right. We've modified the file. But this won't change the processes that are already running. We want to stop these processes but not cancel them completely, as doing so would mean that the videos being converted right now will be incomplete. So we'll use the **killall** command with the **-STOP** flag which sends a stop signal but doesn't kill the processes completely. We now want to run these processes one at a time. How can we do that?
 
-We could send the CONT signal to one of them, wait till it's done, and then send it to the next one. But that's a lot of manual work. Can be automate it?
+We could send the **-CONT** signal to one of them, wait till it's done, and then send it to the next one. But that's a lot of manual work. Can be automate it?
 
-Yes! But it's a little tricky. So pay close attention. We can iterate through the list of processes using the same for loop with the pit of command that we used earlier. Inside the for loop, we want to send the cont signal and then wait until the process is done. Unfortunately, there's no command to wait until the process finishes. But we can create a while loop that sends the cont signal to the process. This will succeed as long as the process exists, and fails once the process goes away. Inside this while loop, we'll simply add a call to sleep one, to wait one second until the next check.
+Yes! But it's a little tricky. So pay close attention. We can iterate through the list of processes using the same for loop with the **pidof** command that we used earlier. Inside the for loop, we want to send the cont signal and then wait until the process is done. Unfortunately, there's no command to wait until the process finishes. But we can create a while loop that sends the cont signal to the process. This will succeed as long as the process exists, and fails once the process goes away. Inside this while loop, we'll simply add a call to sleep one, to wait one second until the next check.
+
+```bash
+for pid in $(pidof ffmpeg); do while kill -CONT $pid; do sleep 1;done ; done
+```
 
 Okay. Now our server is running one ffmpeg process at a time. Let's turn our benchmark once more. The mean time is now 33 milliseconds. That's much lower than before. We've managed to get our web server to reply promptly to the request again.
 
@@ -5051,5 +5055,25 @@ Check out the following links for more information:
 - <https://en.wikipedia.org/wiki/Cache_(computing>)
 
 - <https://www.reddit.com/r/linux/comments/d7hx2c/why_nice_levels_are_a_placebo_and_have_been_for_a/>
+
+### Slow Code
+
+#### Writing Efficient Code
+
+In your role as an IT specialist or systems' administrator, you'll likely need to write scripts to automate tasks. A piece of code may start as a simple script that does a single thing, but end up growing into a complex program that handles many different tasks, and no matter the size and complexity of our code, we usually want it to perform well.
+
+In this and the next few sections, we'll discuss some ideas for how to make our code more efficient and how to figure out what needs fixing if it's slow. _One important thing to keep in mind though is that **we should always start by writing clear code that does what it should and only try to make it faster if we realize that it's not fast enough**_.
+
+If it takes you 10 minutes to write a script that will run in five seconds, and 20 minutes to write a script that will do the same but takes three seconds, does it make a difference? It all depends on how often you run the script. If you run it once a day, the two seconds deference definitely won't justify the additional 10 minutes of work. But if you're going to run the same script for the 500 computers on your network, that small difference means it will take 15 less minutes to run the whole script. So overall, you're gaining time.
+
+Of course, it's pretty hard to know in advance how fast your script will be and how long it will take you to make it faster. _**But as a rule, we aim first to write code that's readable, easy to maintain and easy to understand, because that lets us write code with less bugs**_. If there's something that's super slow, then yes, it makes sense to fix it, particularly if the script will be executed frequently enough that making it faster will save you more time than the time you spend optimizing it. _**But remember, trying to optimize every second out of a script is probably not worth your time**_. With that said, let's dive into how we can make our code more efficient.
+
+- The first step is to keep in mind that we can't really make our computer go faster. **If we want our code to finish faster, we need to make our computer do less work**. And to do this, we'll have to avoid doing work that isn't really needed. How? There's a bunch of different things to do. The most common ones include _storing data that was already calculated to avoid calculating it again using the right data structures for the problem and reorganizing the code so that the computer can stay busy while waiting for information from slow sources like disk or over the network_.
+
+To know what sources of slowness we need to address, we have to figure out where our code is spending most of its time. There's a bunch of tools that can help us with that called **profilers**. A **profiler** is a tool that measures the resources that our code is using, giving us a better understanding of what's going on. In particular, they help us see how the memory is allocated and how the time spent. Because of how profilers work, they are specific to each programming language. So we would use **gprof to analyze a C program** but use the **c-Profile module to analyze a Python program**.
+
+Using tools like these, we can see which functions are called by our program, how many times each function was called and how much time are programs spent on each of them. This way we can find for example, that our program is calling a function more times than we originally intended or that a function that we thought would be fast is actually slow.
+
+To fix our code, we'll probably need to restructure it to avoid repeating **expensive actions**. What do we mean by expensive? In this context, **expensive actions are those that take a long time to complete**. Expensive operations include parsing a file, reading data over the network or iterating through a whole list. How do we modify our code to avoid expensive operations?
 
 \#ITCert #Python #GrowWithGoogle
