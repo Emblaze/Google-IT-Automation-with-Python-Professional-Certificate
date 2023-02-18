@@ -5180,4 +5180,10 @@ All right we've made the change. Let's save our file and profile our script agai
 
 In this section, we saw that we can use the **time** command to check how long it takes to execute a program. We then saw how we can combine a **profiler** and a profile visualizer to figure out where our code is spending most of his time. Finally, we changed our code to avoid doing inexpensive loop over and over by storing the information in a dictionary and then accessing the dictionary instead.
 
+#### More About Improving Our Code
+
+Check out the following links for more information:
+
+- <https://en.wikipedia.org/wiki/Profiling_(computer_programming>)
+
 \#ITCert #Python #GrowWithGoogle
