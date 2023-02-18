@@ -5070,10 +5070,114 @@ Of course, it's pretty hard to know in advance how fast your script will be and 
 
 - The first step is to keep in mind that we can't really make our computer go faster. **If we want our code to finish faster, we need to make our computer do less work**. And to do this, we'll have to avoid doing work that isn't really needed. How? There's a bunch of different things to do. The most common ones include _storing data that was already calculated to avoid calculating it again using the right data structures for the problem and reorganizing the code so that the computer can stay busy while waiting for information from slow sources like disk or over the network_.
 
-To know what sources of slowness we need to address, we have to figure out where our code is spending most of its time. There's a bunch of tools that can help us with that called **profilers**. A **profiler** is a tool that measures the resources that our code is using, giving us a better understanding of what's going on. In particular, they help us see how the memory is allocated and how the time spent. Because of how profilers work, they are specific to each programming language. So we would use **gprof to analyze a C program** but use the **c-Profile module to analyze a Python program**.
+To know what sources of slowness we need to address, we have to figure out where our code is spending most of its time. There's a bunch of tools that can help us with that called **profilers**. **A profiler is a tool that measures the resources that our code is using, giving us a better understanding of what's going on**. In particular, they help us see how the memory is allocated and how the time spent. Because of how profilers work, they are specific to each programming language. So we would use **gprof to analyze a C program** but use the **cProfile module to analyze a Python program**.
 
 Using tools like these, we can see which functions are called by our program, how many times each function was called and how much time are programs spent on each of them. This way we can find for example, that our program is calling a function more times than we originally intended or that a function that we thought would be fast is actually slow.
 
 To fix our code, we'll probably need to restructure it to avoid repeating **expensive actions**. What do we mean by expensive? In this context, **expensive actions are those that take a long time to complete**. Expensive operations include parsing a file, reading data over the network or iterating through a whole list. How do we modify our code to avoid expensive operations?
+
+#### Using the Right Data Structures
+
+Having a good understanding of the data structures available to us can help us avoid unnecessary expensive operations and create efficient scripts.
+In particular, we'll want to understand the performance of those structures under different conditions. In the introductory course to Python, you learned about a bunch of different data structures available in Python like _lists_, _tuples_, _dictionaries_, and _sets_. Each of them have their uses, their advantages, and disadvantages. Let's do a very quick recap of lists and dictionaries.
+
+- **Lists are sequences of elements. We can add, remove, or modify the elements in them. We can iterate through the whole list to operate on each of the elements**. Different programming languages call them differently. The structure is called _ArrayList_ in Java, _Vector_ in C++, _Array_ in Ruby, and _Slice_ in Go. All these names refer to the same data structure that's fast to add or remove elements at the end. But adding or removing elements in the middle can be slow because all the elements that follow need to be repositioned. It's fast to access the element in a specific position in the list, but finding an element in an unknown position requires going through the whole list. This can be super slow if the list is long.
+
+- **Dictionaries store key value pairs. We add data by associating a value to a key. Then, we retrieve a value by looking up a specific key**. They are called _HashMap_ in Java, _Unordered Map_ in C++, _Hash_ in Ruby, and _Map_ in Go. The map part in those names comes from how we're creating a mapping between a key and a value. The Hash part comes from the fact that to make the structure efficient, a hashing function is used internally to decide how the elements will be stored. The main characteristic of this structure is that it's super-fast for looking up keys. Once we have our data stored in a dictionary, we can find the value associated to a key in just one operation. If it were stored in a list, we need to iterate through the list.
+
+So as a rule of thumb, **if you need to access elements by position or will always iterate through all the elements, use a list to store them**. This could be a list of all computers in the network, of all employees in the company, or of all products currently on sale for example.
+
+On the flip side, if we need to look up the elements using a _**key**_, we'll use a _**dictionary**_. This could be the data associated to a user which we'd look up using their username, the IP associated to a computer using the host name, or the data associated to a product using the internal product code. Whenever we need to do a bunch of these lookup operations, creating a dictionary and using it to get the data will take a lot less time than iterating over a list to find what we're looking for. But it doesn't make sense to create a dictionary and fill it with data if we're only going to look up one value in it. In that case, we're wasting time creating the structure when we could just iterate over the list and get the element we're looking for.
+
+- Another thing that we might want to _think twice_ about is creating _copies_ of the structures that we have in memory. If these structures are big, it can be pretty expensive to create those copies. So we should double-check if the copy is really needed.
+
+Now, that we have a better understanding of when to use each data structure and what actions to avoid, we can look into how to deal with expensive loops.
+
+#### Expensive Loops
+
+Loops are what make our computers do things repeatedly. They are an extremely useful tool and let us avoid repetitive work, but we need to use them with caution. In particular, we need to think about what actions we're going to do inside the loop, and when possible, avoid doing expensive actions. If you do an expensive operation inside a loop, you multiply the time it takes to do the expensive operation by the amount of times you repeat the loop.
+
+Say for example that you're writing a script to send an email to all the employees at your company asking them to verify that their emergency contact information is still valid. To send this out, you'll have a loop that sends one email per employee. In the body of the email, you'll include the current emergency contact data. _**The interesting part is how you access the data inside the loop**_. If the data is stored in a file, your script will need to parse the file to fetch it. If the script reads the whole file for every user, you'll be wasting a lot of time parsing the file over and over unnecessarily. Instead, you could parse the file outside of the loop, put the information into a **dictionary**, and then use the dictionary to retrieve the data inside the loop.
+
+**Whenever you have a loop in your code, make sure to check what actions you're doing, and see if there are operations you can take out of the loop to do them just once**. _Instead of making one network call for each element, make one call before the loop. Instead of reading from disk for each element, read the whole thing before the loop_. Even if the operations done inside the loop aren't especially expensive, if we're going through a list of a thousand elements and we only need five out of them, we're wasting time on elements we don't need. Make sure that the list of elements that you're iterating through is only as long as you really need it to be.
+
+Let's say you're running an internal website. As part of the information the site shows, it displays a list of the last five users that logged in. In the code, the program keeps a list of all the users that have logged in since it last started, and when the program needs to display the five latest users, it goes through the whole list and finds out which of those are the five most recent. This wastes a lot of time. If the service has been running for a while, it can take really long to go through the whole list. Instead, you could modify the service to store the user access info in log files that can be read if necessary and only keep the last five logins in memory. Whenever a new user logs in, the oldest entry in the list gets discarded and a new one gets added. That way, the script doesn't need to go through the whole list every time it needs to display the five most recent users.
+
+_**Another thing to remember about loops is to break out of the loop once you found what you were looking for**_. In Python, we do this using the keyword **break**. Breaking out of loops means that as soon as the data we're looking for is found, our script can continue. Of course if the data is at the end of the list, then we need to go through the loop anyway. But when the data is at the beginning of the list and not at the end, it makes sense to have our code break early to make the script faster. Say you're writing a script that checks if a given username is within the list of authorized entities, and if it is, it grants them access to a particular resource. You can use a for loop to iterate through the list of entities. When the username is found, you can break out of the loop and continue the rest of the script.
+
+One last thing to keep in mind is that _the right solution for one problem might not be right for a different problem_. Say your service has a total of 20 users. In that case, it's okay to go over this list whenever you want to check something. It's short enough that you don't need to do any special optimization. But if your service has over a thousand users, you'll want to avoid going through that list unless absolutely necessary. If the service has hundreds of thousands of users, going through that list isn't even a possibility.
+
+#### Keeping Local Results
+
+In our last section, we talked about how to avoid having expensive operations inside our loops. So if we have to parse a file, we do it once before we call the loop instead of doing it for each element of the loop. But what if parsing the file is taking a lot of time even when it's done outside of the loop?
+
+Remember that to make our scripts get to their goal faster, we need to avoid having our computer do unnecessary work. So how can we avoid expensive operations like parsing a file, downloading data over the network, or going through a long list? If the script gets executed fairly regularly, it's common to create a **local cache**. In an earlier section , we said that **a cache is a way of storing data in a form that's faster to access than its original form**. So if we're parsing a large file and only keeping a few key pieces of information from it, we can create a cache to store only that information, or if we're getting some information over the network, we can keep a local copy of the file to avoid downloading it over and over again.
+
+Creating caches can be super useful to save us time and make our programs faster. But they're sometimes tricky to get right. _**We need to think about how often we're going to update the cache and what happens if the data in the cache is out of date**_.
+
+- _If we're looking for some long-term stats, we can generate the cache once per day_, and it won't be a problem. This might be the case for data like _how much memory was used on computers across the fleet over the last month? How many employees each department in a company has? Or how many units were sold of each product over the last quarter?_
+
+- But _if we're trying to look at data where the value as of right now is super important, we either can't use a cache or it has to be very short-lived_. This could be the case for _monitoring the health of computers to alert when something crosses a threshold. Checking the stock levels to see if there's enough of a product to sell or seeing if a username already exists in the network when trying to create a new one_.
+
+Sometimes, we can add a check to validate if we need to recalculate the cache or not. For example, if our cache is based on a file, we could store the modification date of that file when we calculated the cache. Then only recalculate the cache if the modification date of the file is newer than the one we had stored.
+
+If we don't have a way of checking if our cache is out of date or not, we'll need to add in logic to our program that tries to make a sensible decision. For that, we'll take into account _how often we expect the data to change, how critical it is that the latest data is used, and how frequently the program that we're running will be executed_. After taking all these factors into account, we might decide that the cache needs to be recreated once per day, once per hour, or even once per minute. Yes, even once per minute might make sense if you have a script that can get executed several times per minute and needs to do an expensive operation that can be cached. That way, only the first execution in a minute will spend time on this operation, the rest will be very fast. But the cache is never more than a minute out of date.
+
+Keep in mind that _caches don't always need to be elaborate structures_, storing lots of information with a complex timeout logic. Sometimes, they can be as simple as having a variable that stores a temporary result instead of calculating this result every time we need it.
+
+_For example, say you're generating a report that prints how many users there are in each of the different groups in the network. Now, some of these groups may contain other groups in them and some groups may even be part of several groups. For example, the Java release engineers group would be part of the release engineers group and the Java developers group. How can we avoid counting unique users more than once if they show up in multiple groups? We can have a **dictionary** with the group as the key and the amount of users as the value. That way, we only need to count the members of a group **once**, and after that, just use the value in the dictionary._
+
+To sum all of this up, remember that you'll want to look for strategies that let you avoid doing expensive operations. First, check if these operations are needed at all. If they are, see if you can store the intermediate results to avoid repeating the expensive operation more than needed.
+
+#### Slow Script with Expensive Loop
+
+Remember that meeting reminder script that was having trouble with the dates? The developers has kept working on it. Now, since personalized emails with the name of the person getting email and the greeting. That's cool. But unfortunately it seems to have made the application pretty slow. The developers are asking for our help in figuring out how we can make the program faster. So let's get to work.
+
+First, we'll need to reproduce the problem and figure out what slow means in this case. One user told us that the problem is visible when the list of recipients is long. To avoid spamming our colleagues while we're testing this issue, we'll send reminders to a bunch of test users that we've created in our mail server. You might remember that the application has two parts. A shell script that pops up a window where we can enter the data of the reminder and a Python script that prepares the email and sends it, the part that's slow is the sending of the emails. So we won't interact with the pop-up at all. We'll just pass the parameters we need to the Python script. We'll measure the script speed using the **time** command. Let's first call it with just one test user and see how long it takes.
+
+```bash
+$ time ./send_reminders.py "2020-01-13|Example|test1"
+$ Successfully sent reminder to test1
+
+real  0m.129s
+user  0m.068s
+sys   0m.013s
+```
+
+When we call **time** it runs the command that we pass to it and prints how long it took to execute it. There's three different values: **real, user, and sys**:
+
+- **Real** is the amount of actual time that it took to execute the command. This value is sometimes called wall-clock time because it's how much time a clock hanging on the wall would measure, no matter what the computer's doing.
+
+- **User** is the time spent doing operations in the user space.
+
+- **Sys** is the time spent doing system level operations.
+
+The values of user and sys won't necessarily add up to the value of real because the computer might be busy with other processes.
+
+What do we see here? It took our script 0.129 seconds to send the email. That's not a lot but we only send the message to one user. Let's try this again with our nine tests users.
+
+```bash
+$ time ./send_reminders.py "2020-01-13|Example|test1,test2,test3,test4,test5,test6,test7,test8,test9"
+$ Successfully sent reminder to test1,test2,test3,test4,test5,test6,test7,test8,test9
+[...]
+```
+
+We see that it took 0.296 seconds to send the email this time. That's still not a lot but it does look like it's taking longer with a longer list of emails. It's time to try to make this better. How can we find out what's wrong with the code?
+
+We could always look at the code and see if we find any expensive operations that we can improve. But in this case we want to use a _**profiler**_ to get some data about what's going on. So let's try that. There's a bunch of different profilers available for Python that work for different use cases. Here, we'll use the one called **pprofile3**. We use the **-f flag** to tell it to use the _callgrind_ file format and the **-o flag** to tell it to store the output in the **profile.out** file. This generated a file that we can open with any tool that supports the _callgrind_ format. We're going to use **kcachegrind** to look at the contents, which is a graphical interface for looking into these files.
+
+There's a lot going on with this program, so don't get scared if it takes a while to make sense out of it. As with so many other things practicing and tinkering on your own will help you get used to what all the different things here mean. Let's look at the information we need now.
+
+In the lower right half we see a call graph, which tells us that the main function is calling the send message function one time. This function is calling the message template function, the get name function, and the send message function nine times each. The graph also tells us how many microseconds are spent on each of these calls. We can see that most of the time is being spent in the get name function. That's probably the one we should optimize. Let's see what this function is doing using atom.
+
+So we see that the get name function opens a CSV file then goes through the whole file checking if the first field in the line matches the e-mail name and when that's the case it sets the value of the name variable. There's a couple of things that are wrong with this function.
+
+First, once it finds the element in the list it should immediately break out of the loop. Right now, it's iterating through the whole file even if the email was found in the first line. But even if we fixed that it would still open the file and read through it for each e-mail address. This can get really slow if the file has a lot of lines. So how can we make this better?
+
+We can read the file once and store the values that we care about in a **dictionary** and then use that dictionary for the lookups. Let's do that. We'll change the get name function and turn it into a read names function that will process the CSV file and store the values we want in the names dictionary. For each line will store the email as the key and the names as the values. Instead of returning one name we'll return the whole dictionary. All right we have a read names function that stores the data we want in a dictionary. We now need to change the way this is called in the send message function. We see that the get name function is being called once per email. To apply our change we should call the read names function before the for loop so that we do it only once. Then instead of calling get name we'll just get the values form the dictionary.
+
+All right we've made the change. Let's save our file and profile our script again to see if we manage to make it any faster. The graph looks different now as we've changed how the code behaves. See how the read names function is now taking a much smaller portion of time. On the flip side we see that the message template is the one that's taking the most time now. So if we wanted to keep making our script faster that's what we look next.
+
+In this section, we saw that we can use the **time** command to check how long it takes to execute a program. We then saw how we can combine a **profiler** and a profile visualizer to figure out where our code is spending most of his time. Finally, we changed our code to avoid doing inexpensive loop over and over by storing the information in a dictionary and then accessing the dictionary instead.
 
 \#ITCert #Python #GrowWithGoogle
