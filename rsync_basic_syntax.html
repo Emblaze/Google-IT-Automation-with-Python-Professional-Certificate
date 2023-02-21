@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rsync_basic_syntax.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="rsync-cheat-sheet">rsync cheat-sheet</h1>
+<h2 id="rsync-basic-syntax">rsync basic syntax</h2>
+<pre class=" language-bash"><code class="prism  language-bash">$ <span class="token function">rsync</span> <span class="token punctuation">[</span>Options<span class="token punctuation">]</span> <span class="token punctuation">[</span>Source-Files-Dir<span class="token punctuation">]</span> <span class="token punctuation">[</span>Destination<span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Options</th>
+<th>Uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-v</td>
+<td>Verbose output</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>Suppress message output</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>Archive files and directory while synchronizing</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>Sync files and directories recursively</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>Take the backup during synchronization</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>Take the backup during synchronization</td>
+</tr>
+</tbody>
+</table><h2 id="examples">Examples</h2>
+<p>Example:</p>
+<ol>
+<li>Copy or sync files locally:</li>
+</ol>
+<pre class=" language-bash"><code class="prism  language-bash">$ <span class="token function">rsync</span> -zvh <span class="token punctuation">[</span>Source-Files-Dir<span class="token punctuation">]</span> <span class="token punctuation">[</span>Destination<span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+</code></pre>
+<ol start="2">
+<li>Copy or sync directory locally:</li>
+</ol>
+<pre class=" language-bash"><code class="prism  language-bash">$ <span class="token function">rsync</span> -zavh <span class="token punctuation">[</span>Source-Files-Dir<span class="token punctuation">]</span> <span class="token punctuation">[</span>Destination<span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+</code></pre>
+<ol start="3">
+<li>Copy files and directories recursively locally:</li>
+</ol>
+<pre class=" language-bash"><code class="prism  language-bash">$ <span class="token function">rsync</span> -zrvh <span class="token punctuation">[</span>Source-Files-Dir<span class="token punctuation">]</span> <span class="token punctuation">[</span>Destination<span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+</code></pre>
+<p>To learn more about rsync basic command, check out <a href="https://www.linuxtechi.com/rsync-command-examples-linux/">this link</a>.</p>
+</div>
+</body>
+
+</html>
