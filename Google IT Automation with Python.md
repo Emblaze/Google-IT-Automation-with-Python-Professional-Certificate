@@ -5631,4 +5631,18 @@ Learning about the different ways computers and software can fail can seem scary
 
 Throughout our examples, we've been applying the same techniques that we learned the beginning of the course. **We gathered information until we understood the problem. We found the root cause and then worked on the short-term and the long-term remediatio**n. By now, you have a better idea of what you can do when an application crashes unexpectedly, how to use **elimination** to figure out what's wrong, and what kind of solutions you can apply depending on the failure.
 
+### Managing Computer Resources
+
+#### Intro to Module 4: Managing Resources
+
+Welcome back. We're almost to the end of the course. Congratulations on making it all the way here. I hope you're starting to see just how practical these lessons are in a real-world IT environment, and that you're feeling empowered by your new troubleshooting skills.
+
+In past modules, you've learned how to troubleshoot and debug a bunch of situations. We saw how reducing scope and isolating problems can lead us to the root cause of programs that are running slowly or crushing unexpectedly. We also learned how to understand different error messages and use the tools available in the OS to diagnose what's going on.
+
+Sometimes the problem we face isn't that something doesn't work, but that it doesn't work as well as it should. Usually, this comes down to not making the best use of the available resources in the system. If our program uses too much memory for example, we might be able to work around it by adding more RAM to the computer. But wouldn't it be better if it didn't use that much memory in the first place? _**All resources in our computer are limited**_. So we need to make sure that the applications we run make the best use of them. We need to check that the software we run doesn't waste memory for things that aren't needed, or that the space on our disks is actually used by data that matters, or that the information transmitted over the network is actually the info we care about. There's always something to declutter.
+
+In the next few sections, we'll explore how we can figure out what's going on with programs that exhaust resources on our computer. Whether that's memory, disk, or even network link. Then will talk about managing _**our most valuable resource of all, time**_. We'll learn how we can look at the never-ending list of tasks that needs to be done, and make sure that we're spending our time wisely by prioritizing our work and avoiding unnecessary interruptions.
+
+After that, we'll discuss how we can apply all our new knowledge to try to avoid future problems. Being proactive could help us mitigate issues when things don't go according to plan. Hint, they rarely do, and even if would problems altogether by catching them in the test infrastructure. Finally, you'll have another opportunity to try your hand at solving a real world challenge, to put your skills into practice.
+
 \#ITCert #Python #GrowWithGoogle
