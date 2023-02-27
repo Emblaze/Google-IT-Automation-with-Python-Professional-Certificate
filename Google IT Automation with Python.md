@@ -5621,4 +5621,14 @@ You can even practice writing postmortems outside of the IT context. Like, if yo
 
 Once again, **remember that the most important part of the postmortem is what we can learn for the future**. So if instead of writing a whole document you're creating a one paragraph summary of the incident, remember to focus that paragraph on what you can do better, not on whatever mistake caused the incident.
 
+#### Module 3 Crashing Apps Wrap-up
+
+Congratulations on making it all the way here. You've learned a lot about all kinds of crashes, errors, and incidents over the past sections.
+
+We've covered examples of what you can do to work around a problem and you don't have access to the code. We've looked at ways to solve the issues when you do have access to the code, and checked out how to deal with larger incidents that involve complex systems and large teams of people.
+
+Learning about the different ways computers and software can fail can seem scary at first. But remember that all of these tools help us get better at coming up with solutions. One of the things In IT, there are so many different ways to accomplish any task. So if you get stuck, you can always try a new angle. There's nothing like the feeling of solving a tricky problem.
+
+Throughout our examples, we've been applying the same techniques that we learned the beginning of the course. **We gathered information until we understood the problem. We found the root cause and then worked on the short-term and the long-term remediatio**n. By now, you have a better idea of what you can do when an application crashes unexpectedly, how to use **elimination** to figure out what's wrong, and what kind of solutions you can apply depending on the failure.
+
 \#ITCert #Python #GrowWithGoogle
