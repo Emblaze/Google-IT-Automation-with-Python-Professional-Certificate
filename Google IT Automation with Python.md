@@ -6016,4 +6016,14 @@ Wow, look at all we've covered. In the past videos, we discussed a lot of differ
 
 That was a lot of interesting stuff in a short amount of time, don't you think? Throughout this course, you've learned a lot about the different approaches you can take to understand and fix tons of different IT related problems.
 
+#### Course Wrap Up
+
+Congrats on solving that tricky lab, it definitely wasn't easy. And congrats on completing the whole course. We've learned a ton of stuff in our time together, and I'm really proud of you for making it all the way here.
+
+With the knowledge that you've learned through this course you're now much better equipped to deal with any kind of problem that you might face in your IT job. You've learned how to deal with issues in your computer, in your code, and in your systems. We've looked into a bunch of different ways in which software can fail, and we figured out how to tackle a lot of them.
+
+In our journey together we checked out a ton of examples based on real-world situations that people like you or me come across in our IT jobs regularly. We've given you an open playbook of the tips and tricks used by those of us at Google to solve the same problems every day. And all along you've been applying what you've learned to solve real-world problems yourself through our quick labs.
+
+Practice like that builds some serious problem-solving experience helping you grow in your it role. Knowing how to identify, solve, and prevent those types of problems is one of the most important parts of working in IT. And building the healthy habits needed to prioritize your time when working with those problems is just as critical.
+
 \#ITCert #Python #GrowWithGoogle
