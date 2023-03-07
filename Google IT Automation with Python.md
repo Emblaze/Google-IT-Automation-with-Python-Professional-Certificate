@@ -6141,4 +6141,36 @@ We've now seen a couple examples of what we can do with the file resource. There
 
 How do these rules turn into changes in our computers? When we declare a resource in our puppet rules. We're defining the desired state of that resource in the system. The puppet agent then turns the desired state into reality using **providers**. The provider used will depend on the resource defined and the environment where the agent is running. Puppet will normally detect this automatically without us having to do anything special. When the puppet agent processes a resource, it first decides which provider it needs to use, then passes along the attributes that we configured in the resource to that provider. The code of each provider is in charge of making our computer reflect the state requested in the resource. In these examples, We've looked at one resource at a time. Up next, we'll see how we can combine a bunch of resources into more complex puppet classes.
 
+#### Puppet Classes
+
+In the examples of Puppet code that we've seen so far, we've declared **classes** that contain one resource. You might have wondered what those classes were for.
+
+We use these classes to collect the resources that are needed to achieve a goal in a single place. For example, you could have a class that installs a package, sets the contents of a configuration file, and starts the service provided by that package. Let's check out an example like that.
+
+```text
+class ntp {
+  package { 'ntp':
+    ensure => latest,
+  }
+  file { '/etc/ntp.conf':
+    source => 'puppet://modules/ntp/ntp.conf',
+    replace => true,
+  }
+  service { 'ntp':
+    enable => true,
+    ensure => running,
+  }
+}
+```
+
+In this case, we have a class with three resources, a package, a file, and a service. All of them are related to the Network Time Protocol, or NTP, the mechanism our computers use to synchronize their clocks. Our rules are making sure that the NTP package is always upgraded to the latest version. We're setting the contents of the configuration file using the source attribute, which means that the agent will read the required contents from the specified location. And we're saying that we want the NTP service to be enabled and running. By grouping all of the resources related to NTP in the same class, we only need a quick glance to understand how the service is configured and how it's supposed to work. This would make it easier to make changes in the future since we have all the related resources together. It makes sense to use this technique whenever we want to group related resources. For example, you could have a class grouping all resources related to managing log files, or configuring the time zone, or handling temporary files and directories. You could also have classes that group all the settings related to your web serving software, your email infrastructure, or even your company's firewall. We're just getting started with Puppet's basic resources and seeing how they can be applied. In further videos, we'll be learning a lot more about common practices when using configuration management tools.
+
+#### Puppet Resources
+
+Check out the following links for more information:
+
+- <https://puppet.com/docs/puppet/latest/lang_resources.html>
+
+- <https://www.puppet.com/blog/windows-chocolatey-package-manager>
+
 \#ITCert #Python #GrowWithGoogle
