@@ -6028,9 +6028,9 @@ Practice like that builds some serious problem-solving experience helping you gr
 
 ## Configuration Management and the Cloud
 
-### Automating with Configuration Management
+### Introduction to Automating with Configuration Management
 
-#### Intro to Module 1: Automating with Configuration Management
+#### Introduction to Automation at Scale
 
 No matter the size of your team or the number of computers in your fleet, knowing how to apply automation techniques will enable you to do your work much more effectively. Being able to automate the installation of new software, the provisioning of new workstations or the configuration of a new server can make a big difference even when you're the only person in your IT department.
 
@@ -6091,5 +6091,54 @@ The ability to easily see what configuration changes were made and roll back to 
 In a complex or large environment, treating your IT Infrastructure as Code can help you deploy a flexible scalable system. A configuration management system can help you manage that code by providing a platform to maintain and provision that infrastructure in an automated way. Having your infrastructure stored as code means that you can automatically deploy your infrastructure with very little overhead. If you need to move it to a different location, it can be deployed, de-provisioned, and redeployed at scale in a different locale with minimal code level changes.
 
 To sum all of this up, managing your Infrastructure as Code it means that your fleet of nodes are **consistent**, **versioned**, **reliable**, and **repeatable**. Instead of being seen as precious or unique, machines are treated as replaceable resources that can be deployed on-demand through the automation. Any infrastructure that claims to be scalable must be able to handle the capacity requirements of growth. Performing an action like adding more servers to handle an increase in requests is just a possible first step. There are other things that we might need to take into account, such as the amount of traffic that network can handle or the load on the back end servers like databases. Viewing your infrastructure in this way helps your IT team adapt and stay flexible. The technology industry is constantly changing and evolving. Automation and configuration management can help you embrace that change instead of avoiding it.
+
+### Introduction to Puppet
+
+As we called out a couple of times already, in this course, we'll be learning how to apply basic configuration management concepts by using Puppet.
+
+Puppet is the current industry standard for managing the configuration of computers in a fleet of machines. Part of the reason why Puppet is so popular is that it's a cross-platform tool that's been around for a while. It's an open source project that was created in 2005, and it's gone through several different versions. As it's evolved, the tool has incorporated feedback from its users to make it more and more useful.
+
+We typically deploy puppet using a client-server architecture. The client is known as the Puppet agent, and the service is known as the Puppet master. When using this model, the agent connects to the master and sends a bunch of facts that describe the computer to the master. The master then processes this information, generates the list of rules that need to be applied on the device, and sends this list back to the agent. The agent is then in charge of making any necessary changes on the computer. Puppet is a cross-platform application available for all Linux distributions, Windows, and Mac OS. This means that you can use the same puppet rules for managing a range of different computers. What are these rules that we keep talking about? Let's check out a very simple example. This block is saying that the package 'sudo' should be present on every computer where the rule gets applied. If this rule is applied on 100 computers, it would automatically install the package in all of them.
+
+There are various installation tools available depending on the type of operating system. Puppet will determine the type of operating system being used and select the right tool to perform the package installation. On Linux distributions, there are several package management systems like APT, Yum, and DNF. Puppet will also determine which package manager should be used to install the package. On Mac OS, there's a few different available providers depending on where the package is coming from. The Apple Provider is used for packages that are part of the OS, while the MacPorts provider is used for packages that come from the MacPorts Project. For Windows, we'll need to add an extra attribute to our rule, stating where the installer file is located on the local desk or a network mounted resource. Puppet will then execute the installer and make sure that it finishes successfully. If you use Chocolatey to manage your windows packages, you can add an extra Chocolatey provider to Puppet to support that. We'll add a link to more information about this in our next reading.
+
+Using rules, we can get puppet to do a lot more than just install packages for us. We can add, remove, or modify configuration files stored in the system, or change registry entries on Windows. We can also enable, disable, start, or stop the services that run on our computer. We can configure crone jobs, the scheduled tasks, add, remove, or modify Users and Groups or even execute external commands, if that's what we need. There's a lot to say about puppet. We won't go into absolutely every detail, but we'll cover the most important concepts in this course. The goal is to get you started with what you need to know about configuration management in general and puppet in particular. We'll also give you pointers to find out more information on your own.
+
+#### Puppet Resources
+
+In our last section, we saw an example that installed the pseudo package in a computer. To do that, our example used the package keyword declaring a package resource. In Puppet, **resources are the basic unit for modeling the configuration that we want to manage**. In other words, each resource specifies one configuration that we're trying to manage, like a service, a package, or a file. Let's look at another example.
+
+```text
+class sysctl {
+
+  # Makes sure the directory exists, some distros don't have it
+  file  {'/etc/sysctl.d':
+    ensure => directory,
+  }
+
+}
+```
+
+In this case, we're defining a _**file resource**_. This resource type is used for managing files and directories. In this case, it's a very simple rule that ensures that \/etc/sysctl.d exists and is a directory.
+
+Let's talk a little bit about syntax. In both our last example and this one we could see that when declaring a resource in puppet, we write them in a block that starts with the **resource type** ,in this case File. The configuration of the resource is then written inside a block of curly braces. Right after the opening curly brace, we have the **title** of the resource, followed by a **colon**. After the colon come the **attributes** that we want to set for the resource. In this example, we're once again setting the _**ensure attribute**_ with directory as the value, but we could set other attributes too. Let's check out a different file resource.
+
+```text
+class timezone {
+
+    file  {'/etc/timezone':
+    ensure => file,
+    content => "UTC\n"
+    replace => true,
+  }
+
+}
+```
+
+In this example, we're using a file resource to configure the contents of etc/timezone, a file, that's used in some Linux distributions to determine the time zone of the computer. This resource has three attributes. First, we explicitly say that this will be a file instead of a directory or a symlink then we set the contents of the file to the UTC time zone. Finally, we set the replace attribute to true, which means that the contents of the file will be replaced even if the file already exists.
+
+We've now seen a couple examples of what we can do with the file resource. There are a lot more attributes that we could set, like file permissions the file owner, or the file modification time. We've included a link to the official documentation in the next reading where you can find all the possible attributes that can be set for each resource.
+
+How do these rules turn into changes in our computers? When we declare a resource in our puppet rules. We're defining the desired state of that resource in the system. The puppet agent then turns the desired state into reality using **providers**. The provider used will depend on the resource defined and the environment where the agent is running. Puppet will normally detect this automatically without us having to do anything special. When the puppet agent processes a resource, it first decides which provider it needs to use, then passes along the attributes that we configured in the resource to that provider. The code of each provider is in charge of making our computer reflect the state requested in the resource. In these examples, We've looked at one resource at a time. Up next, we'll see how we can combine a bunch of resources into more complex puppet classes.
 
 \#ITCert #Python #GrowWithGoogle
