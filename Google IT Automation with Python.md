@@ -6786,12 +6786,46 @@ We saw in earlier sections how we can have a puppet rule that specifies that a c
 
 Of course Terraform isn't the only option. Puppet itself also ships with a bunch of plug-ins that can be used to interact with the different Cloud providers to create and modify the desired Cloud infrastructure.
 
-Finally, let's spend a moment talking about the contents of the nodes or instances managed by the Orchestration tools. _**When dealing with nodes in the Cloud, there are basically two options**_. Either they're **long-lived** and their contents need to be periodically updated, or they are **short-lived** and updates are made by deleting the old instances and deploying new ones. 
+Finally, let's spend a moment talking about the contents of the nodes or instances managed by the Orchestration tools. _**When dealing with nodes in the Cloud, there are basically two options**_. Either they're **long-lived** and their contents need to be periodically updated, or they are **short-lived** and updates are made by deleting the old instances and deploying new ones.
 
 - Long-lived instances are typically servers that are not expected to go away. Things like your company's internal mail server or internal document sharing servers, will manage these instances using a configuration management system like Puppet, which can deploy any necessary changes to the machines while they're running. This keeps them updated to the latest state.
 
 - On the flip side, short-lived instances come and go very quickly. For these cases, it makes less sense to apply changes while they're running. Instead, we normally apply the configuration that we want the instances to have when they start, and we deploy any future changes by replacing the instances with new ones. We can still use Puppet for the initial setup, but we don't need to run the agent periodically, only at the start.
 
 If all this sounds super complex, that's okay. There's a lot to learn about Cloud Orchestration, and many of these concepts will make more sense once you've tried them out.
+
+#### More About Cloud & GCP
+
+Check out the following links for more information:
+
+- [Getting started on GCP with Terraform](https://cloud.google.com/community/tutorials/getting-started-on-gcp-with-terraform)
+
+- [Creating groups of unmanaged instances](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-unmanaged-instances)
+
+- GCP Load Balancing official documentation is here: <https://cloud.google.com/load-balancing/docs/https/>
+
+- <https://geekflare.com/gcp-load-balancer/>
+
+Interesting articles about hybrid setups:
+
+- <https://blog.inkubate.io/create-a-centos-7-terraform-template-for-vmware-vsphere/>
+
+- <https://www.terraform.io/docs/enterprise/before-installing/reference-architecture/gcp.html>
+
+- <https://www.hashicorp.com/resources/terraform-on-premises-hybrid-cloud-wayfair>
+
+#### Module 3 Wrap Up: Automation in the Cloud
+
+Over the past few sections we've learned how to use the different Cloud resources available to us.
+
+- We've gone through a bunch of different concepts like software or infrastructure-as-a-service, public or hybrid clouds, upscaling and downscaling, and a lot more.
+
+- We've also demonstrated how to deploy single virtual machines and then turn them into a customized VM template. Creating a single VM can be useful for small to medium-sized organizations with lower technical requirements. But as the technical requirements for the organization grows, it's often necessary to deploy more and larger Cloud solutions. This is where using the template to create large system clusters becomes very handy. Using reference images and templating lets us clone a VM 100, 1,000, or more times, and this makes scaling our Cloud deployments super easy.
+
+- We checked out a bunch of different ways to interact with the platform. We've seen how we can use both the web interface and the command line tool to create virtual machines in the Cloud. Using these tools we can control which machines are online or offline, modify their configuration, and a bunch of other things. At a small or medium scale, using these tools can be really effective. At a larger scale, we have to automate these deployments even further and that's where orchestration comes into play.
+
+- Tools like Terraform let us define our Cloud infrastructure as code, allowing us to have a lot of control over how the infrastructure is managed, how the changes are applied, and so on. This lets us combine the power of using infrastructure as code with the flexibility of using Cloud resources.
+
+Hopefully by now, you're starting to see how you can make the best out of the different Cloud offerings to help your IT infrastructure quickly and easily scale as needed.
 
 \#ITCert #Python #GrowWithGoogle

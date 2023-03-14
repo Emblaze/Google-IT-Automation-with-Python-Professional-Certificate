@@ -5348,6 +5348,98 @@ end
 <p><a href="https://cloud.google.com/sdk/docs">https://cloud.google.com/sdk/docs</a></p>
 </li>
 </ul>
+<h3 class="mume-header" id="automating-cloud-deployments">Automating Cloud Deployments</h3>
+
+<h4 class="mume-header" id="cloud-scale-deployments">Cloud Scale Deployments</h4>
+
+<p>Over the past few sections, we&apos;ve checked out some of the features we can use when running services in the Cloud. As we called out before, the biggest advantage of using Cloud services is how easily we can scale our services up and down. Now, to make the most out of this advantage, we need to do some preparation. We&apos;ll set up our services so that we can easily increase their capacity by adding more nodes to the pool. These nodes could be virtual machines, containers, or even specific applications providing one service. Whenever we have a service with a bunch of different instances serving the same purpose, we&apos;ll use a <strong>load balancer</strong>. <strong>A load balancer ensures that each node receives a balanced number of requests</strong>. When a request comes in, the load balancer picks a node to serve the response. There&apos;s a bunch of different strategies load balancer uses to select the node. The simplest one is just to give each node one request called <strong>round robin</strong>. More complex strategies include always selecting the same node for requests coming from the same origin, selecting the node that&apos;s closest to the requester, and selecting the one with the least current load.</p>
+<p>As we called out, instance groups like these are usually configured to spin up more nodes when there&apos;s more demand, and to shut some nodes down when the demand falls. This capability is called <strong>autoscaling</strong>. <strong>Autoscaling allows the service to increase or reduce capacity as needed while the service owner only pays for the cost of the machines that are in use at any given time</strong>. Since some nodes will shut down when demand is lower, their local disks will also disappear and should be considered <em><strong>ephemeral or short-lived</strong></em>.</p>
+<p><strong>If you need data persistence</strong>, you&apos;ll have to create separate storage resources to hold that data and connect that storage to the nodes. That&apos;s why the services that we run in the Cloud are usually connected to a database which is also running in the Cloud. <em>This database will also be served by multiple nodes behind a load balancer, but this is typically managed by the Cloud provider using the platform as a service model</em>.</p>
+<p>To check out how this works in practice, let&apos;s look at an example of a web application with a lot of users. When you connect to a site through the Internet, your web browser first retrieves an IP address for the website that you want to visit. This IP address identifies a specific computer, the <strong>entry point</strong> for the sites. Commonly there will be a bunch of different entry points for a single website. This allows the service to stay up even if one of them fails. On top of that, it&apos;s possible to select an entry point that&apos;s closer to the user to <strong>reduce latency</strong>.</p>
+<p>In a small-scale application, this entry point could be the web server that serves the pages, and that would be it. For large applications where speed and availability matter, there will be a couple of layers in between the entry point and the actual web service.</p>
+<p>The first layer will be a pool of web caching servers with a load balancer to distribute the requests among them. One of the most popular applications for this caching is called <em><strong>Varnish</strong></em>, but of course it&apos;s not the only one. The <em><strong>Nginx</strong></em> web server and software also includes this caching functionality. There&apos;s a bunch of providers that do web caching as a service like <em><strong>Cloudflare</strong></em> and <em><strong>Fastly</strong></em>.</p>
+<p>No matter the software used, the result is basically the same. When a request is made, the caching servers first check if the content is already stored in their memory. If it&apos;s there, they respond with the contents, if it&apos;s not, they ask their configured backend for the content and then store it so that it&apos;s present for future requests. This configured backend is the actual web service that generates the webpages for the site, and it will also normally be a pool of nodes running under a load balancer. To get any necessary data, this service will connect to a database. But because getting data from a database can be slow, there&apos;s usually an extra layer of caching, specific for the database contents. The most popular applications for this level of caching are <em><strong>Memcached</strong></em> and <em><strong>Redis</strong></em>.</p>
+<p>As you can see, there is a lot of different nodes in this scheme. Fortunately, once you&apos;ve done your homework and prepared your setup, you can rely on the capabilities offered by the Cloud provider to automatically scale the system up and down as necessary. The infrastructure will take care of adding and removing instances, distributing the load, making sure that each geographical region has the right capacity, and a bunch more things.</p>
+<h4 class="mume-header" id="what-is-orchestration">What is orchestration?</h4>
+
+<p>Throughout this course and the entire program, we&apos;ve been talking about automation. As a reminder, automation is the process of replacing a manual step with one that happens automatically. In the past few sections, we&apos;ve mentioned a few ways that let us automate the creation of Cloud instances. We can use templating to create new virtual machines, we can run a command line tool that automatically creates new instances for us, or we can choose to enable auto-scaling and let the infrastructure tools take care of that depending on the demand. But all of this automatic creation of new instances needs to be coordinated so that the instances correctly interact with each other and that&apos;s where <strong>orchestration</strong> comes into play.</p>
+<p><strong>Orchestration is the automated configuration and coordination of complex IT systems and services</strong>. <em>In other words, orchestration means automating a lot of different things that need to talk to each other</em>. This will always include a lot of different automated tasks and will generally involve configuring a bunch of different systems.</p>
+<p>Taking the example of the website infrastructure that we saw in our last section, we&apos;ve seen how we can automate the creation of each instance in the system. Now, say you wanted to deploy a new copy of the system in a separate data center where you have no instances yet, you&apos;ll need to also automate the whole configuration of the system, the different instance types involved, how will each instance finesse the others, what the internal network looks like, and so on. So how does this work?</p>
+<p>The key here is that the <em><strong>configuration of the overall system needs to be automatically repeatable</strong></em>. There&apos;s a bunch of different tools that we can use to do that. These tools typically don&apos;t communicate with the Cloud systems through the web interface or the command line. They normally use an <strong>application programming interface or API</strong> that lets us interact with the Cloud infrastructure directly from our scripts.</p>
+<p>We&apos;ll talk more about other APIs in a later course. In the case of Cloud provider APIs, they typically let you handle the configuration that you want to sit directly from your scripts or programs without having to call a separate command. This combines the power of programming with all of the available Cloud resources.</p>
+<p>The APIs offered by the Cloud providers let us perform all the tasks that we mentioned earlier like creating, modifying, and deleting instances and also deploying complex configurations for how these instances will talk to each other.</p>
+<p>All of these actions can also be completed through the web interface or the command line. But doing them from our programs gives us extra flexibility which can be key when automating complex setups.</p>
+<p>Say you wanted to deploy a system that combines some services running on a Cloud provider and some services running on-premise, this is known as a <strong>hybrid Cloud setup, or only part of the services are in the Cloud</strong>. The setup is super common in the industry right now. Orchestration tools can be a pretty useful tool to make sure that both the on-premise services and the Cloud services know how to talk to each other and are configured with the right settings.</p>
+<p>Going back to the website example that we discussed earlier to make sure that the service is running smoothly, we should set up a <strong>monitoring</strong> and <strong>alerting</strong>. This lets us detect and correct any problems with our service before users even notice.</p>
+<p><em><strong>This is a critical piece of infrastructure but setting it up correctly can take quite some time</strong></em>. By using orchestration tools, we can automate the configuration of any monitoring rules that we need to set, which metrics we want to look for, when we want to be alerted, and so on, and automatically apply these to a complete deployment no matter which datacenter the services are running in.</p>
+<p>This might seem like a super complex task, but fortunately there are tools available to make our lives easier.</p>
+<h4 class="mume-header" id="cloud-infrastructure-as-code">Cloud Infrastructure as Code</h4>
+
+<p>In our last section, we talked about how we need to orchestrate complex Cloud setups. This includes handling a bunch of different nodes with different workloads, managing the complexity of deploying a hybrid setup, or modifying deployments across several Data centers.</p>
+<p>Back at the beginning of the course, we talked about infrastructure as Code, and we called out that storing our infrastructure in a code like format, lets us create repeatable infrastructure, and that using Version control for the storage, means that we can keep a history of what we&apos;ve done and easily rollback mistakes.</p>
+<p>These principles also apply to Cloud infrastructure. The way we store it might be a little different depending on the tools that we use, but we&apos;ll still be storing this configuration in a code like format using Version control to keep track of the changes. This lets us manage large-scale solutions with a small team. We can very quickly have an idea of what the deployment looks like, by looking at the configuration. We can try new things out and roll back if anything goes wrong. We can look at the history of changes to figure out why a specific change was made, and much more.</p>
+<p>Most Cloud providers offer their own tool for managing resources as code. Amazon has Cloud Formation, Google has <strong>Cloud Deployment Manager</strong>, Microsoft has <strong>Azure Resource Manager</strong>, and OpenStack has <strong>Heat Orchestration Templates</strong>. <em>These tools are specific to the Cloud provider, which means it can be complex and cumbersome to move to a different provider or combine a Cloud deployment with an on-premise deployments</em>.</p>
+<p>An option that&apos;s becoming really popular in the Orchestration field, is called <strong>Terraform</strong>. Similar to Puppet,<em>** Terraform uses its own Domain-specific language**</em> which lets us specify what we want our Cloud infrastructure to look like. The cool thing about Terraform is that it knows how to interact with a lot of different Cloud providers and automation vendors. So you can write your Terraform rules to deploy something on one Cloud provider, and then use very similar rules to deploy the service to a different Cloud provider.</p>
+<p><em><strong>Terraform uses each Cloud provider&apos;s API to accomplish this</strong></em>. This keeps you from having to learn a new API when moving to a different Cloud provider, and lets you <em><strong>focus on the infrastructure design</strong></em>.</p>
+<p>We saw in earlier sections how we can have a puppet rule that specifies that a computer should install a given package, and that the local puppet agent analyzes the computer and decides which installation mechanism to use depending on the operating system, the specific Linux distro and so on. A similar thing happens with Terraform. The rules that define the resources like the VMs or containers to use, will use specific values related to the Cloud provider like selecting which machine type to use or in what region to deploy it. But <em><strong>a lot of the overall configuration is independent of the provider</strong></em>, and can be reused if we decide to move our configuration to a different provider or we want to use a hybrid setup.</p>
+<p>Of course Terraform isn&apos;t the only option. Puppet itself also ships with a bunch of plug-ins that can be used to interact with the different Cloud providers to create and modify the desired Cloud infrastructure.</p>
+<p>Finally, let&apos;s spend a moment talking about the contents of the nodes or instances managed by the Orchestration tools. <em><strong>When dealing with nodes in the Cloud, there are basically two options</strong></em>. Either they&apos;re <strong>long-lived</strong> and their contents need to be periodically updated, or they are <strong>short-lived</strong> and updates are made by deleting the old instances and deploying new ones.</p>
+<ul>
+<li>
+<p>Long-lived instances are typically servers that are not expected to go away. Things like your company&apos;s internal mail server or internal document sharing servers, will manage these instances using a configuration management system like Puppet, which can deploy any necessary changes to the machines while they&apos;re running. This keeps them updated to the latest state.</p>
+</li>
+<li>
+<p>On the flip side, short-lived instances come and go very quickly. For these cases, it makes less sense to apply changes while they&apos;re running. Instead, we normally apply the configuration that we want the instances to have when they start, and we deploy any future changes by replacing the instances with new ones. We can still use Puppet for the initial setup, but we don&apos;t need to run the agent periodically, only at the start.</p>
+</li>
+</ul>
+<p>If all this sounds super complex, that&apos;s okay. There&apos;s a lot to learn about Cloud Orchestration, and many of these concepts will make more sense once you&apos;ve tried them out.</p>
+<h4 class="mume-header" id="more-about-cloud--gcp">More About Cloud &amp; GCP</h4>
+
+<p>Check out the following links for more information:</p>
+<ul>
+<li>
+<p><a href="https://cloud.google.com/community/tutorials/getting-started-on-gcp-with-terraform">Getting started on GCP with Terraform</a></p>
+</li>
+<li>
+<p><a href="https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-unmanaged-instances">Creating groups of unmanaged instances</a></p>
+</li>
+<li>
+<p>GCP Load Balancing official documentation is here: <a href="https://cloud.google.com/load-balancing/docs/https/">https://cloud.google.com/load-balancing/docs/https/</a></p>
+</li>
+<li>
+<p><a href="https://geekflare.com/gcp-load-balancer/">https://geekflare.com/gcp-load-balancer/</a></p>
+</li>
+</ul>
+<p>Interesting articles about hybrid setups:</p>
+<ul>
+<li>
+<p><a href="https://blog.inkubate.io/create-a-centos-7-terraform-template-for-vmware-vsphere/">https://blog.inkubate.io/create-a-centos-7-terraform-template-for-vmware-vsphere/</a></p>
+</li>
+<li>
+<p><a href="https://www.terraform.io/docs/enterprise/before-installing/reference-architecture/gcp.html">https://www.terraform.io/docs/enterprise/before-installing/reference-architecture/gcp.html</a></p>
+</li>
+<li>
+<p><a href="https://www.hashicorp.com/resources/terraform-on-premises-hybrid-cloud-wayfair">https://www.hashicorp.com/resources/terraform-on-premises-hybrid-cloud-wayfair</a></p>
+</li>
+</ul>
+<h4 class="mume-header" id="module-3-wrap-up-automation-in-the-cloud">Module 3 Wrap Up: Automation in the Cloud</h4>
+
+<p>Over the past few sections we&apos;ve learned how to use the different Cloud resources available to us.</p>
+<ul>
+<li>
+<p>We&apos;ve gone through a bunch of different concepts like software or infrastructure-as-a-service, public or hybrid clouds, upscaling and downscaling, and a lot more.</p>
+</li>
+<li>
+<p>We&apos;ve also demonstrated how to deploy single virtual machines and then turn them into a customized VM template. Creating a single VM can be useful for small to medium-sized organizations with lower technical requirements. But as the technical requirements for the organization grows, it&apos;s often necessary to deploy more and larger Cloud solutions. This is where using the template to create large system clusters becomes very handy. Using reference images and templating lets us clone a VM 100, 1,000, or more times, and this makes scaling our Cloud deployments super easy.</p>
+</li>
+<li>
+<p>We checked out a bunch of different ways to interact with the platform. We&apos;ve seen how we can use both the web interface and the command line tool to create virtual machines in the Cloud. Using these tools we can control which machines are online or offline, modify their configuration, and a bunch of other things. At a small or medium scale, using these tools can be really effective. At a larger scale, we have to automate these deployments even further and that&apos;s where orchestration comes into play.</p>
+</li>
+<li>
+<p>Tools like Terraform let us define our Cloud infrastructure as code, allowing us to have a lot of control over how the infrastructure is managed, how the changes are applied, and so on. This lets us combine the power of using infrastructure as code with the flexibility of using Cloud resources.</p>
+</li>
+</ul>
+<p>Hopefully by now, you&apos;re starting to see how you can make the best out of the different Cloud offerings to help your IT infrastructure quickly and easily scale as needed.</p>
 <p>#ITCert #Python #GrowWithGoogle</p>
 
       </div>
