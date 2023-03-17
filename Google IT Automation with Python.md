@@ -5689,7 +5689,7 @@ We include pointers to the commands for how that works in the next reading. Of c
 
 When you work in IT, you interact with services all over the Internet. At one moment, you might connect to a service running on your local network and the next use another service running in a data center located on a different continent. If your network connection is good, you might not be able to tell the difference where the website you're browsing is hosted. But if you're dealing with a network service that isn't exactly up to speed, you might need to get more details about the connection you're using. The two most important factors that determine the time it takes to get the data over the network are the **latency** and the **bandwidth** of the connection.
 
-- **The latency is the delay between sending a byte of data from one point and receiving it on the other.** This value is directly affected by the physical distance between the two points and how many intermediate devices there are between them.
+- **The latency is the delay between sending a byte of data from one point and receiving it on the other**. This value is directly affected by the physical distance between the two points and how many intermediate devices there are between them.
 
 - **The bandwidth is how much data can be sent or received in a second**. This is effectively the data capacity of the connection.
 
@@ -6944,7 +6944,7 @@ So remember, if something breaks, give yourself a break. Sometimes in IT, these 
 
 We've spent a while talking about how to make your service runs smoothly in the Cloud, now let's take a moment to talk about some of the problems that you might come across.
 
-Personally, I find that when writing software to run on the Cloud, it's important to keep in mind how my application will be deployed. 
+Personally, I find that when writing software to run on the Cloud, it's important to keep in mind how my application will be deployed.
 
 The software I'm creating needs to be fault tolerant and capable of handling unexpected events. Instances might be added or removed from the pool as needed and if an individual machine crashes, my service needs to breeze along without introducing problems, and not every problem results in a crash.
 
@@ -6969,5 +6969,15 @@ Your Cloud provider has a strong incentive to keep its service software fairly u
 At the same time, the Cloud provider has to move carefully and test changes to keep disruption of its service to a minimum. They will communicate proactively about changes to the services that you use and in some cases, Cloud providers might give you access to early versions of these services. For example, you can set up a _test environment for your service that uses the beta or prerelease version of a given software as a service solution_, letting you test it before it impacts production.
 
 Hopefully, you're starting to get an idea of the trade-offs that you'll need to make to get the most from deploying your software to the Cloud.
+
+#### More About Cloud Providers
+
+Here are some links to some common Quotas you’ll find in various cloud providers
+
+- <https://cloud.google.com/compute/quotas#understanding_vm_cpu_and_ip_address_quotas>
+
+- <https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html>
+
+- <https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits#service-specific-limits>
 
 \#ITCert #Python #GrowWithGoogle
