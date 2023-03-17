@@ -7014,4 +7014,89 @@ When we collect metrics from inside a system, like how much storage space the se
 
 Okay, monitoring is really cool, but who wants to stare at dashboards all day trying to figure out if something's wrong? Fortunately, we don't have to. Instead, we can set up alerting rules to let us know if something's wrong. This is a critical part of ensuring a reliable system.
 
+#### Getting Alerts When Things Go Wrong
+
+We expect a lot from our modern IT services. We expect them to be up and running 24-7. We want to be able to get our work done whenever and wherever. For that, we need our services to respond day or night, workday or holiday.
+
+But even if the services are running 24-7, System Administrators can't constantly be in front of their systems. Instead, we set up our services so that they work unattended and deal with problems when they happen.
+
+Now to do this, we need to detect those problems so that we can deal with them as quickly as possible. If you have no automated way of raising an alert, you might only find out about the issue when you get a call from a frustrated user telling you that your service is down. That's not ideal.
+
+It's much better to create automation that checks the health of your system and notifies you when things don't behave as expected. This can give you advance warning that something's wrong, sometimes even before users notice a problem at all.
+
+So how do we do that? The most basic approach is to run a job periodically that checks the health of the system and sends out an email if the system isn't healthy.
+
+On a Linux system, we could do this using **cron**, which is the tool to schedule periodic jobs. We'd pair this with a simple Python script that checks the service and sends any necessary emails.
+
+This is an extremely simplified version of an alerting system, but it shares the same principles as all alerting systems, no matter how complex and advanced. We want to periodically check the state of the service and raise alerts if there's a problem.
+
+When you use a monitoring system like the ones we described in our last section, the metrics you collect represent the state of your service.
+
+Instead of periodically running a script that connects to the service and checks if it's responding, you can configure the system to periodically evaluate the metrics, and based on some conditions, decide if an alert should be raised. **Raising an alert signals that something is broken and a human needs to respond**. For example, you can set up your system to raise alerts if the application is using more than 10 gigabytes of RAM, or if it's responding with too many 500 errors, or if the queue of requests waiting to get processed gets too long.
+
+Of course, not all alerts are equally urgent. We typically divide useful alerts into two groups, those that need immediate attention and those that need attention in the near future.
+
+If an alert doesn't need attention, then it shouldn't have been sent at all. It's just **noise**.
+
+- If your web service is responding with errors to 50 percent of the requests, you should look at what's going on right away. Even if this means waking up in the middle of the night to address whatever is wrong, you'll definitely want to fix this kind of critical problem ASAP.
+
+- On the other hand, if the issue is that the attached storage is 80 percent full, you need to figure out whether to increase the disk size or maybe clean up some of the stored data. But this isn't super urgent, so don't let it get in the way of a good night's sleep.
+
+Since these two types of alerts are different, we typically configure our systems to raise alerts in two different ways. Those that need immediate attention are called **pages**, which comes from a device called a **pager**. Before mobile phones became popular, pagers were the device of choice for receiving urgent messages, and they're still used in some places around the world. Nowadays, most people receive their pages in other forms like SMS, automated phone calls, emails, or through a mobile app, but we still call them pages.
+
+On the flip side, the non-urgent alerts are usually configured to create bugs or tickets for an IT specialist to take care of during their workday. They can also be configured to send email to specific mailing lists or send a message to a chat channel that will be seen by the people maintaining the service.
+
+One thing to highlight is that all alerts should be **actionable**. If you get a bug or a page and there's nothing for you to do, then the alert isn't actionable and it should be changed or it shouldn't be there at all. Otherwise, it's just **noise**.
+
+Say you're trying to check if your services database back-end is responsive. If you do this by creating a query that returns all rows in a large table, your request might sometimes timeout and raise an alert. That would be a noisy alert, not really actionable. You'd need to tweak the query to make the check useful. Say you run a cron job that copies files from one location to another every 10 minutes, you want to check that this job runs successfully. So you configure your system to alert you if the job fails. After putting this in production, you realize there's a bunch of unimportant reasons that can cause this job to temporarily fail. Maybe the destination storage is too busy and so sometimes the job times out. Maybe the origin was being rebooted right when the job started, so the job couldn't connect to it. No matter why, whenever you go to check out what caused a job to fail, you discover that the following run had succeeded and there's nothing for you to do. You need to rethink the problem and tweak your alert. Since the task is running frequently, you don't care if it fails once or twice, you can change the system to only raise the alert if the job fails three times in a row. That way when you get a bug, it means that it's failing consistently and you'll actually need to take action to fix it.
+
+All of this configuring and tweaking can seem like a lot of work. You need to think about which **metrics** you care about. Configure your monitoring system to store them, then configure your alerting system to raise alerts when things don't behave as expected.
+
+The flip side is that once you've set your systems to raise actionable alerts when needed, you're going to have peace of mind. If no alerts are firing, you know the service is working fine. This lets you concentrate on other tasks without having to worry.
+
+To set up good alerts, we need to figure out which situations should page, which ones should create bugs, and which ones we just don't care about. These decisions aren't always easy and might need some discussion with the rest of your team. But it can help make sure that you spend time only on things that actually matter.
+
+#### Service-Level Objectives
+
+We all know that some IT systems are more critical than others. Let's be real, if you try to play a computer game that you haven't opened in a year and it doesn't work, you probably won't care as much as if you're trying to make a bank transfer and your bank's website is down.
+
+Sometimes a piece of infrastructure can be down and the overall system still works with degraded performance.
+
+For example, if the caching server that makes your web application go faster is down, the app can still function, even if it's running slower.
+
+No system is ever available 100% of the time, it's just not possible. But depending on how critical the service is, it can have different **service level objectives, or SLOs**. **SLOs are pre-established performance goals for a specific service**. Setting these objectives helps manage the expectations of the service users, and the targets also guide the work of those responsible for keeping the service running.
+
+SLOs need to be measurable, which means that there should be metrics that track how the service is performing and let you check if it's meeting the objectives or not.
+
+Many SLOs are expressed as how much time a service will behave as expected. For example, a service might promise to be available 99% of the time. Heads up, when dealing with metrics and availability, we need to do a little math to understand what those numbers mean in practice, but don't worry, it's all pretty straightforward.
+
+If our service has an SLO of 99% availability, it means it can be down up to 1 % of the time. If we measure this over a year, the service can be down for a total of 3.65 during the year and still have 99% availability.
+
+Availability targets like this one are commonly named by their number of nines. Our 99% example would be a two 9 service, 99.9% availability is a three 9 service, 99.999% availability is a five 9 service. Five nine services promised a total down time of up to five minutes in a year. Five nines is super high availability, reserved only for the most critical systems. A three nine service, aiming for a maximum of eight hours of downtime per year, is fine for a lot of IT systems.
+
+Now, you might be wondering, why not just make everything a five nine service? It's a good question. The answer is, because it's really expensive and usually not necessary. If your service isn't super critical and it's okay for it to be down briefly once in a while having two or three nines of availability might be enough. You can keep the service running with a small team. Five nine services usually require a much larger team of engineers to maintain it.
+
+Any service can have a bunch of different service level objectives like these, they tell its users what to expect from it.
+
+Some services, like those that we pay for, also have more strict promises in the form of **service level agreements, or SLAs**. **A service level agreement is a commitment between a provider and a client**. Breaking these promises might have serious consequences.
+
+Service level objectives though are more like a soft target, it's what the maintaining team aims for, but the target might be missed in some situations.
+
+As we called out, having explicit SLOs or SLAs is useful for both the users of that service and the team that keeps the service running. If you're using a cloud service, you can decide how much you're going to entrust your infrastructure to it, based on the SLAs that the provider publishes.
+
+If on the other hand you're part of the team that maintains the service, you can use the SLOs and SLAs of your service to decide which alerts to create and how urgent they should be.
+
+Say you have a service with an SLO that says that at least 90% of the requests should return within 5 seconds. To know if your service is behaving correctly, you need to measure how many of the total requests are returning within those 5 seconds, and you want that number to always be above 90%. So you might set up a non-paging alert to notify you if less than 95% return within 5 seconds, and a paging alert if less than 90% return promptly.
+
+If you're in charge of a website, you'll typically measure the rate of responses with 500 return codes to check if your service is behaving correctly. If your SLO is 99% of successful requests, you can set up a non-paging alert if the rate of errors is above 0.5%, and a paging alert if it reaches 1%.
+
+In an earlier section, we called out that services usually break because something changed. That's also often the case when looking at what makes services go out of SLO.
+
+If your service was working fine and meeting all of its SLOs and then started misbehaving, it's likely this was caused by a recent change.
+
+That's why some teams use the concepts of **error budgets** to handle their services. Say you're running a service that has three nines of availability. This means the service can be down 43 minutes per month, this is your error budget. You can tolerate up to 43 minutes of downtime, so you keep track of the total time the service was down during the month. If it starts to get close to those 43 minutes, you might decide to stop pushing any new features and focus on resolving the problems that keep causing the downtime.
+
+Now, all this talk of nines, availability and downtime can have your head spinning if you've never done this before, and that's totally normal. If it's your first time setting objectives for your service, start by setting achievable goals that you can measure. Track how the service behaves for a while and see what causes the service to deviate from the targets. Once you have a better idea of the whole service's behavior, you can set more aggressive goals.
+
+
 \#ITCert #Python #GrowWithGoogle
