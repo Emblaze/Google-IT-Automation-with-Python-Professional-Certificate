@@ -6728,7 +6728,7 @@ Over the last few videos we learned how to create and use virtual machines runni
 
 #### Cloud Scale Deployments
 
-Over the past few sections, we've checked out some of the features we can use when running services in the Cloud. As we called out before, the biggest advantage of using Cloud services is how easily we can scale our services up and down. Now, to make the most out of this advantage, we need to do some preparation. We'll set up our services so that we can easily increase their capacity by adding more nodes to the pool. These nodes could be virtual machines, containers, or even specific applications providing one service. Whenever we have a service with a bunch of different instances serving the same purpose, we'll use a **load balancer**. **A load balancer ensures that each node receives a balanced number of requests**. When a request comes in, the load balancer picks a node to serve the response. There's a bunch of different strategies load balancer uses to select the node. The simplest one is just to give each node one request called **round robin**. More complex strategies include always selecting the same node for requests coming from the same origin, selecting the node that's closest to the requester, and selecting the one with the least current load.
+Over the past few sections, we've checked out some of the features we can use when running services in the Cloud. As we called out before, the biggest advantage of using Cloud services is how easily we can scale our services up and down. Now, to make the most out of this advantage, we need to do some preparation. We'll set up our services so that we can easily increase their capacity by adding more nodes to the pool. These nodes could be virtual machines, containers, or even specific applications providing one service. Whenever we have a service with a bunch of different instances serving the same purpose, we'll use a **load balancer**. **A load balancer ensures that each node receives a balanced number of requests**. When a request comes in, the load balancer picks a node to serve the response. There's a bunch of different strategies load balancer uses to select the node. The simplest one is just to give each node one request called **round-robin**. More complex strategies include always selecting the same node for requests coming from the same origin, selecting the node that's closest to the requester, and selecting the one with the least current load.
 
 As we called out, instance groups like these are usually configured to spin up more nodes when there's more demand, and to shut some nodes down when the demand falls. This capability is called **autoscaling**. **Autoscaling allows the service to increase or reduce capacity as needed while the service owner only pays for the cost of the machines that are in use at any given time**. Since some nodes will shut down when demand is lower, their local disks will also disappear and should be considered _**ephemeral or short-lived**_.
 
@@ -6827,5 +6827,91 @@ Over the past few sections we've learned how to use the different Cloud resource
 - Tools like Terraform let us define our Cloud infrastructure as code, allowing us to have a lot of control over how the infrastructure is managed, how the changes are applied, and so on. This lets us combine the power of using infrastructure as code with the flexibility of using Cloud resources.
 
 Hopefully by now, you're starting to see how you can make the best out of the different Cloud offerings to help your IT infrastructure quickly and easily scale as needed.
+
+### Building for the Cloud
+
+#### Intro to Module 4: Managing Cloud Instances at Scale
+
+Welcome back. And guess what? This is the last module in the course. Congratulations on making it here. It's sure been an exciting ride and it's about to get even more interesting.
+
+As we've learned in the past modules Cloud providers offer us a bunch of different services. By now we've learned a lot about different hosting models. If you're working for a small company you might get by with pre-packaged applications offered in the software as a service model.
+
+But as the organization grows so to do the IT needs. Eventually, your company might grow so large you need to start developing your own applications based on the platforms and infrastructure models from Cloud providers. Why might you develop your own application? Well developing your own apps gives your IT team more control and flexibility over what the applications do but it also brings a new set of challenges.
+
+You'll need to figure out how the different pieces fit together, make sure that the services run reliably and troubleshoot problems when they come up. In the next few sections, we'll check out some of the options for building software for the Cloud. We'll look into the different types of storage available and how to decide which one to use. We'll also learn more about load balancing and how to distribute a service across many instances. We'll discuss how we can make changes to our systems without breaking everything. And we'll check out some of the limitations that you might run into when running software in the Cloud. We'll wrap up with some best practices for running reliable services. This includes measuring how your service is doing by using a monitoring system and also setting up alerts so you're automatically notified if things don't go as planned. Sometimes systems fail and that's okay. Using the tips you'll learn in this module you'll be prepared to deal with failure and troubleshoot issues when using Cloud services.
+
+#### Storing Data in the Cloud
+
+Almost all IT systems need to store some data. Sometimes, it's a lot of data, sometimes, it's only bits and pieces of information. Cloud providers give us a lot of storage options. Picking the right solution for data storage will depend on what service you're building. You'll need to consider a bunch of factors, like:
+
+-how much data you want to store,
+
+- what kind of data that is,
+
+- what geographical locations you'll be using it in,
+
+- whether you're mostly writing or reading the data,
+
+- how often the data changes, or what your budget is.
+
+This might sound like a lot of things to consider, but don't worry, it's not that bad. We'll check out some of the most common solutions offered by Cloud providers to give you a better idea of when to choose what.
+
+When choosing a storage solution in the Cloud, you might opt to go with the traditional storage technologies, like **block storage**, or you can choose newer technologies, like **object** or **blob storage**. Let's check out what each of these mean.
+
+As we saw in an earlier section, when we create a VM running in the Cloud, it has a local disk attached to it. These local disks are an example of _**block storage**_. This type of storage closely resembles the physical storage that you have on physical machines using physical hard drives. Block storage in the Cloud acts almost exactly like a hard drive. The operating system of the virtual machine will create and manage a file system on top of the block storage just as if it were a physical drive. There's a pretty cool difference though. These are _**virtual disks**_, so we can easily move the data around. For example, we can migrate the information on the disk to a different location, attach the same disk image to other machines, or create snapshots of the current state. All of this without having to ship a physical device from place to place.
+
+Our block storage can be either _**persistent**_ or _**ephemeral**_.
+
+**Persistent storage is used for instances that are long lived, and need to keep data across reboots and upgrades**.
+
+On the flip side, **ephemeral storage is used for instances that are only temporary, and only need to keep local data while they're running**. Ephemeral storage is great for temporary files that your service needs to create while it's running, but you don't need to keep. This type of storage is especially common when using _**containers**_, but it can also be useful when dealing with virtual machines that only need to store data while they're running.
+
+In typical Cloud setups, each VM has one or more disks attached to the machine. The data on these disks is managed by the OS and can't be easily shared with other VMs. If you're looking to share data across instances, you might want to look into some _**shared file system solutions**_, that Cloud providers offer using the _**platform as a service model**_. When using these solutions, the data can be accessed through network file system protocols like _**NFS**_ or _**CIFS**_. This lets you connect many different instances or containers to the same file system with _no programming required_.
+
+Block storage and shared file systems work fine when you're managing servers that need to access files. But if you're trying to deploy a Cloud app that needs to store application data, you'll probably need to look into other solutions like **objects storage**, which is also known as **blob storage**.
+
+Object storage lets you place in retrieve objects in a _**storage bucket**_. These objects are just generic files like photos or cat videos, encoded and stored on disk as binary data. These files are commonly called **blobs**, which comes from _**binary large object**_, and as we called out, these blobs are stored in locations known as buckets. Everything that you put into a storage bucket has a unique name. _There's no file system_. You place an object into storage with a name, and if you want that object back, you simply ask for it by name.
+
+To interact with an object store, you need to use an **API** or special utilities that can interact with the specific object store that you're using. On top of this, we've called out in earlier sections that most Cloud providers offer databases as a service. These come in two basic flavors, **SQL** and **NoSQL**.
+
+- **SQL databases**, also known as _**relational**_, use the traditional database format and query language. Data is stored in tables with columns and rows that can be indexed, and we retrieve the data by writing SQL queries. A lot of existing applications already use this model, so it's typically chosen when migrating an existing application to the Cloud.
+
+- **NoSQL databases** offer a lot of advantages related to scale. They're designed to be distributed across tons of machines and are super fast when retrieving results. But instead of a unified query language, we need to use a specific API provided by the database. This means that we might need to rewrite the portion of the application that accesses the DB.
+
+When deciding how to store your data, you'll also have to choose a **storage class**. Cloud providers typically offer different classes of storage at different prices. Variables like **performance**, **availability**, or **how often the data is accessed** will affect the monthly price.
+
+The performance of a storage solution is influenced by a number of factors, including **throughput**, **IOPS**, and **latency**. Let's check out what these mean.
+
+- **Throughput is the amount of data that you can read and write in a given amount of time**. The throughput for reading and writing can be pretty different. For example, you could have a throughput of one gigabyte per second for reading and 100 megabytes per second for writing.
+
+- **IOPS** or input/output operations per second measures **how many reads or writes you can do in one second**, no matter how much data you're accessing. Each read or write operation has some overhead. So there's a limit on how many you can do in a given second,
+
+- **Latency is the amount of time it takes to complete a read or write operation**. This will take into account the impact of IOPS, throughput and the particulars of the specific service. Read latency is sometimes reported as the time it takes a storage system to start delivering data after a read request has been made, also known as **time to first byte**. While write latency is typically measured as the amount of time it takes for a write operation to complete.
+
+When choosing the storage class to use, you might come across terms like **hot** and **cold**. Hot data is accessed frequently and stored in hot storage while cold data is accessed infrequently, and stored in cold storage. These two storage types have different performance characteristics. For example, hot storage back ends are usually built using solid state disks, which are generally faster than the traditional spinning hard disks.
+
+So how do you choose between one and the other? Say you want to keep all the data you're service produces for five years, but you don't expect to regularly access data older than one year. You might choose to keep the last one year of data in hot storage so you have fast access to it, and after a year, you can move your data to cold storage where you can still get to it, but it will be slower and possibly costs more to access.
+
+There's a lot more to say about storage in the Cloud. It's really quite a hot topic, but we won't go into more detail here. We'll provide links to more info in the next reading in case you want to learn more.
+
+#### Load Balancing
+
+In earlier sections, we saw a bunch of different reasons why we might want more than one machine or container running our service. For example, we might want to _**horizontally scale**_ our service to handle more work, _**distribute instances geographically**_ to get closer to our users. Or _**have backup instances**_ to keep the service running if one or more of the instances fail.
+
+No matter the reason, we _**use orchestration tools and techniques to make sure that the instances are repeatable**_. And once we've set up replicated machines, we'll want to distribute the requests across instances. We called out earlier that this is where load balancing comes into play. Let's take a closer look at the different load balancing methods that we can use.
+
+- A pretty common load balancing technique is **round-robin DNS**. Round-robin is a really common method for distributing tasks. Imagine you're giving out treats at a party. First, you make sure that each of your friends gets one cookie. Then you give everyone a second serving and so on until all of the treats are gone or your guests say, thank you, they're full. That's the round-robin approach to eating all the cookies. Now, if we want to translate a URL like my service.example.com into an IP address, we use the DNS protocol or domain name system. In the simplest configuration, the URL always gets translated into exactly the same IP address. But when we configure our DNS to use round-robin, it'll give each client asking for the translation a group of IP addresses in a different order. The clients will then pick one of the addresses to try to reach the service. If an attempt fails, the client will jump to another address on the list. This load balancing method is super easy to set up. You just need to make sure that the IPs of all machines in the pool are configured in your DNS server, but it has some limitations. First, you can't control which addresses get picked by the clients. Even if a server is overloaded, you can't stop the clients from reaching out to it. On top of that, DNS records are cached by the clients and other servers. So if you need to change the list of addresses for the instances, you'll have to wait until all of the DNS records that were cached by the clients expire.
+
+There's got to be a better way, right? Well, there sure is.
+
+- To have more control over how the load's distributed and to make faster changes, we can set up a server as a **dedicated load balancer**. This is a machine that acts as a proxy between the clients and the servers. It receives the requests and based on the rules that we provide, it directs them to the selected back-end server. Load balances can be super simple or super complex depending on the service needs. Say your service needs to keep track of the actions that a user has taken up till now. In this case, you'll want your load balancer to use **sticky sessions**. **Using sticky sessions means all requests from the same client always go to the same back end server**. This can be really useful for services than need it but can also cause headaches when migrating or maintaining your service. So you need to use it only if you really need it. Otherwise, you'll end up in a really sticky situation.
+
+Another cool feature of load balancers is that you can configure them to check the health of the backend servers. Typically, we do this by making a simple query to the servers and checking that the reply matches the expected reply. If a back-end server is unhealthy, the load balancer will stop sending new requests to it to keep only healthy servers in the pool. As we've called out a few times already, a cool feature of cloud infrastructure is how easily we can add or remove machines from a pool of servers providing a service. If we have a load balancer controlling the load of the machines, adding a new machine to the pool is as easy as creating the instance. And then letting the load balancer know that it can now route traffic to it. We can do this by manually creating and adding the instance or when our services under heavy load, we can just let the auto scaling feature do it. Cool, right?
+
+Okay, so imagine that you've built out your service with load balancers and you're receiving requests from all over the world. How do you make sure that clients connect to the servers that are closest to them? You can use **GeoDNS** and **GeoIP**. These are DNS configurations that will direct your clients to the closest geographical load balancer. The mechanism used to route the traffic relies on how the DNS servers respond to requests. For example, from machines hosted in North America, a DNS server in North America might be configured to respond with the IPs in, you guessed it, North America. It can be tricky to set this up on your own but most Cloud providers offer it as part of their services making it much easier to have a geographically distributed service.
+
+Let's take this one step further. There are some providers dedicated to bringing the contents of your services as close to the user as possible. These are the **content delivery networks** or **CDNs**. **They make up a network of physical hosts that are geographically located as close to the end user as possible**. This means that CDN servers are often in the same data center as the users Internet service provider. CDNs work by caching content super close to the user. When a user requests say, a cute cat video, it's stored in the closest CDN server. That way, when a second user in the same region requests the same cat video, it's already cached in a server that's pretty close and it can be downloaded extra fast. Because no one should have to wait for their cat videos to load.
+
+You now know a lot of stuff about load-balancing.
 
 \#ITCert #Python #GrowWithGoogle
