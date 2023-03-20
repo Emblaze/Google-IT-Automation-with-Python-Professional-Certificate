@@ -7200,4 +7200,34 @@ Now, imagine you're running your service in one data center. Unfortunately, that
 
 Systems will fail. A hundred percent availability is simply not an achievable target, but being prepared for a failure will let you recover your service quickly and keep your users happy.
 
+#### Debugging Problems on the Cloud Reading
+
+Check out the following links for more information:
+
+- <https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-instances>
+
+- <https://docs.microsoft.com/en-us/azure/virtual-machines/troubleshooting/>
+
+- <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-troubleshoot.htm>
+
+#### Module 4 Wrap Up: Managing Cloud Instances at Scale
+
+In the past sections, we've discussed a lot of different topics related to deploying software in the Cloud.
+
+- We've learned a bunch of concepts and techniques that we need to take into account when building applications that will run on Cloud, how to keep them running, and how to figure out what's wrong when things don't go according to plan.
+
+- We started by discussing some of the different options for storing data in the Cloud. We learned how we can use Cloud's flexibility to get the right type of storage and increase it when needed. We then learned about the different approaches to load balancing, which we can use to ensure that our services can be distributed across a number of servers.
+
+- We also learned how we can get the load balancer to check the health of the back ends to only send request to the servers that are working fine. We looked into how we can build safety into our code changes.
+
+- We checked out how we can make sure that changes we pushed to production are well-tested, and how we can use development and test environments to let us experiment with changes until we know they'll give a good experience to our users.
+
+- We then learned about some of the limitations that we can come across when running our services in the Cloud, which are different from the problems we have when running services on physical machines.
+
+- We also learned some best practices for how to monitor our service, when and how to generate alerts, and we even saw an alert triggering an action.
+
+- We wrapped up by looking into some of the problems specific to running our instances in the Cloud and how to deal with those.
+
+That was a lot of interesting stuff in a short amount of time, don't you think?
+
 \#ITCert #Python #GrowWithGoogle
