@@ -1262,7 +1262,7 @@ Is the time and effort it'll take to write the script worth the potential automa
 
 A simple heuristic that can help us decide is to estimate how long it takes us to do a certain task. And then multiply that by how many times we perform that task in a given time window. If we estimate that it would take less time to automate the tasks than it would to do it manually, chances are, it's a good candidate for automation. So, the time to write the automation is less than time to perform the task multiply by the amount of times you do it, then automate the task.
 
-```[time_to_automate < (time_to_perform * amount_of_times_done)```
+```time_to_automate < (time_to_perform * amount_of_times_done)```
 
 ![Is it worth the time?](Images/is_it_worth_the_time.png)
 Source: [xkcd](https://xkcd.com/1205)
