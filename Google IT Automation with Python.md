@@ -7600,7 +7600,7 @@ That gives us a file with a single line that looks like this:
 [{"name": "Sabrina Green", "username": "sgreen", "phone": {"office": "802-867-5309", "cell": "802-867-5310"}, "department": "IT Infrastructure", "role": "Systems Administrator"}, {"name": "Eli Jones", "username": "ejones", "phone": {"office": "684-348-1127"}, "department": "IT Infrastructure", "role": "IT Specialist"}]
 ```
 
-JSON doesn't need to contain multiple lines, but it sure can be hard to read the result if it's formatted this way! Let's use the indent parameter for json.dump() to make it a bit easier to read.
+JSON doesn't need to contain multiple lines, but it sure can be hard to read the result if it's formatted this way! Let's use the indent parameter for **json.dump()** to make it a bit easier to read.
 
 ```python
 with open('people.json', 'w') as people_json:
@@ -7635,7 +7635,7 @@ The resulting file should look like this:
 
 Now it’s much easier to follow! In fact, it looks very similar to how you’d write out the object in Python. Cool!
 
-Another option is to use the dumps() method, which also serializes Python objects, but returns a string instead of writing directly to a file.
+Another option is to use the **dumps()** method, which also serializes Python objects, but returns a string instead of writing directly to a file.
 
 ```python
 >>> import json
@@ -7666,7 +7666,7 @@ Another option is to use the dumps() method, which also serializes Python object
 [{"name": "Sabrina Green", "username": "sgreen", "phone": {"office": "802-867-5309", "cell": "802-867-5310"}, "department": "IT Infrastructure", "role": "Systems Administrator"}, {"name": "Eli Jones", "username": "ejones", "phone": {"office": "684-348-1127"}, "department": "IT Infrastructure", "role": "IT Specialist"}]
 ```
 
-The **load(**) method does the inverse of the **dump()** method. It deserializes JSON from a file into basic Python objects. The **load()** method also deserializes JSON into basic Python objects, but parses a string instead of a file.
+The **load(**) method does the inverse of the **dump()** method. It deserializes JSON from a file into basic Python objects. The **loads()** method also deserializes JSON into basic Python objects, but parses a string instead of a file.
 
 ```json
 [{'name': 'Sabrina Green', 'username': 'sgreen', 'phone': {'office': '802-867-5309', 'cell': '802-867-5310'}, 'department': 'IT Infrastructure', 'role': 'Systems Administrator'}, {'name': 'Eli Jones', 'username': 'ejones', 'phone': {'office': '684-348-1127'}, 'department': 'IT Infrastructure', 'role': 'IT Specialist'}, {'name': 'Melody Daniels', 'username': 'mdaniels', 'phone': {'cell': '846-687-7436'}, 'department': 'User Experience Research', 'role': 'Programmer'}, {'name': 'Charlie Rivera', 'username': 'riverac', 'phone': {'office': '698-746-3357'}, 'department': 'Development', 'role': 'Web Developer'}]
