@@ -1714,7 +1714,7 @@ say that this behavior is <em><strong>greedy</strong></em>. It&apos;s possible t
   <span class="token keyword keyword-return">return</span> result <span class="token operator">!=</span> <span class="token boolean">None</span>
 
 <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>check_character_groups<span class="token punctuation">(</span><span class="token string">&quot;One&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># False</span>
-<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>check_character_groups<span class="token punctuation">(</span><span class="token string">&quot;123  Ready Set GO&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># True</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>check_character_groups<span class="token punctuation">(</span><span class="token string">&quot;123 Ready Set GO&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># True</span>
 <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>check_character_groups<span class="token punctuation">(</span><span class="token string">&quot;username user_01&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># True</span>
 <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>check_character_groups<span class="token punctuation">(</span><span class="token string">&quot;shopping_list: milk, bread, eggs.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 </pre><h4 class="mume-header" id="regular-expressions-in-action">Regular Expressions in Action</h4>
@@ -1806,7 +1806,7 @@ name <span class="token operator">=</span> rearrange_name<span class="token punc
 <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
 name <span class="token operator">=</span> rearrange_name<span class="token punctuation">(</span><span class="token string">&quot;Thompson, Ken&quot;</span><span class="token punctuation">)</span>
 <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
-</pre><p><strong>Exercise</strong>: Fix the regular expression used in the rearrange_name function so that it can match middle names, middle initials, as well as double surnames (Tip: keep 2 capturing groups,   allow for the second to optionally contain a space, then a group of characters):</p>
+</pre><p><strong>Exercise</strong>: Fix the regular expression used in the rearrange_name function so that it can match middle names, middle initials, as well as double surnames (Tip: keep 2 capturing groups, allow for the second to optionally contain a space, then a group of characters):</p>
 <pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword keyword-import">import</span> re
 <span class="token keyword keyword-def">def</span> <span class="token function">rearrange_name</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
   result <span class="token operator">=</span> re<span class="token punctuation">.</span>search<span class="token punctuation">(</span><span class="token string">r&quot;^(\w*), (\w*)$&quot;</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span> <span class="token comment"># &quot;^(\w*), (\w*\ ?\w*.?)$&quot; worked</span>
@@ -1818,7 +1818,7 @@ name<span class="token operator">=</span>rearrange_name<span class="token punctu
 <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
 name<span class="token operator">=</span>rearrange_name<span class="token punctuation">(</span><span class="token string">&quot;Hopper, Grace M.&quot;</span><span class="token punctuation">)</span>
 <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
-</pre><p>Note from the course: <em>Oops!  We made a small error.  Un-escaped, the dot in this expression will match any character. In this case it makes the code work, but it is incorrect! Since we wanted to match the dot character specifically, we should have escaped the dot in the regular expression. The correct regular expression should be: r&quot;^([\w .-]*), ([\w .-]*)$&quot;</em></p>
+</pre><p>Note from the course: <em>Oops! We made a small error. Un-escaped, the dot in this expression will match any character. In this case it makes the code work, but it is incorrect! Since we wanted to match the dot character specifically, we should have escaped the dot in the regular expression. The correct regular expression should be: r&quot;^([\w .-]*), ([\w .-]*)$&quot;</em></p>
 <h4 class="mume-header" id="more-on-repetition-qualifiers">More on Repetition Qualifiers</h4>
 
 <p>Up to now, we&apos;ve used the Star, Plus and question mark repetition qualifiers. What if we wanted a pattern that repeats a specific number of times? This could happen if we&apos;re processing a line that we know has some specific data in a column, or we know that we want a string of a specific length. In cases like those, we would manually write the same pattern as many times as we need it. But it would be hard to read and hard to maintain. And that&apos;s why Python also offers numeric repetition qualifiers. These are written between curly brackets and can be one or two numbers specifying a range.</p>
@@ -2497,7 +2497,7 @@ out by the names of all the files in our directory. We can delete a directory us
 <h4 class="mume-header" id="redirecting-streams">Redirecting Streams</h4>
 
 <p>So now that we&apos;ve covered a few basic Linux commands, let&apos;s talk more about what we can do with I/O streams and Bash. We talked earlier about the standard I/O streams. By default, the input is provided by the keyboard at the text terminal and the output and error are shown on the screen. This is the case not only for our Python scripts, but for all system commands.</p>
-<p>We can change this default using the process called redirection. Redirection is a process of sending a stream to a different destination. This process is provided to us by the operating system and can be really useful when you want to store the output of a command in a file, instead of just looking at it on a screen. To redirect the standard output of a program to a file we use the greater than  <strong>&gt;</strong> symbol.</p>
+<p>We can change this default using the process called redirection. Redirection is a process of sending a stream to a different destination. This process is provided to us by the operating system and can be really useful when you want to store the output of a command in a file, instead of just looking at it on a screen. To redirect the standard output of a program to a file we use the greater than <strong>&gt;</strong> symbol.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment">#!/usr/bin/env python 3</span>
 <span class="token comment"># Script name: stdout_example.py</span>
 <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">&quot;Don&apos;t mind me, just a bit of text here...&quot;</span><span class="token punctuation">)</span>
@@ -2567,7 +2567,7 @@ ValueError: Now we generate an error to STDERR
 Advance your career,
 Automating with python,
 It&apos;s so fun to learn.
-</pre><p>We don&apos;t need to use a pipe t  get the contents of the Haiku.txt file into standard input of our script. Instead  we use the redirection operator we saw earlier:</p>
+</pre><p>We don&apos;t need to use a pipe to  get the contents of the Haiku.txt file into standard input of our script. Instead, we use the redirection operator we saw earlier:</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash">$ ./capitalize.py <span class="token operator">&lt;</span> haiku.txt
 Advance your career,
 Automating with python,
@@ -2588,7 +2588,7 @@ PING www.example.com <span class="token punctuation">(</span><span class="token 
 <pre data-role="codeBlock" data-info="bash" class="language-bash">$ <span class="token function">ping</span> www.example.com
 PING www.example.com <span class="token punctuation">(</span><span class="token number">93.184</span>.216.34<span class="token punctuation">)</span>: <span class="token number">56</span> data bytes
 <span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span>
-zsh: suspended  <span class="token function">ping</span> www.example.com
+zsh: suspended <span class="token function">ping</span> www.example.com
 </pre><p>This time the process didn&apos;t finish properly. We get a message saying that it&apos;s stopped. What&apos;s going on? The signal that we sent is called <strong>SIGSTOP</strong>. This signal causes the program to stop running without actually terminating. But don&apos;t worry, we can make it run again by executing <strong>fg</strong>.</p>
 <p>The fg command makes our program run once more and will keep going until we interrupt it either with Ctrl-C, Ctrl-Z, or some other signal. Let&apos;s stop it now with Ctrl-C. By pressing Ctrl-C this time, we&apos;ve made the program finish cleanly.</p>
 <p>To send other signals, we can use the command called <strong>kill</strong>. By default, Kill will send a signal called <strong>SIGTERM</strong> that tells the program to terminate. Since Kill is a separate program, we need to run it on a separate terminal. And we also need to know the <strong>process identifier or PID</strong> of the process that we want to send the signal to. To find out the PID that we want to send the signal to, we&apos;ll use the <strong>ps</strong> command which list the currently running processes. Depending on what options that we pass, it&apos;ll show different subsets of processes with different amounts of detail. For this example, we&apos;ll call ps ax, which lists all the running processes in the current computer. And then we&apos;ll use the grep command to only keep lines that contain the name of the process that we&apos;re looking for:</p>
@@ -2780,7 +2780,7 @@ $ <span class="token function">ls</span> -l
 </pre><p>The load lines we see follow a similar pattern. First, they include the date and time of when the entry was added to the file, then the name of the computer, then the name and PID of the process that trigger the event and finally, the actual event that&apos;s being logged. Take a second and look at those lines. Say that we had a computer that was under significant load but we didn&apos;t know why, and to find out we wanted to check what events are being logged the most to our Syslog. To do that we need to extract the part of the line that has the actual event without the date and time. We can use a command called <strong>cut</strong> to help us with that. This command, let&apos;s us take only bits of each line using a field delimiter. In this example, we can split the line using spaces. That would look something like this.</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash">$ <span class="token function">tail</span> /var/log/syslog <span class="token operator">|</span> <span class="token function">cut</span> -d<span class="token string">&apos; &apos;</span> -f5-
 <span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span>
-</pre><p>In our example, we&apos;re passing -d&apos; &apos; to <strong>cut</strong> to tell it that we want to use a space as a delimiter, and -f5- that tell it that we want to print the field number 5 and everything that comes after it. With that, we remove the date and the name of the computer keeping only the process and the event message. Now that we have the information that we care about, we can pipe this to the same pipeline of commands that we saw earlier  to find out the lines that are repeated the most, like this:</p>
+</pre><p>In our example, we&apos;re passing -d&apos; &apos; to <strong>cut</strong> to tell it that we want to use a space as a delimiter, and -f5- that tell it that we want to print the field number 5 and everything that comes after it. With that, we remove the date and the name of the computer keeping only the process and the event message. Now that we have the information that we care about, we can pipe this to the same pipeline of commands that we saw earlier to find out the lines that are repeated the most, like this:</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash">$ <span class="token function">cut</span> -d<span class="token string">&apos; &apos;</span> -f5- /var/log/syslog <span class="token operator">|</span> <span class="token function">sort</span> <span class="token operator">|</span> <span class="token function">uniq</span> -c <span class="token operator">|</span> <span class="token function">sort</span> -nr <span class="token operator">|</span> <span class="token function">head</span>
 <span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span>
 </pre><p>There are more files in var/log that we might be interested in. So we can use a <em>for loop</em> to iterate over each of the log files in var/log and get the most repeated lines in each of them.</p>
@@ -3596,7 +3596,7 @@ Any of us can create a Git server like this one, and many companies have similar
 
 <p>As we&apos;ve caught up before, <em>you shouldn&apos;t rewrite history when the commits have been published</em>. That&apos;s because someone else may have already synchronized that repo with those contents. <em>This rule is waived with pull requests, since it&apos;s usually only you who have cloned your fork of the repository</em>.</p>
 <p>So say the project maintainers ask us to create a single commit that includes both changes and a more detailed description than the one we submitted. We can do that by using the interactive version of the rebase command called <strong>git rebase -i</strong>, and as the parameter to the command we will pass the master branch. So we&apos;ll call <strong>git rebase-i master</strong>.</p>
-<p>When we call an interactive rebase, a text editor opens with a list of all the selected commits from the oldest to the most recent. <em>By changing the first word of each line, we can select what we want to do with the commits</em>. The default action here is <em><strong>pick</strong></em> which takes the commits and rebases them against the branch we selected. This is what we do with git rebase in an earlier section when we called it without the  -i flag. But now we can change the action to something else.</p>
+<p>When we call an interactive rebase, a text editor opens with a list of all the selected commits from the oldest to the most recent. <em>By changing the first word of each line, we can select what we want to do with the commits</em>. The default action here is <em><strong>pick</strong></em> which takes the commits and rebases them against the branch we selected. This is what we do with git rebase in an earlier section when we called it without the -i flag. But now we can change the action to something else.</p>
 <p>The comments in the file tells all the different commands we can use for our commits. For example, we can reword a commit message keeping the changes as they are but modifying the commit message. We can also edit the commit to add or remove changes from it. We have two options for combining commits, <em><strong>squash</strong></em> and <em><strong>fix up</strong></em>. In both cases, <em>the contents of the selected commit are merged into the previous commit in the list</em>. The difference is what happens with the commit messages.</p>
 <ul>
 <li>
@@ -3928,7 +3928,7 @@ Having a clear visible list of the pending work, lets new contributors figure ou
 <p><strong>But remember, that for this to work, the list needs to be sorted</strong>. So <em>if the list isn&apos;t sorted, we would need a sort it first, which takes a chunk of time</em>. It can still make sense to do it if we&apos;re going to search through it several times but it doesn&apos;t make sense to sort the list and then use binary search to only find one element. In that case, using linear search is simpler and faster. If you&apos;re curious about what these two types of search look like when implemented in Python, you can see a possible implementation of linear search and one for binary search <a href="Linear%20and%20Binary%20Search.html">in the next reading</a>. After that, we&apos;ll talk about how we can apply the principles of binary search to troubleshooting.</p>
 <h4 class="mume-header" id="applying-binary-search-in-troubleshooting">Applying Binary Search in Troubleshooting</h4>
 
-<p>We called out  that the binary search algorithm is really efficient when trying to find an element in a sorted list. <em><strong>In troubleshooting, we can apply this idea when we need to go through and test a long list of hypotheses</strong></em>. When doing this, the list of elements contains all the possible causes of the problem and we keep reducing the problem by half until only one option is left.</p>
+<p>We called out that the binary search algorithm is really efficient when trying to find an element in a sorted list. <em><strong>In troubleshooting, we can apply this idea when we need to go through and test a long list of hypotheses</strong></em>. When doing this, the list of elements contains all the possible causes of the problem and we keep reducing the problem by half until only one option is left.</p>
 <p>The list of elements could be <em>entries in a file</em>, <em>extensions enabled</em>, <em>boards connected to a server</em>, <em>or even lines of code added to a faulty release</em>. With each iteration, the problem is cut in half. This approach is sometimes called <em><strong>bisecting</strong></em> which means dividing in two.</p>
 <p>In an earlier section, we gave the example of a new version of a program that fail to start when the old configuration directory was present. If the directory contained a bunch of different files in it, we could identify the one causing the failure by bisecting the list of files. Say the old directory contained 12 different config files. We want to identify which of those 12 is causing the failure. To do that, we can create a copy of the directory with just six of the 12 files and then try to start the program again. If it crashes, then the bad file is among those six files. If it doesn&apos;t, it&apos;s among the other six.</p>
 <p>In the next step, we would pick three out of the failing group of six. If the program crashes again, it&apos;s one of those three. If it doesn&apos;t, it&apos;s one of the other three. For the last three, we can first check two together or just go one by one. Either way, it&apos;s two checks to get to the failing file. This means that with a total of four attempts, we can find out which of the 12 files is causing the problem.</p>
@@ -5822,7 +5822,7 @@ im<span class="token punctuation">.</span>rotate<span class="token punctuation">
 <p>To complete this module, you&apos;ll need to write a script that processes a bunch of images. It turns out that your company is in the process of updating its website, and a design contractor has been hired to create some new icon graphics for the site. However, the contractor has delivered the final designs and they&#x2019;re in the wrong format, rotated 90&#xB0; and too large. You&#x2019;re unable to get in contact with the designers and your own deadline is approaching fast. You&#x2019;ll need to use Python to get these images ready for launch!</p>
 <p>So, how will you do this? You&apos;ll need to go through a folder full of images and operate with each of them. On each image, you&apos;ll use PIL methods like the ones we saw in the examples, and then write the new images in the right place.</p>
 <p>If this sounds tricky, don&apos;t panic! You&apos;ve already seen everything you need to do this, and now it&apos;s time to put it into practice.</p>
-<h3 class="mume-header" id="module-2-web-applications-and--intro">Module 2 Web Applications and  Intro</h3>
+<h3 class="mume-header" id="module-2-web-applications-and-intro">Module 2 Web Applications and Intro</h3>
 
 <p>In this module, we&apos;ll look into a bunch of different tools that can be really useful in today&apos;s IT world. You&apos;ll first learn how you can use different text formats to store data in text files, retrieve it, and even transmit it over the internet.</p>
 <p>Later on, we&apos;ll look into how we can get our code to interact with services running on different computers using a module called Python Requests.</p>
@@ -6093,7 +6093,7 @@ response <span class="token operator">=</span> requests<span class="token punctu
 </pre><p>And all this happened by default, without us having to do anything special to make it work. Amazing, right?</p>
 <h4 class="mume-header" id="useful-operations-for-python-requests">Useful Operations for Python Requests</h4>
 
-<p>There&apos;s a ton of things that we can do with Python Requests.  We&apos;ll cover some of the most important features here and give you pointers for more information at the end.</p>
+<p>There&apos;s a ton of things that we can do with Python Requests. We&apos;ll cover some of the most important features here and give you pointers for more information at the end.</p>
 <p>First, how do we know if a request we made got a successful response? You can check out the value of <a href="https://requests.readthedocs.io/en/master/api/#requests.Response.ok">Response.ok</a>, which will be True if the response was good, and False if it wasn&apos;t.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> response<span class="token punctuation">.</span>ok
 <span class="token boolean">True</span>
@@ -6160,13 +6160,13 @@ response<span class="token punctuation">.</span>raise_for_status<span class="tok
 
 <h4 class="mume-header" id="module-2-project-problem-statement">Module 2 Project Problem Statement</h4>
 
-<p>To complete this module, you&apos;ll write a script that interacts with a running web service.  The web service is part of your company&apos;s website and is in charge of storing and displaying the customer reviews of the company.</p>
+<p>To complete this module, you&apos;ll write a script that interacts with a running web service. The web service is part of your company&apos;s website and is in charge of storing and displaying the customer reviews of the company.</p>
 <p>The reviews are stored in text files in the local disk. Your script should open those files, process the information to turn it into the format expected by the web service, then send it to the web service to get stored.</p>
-<p>For this lab, the service is running on the same machine, and you can actually look at how all of it is implemented, if you want.  But you don&apos;t need to change the service implementation to complete the exercise.</p>
+<p>For this lab, the service is running on the same machine, and you can actually look at how all of it is implemented, if you want. But you don&apos;t need to change the service implementation to complete the exercise.</p>
 <h3 class="mume-header" id="sending-emails-from-python">Sending Emails from Python</h3>
 
 <p>In this module, we&apos;ll look into a different aspect of automation: automating the generation of nicely formatted output from our scripts, like sending emails.</p>
-<p>Most of us use email for a bunch of different things, all the time. We type up an email message, sometimes  attach a picture or a document, and send it to someone in our contact list. Have you ever used a script to send an email? By the end of this module, you&#x2019;ll be able to send an email message with an attachment from Python! You&apos;ll even learn how to generate PDF files to attach to those emails.</p>
+<p>Most of us use email for a bunch of different things, all the time. We type up an email message, sometimes attach a picture or a document, and send it to someone in our contact list. Have you ever used a script to send an email? By the end of this module, you&#x2019;ll be able to send an email message with an attachment from Python! You&apos;ll even learn how to generate PDF files to attach to those emails.</p>
 <p>To help with that, we&apos;ll look into a bunch of different Python modules that already include a lot of the functionalities that we want. As we&apos;ve called out, this is one of the great things about Python -- we can use these modules to accomplish what we want with very little code!</p>
 <p>We&apos;ll show examples of how you can do a bunch of different operations, like creating the contents of the email or the PDF, attaching a file to an email, and even sending the email to an SMTP server.</p>
 <h4 class="mume-header" id="introduction-to-python-email-library">Introduction to Python Email Library</h4>
@@ -6216,7 +6216,7 @@ I&apos;m learning to send email using Python!
 
 <p>Remember, email messages are made up completely of strings. When you add an attachment to an email, whatever type the attachment happens to be, it&#x2019;s encoded as some form of text. The <em><strong>Multipurpose Internet Mail Extensions (MIME)</strong></em> standard is used to encode all sorts of files as text strings that can be sent via email.</p>
 <p>Let&apos;s dive in and break down how that works.</p>
-<p>In order for the recipient of your message to understand what to do with an attachment, you  need to label the attachment with a <em><strong>MIME type</strong></em> and <em><strong>subtype</strong></em> to tell them what sort of file you&#x2019;re sending. The <em><strong>Internet Assigned Numbers Authority (IANA)</strong></em> (<a href="https://iana.org/">iana.org</a>) <a href="https://www.iana.org/assignments/media-types/media-types.xhtml">hosts a registry of valid MIME types</a>. If you know the correct <em>type</em> and <em>subtype</em> of the files you&#x2019;ll be sending, you can use those values directly. If you don&apos;t know, you can use the Python <strong>mimetypes</strong> module to make a good guess!</p>
+<p>In order for the recipient of your message to understand what to do with an attachment, you need to label the attachment with a <em><strong>MIME type</strong></em> and <em><strong>subtype</strong></em> to tell them what sort of file you&#x2019;re sending. The <em><strong>Internet Assigned Numbers Authority (IANA)</strong></em> (<a href="https://iana.org/">iana.org</a>) <a href="https://www.iana.org/assignments/media-types/media-types.xhtml">hosts a registry of valid MIME types</a>. If you know the correct <em>type</em> and <em>subtype</em> of the files you&#x2019;ll be sending, you can use those values directly. If you don&apos;t know, you can use the Python <strong>mimetypes</strong> module to make a good guess!</p>
 <pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword keyword-import">import</span> os<span class="token punctuation">.</span>path
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> attachment_path <span class="token operator">=</span> <span class="token string">&quot;/tmp/example.png&quot;</span>
 <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> attachment_filename <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>basename<span class="token punctuation">(</span>attachment_path<span class="token punctuation">)</span>
@@ -6379,7 +6379,7 @@ Sending your message</p>
 </pre><p>Now, we&apos;ll add the new Drawing to the report, and see what it looks like.</p>
 <pre data-role="codeBlock" data-info="python" class="language-python">report<span class="token punctuation">.</span>build<span class="token punctuation">(</span><span class="token punctuation">[</span>report_title<span class="token punctuation">,</span> report_table<span class="token punctuation">,</span> report_chart<span class="token punctuation">]</span><span class="token punctuation">)</span>
 </pre><p><img src="Images/A_Complete_Inventory_of_My_Fruit4.png" alt="A Complete Inventory of My Fruit"></p>
-<p>Alright, and with that, you&apos;ve seen a few examples of what we can do with the ReportLab library.  There&apos;s a ton more things that can be done that we won&apos;t cover here. You&apos;ll want to refer to the <a href="https://www.reportlab.com/docs/reportlab-userguide.pdf">ReportLab User Guide</a>  for more details on the features we&apos;ve seen, and to see what else you can create with it.</p>
+<p>Alright, and with that, you&apos;ve seen a few examples of what we can do with the ReportLab library. There&apos;s a ton more things that can be done that we won&apos;t cover here. You&apos;ll want to refer to the <a href="https://www.reportlab.com/docs/reportlab-userguide.pdf">ReportLab User Guide</a> for more details on the features we&apos;ve seen, and to see what else you can create with it.</p>
 <p>By the way, the ReportLab User Guide is a PDF that is generated using reportlab! Cool, right?</p>
 <h3 class="mume-header" id="module-3-project">Module 3 Project</h3>
 
@@ -6387,6 +6387,1092 @@ Sending your message</p>
 
 <p>In the next lab, you&apos;ll have to process information related to the sales your company generated last month, and turn that into a nicely formatted PDF report that you&apos;ll then send by email so that your boss can look at it. The lab machine has email configured so that you can check your resulting emails through a nice webmail interface that&apos;s already up and running.</p>
 <p>The system that you&apos;ll work with already includes some scripts that will do part of the work for you. You&apos;ll need to put these pieces together to get the result you want, basing your code on the one that&apos;s already there.</p>
+<h3 class="mume-header" id="putting-it-all-together">Putting it all together</h3>
+
+<h3 class="mume-header" id="career-resources">Career Resources</h3>
+
+<p>Learning Objectives:</p>
+<ul>
+<li>
+<p>Research desired career path</p>
+</li>
+<li>
+<p>Analyze job skills and transferable skills</p>
+</li>
+<li>
+<p>Create a resume and Cover Letter</p>
+</li>
+<li>
+<p>Create a job search plan</p>
+</li>
+<li>
+<p>Prepare for job interviews</p>
+</li>
+</ul>
+<h4 class="mume-header" id="seeking-a-new-career-or-advancement">Seeking a New Career or Advancement</h4>
+
+<h5 class="mume-header" id="finding-your-path-and-perfect-role">Finding your Path and Perfect Role</h5>
+
+<p>As you begin your career, you&#x2019;ll have to navigate your way to find the perfect role for you. While there is no one way to find your ideal role, there are some things to consider to help you better understand what direction you want to take. This reading will focus on a few of the options to consider as you start to search for a job.</p>
+<h6 class="mume-header" id="generalist-vs-specialist">Generalist vs specialist</h6>
+
+<p>One category to consider when attempting to find your right path is whether you want to work as a generalist or a specialist. A <strong>generalist</strong> is knowledgeable about many topics and has various interests, while a <strong>specialist</strong> is an expert in a specific field.</p>
+<p>Generalists have broad, multifaceted roles that allow entry-level employees to gain invaluable experience in many different areas related to the field. Alternatively, specialists are focused on a singular aspect of IT. The table below provides an overview of common generalist and specialist roles.</p>
+<p><strong>Common Generalist Roles</strong></p>
+<ul>
+<li>
+<p>IT Support Specialist II</p>
+</li>
+<li>
+<p>IT Consultant</p>
+</li>
+<li>
+<p>IT Manager</p>
+</li>
+</ul>
+<p><strong>Common Specialist Roles</strong></p>
+<ul>
+<li>
+<p>Automation Engineer</p>
+</li>
+<li>
+<p>Python Developer</p>
+</li>
+<li>
+<p>Software Engineer</p>
+</li>
+<li>
+<p>Cloud Engineer</p>
+</li>
+</ul>
+<p>Please note that the word &#x201C;specialist&#x201D; is often used in job titles, even for roles that include generalist-like tasks. When reviewing a job listing, be sure to read the duties and responsibilities assigned to that role so that you have a clear understanding of what you will be doing if hired.</p>
+<h6 class="mume-header" id="choose-your-work-environment">Choose your work environment</h6>
+
+<p>Choosing what type of environment works best for you is just as important as the type of role you select. Different types of environments have their own cultures and practices. As an entry-level employee, you&#x2019;ll come across two types of workplaces: agency or in-house. You can also choose to work for yourself in a freelance role or even start your own business.</p>
+<p><strong>Agency vs In-house teams</strong></p>
+<p>In the IT field, there are special agencies that offer IT services and technical personnel to other businesses on a contracted basis. These agencies can support multiple small to medium companies and often operate independently from the businesses they serve. As an entry-level employee in an IT service agency, you can expect to provide services to several clients. Short-term assignments are also common in agency contracts. Agencies may or may not offer employee benefits to their contracted technical personnel.</p>
+<p>Alternatively, large companies and enterprises are likely to have an &#x201C;in-house&#x201D; team of internal employees to handle their IT needs. Although it is costly to employ an internal IT department, larger businesses prefer to have full transparency with their IT team and full control over the privacy of their users and confidential information. As an entry-level employee in an in-house IT department, you can expect to work closely with an IT team that has a variety of technical skills. It is common to build strong relationships with your team members, as you support one another on long-term projects. Internal IT department employees often hold full-time permanent positions and receive employee benefits.</p>
+<p><strong>Large vs Small Companies</strong></p>
+<p>Having a general idea of what you&#x2019;re looking for in a work environment will help you narrow down your job search and land opportunities that are a better fit for you. You may prefer to work onsite for a large company for the diverse social atmosphere and professional networking opportunities. Some large companies and enterprises offer onsite cafeterias, gyms, and childcare, in addition to comprehensive employee benefit packages and career path opportunities. Or, you may prefer to work for a smaller company where you can form closer working relationships with smaller teams. You may want to work for a company that offers flexible work schedules and options that allow you to work from home, in the office, or a hybrid between the two.</p>
+<h5 class="mume-header" id="key-takeaways">Key takeaways</h5>
+
+<p>As you navigate your job search, think about what you want in a career. Establish the types of roles you want to start with and the type of company you want to work for. Over time, your experience will help you make better-informed decisions related to your career direction.</p>
+<h4 class="mume-header" id="diversity-and-inclusion">Diversity and Inclusion</h4>
+
+<p>In the simplest terms, diversity means something that is different from the norm. Diversity in the workplace represents how organizations and their employees connect, engage, and respect people across all types of differences. More companies are beginning to emphasize their Diversity, Equity, and Inclusion (DEI) metrics as a way to stand out from their competitors. Companies with good DEI metrics tend to have higher employee retention rates, more satisfied employees, and increased innovation.</p>
+<p>Diversity starts at the very top with a company&#x2019;s executive leadership. Examine the leadership at the company you want to work for. The people working at the executive level is typically a good indicator of how diverse and well-represented their employees are as well. If a company&#x2019;s executive leadership does not embrace diversity, the employees will experience greater difficulties in creating and maintaining that culture. Some questions to ask yourself as you are conducting research on companies:</p>
+<ul>
+<li>
+<p>Does the company share their progress openly?</p>
+</li>
+<li>
+<p>Do they provide education and training opportunities to learn more about DEI and how people in the workplace are impacted?</p>
+</li>
+</ul>
+<p>There are several ways to assess whether or not a company practices diversity and inclusion. Here are a few resources to explore and gain better insights on the company:</p>
+<ul>
+<li>
+<p>The company&#x2019;s website. Assess their core values, history, mission statement, and keywords. See if their website includes any photographs of their employees.</p>
+</li>
+<li>
+<p>Their social media page(s). What kind of pictures and content do they post publicly? Check for photos of their employees, community outings, whether or not they recognize or celebrate various events or historical moments such as pride month, black history month, or world mental health day as a couple examples.</p>
+</li>
+<li>
+<p>Interview former employees. Conduct informational interviews to learn more about a company in general and ensure that workplace culture will be a good fit for you.</p>
+</li>
+</ul>
+<h5 class="mume-header" id="unconsciousimplicit-bias">Unconscious/Implicit Bias</h5>
+
+<p>Unconscious or implicit bias refers to the attitudes, stereotypes, judgements, or prejudices that we have unconsciously in our brain. This bias makes our reactions, thinking, and predisposition to information, actions, or environments alter in a particular way, whether it be positive or negative, without self awareness of its occurrence. It occurs beyond our control and could impact our decisions, actions, and understanding.</p>
+<p>Unconscious bias is present, to some degree, in every single person and is developed from an early age through the course of one&apos;s life. Unconscious bias is associated with many characteristics such as race, ethnicity, gender, religion, sexual orientation, socioeconomic background, and educational background. Some of the common types of unconscious bias are:</p>
+<ul>
+<li>
+<p>Affinity bias, which refers to preferences when choosing people to connect with. These people share similar interests, experiences, and backgrounds to your own.</p>
+</li>
+<li>
+<p>Attribution bias, which refers to the ways you perceive your actions in comparison to others. This bias is mostly in association with how you perceive success and failure.</p>
+</li>
+<li>
+<p>Ageism, which refers to negative feelings or discriminations against someone based on their age.</p>
+</li>
+<li>
+<p>Beauty bias, which refers to relating a person&apos;s physical appearance to their success, competence, and/or qualifications.</p>
+</li>
+<li>
+<p>Gender bias, which refers to a preference for one gender over others.</p>
+</li>
+<li>
+<p>Ableism bias, which refers to perceiving able-bodied people as the norm and people with disabilities should strive to perform at the same level as able bodied people without necessary accommodations. (examples: reserving a meeting space that is not wheelchair accessible, assuming people have to have a visible disability to be considered disabled, framing disability as something tragic or as an inspiration)</p>
+</li>
+</ul>
+<p>In order to identify our own biases, it&#x2019;s important to know what are some of the causes of unconscious/implicit bias. Bias occurs because, as human beings, we are susceptible to tendencies and are creatures of habit. For example: humans tend to seek patterns, our brains are known to simplify the world, we get influenced by culture and/or media.</p>
+<p>The truth is that no matter what the causes are, we are susceptible to implicit bias, and this could affect our relationships at work, the way we behave on certain occasions, the decisions we make, and how we react in our work environment.</p>
+<p>The first step that we can take to remediate this behavior is to recognize that we are susceptible to bias and to identify it. The next step is to take actions that reduce the implicit bias at work. Some corrective measures that can be taken are:</p>
+<ul>
+<li>
+<p>Increasing education. Educating employers and employees about the different types of unconscious bias and how to recognize it is one of the most effective methods to reduce this bias at work.</p>
+</li>
+<li>
+<p>Creating an inclusive work environment. Having an inclusive work environment will help to broaden perspectives and balance any prejudices.</p>
+</li>
+<li>
+<p>Taking into account the types of bias when making decisions. Check your decision for any cultural, racial, ability, or gender stereotypes.</p>
+</li>
+</ul>
+<h5 class="mume-header" id="key-takeaways-1">Key Takeaways</h5>
+
+<ul>
+<li>
+<p>We are all human, each with our own thoughts and opinions. It is important to recognize we do not all think the same way.</p>
+</li>
+<li>
+<p>Unconscious/Implicit Bias is an unavoidable result of being human and can influence daily decisions in our personal and professional lives.</p>
+</li>
+<li>
+<p>Make sure to be conscientious about unconscious/implicit bias when in the workplace by being open minded.</p>
+</li>
+<li>
+<p>A culture of diversity, equity and inclusion starts with executive leadership in any organization.</p>
+</li>
+<li>
+<p>Continuous education and training is very important and effective for reducing bias at work and promoting a culture of diversity, equity, and inclusion.</p>
+</li>
+</ul>
+<h4 class="mume-header" id="exploring-technical-careers">Exploring Technical Careers</h4>
+
+<p>This Google Professional Certificate is part of a bigger project called <a href="https://grow.google/">Grow with Google (GWG)</a>.</p>
+<p>GWG offers some other certifications that can help you grow even more and pursue advanced job opportunities.</p>
+<p>The offered career certificates include:</p>
+<h5 class="mume-header" id="google-data-analytics-professional-certificate">Google Data Analytics Professional Certificate</h5>
+
+<p>Take your programming skills to the next level with the R language in the Google Data Analytics Professional Certificate, where you will learn:</p>
+<ul>
+<li>
+<p>Data types and structures</p>
+</li>
+<li>
+<p>Using data to solve problems</p>
+</li>
+<li>
+<p>How to analyze data</p>
+</li>
+<li>
+<p>Data storytelling with visualizations</p>
+</li>
+<li>
+<p>Using R programming to supercharge your analysis</p>
+</li>
+</ul>
+<p>To learn more about this certification visit:</p>
+<p><a href="https://www.coursera.org/professional-certificates/google-data-analytics?utm_source=google&amp;utm_medium=institutions&amp;utm_campaign=gwgsite&amp;_ga=2.162463295.2090059014.1666639119-999957063.1665442478">Google Data Analytics Professional Certificate</a></p>
+<h5 class="mume-header" id="google-cloud-network-engineer-professional-certificate">Google Cloud Network Engineer Professional Certificate</h5>
+
+<p>Expand your automation skills to managing virtual machines in the cloud. Take a look at the Cloud Network Engineer Professional Certificate, where you will prepare for the Google Cloud Professional Cloud Network Engineer certification exam and you can learn about:</p>
+<ul>
+<li>
+<p>Cloud network engineering skills</p>
+</li>
+<li>
+<p>Implementing VPCs</p>
+</li>
+<li>
+<p>Hybrid connectivity</p>
+</li>
+<li>
+<p>Network services</p>
+</li>
+<li>
+<p>Security for established network architectures on Google Cloud</p>
+</li>
+</ul>
+<p>To learn more about this certification visit:</p>
+<p><a href="https://www.coursera.org/professional-certificates/google-cloud-networking#courses">Cloud Network Engineer Professional Certificate</a></p>
+<p>You can also grow your career by taking any of these Google Cloud professional certifications:</p>
+<ul>
+<li>
+<p><a href="https://www.coursera.org/professional-certificates/google-cloud-networking#courses">Cloud Network Engineer Professional Certificate</a></p>
+</li>
+<li>
+<p><a href="https://www.coursera.org/specializations/networking-google-cloud-platform">Networking in Google Cloud Specialization</a></p>
+</li>
+<li>
+<p><a href="https://www.coursera.org/specializations/security-google-cloud-platform">Security in Google Cloud Specialization</a></p>
+</li>
+<li>
+<p><a href="https://www.coursera.org/professional-certificates/google-project-management?utm_source=google&amp;utm_medium=institutions&amp;utm_campaign=gwgsite-gDigital-paidha-sem-bk-gen-exa-glp-br-null&amp;_ga=2.188375912.1961931751.1662579108-93933645.1661442239&amp;_gac=1.53335386.1662581105.Cj0KCQjwguGYBhDRARIsAHgRm4_ThGr6fU1Y69wQRJqSe4hRoAyagufS1Gxs5_2mKay1uQyK6qU_Hs4aAqT_EALw_wcB">Google Project Management: Professional Certificate</a></p>
+</li>
+<li>
+<p><a href="https://www.coursera.org/professional-certificates/google-ux-design?utm_source=google&amp;utm_medium=institutions&amp;utm_campaign=gwgsite-gDigital-paidha-sem-bk-gen-exa-glp-br-null&amp;_ga=2.150176886.1961931751.1662579108-93933645.1661442239&amp;_gac=1.83696996.1662579831.Cj0KCQjwguGYBhDRARIsAHgRm4_ThGr6fU1Y69wQRJqSe4hRoAyagufS1Gxs5_2mKay1uQyK6qU_Hs4aAqT_EALw_wcB#courses">Google UX Design Professional Certificate</a></p>
+</li>
+</ul>
+<p>If you have not yet taken Google&#x2019;s entry-level certificate for IT support, consider signing up for the:</p>
+<h5 class="mume-header" id="google-it-support-certificate">Google IT Support Certificate</h5>
+
+<p>This program takes your IT foundations to the next level, teaching you how to program with Python and how to automate common system administration tasks using it.</p>
+<p>Across 5 courses, you will learn:</p>
+<ul>
+<li>
+<p>Technical support fundamentals</p>
+</li>
+<li>
+<p>Troubleshooting and customer care</p>
+</li>
+<li>
+<p>Computer networking</p>
+</li>
+<li>
+<p>Operating systems</p>
+</li>
+<li>
+<p>System administration</p>
+</li>
+<li>
+<p>Security</p>
+</li>
+</ul>
+<p>To learn more about this certification visit: <a href="https://www.coursera.org/professional-certificates/google-it-support?utm_source=google&amp;utm_medium=institutions&amp;utm_campaign=gwgsite&amp;_ga=2.262561167.2090059014.1666639119-999957063.1665442478">Google IT Support Professional Certificate</a></p>
+<h4 class="mume-header" id="creating-a-career-development-plan">Creating a Career Development Plan</h4>
+
+<p>There are several components and aspects of your potential career to consider while you are job searching. Before embarking on your journey, it is important to outline your career path. Doing so will help you find opportunities that align with your values, interests, and aspirations. As a Python automation developer, you have a myriad of options available to you. Many industries are hiring IT professionals to assist with Python development, debugging code, troubleshooting issues, recommending solutions, and automating processes on cloud platforms and in Linux environments.</p>
+<h5 class="mume-header" id="identifying-career-goals">Identifying career goals</h5>
+
+<p><strong>What do you want to accomplish as a Python automation professional?</strong> There are multiple specialist fields in the IT industry that will give you the opportunity to further develop and hone your skills in automating with Python. However, you can just as easily take the generalist route and cross-apply your knowledge of Python, cloud computing, and Linux to various roles.</p>
+<p><strong>Do you aspire to eventually work in management in any capacity?</strong> If so, it&#x2019;s important during your job hunt to ask about opportunities for advancement or transition throughout the company. Some companies are limited in opportunities due to long-term employee retention or other factors.</p>
+<p><strong>What are your unique strengths and skills that you bring with you to a company?</strong> Identifying your strengths, both soft and hard skills, will help you stand out from other applicants. There are a plethora of transferable skills that you can use to leverage your application. If you&#x2019;re not sure where to start on identifying your unique strengths and identifying your transferable skills, there are lots of online resources and platforms to help you get an idea.</p>
+<p>Skill stacking is becoming more appealing to hiring managers and companies within the field of technology. Skill stacking is when employees combine skills from different fields or industries to produce novel ideas, approaches, and systems. Soft skills are the most important skills to have if you&#x2019;re considering any position in management or if you want to work in a team-based work environment. Having the skills to hold conversations, navigate conflict, and collaborate with others will highly benefit your career.</p>
+<h5 class="mume-header" id="creating-a-timeline">Creating a timeline</h5>
+
+<p>A common question that is asked in interviews is, &#x201C;where do you see yourself in 5-10 years?&#x201D; Creating a timeline for you and your career is helpful in gaining insight into what career opportunities will work best for you moving forward. One helpful way to gain clarity into this is to break down your bigger career goals into smaller goals.</p>
+<p>Approach your job search and career in IT with an open mind. Be flexible with deadlines, milestones, and your own personal timeline. Be receptive to potential job opportunities that you might not traditionally apply to or pursue. Adaptability and flexibility are two of the most coveted soft skills employers look for in their employees.</p>
+<p>Lastly, hold yourself accountable for your own progress. Technology is always changing and staying informed of all the changes that pertain to your job or specialty will give you an advantage over other employees. Look at taking other certifications, take online courses, read books on the subject, attend conferences, continuously network with other professionals in your field, and/or complete passion projects in your free time. Taking extra measures to inform yourself about your field and attending events with other professionals will greatly increase your chances of success and career satisfaction.</p>
+<h4 class="mume-header" id="getting-promoted">Getting Promoted</h4>
+
+<p>You may already have a technical job and are building your skills to advance your career. You may be considering asking for a promotion.</p>
+<p>You know that you have the Python and automation tools to successfully advance your career. Now is the time to plan for what to do next, with special consideration as to which career path to pursue. Perhaps you&apos;re interested in using your Python skills for analyzing data or developing software. You might be considering using your automation knowledge to streamline the maintenance of a Linux network or cloud environment.</p>
+<p>What are the growth opportunities in your organization? Do they support training? Is this a transitional job? Is this your dream job? All these questions must be taken into account when planning your next steps. After you answer those basic questions, you have to prepare and space your next steps accordingly. If you are planning to grow within your organization, there are a few considerations that you should evaluate to get to the place where you want to be.</p>
+<p>The first thing to consider when planning for a promotion is performing beyond average at your current position. This means proving to your employer that you are not only capable of doing your actual job, but that you are capable of taking on bigger responsibilities. How do you achieve that?</p>
+<ul>
+<li>
+<p><strong>Work on your development</strong>. You should always do your best to excel in your job. You can stand out from the crowd by adding value to your contributions to the company. How are you improving efficiency, saving money, bringing in new revenue? To get a chance at that promotion, you need to be the employee that gives more every day, willing to take new responsibilities.</p>
+</li>
+<li>
+<p><strong>Show leadership and be a team player</strong>. Showing that you are a team player and can take leadership roles will help you to get noticed by your employer. Strive to be a role model, gain your coworkers respect, and motivate your team members. In other words, display and build qualities that will make you a good leader.</p>
+</li>
+<li>
+<p><strong>Continue your education</strong>. When developing your career path, consider and plan for future certifications and training. For example, if you are planning to get from Python coder to Data Analyst, plan to earn a new certificate, like the Google Data Analytics Certificate. Check for your company&#x2019;s Data Analyst job requirements and improve your skills accordingly.</p>
+</li>
+<li>
+<p><strong>Maintain strong work ethics</strong>. Always be punctual for work, have excellent customer service, meet your deadlines, excel at your job, be respectful, and collaborate with your coworkers.</p>
+</li>
+<li>
+<p><strong>Communicate with your boss, your coworkers, and your customers</strong>. Good communication is a key characteristic to display in any type of job, but when you are looking for a promotion, you need to excel in the way you communicate. It is crucial to know how to communicate. It will help when planning for your career path and add some communication training to your skill development.</p>
+</li>
+</ul>
+<h5 class="mume-header" id="key-takeaways-2">Key takeaways</h5>
+
+<p>Planning for a promotion doesn&apos;t necessarily mean that you are going to get one. Sometimes you will need to ask for it, or change roles or organization in order to achieve it. However, to be ready and able to demonstrate your value as part of an organization, remember to:</p>
+<ul>
+<li>
+<p>Work on your development.</p>
+</li>
+<li>
+<p>Show leadership and be a team player.</p>
+</li>
+<li>
+<p>Continue your education.</p>
+</li>
+<li>
+<p>Maintain strong work ethics.</p>
+</li>
+<li>
+<p>Communicate with your boss, your coworkers, and your customers.</p>
+</li>
+</ul>
+<h4 class="mume-header" id="preparing-your-resume">Preparing your Resume</h4>
+
+<h5 class="mume-header" id="tailor-your-resume">Tailor your resume</h5>
+
+<p>As you prepare for your job search, you will need to create or update your resume to reflect your experience in order to apply for roles like:</p>
+<ul>
+<li>
+<p>Automation Engineer</p>
+</li>
+<li>
+<p>Entry-level Python Developer</p>
+</li>
+<li>
+<p>IT Support Specialist II</p>
+</li>
+<li>
+<p>Entry-level Software Engineer</p>
+</li>
+<li>
+<p>Network Engineer</p>
+</li>
+<li>
+<p>&#x2026;and other similar job titles</p>
+</li>
+</ul>
+<p>You have learned so much during this certificate program, and it is important that your resume reflects that. An effective resume highlights your skills and experience and is tailored to the position you are applying for. Let&#x2019;s explore how to make your resume stand out by incorporating your new Python automation skills and your previous experience.</p>
+<h6 class="mume-header" id="tailor-the-content">Tailor the content</h6>
+
+<ul>
+<li>
+<p><strong>Identify what is important to the potential employer</strong>. What does the employer want to know about you? Make sure that you carefully read the job description and notice which skills are mentioned. You can also read several job descriptions for the same type of role to identify which skills and requirements show up frequently. For instance, although specifics will vary by role and employer, many Python automation-related roles require the ability to effectively organize and coordinate across teams and projects, manage multiple tasks simultaneously, and communicate effectively. You should take note of these skills and be sure to highlight them using similar terms on your resume.</p>
+</li>
+<li>
+<p><strong>Create one primary resume to edit and tailor to each job application</strong>. You should make sure that the order of your skills and qualifications matches the job description. In doing this, you are making sure that the things that are most important to the employer are at the top.</p>
+</li>
+<li>
+<p><strong>Match the language used in the job description</strong>. Some employers use automation software to filter resumes. If the job description uses keywords like cloud services and risk management, make sure your resume uses those keywords, too.</p>
+</li>
+<li>
+<p><strong>Use Python automation terminology</strong>. This will help the hiring manager reading your resume understand how your past experience is relevant to the role for which you are applying.</p>
+</li>
+<li>
+<p><strong>Decide what not to include on your resume</strong>. You may have some skills that are important to you, but those same skills may confuse or distract the hiring managers reading your resume.</p>
+</li>
+<li>
+<p><strong>Highlight how your experience and skills are relevant to the job</strong>. If you have been working as an IT Support Specialist but want to become a Python Automation Engineer, your troubleshooting skills will be essential in your new role. Make sure to point out how those skills will be beneficial to the employer.</p>
+</li>
+</ul>
+<h6 class="mume-header" id="choose-an-appropriate-format">Choose an appropriate format</h6>
+
+<p>No matter what layout or template you choose for your resume, there are several things you should keep in mind</p>
+<ul>
+<li>
+<p>The design of your resume should be simple and easy to understand for both human and artificial intelligence readers. You don&#x2019;t want your resume to be discarded before a real person has a chance to read it!</p>
+</li>
+<li>
+<p>Your resume should be easy to read and communicate all of the important information in short bullet points.</p>
+</li>
+<li>
+<p>Your resume should be one- to two-pages long and contain only the last ten to fifteen years of relevant experience. It is appropriate to use two columns on a one-page resume, but if your resume is two pages, be sure to use the entire width of the page.</p>
+</li>
+</ul>
+<h6 class="mume-header" id="update-the-relevant-sections">Update the relevant sections</h6>
+
+<p>Once you have determined the appropriate format for your resume, you will need to update each of your resume&#x2019;s major sections, which include:</p>
+<ul>
+<li>
+<p>Contact information</p>
+</li>
+<li>
+<p>Professional summary</p>
+</li>
+<li>
+<p>Core competencies</p>
+</li>
+<li>
+<p>Professional experience</p>
+</li>
+<li>
+<p>Education and certifications</p>
+</li>
+</ul>
+<p><strong>Pro tip</strong>: Resumes should be written in the third person and should not contain personal pronouns.</p>
+<p>Let&#x2019;s discuss how to incorporate your new skills into these sections of your resume.</p>
+<h6 class="mume-header" id="contact-information">Contact information</h6>
+
+<p>Your header should contain your contact information and should go at the top of your resume.</p>
+<ul>
+<li>
+<p><strong>Your header should include the following information</strong>:</p>
+<ul>
+<li>
+<p>Your name in a larger font than the rest of your resume</p>
+</li>
+<li>
+<p>The city and state you live in (you do not need to include your street address for privacy purposes)</p>
+</li>
+<li>
+<p>Your phone number and a link to your email address</p>
+</li>
+<li>
+<p>Link to your LinkedIn profile URL</p>
+</li>
+<li>
+<p>Links to any other personal websites or portfolios, if applicable to the role you are applying for</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Your header should be relevant, simple, and easy to read</strong>. Here is an example of a resume header:</p>
+</li>
+</ul>
+<h6 class="mume-header" id="professional-summary">Professional summary</h6>
+
+<p>Below your header, include a professional summary.</p>
+<ul>
+<li>
+<p>Use your summary to set the tone. Your summary should be one to three lines and should clearly state why you are the best candidate for the position. It should showcase the most important things you want the reader to know about you. If you are applying for a new role, you will want to update your industry specialty. You likely have experience that can be related to critical thinking and complex problem solving. You will want to incorporate that relevant experience into your new professional summary. Make sure you tailor your description of yourself to the role you are applying for.</p>
+</li>
+<li>
+<p><strong>Merge the description of the role you are applying for with your experience</strong>. Here is an example:</p>
+<ul>
+<li>Automation Engineer with two years of demonstrated success in complex problem solving. Skilled in cross-functional collaboration and project execution. Articulate communicator who thrives in a results-driven collaborative environment.</li>
+</ul>
+</li>
+<li>
+<p><strong>Use keywords from the job description to describe yourself</strong>. If the job description states that the company is looking for a candidate with knowledge of cloud computing, Linux, or Bash scripting, you should add that to your resume&#x2014;you have gained that knowledge with this certification.</p>
+</li>
+</ul>
+<p>Once you have your professional introduction, your next sentence should describe how your unique expertise will make you valuable to the employer.</p>
+<p><strong>Pro tip</strong>: Don&#x2019;t forget to use this section to highlight something that makes you stand out from other applicants. Use an accomplishment from a previous role to show the employer what you can offer them. Take a look at this example of a professional summary section:</p>
+<table>
+<thead>
+<tr>
+<th>Professional Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entry-level Automation Engineer. Proficient in Python and Bash scripting, cloud computing, and debugging code. Skilled in collaborating with technical teams to identify and implement solutions for technical issues.</td>
+</tr>
+</tbody>
+</table>
+<p>Now that you have your heading and professional summary updates, let&#x2019;s move on to the core competencies section of your resume.</p>
+<h6 class="mume-header" id="core-competencies">Core competencies</h6>
+
+<p>Your core competencies should be a bulleted list of the most relevant skills applicable to the position you are applying for.</p>
+<p><strong>Pro tip</strong>: Scan the job description for core competencies you have gained during this certification and your past experience then use those skills as bullet points in this section. Make sure to keep this section relatively short, with four to eight bullets. Here is an example of a Python Automation Engineer resume core competencies section:</p>
+<table>
+<thead>
+<tr>
+<th>Core competencies</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python Coding</td>
+<td>Git and GitHub</td>
+</tr>
+<tr>
+<td>Object-Oriented Programming (OOP)</td>
+<td>Cloud computing with Google Cloud</td>
+</tr>
+<tr>
+<td>Automation scripting</td>
+<td>Puppet configuration management</td>
+</tr>
+<tr>
+<td>Advanced troubleshooting and debugging</td>
+<td>Bash Scripting</td>
+</tr>
+</tbody>
+</table>
+<p>Now that you have showcased who you are and what makes you the best candidate for the job, it is time to tell the story of what you have accomplished throughout your career in the professional experience section.</p>
+<h6 class="mume-header" id="professional-experience">Professional experience</h6>
+
+<p>The professional experience section of your resume provides a summary of the roles and positions you have held in your career. List at least three positions in reverse chronological order and only include what is most relevant to the position you are applying for.</p>
+<p>Your professional experience will not change much from previous resumes, because you can&#x2019;t change the past roles you have held. However, you can possibly rewrite some of your bullets to relate them to your target job&#x2019;s requirements. Make sure you are tying the industry lingo back to your previous experience to show the reader&#x2014;usually a hiring manager&#x2014;how your skills relate to the advertised position. You may be able to use terms like troubleshooting, critical thinking, testing, implementation, and software maintenance to show the reader that your past experience translates to a Python Automation or Software Engineering role, for example.</p>
+<p><strong>Pro tip</strong>: Make sure your resume conveys how your past accomplishments are valuable to the role you are applying for. Show the reader how you can make a difference in their organization. An easy way to remember this is through the P.A.R.I.S. framework:</p>
+<ul>
+<li>
+<p><strong>P</strong>roblem that needed to be solved</p>
+</li>
+<li>
+<p><strong>A</strong>ction(s) I took</p>
+</li>
+<li>
+<p><strong>R</strong>esult of action(s)</p>
+</li>
+<li>
+<p><strong>I</strong>mpact on project (users, quality, etc.)</p>
+</li>
+<li>
+<p><strong>S</strong>upporting evidence (awards, bonus, etc.)</p>
+</li>
+</ul>
+<p>Below is an example of a professional experience section from a Python Automation Engineer&#x2019;s resume:<br>
+Education and certificates</p>
+<p>Now that the majority of your resume has been updated with your new skills and knowledge, it is time to update your Education and Certifications section. In this section of your resume, you should include any degrees beyond your high school diploma in reverse chronological order. For each degree, list the degree you earned, institution, location, and date of graduation. This section should also list any professional certifications, licenses, or credentials you hold. It is here where you will list your new Google Professional Certificate. Here is an example of an education and credentials section of a Python Automation Engineer resume:</p>
+<p>Your resume is now updated and ready to use for your target job! You have revised your professional summary, added newly-acquired core competencies, related past professional experience to your target position, and added this certification to your resume.</p>
+<p><strong>Pro tip</strong>: It is always a good idea to have someone review your resume for any spelling or grammatical errors. Recruiters and hiring managers often toss resumes aside that contain typos. Once you are sure your resume is error-free, it is time to start your job search!</p>
+<p><a href="https://docs.google.com/document/d/1OuGb1T5GHBF-WpR78AiONP8lijNcDFsbhWEB6-rmFR8/template/preview?usp=sharing">IT Automation Engineer Resume Sample</a></p>
+<h4 class="mume-header" id="create-a-resume-and-add-your-new-skills">Create a resume and add your new skills</h4>
+
+<p>In this activity, you will choose a format for your resume. Then, you will work on your resume by adding information about yourself and the job-ready skills you&#x2019;ve developed in this program!</p>
+<p>Your technical skills are most important to showcase for high tech jobs. The skills you learned in this program are often required by job titles such as:</p>
+<ul>
+<li>
+<p>Automation Engineer</p>
+</li>
+<li>
+<p>Entry-level Python Developer</p>
+</li>
+<li>
+<p>IT Support Specialist II</p>
+</li>
+<li>
+<p>Entry-level Software Engineer</p>
+</li>
+<li>
+<p>Network Engineer</p>
+</li>
+<li>
+<p>&#x2026;and other similar job titles</p>
+</li>
+</ul>
+<h5 class="mume-header" id="what-you-will-need">What you will need</h5>
+
+<p>To get started, select a resume template. You may choose from a resume template below, search the internet for a template that suits your style, or update your existing resume.</p>
+<p>To use a preselected template for this activity, click the links below to choose from the two resume options, the select &#x201C;Use Template.&#x201D;</p>
+<ul>
+<li>
+<p><a href="https://docs.google.com/document/d/1qn_zOg-0E7pca6bEk6BGIEBNBuIZdiPnwOTKm76Q-jA/template/preview?usp=sharing">Resume Template 1</a> - <em>Google Doc format</em></p>
+</li>
+<li>
+<p><a href="https://docs.google.com/document/d/1l-aMPMNRxZ0zSOQcNGg4jMqQO5FW1coZiV2m7jz6CFw/template/preview?usp=sharing">Resume Template 2</a> - <em>Google Doc format</em></p>
+</li>
+</ul>
+<p>OR</p>
+<p>If you don&#x2019;t have a Google account, download the templates directly from the attachments below - <em>Microsoft Word format</em>:</p>
+<p><a href="https://docs.google.com/document/d/1Fi7no0XCaIjOkNRm4JdvC22tzLL0mDrU/template/preview?usp=share_link&amp;ouid=112956629071113901647&amp;rtpof=true&amp;sd=true">Resume Template 1</a> [attached as an MS Word file]</p>
+<p><a href="https://docs.google.com/document/d/1DJgtjBE0Iy1C2q3qERKEdGgVmDGCOXYC/template/preview?usp=share_link&amp;ouid=112956629071113901647&amp;rtpof=true&amp;sd=true">Resume Template 2</a> [attached as an MS Word file]</p>
+<h5 class="mume-header" id="add-skills-to-your-resume">Add skills to your resume</h5>
+
+<p>Python automation specialists are expected to have strong technical skills and abilities, so effectively highlighting those skills is a crucial part of crafting your resume. Focus on your skills for this activity. Don&#x2019;t worry about adding your work experience just yet; you&#x2019;ll complete that in a future activity.</p>
+<h5 class="mume-header" id="get-help-from-the-real-world">Get help from the real world</h5>
+
+<p>Reviewing real-world resumes is always a great idea. It can help you get a feel for how others in the industry are representing their experience and skills. You can find resumes on job sites and LinkedIn, or even just by searching for &#x201D;Automation Engineer resume&#x201D; or &#x201C;Python Developer resume&#x201D;. There are many ways to represent your technical skills, and taking a moment to understand how other Python automation specialists do this may give you some great ideas!</p>
+<h5 class="mume-header" id="what-skills-to-add">What skills to add</h5>
+
+<p>The skills section on your resume likely has room for only 2-4 lines or bullet points, so be sure to use this space effectively. You might want to avoid listing soft skills or non-technical skills here. Instead, this is a great chance for you to highlight some of the skills you&#x2019;ve picked up in these courses, such as:</p>
+<ul>
+<li>
+<p>Python Coding</p>
+</li>
+<li>
+<p>Object-Oriented Programming (OOP)</p>
+</li>
+<li>
+<p>Automation scripting</p>
+</li>
+<li>
+<p>Bash Scripting</p>
+</li>
+<li>
+<p>Git and GitHub</p>
+</li>
+<li>
+<p>Cloud computing with Google Cloud</p>
+</li>
+<li>
+<p>Puppet configuration management</p>
+</li>
+<li>
+<p>Advanced troubleshooting and debugging</p>
+</li>
+</ul>
+<p>Notice how the skills listed above communicate a well-rounded Python Automation Engineer&#x2019;s skill set without being too wordy. The skills section summarizes what you&#x2019;re capable of doing, while also listing the technology and tools you are proficient in.</p>
+<p>Many companies use algorithms to screen and filter resumes for keywords. If your resume does not contain the keywords they are searching for, a human may never even read your resume. Reserving at least one bullet point to list specific programs you are familiar with is a great way to make sure your resume makes it past automated keyword screenings and onto the desk of a recruiter or hiring manager.</p>
+<p>Take a moment to complete the skills section of your resume.</p>
+<h4 class="mume-header" id="add-your-job-experience-to-your-resume">Add your job experience to your resume</h4>
+
+<p>Open the resume template that you&#x2019;ve chosen. In this activity, you&#x2019;ll consider the best possible way to explain your work history and experience so that you can add it to your resume. <em>Note: If you can&#x2019;t find the template you chose, we&#x2019;ve included the templates below for you</em>.</p>
+<h5 class="mume-header" id="resume-templates">Resume Templates</h5>
+
+<p>Use the links below to create copies of the resume templates.</p>
+<ul>
+<li>
+<p><a href="https://docs.google.com/document/d/1qn_zOg-0E7pca6bEk6BGIEBNBuIZdiPnwOTKm76Q-jA/template/preview?usp=sharing">Resume Template 1</a> - <em>Google Doc format</em></p>
+</li>
+<li>
+<p><a href="https://docs.google.com/document/d/1l-aMPMNRxZ0zSOQcNGg4jMqQO5FW1coZiV2m7jz6CFw/template/preview?usp=sharing">Resume Template 2</a> - <em>Google Doc format</em></p>
+</li>
+</ul>
+<p>OR</p>
+<p>If you don&#x2019;t have a Google account, download the templates directly from the attachments below - Microsoft Word format:</p>
+<p><a href="https://docs.google.com/document/d/1jwUBX3MdOBUYBFgHp3FVH9KH0D4dlyfE/template/preview?usp=sharing&amp;ouid=105932711771119618269&amp;rtpof=true&amp;sd=true">Resume Template 1</a> - <em>Microsoft Word .docx format</em></p>
+<p><a href="https://docs.google.com/document/d/1_n6W-0rkY4QAl5xvpgE8rhgoB88_lZU-/template/preview?usp=share_link&amp;ouid=105932711771119618269&amp;rtpof=true&amp;sd=true">Resume Template 2</a> - <em>Microsoft Word .docx format</em></p>
+<h5 class="mume-header" id="add-your-work-experience-to-your-resume">Add your work experience to your resume</h5>
+
+<p>One of the most important functions of a resume is communicating your prior work experience to the reader in a favorable light. This can often be challenging, as the one-page format forces job seekers to summarize all of their work experience into a few bullet points. This can make it hard to know what should be included and what should be left off.</p>
+<p>The practices below will help you to select and communicate the highlights of your work experience in the shortest, most impactful way possible.</p>
+<p>As you think about how to represent your work experience on your resume effectively, remember the best practices you&#x2019;ve learned:</p>
+<ul>
+<li>
+<p>Focus on your accomplishments first, and explain them using the formula <strong>&#x201C;Accomplished X, as measured by Y, by doing Z.&#x201D;</strong></p>
+<ul>
+<li>
+<p>These statements help you communicate the most important things a recruiter or hiring manager is searching for &#x2014; the impact of your work.</p>
+</li>
+<li>
+<p>Whenever possible, use numbers to explain your accomplishments. For example, &#x201C;a 15% increase in productivity,&#x201D; is better than &#x201C;an increase in productivity.&#x201D;</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Phrase your work experience and duties using <strong>Problem-Action-Result (PAR)</strong> statements.</p>
+<ul>
+<li>For example, instead of saying &#x201C;Fixed Python code,&#x201D; phrase it as &#x201C;Saved the company over $50,000 in a weekend by fixing an error in a Python script.&#x201D;</li>
+</ul>
+</li>
+<li>
+<p>Use examples that highlight <strong>transferable skills</strong> or those skills that can transfer from one job or industry to another.</p>
+<ul>
+<li>
+<p>This is especially important if you are transitioning from another industry into the tech field.</p>
+</li>
+<li>
+<p>For example, troubleshooting is a skill often used in job descriptions for Automation Engineers. So, highlight examples from your work experience that demonstrate your ability to identify and fix problems.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>The job experience section is the right place to list your <strong>soft skills</strong>.</p>
+<ul>
+<li>
+<p>These are non-technical traits and behaviors that relate to how you work.</p>
+</li>
+<li>
+<p>Are you detail-oriented? Do you have grit and perseverance? Are you a strong critical thinker? Do you have leadership skills?</p>
+</li>
+<li>
+<p>Give an example of how you demonstrated leadership skills on the job.</p>
+</li>
+<li>
+<p>Providing a specific example is more effective than simply claiming to have a skill.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>This is almost always the hardest part of crafting a resume, especially if you are transitioning from a different career field. However, if you take a moment to think deeply about your previous work experience, you&#x2019;ll likely discover that you can find ways to represent your work experiences in a way that highlights your abilities relevant to Python Automation Engineering roles, like critical thinking or complex problem solving.</p>
+<h5 class="mume-header" id="get-the-interview">Get the interview</h5>
+
+<p>Remember that the goal of a resume is to get an interview. You will have an opportunity to  expand on the details of your knowledge, skills, and experience during that interview. Though you may find it challenging to compress all of the various responsibilities and accomplishments from previous jobs into a few bullet points, focus on communicating succinctly that you are a candidate who understands the needs of the role, and you have the skills and experience to warrant an interview.</p>
+<h5 class="mume-header" id="sample-experience-description">Sample experience description</h5>
+
+<p>Below is a resume that provides an example of transferable work experience. Notice how it demonstrates factual, measurable successes and job experience that could be relevant to a variety of jobs in a short, concise manner.</p>
+<p>Click the link to create a copy of the doc. If you don&#x2019;t have a Google account, download the example resume directly from the attachment below.</p>
+<ul>
+<li><a href="https://docs.google.com/document/d/1zDrQ6Qnyd5RiK1HDprutBsNbY7Sc1jQkHXXCgGqfgqg/template/preview?usp=sharing">Work Experience Resume Example</a> - <em>Google Doc format</em></li>
+</ul>
+<p>OR</p>
+<ul>
+<li><a href="https://docs.google.com/document/d/1-xDL-9tB5NBwd7JhoS5Ow8kFnTqVtO7dNqTY2CcFMLc/template/preview?usp=sharing">Work Experience Resume Example</a> - <em>Microsoft Word format</em></li>
+</ul>
+<h5 class="mume-header" id="add-your-work-experience">Add your work experience</h5>
+
+<p>Now that you have had some time to think about your work experience, you should add it to your resume, keeping in mind the best practices we shared above, and that creating a resume is a process. You&#x2019;ll likely come back to work on it multiple times to change things like phrasing or formatting. With effort and time, you&#x2019;ll eventually get your resume to a place where you&#x2019;re satisfied with the final result.</p>
+<p>If you need inspiration, or want to see how other Python Automation Engineers have structured their resumes, take a moment to search for resumes of real Python Automation Engineers. You can find these easily on sites such as LinkedIn. Seeing how others with your target job title have structured and worded their own resumes may give you valuable insight about more effective ways to highlight your own experience!</p>
+<h4 class="mume-header" id="writing-a-cover-letter">Writing a Cover Letter</h4>
+
+<p>A <strong>cover letter</strong> is a personal introduction to promote yourself. It serves as a companion document to a resume. Its main purpose is to elaborate on your professional skills, motivations, and why you should be viewed as the best candidate for a job.</p>
+<p>There are three types of cover letters:</p>
+<ul>
+<li>
+<p><strong>Networking</strong> &#x2014; Addressed to individuals to ask for their help in finding a job at their company</p>
+</li>
+<li>
+<p><strong>Prospecting</strong> &#x2014; Addressed to companies to explore all open job opportunities</p>
+</li>
+<li>
+<p><strong>Application</strong> &#x2014; Addressed to hiring managers to emphasize your fit for a specific job</p>
+</li>
+</ul>
+<p>This reading focuses on helping you write application cover letters. Employers have &#x201C;who, what, where, when, why, and how&#x201D; types of questions when they gather information about job applicants.</p>
+<p>Your resume answers:</p>
+<ul>
+<li>
+<p><strong>what</strong> you have done</p>
+</li>
+<li>
+<p><strong>where</strong> you worked</p>
+</li>
+<li>
+<p><strong>when</strong> you were employed.</p>
+</li>
+</ul>
+<p>Your application cover letter describes in more detail:</p>
+<ul>
+<li>
+<p><strong>who</strong> you are</p>
+</li>
+<li>
+<p><strong>why</strong> you want the job</p>
+</li>
+<li>
+<p><strong>how</strong> you will be successful in the role</p>
+</li>
+</ul>
+<h5 class="mume-header" id="preparing-to-write-a-cover-letter">Preparing to write a cover letter</h5>
+
+<p><strong>Pro tip</strong>: Not all job applications require a cover letter. When a cover letter is stated as being optional, it&#x2019;s best to consider how much a cover letter might improve your standing. The following are common situations when people prefer to include a cover letter:</p>
+<ul>
+<li>
+<p>When starting out in a career (early career applicant)</p>
+</li>
+<li>
+<p>When making a career transition</p>
+</li>
+<li>
+<p>When experience, education, or training isn&#x2019;t an exact match with the listed requirements</p>
+</li>
+<li>
+<p>When entering a crowded field of applicants</p>
+</li>
+</ul>
+<p>Many people agree that no cover letter is better than a poorly written one! Even if a cover letter has no obvious errors, submitting a few paragraphs with very general statements isn&#x2019;t going to help you that much. Before you write a cover letter, follow these steps to ensure you create a meaningful one.</p>
+<h6 class="mume-header" id="step-1-research-the-company-or-organization">Step 1: Research the company or organization</h6>
+
+<p>You can find out a lot about a company from these methods:</p>
+<ul>
+<li>
+<p>Browse the company&#x2019;s website</p>
+</li>
+<li>
+<p>Follow the company on social media including LinkedIn</p>
+</li>
+<li>
+<p>Perform a search on the company&#x2019;s financial standing and investors, if applicable</p>
+</li>
+<li>
+<p>Perform a search on the company&#x2019;s known competitors</p>
+</li>
+<li>
+<p>Ask your relatives, friends, and colleagues what they know about the company</p>
+</li>
+</ul>
+<h6 class="mume-header" id="step-2-inventory-the-required-skills-from-the-job-description">Step 2: Inventory the required skills from the job description</h6>
+
+<p>Read the job description carefully and determine what you think are the most important skills for an applicant to have and why.</p>
+<h6 class="mume-header" id="step-3-prioritize-your-matching-skills-from-strongest-to-weakest">Step 3: Prioritize your matching skills from strongest to weakest</h6>
+
+<p>Based on the skills you identified in the previous step, identify your skills that match or are most closely aligned (associated) with them. Next, prioritize your matching skills from the strongest to the weakest. People often skip this ordering process. Ranking your skills enables you to emphasize your strongest skills first in your cover letter.</p>
+<h5 class="mume-header" id="parts-of-a-cover-letter">Parts of a cover letter</h5>
+
+<p><strong>Pro tip</strong>: A cover letter is between 250-400 words in length and doesn&#x2019;t exceed one page.</p>
+<p>Review the goals for each section of a cover letter below.</p>
+<p><strong>Introduction</strong></p>
+<p>The primary goals of the introduction section of a cover letter are to:</p>
+<ul>
+<li>
+<p>Identify the position you&#x2019;re applying for</p>
+</li>
+<li>
+<p>Show your enthusiasm for the company</p>
+</li>
+<li>
+<p>Encourage people on the hiring team to learn more about you</p>
+</li>
+</ul>
+<p><strong>Example</strong> <em>I&#x2019;m applying for the Python Developer position, and can&#x2019;t imagine a more exciting role. As a frequent and avid user of your services, I&#x2019;m eager to pursue this career opportunity.</em></p>
+<p><strong>Body Section</strong></p>
+<p>The goal of the body section of a cover letter is to describe how your skills apply to the open position. Suppose the job description has these qualifications:</p>
+<ul>
+<li>
+<p>Experience with Python scripting</p>
+</li>
+<li>
+<p>At least 1 year of IT troubleshooting experience</p>
+</li>
+<li>
+<p>Critical thinking skills with ability to solve complex problems</p>
+</li>
+</ul>
+<p>The following example shows how you can map your experiences to these qualifications in the body of your cover letter.</p>
+<p><strong>Example</strong> <em>I completed the Google xxx Professional certificate and have previous customer service experience in retail electronics. I was responsible for helping customers choose the right devices for their needs, and solve any problems they had with those devices. I also helped keep the onsite computers healthy by identifying and solving any technical problems. With my attention to detail, I can help your IT team solve problems quickly and efficiently.</em></p>
+<p><strong>Pro tip</strong>: Avoid the temptation to rehash the content of your resume. A warning sign is if your cover letter has essentially the same information as your resume but in a paragraph format.</p>
+<p><strong>Pro tip</strong>: Focus on what you can do for the company rather than on how you would benefit from being hired for that position. The difference between being company-focused and self-focused can be subtle, as in the following sentences:</p>
+<ul>
+<li>
+<p>I would like to develop automation solutions to keep your company&#x2019;s IT structure solid and provide efficiency to the company&#x2019;s IT systems (<strong>company-focused</strong>; what you will do for the company).</p>
+</li>
+<li>
+<p>I would like to grow my Python skills by developing cloud automation solutions for efficient virtual machine management (<strong>self-focused</strong>; what you would like to gain by being in the role).</p>
+</li>
+</ul>
+<p><strong>Closing</strong></p>
+<p>The goal of the closing section of a cover letter is to restate your interest in the company and position. It is also used to indicate your expectations, such as scheduling an interview, being considered for other jobs, or a timeframe for follow up.</p>
+<p><strong>Example</strong></p>
+<p><em>Thank you for taking the time to review my resume for this position. I&#x2019;m confident I can excel in this role using my combined work experience and skills from the Google yyy Professional Certificate. I&#x2019;m looking forward to an interview and request the privilege to follow up on my application&#x2019;s progress in the coming weeks.</em></p>
+<h5 class="mume-header" id="proofread-your-cover-letter">Proofread your cover letter</h5>
+
+<p>Many errors in cover letters are caused by copying and pasting text from one cover letter to another. After you write your cover letter, proofread it carefully to catch these common things:</p>
+<ul>
+<li>
+<p>Awkward formality&#x2014;Few people call people Sir or Madam nowadays, so you shouldn&#x2019;t use these in your cover letter either. Also refrain from using &#x201C;To whom it may concern&#x201D; which sounds highly impersonal. If you don&#x2019;t know the name of the hiring manager, use &#x201C;Dear Hiring Team.&#x201D; Likewise, consider using &#x201C;Best regards&#x201D; instead of  &#x201C;Sincerely&#x201D; which sounds a little outdated.</p>
+</li>
+<li>
+<p>Misspelled words (especially those that sound the same but are spelled differently). For example, &#x201C;affect&#x201D; and &#x201C;effect,&#x201D; &#x201C;then&#x201D; and &#x201C;than,&#x201D; and &#x201C;your&#x201D; and &#x201C;you&#x2019;re.&#x201D;</p>
+</li>
+<li>
+<p>Mismatched skills&#x2014;Make sure you aren&#x2019;t incorporating skills for the wrong job description in your cover letter. This happens with copying and pasting.</p>
+</li>
+<li>
+<p>Passive voice&#x2014;Use active voice whenever possible: &#x201C;I revised the ads&#x201D; instead of passive voice: &#x201C;I ensured that the ads were revised.&#x201D;</p>
+</li>
+<li>
+<p>Long anecdotes&#x2014;Save stories that describe any past results you achieved for when you are  being interviewed.</p>
+</li>
+</ul>
+<h5 class="mume-header" id="key-takeaways-3">Key takeaways</h5>
+
+<p>Cover letters help introduce the best points about yourself to a potential employer. Make sure that your cover letter doesn&#x2019;t simply rehash the skills outlined in your resume, but adds value by describing how your skills align with the job requirements and how you would be successful in the role. To write the best cover letters, it&#x2019;s helpful to research the company, identify the most important skills from the job descriptions, and prioritize and include your matching and relevant skills.</p>
+<h4 class="mume-header" id="build-a-job-search-plan">Build a Job Search Plan</h4>
+
+<p>In this activity, you will create a job search plan to help you track your progress and expectations during your job search.</p>
+<h5 class="mume-header" id="part-1---create-and-track-your-job-search-plan">Part 1 - Create and track your job search plan</h5>
+
+<h6 class="mume-header" id="step-1-access-the-template">Step 1: Access the template</h6>
+
+<p>Click the link to create a copy of the template. If you don&#x2019;t have a Google account, download the template directly from the attachment below.</p>
+<ul>
+<li>Job Search Plan Template - Google Sheets format</li>
+</ul>
+<p>OR</p>
+<ul>
+<li>Microsoft Excel format:Job Search Plan Template [attached as an MS Excel file]</li>
+</ul>
+<h6 class="mume-header" id="step-2-choose-an-industry-or-specialty">Step 2: Choose an industry or specialty</h6>
+
+<p>Since high tech jobs exist in nearly every industry in this digital world, the first step in your job search is choosing an industry that you may enjoy. Reflect on your passions, the communities you&#x2019;d like to work with, or what work gets you excited, and investigate opportunities in those areas. Here are some more examples of industries you can explore:</p>
+<ul>
+<li>
+<p>Technology</p>
+</li>
+<li>
+<p>Business</p>
+</li>
+<li>
+<p>Medical</p>
+</li>
+<li>
+<p>Construction</p>
+</li>
+<li>
+<p>Government</p>
+</li>
+<li>
+<p>Education</p>
+</li>
+<li>
+<p>Non-Profit</p>
+</li>
+<li>
+<p>Finance</p>
+</li>
+<li>
+<p>Marketing</p>
+</li>
+</ul>
+<p>Check that you are in the <strong>Job Tracker</strong> tab. Once you have determined your preferred industry, record it in the <strong>Industry</strong> column.</p>
+<h6 class="mume-header" id="step-3-explore-and-determine-your-desired-job">Step 3: Explore and determine your desired job</h6>
+
+<p>Now that you know what industry you&#x2019;re searching in, it&#x2019;s time to get specific. For example, if you chose the education industry, you might search for jobs related to automation, cloud computing, or Python coding for a school district or university IT department. You can find similar roles in government, finance, and commercial businesses.</p>
+<p>If you&#x2019;re unsure what kinds of opportunities are available, search for a company in the industry of your choice and review the career opportunities for Python automation roles. Once you&#x2019;ve found a job you are interested in, record the company, job title in the appropriate columns. Paste the link to the job description under <strong>Job Link</strong>.</p>
+<h6 class="mume-header" id="step-4-track-your-networking">Step 4: Track your networking</h6>
+
+<p>Networking can be a great tool that can lead to potential job opportunities. If you apply for a job through a referral, record the name and contact information of the person who referred you under <strong>Referral Name</strong> and <strong>Referral Contact Information</strong>.</p>
+<h6 class="mume-header" id="step-5-customize-your-resume-and-apply">Step 5: Customize your resume and apply</h6>
+
+<p>Tailor your resume and cover letter to reflect the language used in the job description and apply as soon as possible. Once you&apos;ve applied to the job, identify the resume you used under <strong>Resume Used</strong> and the date on which you applied under <strong>Date Applied</strong>.</p>
+<h6 class="mume-header" id="step-6-prepare-for-and-schedule-your-first-interview">Step 6: Prepare for and schedule your first interview</h6>
+
+<p>If you schedule an interview with a recruiter, record the interview date, your interviewer&#x2019;s name, and your interviewer&#x2019;s contact information in the next three columns.</p>
+<h6 class="mume-header" id="step-7-thank-your-interviewer">Step 7: Thank your interviewer</h6>
+
+<p>Once you&#x2019;ve successfully completed your first interview, make sure to send a thank you email to your interviewer within 24 hours. Remind them of who you are, what job you applied for, and thank them for their time. Your interviewer will likely appreciate your courtesy, which will make you more memorable.</p>
+<p>Don&apos;t forget to record the date you send the thank you email under <strong>Follow-up Email Date</strong>.</p>
+<p>Step 8: Prepare for further interviews</p>
+<p>As you move forward in the application process, you will likely have at least one or two more interviews. Log any further information in remaining columns.</p>
+<h6 class="mume-header" id="step-9-keep-trying">Step 9: Keep trying</h6>
+
+<p>Successfully applying to and landing a job is a competitive and difficult process. No matter the outcome of a certain application, persistence pays off!</p>
+<h5 class="mume-header" id="part-2---cultivate-and-maintain-your-networking-relationships">Part 2 - Cultivate and maintain your networking relationships</h5>
+
+<p>Networking is a critical tool in your job search, as it can help you learn about new job opportunities, gain information on your target industry, and help open doors for your career. Cultivate your network of former and current coworkers, and use online networking platforms like LinkedIn to connect to others in your target industry. Letting your network know about your interests could lead to informational interviews with those in your target field, or referrals for job openings. Be sure to keep track of each connection you make, and each new opportunity that arises.</p>
+<h6 class="mume-header" id="step-1-open-tab-2-of-the-template">Step 1: Open Tab 2 of the template</h6>
+
+<p>Now, go to the <strong>Network Tracker</strong> tab.</p>
+<h6 class="mume-header" id="step-2-fill-in-personal-contact-information">Step 2: Fill in personal contact information</h6>
+
+<p>Once you&#x2019;ve connected with someone, you should track your relationship with them. Record the date of your first meeting, the person&#x2019;s name, and their contact information in the first three columns.</p>
+<h6 class="mume-header" id="step-3-record-professional-takeaways">Step 3: Record professional takeaways</h6>
+
+<p>Make note of anything new you learned about the industry or job from your conversation under <strong>Key Questions</strong>. Pay close attention to any issues that your contact deems important.</p>
+<h6 class="mume-header" id="step-4-recollect-on-common-ground">Step 4: Recollect on common ground</h6>
+
+<p>It is also helpful to remember interesting details or stories from your conversation, both personal and professional. Write down any professional tips, common interests, or fun facts from your conversation under <strong>Professional Takeaways</strong> and <strong>Personal Talking Points</strong>. You can use these details to build on your connection with your contact the next time you connect with them.</p>
+<h6 class="mume-header" id="step-5-brainstorm-further-questions">Step 5: Brainstorm further questions</h6>
+
+<p>You will most likely have more questions after your first networking session. Record these under <strong>Further Questions</strong>. You can use these questions to reconnect with your contact or ask future contacts.</p>
+<h6 class="mume-header" id="step-6-schedule-your-next-meeting">Step 6: Schedule your next meeting</h6>
+
+<p>Estimate the date you next want to reach out to your contact. After your first meeting, the six-month mark is a good choice, although it could be sooner depending on your level of connection or if you agreed on next steps when speaking with them. Record the date you plan to reach out again under <strong>Next Outreach</strong>.</p>
+<p><strong>Pro Tip Save the template</strong></p>
+<p>Finally, be sure to save a blank copy of the job search plan template you used to complete this activity. You can use it for further practice or in your own personal or professional projects.</p>
+<h5 class="mume-header" id="what-to-include-in-your-response">What to Include in Your Response</h5>
+
+<p>Be sure to address the following elements in your completed job search plan:</p>
+<p>Job Tracker Tab 1 should include:</p>
+<ul>
+<li>
+<p>Industry</p>
+</li>
+<li>
+<p>Company</p>
+</li>
+<li>
+<p>Job Title</p>
+</li>
+<li>
+<p>Job Link</p>
+</li>
+</ul>
+<p>Network Tracker Tab 2 should include:</p>
+<ul>
+<li>
+<p>Contact information</p>
+</li>
+<li>
+<p>First meeting date</p>
+</li>
+<li>
+<p>Professional takeaways</p>
+</li>
+<li>
+<p>Common interests or fun facts</p>
+</li>
+<li>
+<p>Further questions to ask</p>
+</li>
+<li>
+<p>The date you plan to reach out again</p>
+</li>
+</ul>
+<h4 class="mume-header" id="personal-branding">Personal Branding</h4>
+
+<p>Having a good resume and an excellent elevator pitch are important. They will show employers your skills and your work history, and they will give you a chance to impress employers with what you have done, and what you can do for them. There is one more step you can take to make sure you stand out from other candidates. Having your own personal brand will make you unique and help you stand out from other candidates. This reading will help you build your own personal brand.</p>
+<h5 class="mume-header" id="building-your-personal-brand">Building your personal brand</h5>
+
+<p>Your personal brand represents you, so the first part of personal branding is to look at yourself and see what makes you unique. Brands represent what they are. Product makers use branding to help people notice their products, and to develop people&#x2019;s trust in their products and keep people coming back to them. You need to build a brand that does the same things for you.</p>
+<h6 class="mume-header" id="taking-an-inventory-of-yourself">Taking an inventory of yourself</h6>
+
+<p>Taking an inventory of your skills, interests, and things that motivate you will give you a start in building your personal brand. You can build an inventory in any order that works best for you. Here are some examples of inventory questions:</p>
+<ul>
+<li>
+<p>What drives you to pursue the career you chose?</p>
+</li>
+<li>
+<p>Which of your talents and skills mean the most to you?</p>
+</li>
+<li>
+<p>What is something you did in the past you are very proud of doing?</p>
+</li>
+<li>
+<p>What kinds of tasks or projects give you the most energy?</p>
+</li>
+<li>
+<p>Think about people you admire. What do you admire about them?</p>
+</li>
+<li>
+<p>What are your strengths and weaknesses?</p>
+</li>
+</ul>
+<p>These are examples, but you can use them to make your own inventory questions as well. Write the questions and the answers and keep them in a notebook or journal.</p>
+<h6 class="mume-header" id="get-to-know-your-audience">Get to know your audience</h6>
+
+<p>Now that you have your personal inventory, get to know your audience.</p>
+<ul>
+<li>
+<p>Study your potential employers and learn all about their organizations. Look for their values and goals and see how you can align your goals and values with theirs.</p>
+</li>
+<li>
+<p>Identify who their influencers are. Once you know about the companies offering positions, study their needs based on what the job offers say.</p>
+</li>
+<li>
+<p>Identify who the stakeholders are who have the most interest in your services.</p>
+</li>
+<li>
+<p>Look at your inventory and match what you know about yourself to those companies&#x2019; needs. Your talents, your skills, the things that give you energy, your strengths, your knowledge and experience, and the rest of the information you put together in your inventory are all part of the recipe for your personal brand. Now that you have the information you need, you can start putting together your brand.</p>
+</li>
+</ul>
+<h6 class="mume-header" id="identify-some-challenges-the-companies-are-facing">Identify some challenges the companies are facing</h6>
+
+<p>Branding helps consumers distinguish one service from other similar services. You can expand this branding concept to you and the services you offer as a Python automation specialist.</p>
+<ul>
+<li>
+<p>Identify some ongoing challenges companies face dealing with IT automation.</p>
+</li>
+<li>
+<p>Think about solutions to those challenges, and how you can offer unique solutions to those challenges.</p>
+</li>
+<li>
+<p>Show potential employers how having you in their organizations will benefit them with your unique IT automation problem solving skills and knowledge of Python coding, cloud computing, and Linux environments.</p>
+</li>
+</ul>
+<h6 class="mume-header" id="building-your-brand">Building your brand</h6>
+
+<p>Now that you have taken a personal inventory, studied your audience, and identified some challenges your audience of potential employers face in their organizations, you are ready to build your personal brand. Using the information you put together, write one or two sentences that describe you and what you do.</p>
+<p>You may need to write a few drafts before you find one you like best. Once you find the one you think is the best, you now have a brand you can use along with resumes, elevator pitches and cover letters to stand out from other candidates.</p>
+<h5 class="mume-header" id="key-takeaway">Key Takeaway</h5>
+
+<p>Having a good resume and a great elevator pitch will help you impress potential employers, but having a personal brand will help you stand out from all the other candidates. It will give potential employers something to remember you out of all the applicants they are looking at for the position.</p>
+<h4 class="mume-header" id="it-automation-job-opportunities">IT Automation Job Opportunities</h4>
+
+<p>When you&#x2019;re searching for a new job, it can be challenging to know where to start &#x2014; especially if you&#x2019;re changing careers or starting your first one. In this reading, you&#x2019;ll learn how to find the right online job board for what you need in an entry-level job, apprenticeship, or internship in IT automation, as well as potential places to network for job opportunities. Ready to get started?<br>
+Online job board</p>
+<ol>
+<li>
+<p><a href="https://www.google.com/search?q=IT+automation+jobs">Jobs on Google Search</a>. Searching for a job on Google Search is easy &#x2014; just type your job search terms into the search bar at <a href="http://Google.com">Google.com</a>. Google Search will automatically search for jobs near you with the terms you choose (for example, <strong>IT Automation Engineer</strong>), using your current location.</p>
+<ul>
+<li>
+<p>Not interested in staying in your current area or willing to relocate for the right position? You can filter your search. From the Google Search results page, find the jobs search box, headed in blue, and click on the &#x201C;more jobs&#x201D; link under the first few results. You&#x2019;ll go to a search page with more options for filtering and sorting. From there, change the location, job type, employer, or any of the other filters. Click on the button and you&#x2019;ll see your options, like full-time, contractor, part-time, and internship. Or, click the filter to look for jobs labeled as &#x201C;work from home.&#x201D; These are becoming much more common for all types of jobs!</p>
+</li>
+<li>
+<p>Google for Jobs is an aggregator, meaning it pulls job postings from all over the internet, including other job search boards, company websites, and government job portals. In other words, it&#x2019;s extensive!</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.indeed.com/">Indeed</a>. Indeed is another large job aggregator. Anyone can search on the website for free. It has similar filters as Jobs on Google Search. Each job posting includes a brief description of the job and a link to another website to apply. If you register with Indeed, you can create a profile and upload your resume so your searches are more targeted. You can also apply to some jobs directly through Indeed if you have an account.</p>
+</li>
+<li>
+<p><a href="https://www.glassdoor.com/index.htm">Glassdoor</a>. Glassdoor has a lot of similar features to Indeed and Jobs on Google Search. To search on Glassdoor, you need to create an account and provide some identifying information, like your job and education background. What sets Glassdoor apart from some of the other sites is the information about the companies posting jobs, including typical salaries for various positions within the company and example questions from interviews. Salaries and reviews are self-reported by Glassdoor&#x2019;s users who are former and current employees of each company listed, so these reviews can be a useful tool for filling out your application or preparing for an interview.</p>
+</li>
+<li>
+<p><a href="https://www.ziprecruiter.com/">ZipRecruiter</a>. Like Glassdoor, you need to register to use ZipRecruiter. Employers post their jobs directly to the site, and then ZipRecruiter matches interested applicants, based on their resumes, with the job postings. You can declare your interest in a particular job too, but you often don&#x2019;t need to do so formally; the employer sees your interest and your resume and decides whether to contact you based on your perceived match for the job. You&#x2019;ll get a notification if an employer reviews your information. Like most of the major job sites, you can also opt in to receive emails from the website with potential job matches</p>
+</li>
+<li>
+<p><strong>Job boards for IT professionals</strong> (<a href="https://dice.com/jobs">Dice.com</a>, <a href="https://www.techcareers.com/jobs/search">TechCareers.com</a>, <a href="https://www.upwork.com/cat/dev-it">Upwork.com</a>, etc.). Creating a profile and posting your resume to Job boards that are specifically tailored to technical professions may boost your visibility to hiring managers in IT. You will usually find full-time job leads on job boards like <a href="http://Dice.com">Dice.com</a> and <a href="http://TechCareers.com">TechCareers.com</a>. On job boards like <a href="http://Upwork.com">Upwork.com</a>, you advertise yourself and state your hourly rate. Employers search these boards to find contractors for short-term project work. Contractor work is a good option for building work experience through a variety of different types of projects. You can also build a diverse professional network through short assignments. If you make a great impression as a contractor, you may receive offers for more contract work, or you could receive an offer for full-time employment.</p>
+</li>
+<li>
+<p><a href="https://www.linkedin.com/jobs">Linkedin</a>. You&#x2019;re likely already very familiar with LinkedIn. If you have already created an account on the professional networking site and filled in your professional background and resume, you&#x2019;re already halfway to applying for jobs here! You don&#x2019;t have to register with LinkedIn to look for jobs, but there are a lot of benefits to doing so. Many recruiters and hiring managers use LinkedIn to find potential employees or freelancers; if you&#x2019;re actively looking for a job, it&#x2019;s often as simple as signaling that you&#x2019;re open to opportunities, a setting within your LinkedIn profile page. You can also search for and apply to jobs directly from LinkedIn. Sometimes you&#x2019;ll be taken to a company website to formally apply; other times, you might just share your profile and interest in the job with the hiring manager and wait for someone to contact you.</p>
+</li>
+</ol>
+<p>Either way, the most important things to do for LinkedIn is keep your profile up to date and link to your professional portfolio. One other option: You can ask your connections, either former employers or classmates, to recommend you and write testimonials to be posted on your profile. This reinforces your work ethic as an employee and talents as an IT Automation Engineer.</p>
+<p>This list is just a selection of the job-search sites available to you as an IT Automation Engineer. As you click or scroll through each site, you might find benefits or drawbacks to a specific job board that makes it more or less suitable to your needs. If you live in a major city, you&#x2019;ll probably have plenty of opportunities available to you. If you live in a smaller town, or you want to work remotely, you may have to look a little harder to figure out your options. (There&#x2019;s always your local newspaper and small businesses near you!) But with any luck, you&#x2019;ll have a variety of positions to choose from when you&#x2019;re ready to start your new career.</p>
+<h5 class="mume-header" id="networking-opportunities">Networking opportunities</h5>
+
+<p>Of course, online job boards aren&#x2019;t the only option for your job search. Networking, whether it&#x2019;s in person or online, is a hugely important method for finding jobs in any field, IT automation included.</p>
+<ul>
+<li>
+<p><a href="https://www.linkedin.com/jobs">Linkedin</a>. Okay, so you already learned about LinkedIn in this reading. But it&#x2019;s not just a place to apply for jobs. Recruiters actively seek out potential employees on the site, but you don&#x2019;t have to wait until they come to you! Connecting with recruiters on LinkedIn is perfectly acceptable. You might look for a recruiter from a local agency you&#x2019;ve heard good things about; or, if you&#x2019;re interested in working at a specific company, you can seek out recruiters who work for that organization already. Politely express interest in any open jobs, and see what happens! LinkedIn is also the place to connect with former colleagues, managers, or teachers. Let your network know you&#x2019;re starting a new career in IT automation. Most people love to help others!</p>
+</li>
+<li>
+<p><strong>Conferences</strong>. Whether they&#x2019;re online or in person, industry conferences are useful in many ways. You learn more about your field during presentations and panels; you meet other people who are working in the industry; and you connect with hiring managers who are looking to expand their teams. Not everyone goes to a conference looking for a new hire. However, they&#x2019;re a great opportunity to meet new people, and new connections mean new opportunities for jobs in the future. Search online for IT professional conferences near you or in an area you would be willing to travel to.</p>
+</li>
+<li>
+<p><strong>Job fairs</strong>. Job fairs are often hosted by a group of employers that are interested in hiring new talent or advertising their company as a great place to work. Although a job fair isn&#x2019;t as likely to be focused solely on IT automation, it is likely that companies who attend will need to hire IT Automation Engineers. You might be surprised by who you meet and what roles you can find. To find a job fair near you, check with local high schools, community colleges, universities, and workforce development programs.</p>
+</li>
+</ul>
+<p>It might seem overwhelming when you begin your job search. There are so many places to look at so many job openings to sort through. But the more you research, the easier it&#x2019;ll be to pinpoint the exact type of job you&#x2019;d like to apply for. And you&#x2019;ll be on your way to snagging that first interview. Get ready, because that day is coming up soon!</p>
+<h4 class="mume-header" id="recruiters-headhunters-and-staffing-agencies">Recruiters, Headhunters, and Staffing Agencies</h4>
+
+<p>One of the many ways to apply and secure jobs in the IT industry is through recruiters, headhunters, and staffing agencies. Sometimes it&#x2019;s possible to secure a long-term position for a company by first completing temporary or contract work through a recruitment agency.</p>
+<h5 class="mume-header" id="recruiters">Recruiters</h5>
+
+<p>There are two primary types of recruiters: external and internal. External recruiters work outside the organization they represent, usually through a recruitment agency. These types of recruiters can help candidates find a multitude of open positions in the industry and work with them on a non-contractual basis until the candidate secures a position. Internal recruiters work with the company of interest. Internal recruiters can help leverage a candidate&#x2019;s application by assisting them through the hiring process within a specific company.</p>
+<h5 class="mume-header" id="staffing-agencies">Staffing Agencies</h5>
+
+<p>Staffing agencies assist companies with finding qualified candidates to fulfill their open positions. These positions range anywhere from permanent, to contract, and contract-to-hire. The staffing agencies are responsible for recruiting and sometimes conducting entry-level screening questions on candidates to ensure they are a good fit for the company. If the agency can&#x2019;t find a suitable fit for the job right away, they may post the job on online job boards on behalf of the company. The company ultimately makes the final decision for who is selected, and the staffing agency assists with the initial onboarding process.</p>
+<h5 class="mume-header" id="career-coaches">Career Coaches</h5>
+
+<p>Career coaches can greatly assist with helping job seekers hone in their job search and find positions that cater to their strengths and personal values. They can also assist with guiding the candidate through all the ups and downs of the job hunting process, reframing thoughts, challenging limiting beliefs about the job search process, and finding opportunities for professional growth. However, career coaches often cost more than other routes for securing a job. Consider hiring a career coach if you&#x2019;re experiencing challenges in moving up in your career, securing interviews, receiving offers, or are unsure about what the next steps in your career should look like. There are multiple types of career coaches out there. Conduct research and find the type of coach you&#x2019;re looking for. Some provide basic services such as resume reviews, editing of cover letters, or LinkedIn profile analysis. Other career coaches will go further and offer live coaching sessions either in person or online, offer additional resources to help you on your journey, and/or a supportive community of other job seekers.</p>
 <p>#ITCert #Python #Automation #GrowWithGoogle</p>
 
       </div>
