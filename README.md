@@ -32,10 +32,10 @@ Markdown and HTML notes, with sample code (in the python_scripts directory) and 
 
 - [More About Input Functions](http://More%20About%20Input%20Functions.html)
 
-- [Unit Test Cheat-Sheet](http://Unit%20Test%20Cheat-Sheet.html)
+- [Unit Test Cheat Sheet](http://Unit%20Test%20Cheat-Sheet.html)
 
-- [Handling Errors Cheat-Sheet](http://Handling%20Errors%20Cheat-Sheet.html)
+- [Handling Errors Cheat Sheet](http://Handling%20Errors%20Cheat-Sheet.html)
 
-- [Basic_Linux_Commands_Cheat-Sheet](http://Basic_Linux_Commands_Cheat-Sheet.html)
+- [Basic Linux Commands Cheat Sheet](http://Basic_Linux_Commands_Cheat-Sheet.html)
 
-- [Redirections_Pipes_and_Signals](http://Redirections_Pipes_and_Signals.html)
+- [Redirections, Pipes and Signals](http://Redirections_Pipes_and_Signals.html)
