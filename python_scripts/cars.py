@@ -86,7 +86,7 @@ def main(argv):
   summary = process_data(data)
   # print(summary, type(summary))
   
- # Generate a paragraph that contains the necessary summary
+  # Generate a paragraph that contains the necessary summary
   paragraph = "<br/>".join(summary)
   # Generate a table that contains the list of cars
   table_data = cars_dict_to_table(data)
