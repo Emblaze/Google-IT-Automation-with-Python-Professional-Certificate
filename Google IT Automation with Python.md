@@ -3551,7 +3551,7 @@ Imagine a colleague sends you a script with a bug and asked you to help fix the 
 But this could still be hard for them to understand if the code is complex. To make the change clear, you could send them a diff with the change so that they can see what the modified code looks like. To do this, we typically use a command line like:
 
 ```bash
-diff-u old_file new_ file > change.diff.
+diff-u old_file new_file > change.diff.
 ```
 
 As a reminder, the greater than sign redirects the output of the diff command to a file. So with this command, we're generating a file called change.diff with the contents of diff-u command. By using the -u flag, we include more context which helps the person reading the file understand what's going on with the change. The generated file is usually referred to as a **diff file** or sometimes a **patch file**. It includes all the changes between the old file and the new one, plus the additional context needed to understand the changes and to apply those changes back to the original file.
