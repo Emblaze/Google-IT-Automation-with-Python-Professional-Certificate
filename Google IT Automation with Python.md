@@ -6026,7 +6026,7 @@ In our journey together we checked out a ton of examples based on real-world sit
 
 Practice like that builds some serious problem-solving experience helping you grow in your it role. Knowing how to identify, solve, and prevent those types of problems is one of the most important parts of working in IT. And building the healthy habits needed to prioritize your time when working with those problems is just as critical.
 
-## Configuration Management and the Cloud
+## 5. Configuration Management and the Cloud
 
 ### Introduction to Automating with Configuration Management
 
@@ -7230,7 +7230,7 @@ In the past sections, we've discussed a lot of different topics related to deplo
 
 That was a lot of interesting stuff in a short amount of time, don't you think?
 
-## Automating Real-world Tasks with Python
+## 6. Automating Real-world Tasks with Python
 
 ### Course 6 Introduction
 
